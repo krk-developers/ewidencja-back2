@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminProfilesTableSeeder::class);
         $this->call(EmployerProfilesTableSeeder::class);
         $this->call(WorkerProfilesTableSeeder::class);
+        $this->call(LegendsTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
     }
 }

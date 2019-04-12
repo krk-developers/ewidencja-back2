@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,15 @@ class User extends Authenticatable
     public function userable(): MorphTo
     {
         return $this->morphTo();
-    }    
+    }
+    
+    /**
+     * Get the events for the user.
+     * 
+     * @return HasMany
+     */
+    public function events(): HasMany
+    {
+        return $this->hasMany('App\Event');
+    }
 }
