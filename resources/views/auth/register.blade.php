@@ -26,6 +26,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="userable_type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
+
+                            <div class="col-md-6">
+                                {{-- <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus> --}}
+                                <select id="userable_type" class="form-control" name="userable_type">
+                                    <option value="App\Worker">Pracownik</option>
+                                    <option value="App\Employer">Pracodawca</option>
+                                </select>
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">

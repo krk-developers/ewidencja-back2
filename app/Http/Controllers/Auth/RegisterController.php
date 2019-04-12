@@ -64,8 +64,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
+        // find user's type
+        $type_id = \App\Type::findIDByModelName($data['userable_type']);
+        
+        if ($data['userable_type'] == 'App\Worker') {
+            $workerProfile = \App\WorkerProfile::create_();
+            $userable_id = $workerProfile->id;
+        }
+        
+        if ($data['userable_type'] == 'App\Employer') {
+            $employerProfile = \App\EmployerProfile::create_();
+            $userable_id = $employerProfile->id;
+        }
+        
         return User::create(
             [
+                'type_id' => $type_id,  // user's type
+                'userable_id' => $userable_id,  // user's profile id
+                'userable_type' => $data['userable_type'],  // user's profile type
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),

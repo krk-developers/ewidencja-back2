@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class User extends Authenticatable
 {
@@ -18,7 +20,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'api_token',
+        'type_id',
+        'userable_id',
+        'userable_type',
+        'name',
+        'email',
+        'password',
+        'api_token',
     ];
 
     /**
@@ -27,7 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token', // <- ? moze byc tu i tu?
     ];
 
     /**
@@ -38,4 +46,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the type that owns the user.
+     * 
+     * @return BelongsTo
+     */
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo('App\Type');
+    }
+
+    /**
+     * Get all of the owning userable models.
+     * 
+     * @return MorphTo
+     */
+    public function userable(): MorphTo
+    {
+        return $this->morphTo();
+    }    
 }
