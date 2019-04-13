@@ -148,5 +148,61 @@ class EventsTableSeeder extends Seeder
                 'title' => 'Nakarmić wreszcie burka',
             ]
         );
+
+        DB::table('events')->insert(
+            [
+                'legend_id' => 2,
+                'user_id' => 4,
+                'start' => '2019-04-19',
+                'end' => '2019-04-19',
+                'title' => 'Zatrudnić nowych pracowników',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 2,
+                'user_id' => 4,
+                'start' => '2019-04-20',
+                'end' => '2019-04-21',
+                'title' => 'Zwolnić starych pracowników (chcą podyżek)',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 2,
+                'user_id' => 4,
+                'start' => '2019-04-23',
+                'end' => '2019-04-23',
+                'title' => 'Przeprowadzić szkolenie BHP z pracownikami',
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'legend_id' => 3,
+                'user_id' => 6,
+                'start' => '2019-04-24',
+                'end' => '2019-04-24',
+                'title' => 'Chycić się wreszcie porządnie za robote',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 3,
+                'user_id' => 6,
+                'start' => '2019-04-25',
+                'end' => '2019-04-25',
+                'title' => 'Nie pić w pracy, a przynajmniej nie dzisiaj',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 3,
+                'user_id' => 6,
+                'start' => '2019-04-25',
+                'end' => '2019-04-25',
+                'title' => 'Iść z prośbą o podwyżkę',
+            ]
+        );
     }
 }

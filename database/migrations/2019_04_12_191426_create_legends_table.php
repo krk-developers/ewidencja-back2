@@ -20,7 +20,7 @@ class CreateLegendsTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name', 10)->unique();
-                $table->string('display_name', 40)->nullable();
+                $table->string('display_name', 80)->nullable();
                 $table->string('description')->nullable();
             }
         );
