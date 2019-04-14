@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use Illuminate\Database\Seeder;
 
-class WorkerProfilesTableSeeder extends Seeder
+class WorkersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,17 +13,17 @@ class WorkerProfilesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('worker_profiles')->insert(
+        DB::table('workers')->insert(
             [             
                 'lastname' => 'kowalski',
             ]
         );
-        DB::table('worker_profiles')->insert(
+        DB::table('workers')->insert(
             [             
                 'lastname' => 'kowalski',
             ]
         );
-        DB::table('worker_profiles')->insert(
+        DB::table('workers')->insert(
             [             
                 'lastname' => 'nowak',
             ]

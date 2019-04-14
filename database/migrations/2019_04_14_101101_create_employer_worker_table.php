@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployerProfilesTable extends Migration
+class CreateEmployerWorkerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,11 +16,12 @@ class CreateEmployerProfilesTable extends Migration
     public function up(): void
     {
         Schema::create(
-            'employer_profiles',
+            'employer_worker',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('company')->nullable();
-                $table->timestamps();
+                $table->integer('employer_id');
+                $table->integer('worker_id');
+                // $table->timestamps();
             }
         );
     }
@@ -32,6 +33,6 @@ class CreateEmployerProfilesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employer_profiles');
+        Schema::dropIfExists('employer_worker');
     }
 }

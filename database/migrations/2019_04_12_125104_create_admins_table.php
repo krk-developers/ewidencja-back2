@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkerProfilesTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateWorkerProfilesTable extends Migration
     public function up(): void
     {
         Schema::create(
-            'worker_profiles',
+            'admins',
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('lastname', 30)->nullable();
@@ -32,6 +32,6 @@ class CreateWorkerProfilesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('worker_profiles');
+        Schema::dropIfExists('admins');
     }
 }

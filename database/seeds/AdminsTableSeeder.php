@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use Illuminate\Database\Seeder;
 
-class AdminProfilesTableSeeder extends Seeder
+class AdminsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,12 @@ class AdminProfilesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('admin_profiles')->insert(
+        DB::table('admins')->insert(
             [             
                 'lastname' => 'sztefko',
             ]
         );
-        DB::table('admin_profiles')->insert(
+        DB::table('admins')->insert(
             [             
                 'lastname' => 'hołymczuk',
             ]

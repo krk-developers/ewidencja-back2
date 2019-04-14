@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSuperAdminProfilesTable extends Migration
+class CreateEmployersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,10 +16,11 @@ class CreateSuperAdminProfilesTable extends Migration
     public function up(): void
     {
         Schema::create(
-            'super_admin_profiles',
+            'employers',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('lastname', 30)->nullable();
+                $table->string('company')->nullable();
+                $table->timestamps();
             }
         );
     }
@@ -31,6 +32,6 @@ class CreateSuperAdminProfilesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('super_admin_profiles');
+        Schema::dropIfExists('employers');
     }
 }

@@ -16,7 +16,7 @@ class TypesTableSeeder extends Seeder
         DB::table('types')->insert(
             [
                 'registrable' => 0,
-                'model' => 'App\SuperAdminProfile',
+                'model' => 'App\SuperAdmin',
                 'name' => 'superadmin',
                 'display_name' => 'Super Administrator',
                 'description' => 'Wszystkie uprawnienia',
@@ -25,7 +25,7 @@ class TypesTableSeeder extends Seeder
         DB::table('types')->insert(
             [
                 'registrable' => 0,
-                'model' => 'App\AdminProfile',
+                'model' => 'App\Admin',
                 'name' => 'admin',
                 'display_name' => 'Administrator',
                 'description' => 'Dodawanie i edycja wydarzeń',

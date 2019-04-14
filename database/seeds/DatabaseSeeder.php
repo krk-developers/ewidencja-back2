@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(TypesTableSeeder::class);
-        $this->call(SuperAdminProfilesTableSeeder::class);
-        $this->call(AdminProfilesTableSeeder::class);
-        $this->call(EmployerProfilesTableSeeder::class);
-        $this->call(WorkerProfilesTableSeeder::class);
+        $this->call(SuperAdminsTableSeeder::class);
+        $this->call(AdminsTableSeeder::class);
+        $this->call(EmployersTableSeeder::class);
+        $this->call(WorkersTableSeeder::class);
         $this->call(LegendsTableSeeder::class);
         $this->call(EventsTableSeeder::class);
+        $this->call(EmployerWorkerTableSeeder::class);
     }
 }

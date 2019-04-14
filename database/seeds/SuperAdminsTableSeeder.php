@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use Illuminate\Database\Seeder;
 
-class SuperAdminProfilesTableSeeder extends Seeder
+class SuperAdminsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class SuperAdminProfilesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('super_admin_profiles')->insert(
+        DB::table('super_admins')->insert(
             [             
                 'lastname' => 'miłkowski',
             ]

@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-class EmployerProfile extends Model
+class Worker extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -15,9 +15,9 @@ class EmployerProfile extends Model
      * @var array
      */
     protected $fillable = [
-        'company',
+        'lastname',
     ];
-        
+
     /**
      * Get the profile's user.
      * 
@@ -29,11 +29,19 @@ class EmployerProfile extends Model
     }
 
     /**
+     * The employers that belong to the worker.
+     */
+    public function employers()
+    {
+        return $this->belongsToMany('App\Employer');
+    }
+
+    /**
      * Create profile
      *
-     * @return EmployerProfile
+     * @return Worker
      */
-    public static function create_(): EmployerProfile
+    public static function create_(): Worker
     {
         return self::create();
     }
