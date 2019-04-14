@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -36,7 +37,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'api_token', // <- ? moze byc tu i tu?
+        'password',
+        'remember_token',
+        'api_token', // <- ? moze byc tu i tu?
+        'email_verified_at',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -76,5 +82,15 @@ class User extends Authenticatable
     public function events(): HasMany
     {
         return $this->hasMany('App\Event');
+    }
+
+    /**
+     * Collection of Users
+     *
+     * @return Collection
+     */
+    public static function all_(): Collection
+    {
+        return self::all();
     }
 }

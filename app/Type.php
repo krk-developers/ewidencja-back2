@@ -6,6 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class Type extends Model
 {
@@ -17,6 +18,13 @@ class Type extends Model
     protected $fillable = [
         'name', 'display_name', 'description',
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['registrable', 'model',];
 
     /**
      * Get the users for the type.
@@ -53,5 +61,15 @@ class Type extends Model
     public static function findIDByModelName(string $name): int
     {
         return self::where('model', $name)->value('id');
+    }
+
+    /**
+     * Collection of user types
+     *
+     * @return Collection
+     */
+    public static function all_(): Collection
+    {
+        return self::all();
     }
 }

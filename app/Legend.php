@@ -6,6 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 
 class Legend extends Model
 {
@@ -31,5 +32,15 @@ class Legend extends Model
     public function events(): HasMany
     {
         return $this->hasMany('App\Event');
+    }
+
+    /**
+     * All event's legend
+     *
+     * @return Collection
+     */
+    public static function all_(): Collection
+    {
+        return self::all();
     }
 }
