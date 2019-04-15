@@ -13,36 +13,13 @@ class LegendsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
-        DB::table('legends')->insert(
-            [
-                'name' => 'DP',
-                'display_name' => 'Dzień przepracowany',
-                'description' => '',
-            ]
-        );
-        DB::table('legends')->insert(
-            [
-                'name' => 'UW',
-                'display_name' => 'Urlop wypoczynkowy',
-                'description' => '',
-            ]
-        );
-        DB::table('legends')->insert(
-            [
-                'name' => 'Ś',
-                'display_name' => 'Święto, niedziela, dzień wolny ustawowo',
-                'description' => '',
-            ]
-        );
-        */
-
         // Typy nieobecności
         DB::table('legends')->insert(
             [
                 'name' => 'CHZ100',
                 'display_name' => 'Choroba zgłoszona 100%',
                 'description' => 'Choroba u kobiety ciężarnej, płatna 100%',
+                'working_day' => 0,
             ]
         );
         DB::table('legends')->insert(
