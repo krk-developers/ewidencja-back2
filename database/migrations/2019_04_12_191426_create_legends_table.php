@@ -22,6 +22,7 @@ class CreateLegendsTable extends Migration
                 $table->string('name', 10)->unique();
                 $table->string('display_name', 80)->nullable();
                 $table->string('description')->nullable();
+                $table->boolean('working_day')->default(1);
             }
         );
     }
