@@ -6,8 +6,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
+
+// use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Event;
 use App\Http\Resources\Event as EventResource;
 
@@ -16,13 +17,13 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return EventResource
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): EventResource
     {
         // return response()->json(['function' => __FUNCTION__]);
         
-        return EventResource::collection(Event::all_());
+        return new EventResource(Event::all_());
     }
 
     /**

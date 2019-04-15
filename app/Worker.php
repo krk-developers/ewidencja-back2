@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Worker extends Model
@@ -59,7 +60,12 @@ class Worker extends Model
         return self::create();
     }
 
-    public static function all_()
+    /**
+     * All events assigned to workers.
+     *
+     * @return void
+     */
+    public static function all_(): Collection
     {
         return DB::table('workers')
             ->select(

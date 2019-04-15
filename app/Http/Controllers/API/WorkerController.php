@@ -39,10 +39,11 @@ class WorkerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Worker $worker Worker.
+     * 
+     * @return EventResource
      */
-    public function show(Worker $worker)
+    public function show(Worker $worker): EventResource
     {
         // return $worker;
         // return response()->json(['function' => $worker->events]);

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -81,6 +82,13 @@ class User extends Authenticatable
      */
     public static function all_(): Collection
     {
-        return self::all();
+        // return self::all();
+        return DB::table('users')
+            ->select(
+                'users.id', 'users.name as firstname',
+                'users.email', 'types.display_name'
+            )
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->get();
     }
 }

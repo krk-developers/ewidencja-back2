@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+// use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\User;
 use App\Http\Resources\User as UserResource;
 
@@ -16,12 +16,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return UserResource
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): UserResource
     {
         // return response()->json(['function' => __FUNCTION__]);
-        return UserResource::collection(User::all_());
+        return new UserResource(User::all_());
     }
 
     /**
