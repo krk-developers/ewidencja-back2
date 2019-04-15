@@ -6,6 +6,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Employer extends Model
 {
@@ -45,6 +47,51 @@ class Employer extends Model
         return $this->belongsToMany('App\Worker');
     }
 
+    /**
+     * All employers
+     *
+     * @return Collection
+     */
+    public static function all_(): Collection
+    {
+        return DB::table('employers')
+            ->select(
+                'employers.id', 'employers.company',
+                'users.name as firstname', 'users.email',
+                'types.display_name'
+            )
+            ->join('users', 'employers.id', '=', 'users.userable_id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->where('types.name', '=', 'employer')
+            ->get();
+    }
+
+    /**
+     * Workers who work for the employer
+     *
+     * @param integer $id Employer ID
+     * 
+     * @return Collection
+     */
+    public static function workersByEmployerID(int $id): Collection
+    {
+        return DB::table('workers')
+            ->select(
+                'workers.id', 'users.name as firstname', 'workers.lastname',
+                'users.email', 'types.display_name as type_display_name'
+            )
+            ->join('employer_worker', 'workers.id', '=', 'employer_worker.worker_id')
+            ->join('users', 'workers.id', '=', 'users.userable_id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->where(
+                [
+                    ['employer_worker.worker_id', '=', $id],
+                    ['types.name', '=', 'worker']
+                ]
+            )
+            ->get();
+    }
+    
     /**
      * Create profile
      *

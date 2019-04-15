@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 'type_id' => 3,
-                'userable_id' => 1,
+                'userable_id' => 2,
                 'userable_type' => 'App\Employer',           
                 'name' => 'grażyna',
                 'email' => 'grazka@biz.pl',

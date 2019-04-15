@@ -51,11 +51,11 @@ class WorkerTest extends TestCase
     }
 
     /**
-     * Test if employer is displayed
+     * Test if employer's events are displayed
      *
      * @return void
      */
-    public function testEmployerShowPage(): void
+    public function testWorkerShowPage(): void
     {
         $this->withoutExceptionHandling();
 
@@ -64,8 +64,25 @@ class WorkerTest extends TestCase
 
         $response->assertStatus(200);
         
-        $response->assertJson(['function' => "show$id"]);
+        $response->assertJsonStructure(
+            [
+                'data' => 
+                [
+                    '*' =>
+                    [
+                        'id',
+                        'start',
+                        'end',
+                        'title',
+                        'legend_name',
+                        'legend_display_name',
+                        'worker_id',
+                    ]
+                ]
+            ]
+        );        
+        // $response->assertJson(['function' => "show$id"]);
 
-        $response->assertJsonCount(1);
+        // $response->assertJsonCount(1);
     }
 }
