@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             'users',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('type_id');
-                $table->integer('userable_id');
+                $table->integer('type_id'); // what type is the user. info about type
+                $table->integer('userable_id');  // 'subclasses' of users. specifies the user
                 $table->string('userable_type');
                 $table->string('name');
                 $table->string('email')->unique();

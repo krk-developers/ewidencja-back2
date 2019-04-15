@@ -7,6 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Event extends Model
 {
@@ -31,7 +32,7 @@ class Event extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Worker');
     }
 
     /**
@@ -52,5 +53,18 @@ class Event extends Model
     public static function all_(): Collection
     {
         return self::all();
+    }
+
+    public static function byWorkerID(int $id): Collection
+    {
+        return DB::table('events')
+            ->select(
+                'legends.name as legend_name',
+                'legends.display_name as legend_display_name',
+                'events.start', 'events.end', 'events.title'
+            )
+            ->join('legends', 'events.legend_id', '=', 'legends.id')
+            ->where('worker_id', $id)
+            ->get();
     }
 }

@@ -29,3 +29,6 @@ Route::apiResource('users', 'API\UserController')
 
 Route::apiResource('user_types', 'API\TypeController')
     ->only(['index']);
+
+Route::apiResource('workers', 'API\WorkerController')
+    ->only(['index', 'show']);

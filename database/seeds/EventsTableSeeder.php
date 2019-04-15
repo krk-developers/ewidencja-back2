@@ -108,12 +108,12 @@ class EventsTableSeeder extends Seeder
         );
         */
         // ///////////////////////////////////////////////////////////////////
-
+        
         DB::table('events')->insert(
             [
                 // 'all_day' => 0,
                 'legend_id' => 1,
-                'user_id' => 1,
+                'worker_id' => 1,
                 'start' => '2019-04-13',
                 'end' => '2019-04-13',
                 'title' => 'Uważać na czarne koty',
@@ -122,7 +122,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 1,
-                'user_id' => 1,
+                'worker_id' => 1,
                 // 'all_day' => 0,
                 'start' => '2019-04-14',
                 'end' => '2019-04-14',
@@ -133,7 +133,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 2,
-                'user_id' => 2,
+                'worker_id' => 2,
                 'start' => '2019-04-15',
                 'end' => '2019-04-17',
                 'title' => 'Zacząć kurs Node.js',
@@ -142,7 +142,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 2,
-                'user_id' => 2,
+                'worker_id' => 2,
                 'start' => '2019-04-18',
                 'end' => '2019-04-18',
                 'title' => 'Nakarmić wreszcie burka',
@@ -152,7 +152,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 2,
-                'user_id' => 4,
+                'worker_id' => 3,
                 'start' => '2019-04-19',
                 'end' => '2019-04-19',
                 'title' => 'Zatrudnić nowych pracowników',
@@ -161,7 +161,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 2,
-                'user_id' => 4,
+                'worker_id' => 3,
                 'start' => '2019-04-20',
                 'end' => '2019-04-21',
                 'title' => 'Zwolnić starych pracowników (chcą podyżek)',
@@ -170,7 +170,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 2,
-                'user_id' => 4,
+                'worker_id' => 3,
                 'start' => '2019-04-23',
                 'end' => '2019-04-23',
                 'title' => 'Przeprowadzić szkolenie BHP z pracownikami',
@@ -180,7 +180,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 3,
-                'user_id' => 6,
+                'worker_id' => 3,
                 'start' => '2019-04-24',
                 'end' => '2019-04-24',
                 'title' => 'Chycić się wreszcie porządnie za robote',
@@ -189,7 +189,7 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 3,
-                'user_id' => 6,
+                'worker_id' => 3,
                 'start' => '2019-04-25',
                 'end' => '2019-04-25',
                 'title' => 'Nie pić w pracy, a przynajmniej nie dzisiaj',
@@ -198,11 +198,12 @@ class EventsTableSeeder extends Seeder
         DB::table('events')->insert(
             [
                 'legend_id' => 3,
-                'user_id' => 6,
+                'worker_id' => 3,
                 'start' => '2019-04-25',
                 'end' => '2019-04-25',
                 'title' => 'Iść z prośbą o podwyżkę',
             ]
         );
+        
     }
 }

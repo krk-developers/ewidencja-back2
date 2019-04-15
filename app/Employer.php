@@ -17,7 +17,16 @@ class Employer extends Model
     protected $fillable = [
         'company',
     ];
-        
+       
+    /**
+     * String representation of model
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return __CLASS__;
+    }
     /**
      * Get the profile's user.
      * 
