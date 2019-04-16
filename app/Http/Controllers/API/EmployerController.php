@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use App\Employer;
+// use Illuminate\Http\JsonResponse;
+use App\{Employer, Worker};
 use App\Http\Resources\Employer as EmployerResource;
 
 class EmployerController extends Controller
@@ -33,15 +35,34 @@ class EmployerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the workers of employers
      *
-     * @param  int  $id
+     * @param Employer $employer Employer
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function show(Employer $employer)
+    public function show(Employer $employer): EmployerResource
     {
-        // return $employer;
+        //return $employer;
         return new EmployerResource(Employer::workersByEmployerID($employer->id));
+    }
+
+    /**
+     * All events of the worker who works fot the employer
+     *
+     * @param Employer $employer Employer
+     * @param Worker   $worker   Worker
+     * 
+     * @return EmployerResource
+     */
+    public function event(Employer $employer, Worker $worker): EmployerResource
+    {
+        return new EmployerResource(
+            Employer::eventsByEmployerAndWorkerID(
+                $employer->id,
+                $worker->id
+            )
+        );
     }
 
     /**

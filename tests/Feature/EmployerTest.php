@@ -1,13 +1,20 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Illuminate\Foundation\Testing\WithFaker;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EmployerTest extends TestCase
 {
+    /**
+     * If all employers are displayed
+     *
+     * @return void
+     */
     public function testEmployerIndexPage(): void
     {
         $response = $this->get(route('employers.index'));
@@ -34,7 +41,7 @@ class EmployerTest extends TestCase
     }
     
     /**
-     * Test if employer is displayed
+     * If employer's workers are displayed
      *
      * @return void
      */
@@ -60,6 +67,46 @@ class EmployerTest extends TestCase
                         'lastname',
                         'email',
                         'type_display_name',
+                    ]
+                ]
+            ]
+        );
+    }
+
+    /**
+     * If events of the worker who work for the employer are displayed
+     *
+     * @return void
+     */
+    public function testEmployerEventPage(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $employerID = 1;
+        $workerID = 2;
+        $response = $this->get(
+            route(
+                'employers.workers.event',
+                [
+                    $employerID, $workerID
+                ]
+            )
+        );
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure(
+            [
+                'data' => 
+                [
+                    '*' =>
+                    [
+                        'id',
+                        'start',
+                        'end',
+                        'title',
+                        'legend_name',
+                        'legend_display_name',
                     ]
                 ]
             ]

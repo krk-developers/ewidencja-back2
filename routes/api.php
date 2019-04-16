@@ -30,6 +30,8 @@ Route::apiResource('users', 'API\UserController')
 Route::apiResource('user_types', 'API\TypeController')
     ->only(['index']);
 
+Route::get('employers/{employer}/workers/{worker}', 'API\EmployerController@event')
+    ->name('employers.workers.event');
 Route::apiResource('employers', 'API\EmployerController')
     ->only(['index', 'show']);
 
