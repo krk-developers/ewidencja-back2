@@ -99,12 +99,35 @@ class Event extends Model
     {
         return DB::table('events')
             ->select(
-                'events.id', 'events.start', 'legends.name as legend_name',
+                'events.id', 'events.start', 'events.title',
+                'legends.name as legend_name',
                 'legends.display_name as legend_diplay_name',
                 'legends.description as legend_description'
             )
             ->join('legends', 'legend_id', 'legends.id')
             ->where('legends.name', 'DZUW')
             ->get();
+    }
+
+    /**
+     * Nearest public holidays
+     *
+     * @return Collection
+     */
+    public static function nearestPublicHolidays(): Collection
+    {
+        $nearestPublicHolidays = DB::table('events')
+            ->select(
+                'events.id', 'events.start', 'events.title',
+                'legends.name as legend_name',
+                'legends.display_name as legend_diplay_name',
+                'legends.description as legend_description'
+            )
+            ->join('legends', 'legend_id', 'legends.id')
+            ->where('legends.name', 'DZUW')
+            ->whereDate('start', '>', today())
+            ->first();
+        
+        return collect($nearestPublicHolidays);
     }
 }

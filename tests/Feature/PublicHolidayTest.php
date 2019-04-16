@@ -24,7 +24,7 @@ class PublicHolidayTest extends TestCase
         $response->assertStatus(200);
 
         // $response->assertJson(['function' => 'index']);
-        
+
         $response->assertJsonFragment(
             [
                 'legend_name' => 'DZUW',
@@ -42,10 +42,50 @@ class PublicHolidayTest extends TestCase
                     [
                         'id',
                         'start',
+                        'title',
                         'legend_name',
                         'legend_diplay_name',
                         'legend_description',
                     ]
+                ]
+            ]
+        );
+    }
+
+    /**
+     * If nerest public holiday is displayed.
+     *
+     * @return void
+     */
+    public function testNerestPublicHolidayIndexPage(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->get(route('nearest_public_holidays.index'));
+
+        $response->assertStatus(200);
+
+        // $response->assertJson(['function' => 'index']);
+
+        $response->assertJsonCount(1);
+        
+        $response->assertJsonFragment(
+            [
+                'legend_name' => 'DZUW',
+                'legend_diplay_name' => 'Dzień ustawowo wolny',
+            ]
+        );
+        
+        $response->assertJsonStructure(
+            [
+                'data' => 
+                [
+                    'id',
+                    'start',
+                    'title',
+                    'legend_name',
+                    'legend_diplay_name',
+                    'legend_description',
                 ]
             ]
         );

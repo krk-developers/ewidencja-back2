@@ -33,6 +33,11 @@ Route::apiResource('user_types', 'API\TypeController')
 Route::apiResource('public_holidays', 'API\PublicHolidayController')
     ->only(['index']);
 
+Route::get(
+    'nearest_public_holidays',
+    'API\NearestPublicHolidayController'
+)->name('nearest_public_holidays.index');
+
 Route::get('employers/{employer}/workers/{worker}', 'API\EmployerController@event')
     ->name('employers.workers.event');
 Route::apiResource('employers', 'API\EmployerController')
