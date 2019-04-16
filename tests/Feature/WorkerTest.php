@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class WorkerTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * If all workers are displayed.
      *
      * @return void
      */
@@ -20,11 +20,17 @@ class WorkerTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->get(route('workers.index'));
-        // dd($response);
+
         $response->assertStatus(200);
 
         // $response->assertJson(['function' => 'index']);
         
+        $response->assertJsonFragment(
+            [
+                'type_display_name' => 'Pracownik'
+            ]
+        );
+
         $response->assertJsonMissingExact(
             [
                 'type_display_name' => 'Super Administrator',
@@ -42,6 +48,7 @@ class WorkerTest extends TestCase
                         'id',
                         'firstname',
                         'lastname',
+                        'pesel',
                         'email',
                         'type_display_name',
                     ]
@@ -51,13 +58,15 @@ class WorkerTest extends TestCase
     }
 
     /**
-     * Test if employer's events are displayed
+     * If employer's events are displayed
      *
      * @return void
      */
     public function testWorkerShowPage(): void
     {
         $this->withoutExceptionHandling();
+        
+        // $response->assertJson(['function' => "show$id"]);
 
         $id = 1;
         $response = $this->get(route('workers.show', $id));
@@ -80,9 +89,6 @@ class WorkerTest extends TestCase
                     ]
                 ]
             ]
-        );        
-        // $response->assertJson(['function' => "show$id"]);
-
-        // $response->assertJsonCount(1);
+        );
     }
 }

@@ -11,7 +11,7 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     /**
-     * Test if all users are displeyed.
+     * If all users are displeyed.
      *
      * @return void
      */
@@ -19,16 +19,31 @@ class UserTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get('/api/users');
+        $response = $this->get(route('users.index'));
 
         $response->assertStatus(200);
-        // $response->assertJson(['function' => 'index']);
+        // $response->assertJson(['function' => 'index']);        
         /*
         $response->assertJsonFragment(
             [
-                'name' => 'artur'
+                'type_display_name' => 'Super Administrator'
             ]
         );
         */
+        
+        $response->assertJsonStructure(
+            [
+                'data' => 
+                [
+                    '*' =>
+                    [
+                        'id',
+                        'firstname',
+                        'type_display_name',
+                        'description',
+                    ]
+                ]
+            ]
+        );
     }
 }

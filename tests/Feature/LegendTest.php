@@ -11,7 +11,7 @@ use Tests\TestCase;
 class LegendTest extends TestCase
 {
     /**
-     * Test if all event's legends displayed
+     * If all event's legends displayed
      *
      * @return void
      */
@@ -19,7 +19,7 @@ class LegendTest extends TestCase
     {
         $this->withoutExceptionHandling();
         
-        $response = $this->get('/api/legends');
+        $response = $this->get(route('legends.index'));
         
         $response->assertStatus(200);
         
@@ -42,6 +42,7 @@ class LegendTest extends TestCase
                         'name',
                         'display_name',
                         'description',
+                        'working_day'
                     ]
                 ]
             ]

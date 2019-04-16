@@ -22,6 +22,17 @@ class EmployerTest extends TestCase
         $response->assertStatus(200);
 
         // $response->assertJson(['function' => 'index']);
+        $response->assertJsonFragment(
+            [
+                'type_display_name' => 'Pracodawca'
+            ]
+        );
+
+        $response->assertJsonMissingExact(
+            [
+                'type_display_name' => 'Pracownik'
+            ]
+        );
 
         $response->assertJsonStructure(
             [
@@ -33,7 +44,7 @@ class EmployerTest extends TestCase
                         'company',
                         'firstname',
                         'email',
-                        'display_name',
+                        'type_display_name',
                     ]
                 ]
             ]
@@ -56,6 +67,18 @@ class EmployerTest extends TestCase
 
         // $response->assertJson(['function' => "show$id"]);
         
+        $response->assertJsonFragment(
+            [
+                'type_display_name' => 'Pracownik'
+            ]
+        );
+
+        $response->assertJsonMissingExact(
+            [
+                'type_display_name' => 'Pracodawca'
+            ]
+        );
+
         $response->assertJsonStructure(
             [
                 'data' => 

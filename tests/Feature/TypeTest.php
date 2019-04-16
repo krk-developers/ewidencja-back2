@@ -11,7 +11,7 @@ use Tests\TestCase;
 class TypeTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * If all type of users are displayed.
      *
      * @return void
      */
@@ -19,7 +19,7 @@ class TypeTest extends TestCase
     {
         $this->withoutExceptionHandling();
         
-        $response = $this->get('/api/user_types');
+        $response = $this->get(route('user_types.index'));
 
         $response->assertStatus(200);
         
@@ -33,6 +33,8 @@ class TypeTest extends TestCase
                 'display_name' => 'Pracownik',
             ]
         );
+        
+        $response->assertJsonCount(4, 'data');
         
         $response->assertJsonStructure(
             [

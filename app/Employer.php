@@ -59,7 +59,7 @@ class Employer extends Model
             ->select(
                 'employers.id', 'employers.company',
                 'users.name as firstname', 'users.email',
-                'types.display_name'
+                'types.display_name as type_display_name'
             )
             ->join('users', 'employers.id', '=', 'users.userable_id')
             ->join('types', 'users.type_id', '=', 'types.id')
