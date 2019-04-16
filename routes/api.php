@@ -29,6 +29,9 @@ Route::apiResource('users', 'API\UserController')
 
 Route::apiResource('user_types', 'API\TypeController')
     ->only(['index']);
+    
+Route::apiResource('public_holidays', 'API\PublicHolidayController')
+    ->only(['index']);
 
 Route::get('employers/{employer}/workers/{worker}', 'API\EmployerController@event')
     ->name('employers.workers.event');

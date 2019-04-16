@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             'events',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('legend_id')->nullable()->default(null);
+                $table->integer('legend_id');  // ->nullable()->default(null)
                 $table->integer('worker_id')->nullable()->default(null);
                 // $table->boolean('all_day')->default(1);
                 $table->date('start');
