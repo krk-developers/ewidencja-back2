@@ -59,7 +59,7 @@ class Event extends Model
                 'legends.name as legend_name',
                 'legends.display_name as legend_display_name',
                 'workers.id as worker_id', 'users.name as firstname',
-                'workers.lastname', 'users.email'
+                'workers.lastname', 'workers.pesel', 'users.email'
             )
             ->join('users', 'workers.id', '=', 'users.userable_id')
             ->join('types', 'users.type_id', '=', 'types.id')

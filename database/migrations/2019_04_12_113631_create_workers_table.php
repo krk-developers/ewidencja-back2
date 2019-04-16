@@ -20,6 +20,7 @@ class CreateWorkersTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('lastname', 30)->nullable();
+                $table->unsignedBigInteger('pesel')->unique()->nullable();
                 $table->timestamps();
             }
         );

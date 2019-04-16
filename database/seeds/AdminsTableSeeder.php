@@ -15,12 +15,12 @@ class AdminsTableSeeder extends Seeder
     {
         DB::table('admins')->insert(
             [             
-                'lastname' => 'sztefko',
+                'lastname' => 'Sztefko',
             ]
         );
         DB::table('admins')->insert(
             [             
-                'lastname' => 'hołymczuk',
+                'lastname' => 'Hołymczuk',
             ]
         );
     }

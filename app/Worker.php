@@ -70,7 +70,7 @@ class Worker extends Model
         return DB::table('workers')
             ->select(
                 'workers.id', 'users.name as firstname',
-                'workers.lastname', 'users.email',
+                'workers.lastname', 'workers.pesel', 'users.email',
                 'types.display_name as type_display_name'
             )
             ->join('users', 'workers.id', '=', 'users.userable_id')

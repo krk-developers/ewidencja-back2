@@ -15,7 +15,7 @@ class SuperAdminsTableSeeder extends Seeder
     {
         DB::table('super_admins')->insert(
             [             
-                'lastname' => 'miłkowski',
+                'lastname' => 'Miłkowski',
             ]
         );
     }

@@ -79,7 +79,8 @@ class Employer extends Model
         return DB::table('workers')
             ->select(
                 'workers.id', 'users.name as firstname', 'workers.lastname',
-                'users.email', 'types.display_name as type_display_name'
+                'workers.pesel', 'users.email',
+                'types.display_name as type_display_name'
             )
             ->join('employer_worker', 'workers.id', '=', 'employer_worker.worker_id')
             ->join('users', 'workers.id', '=', 'users.userable_id')

@@ -15,12 +15,22 @@ class EmployersTableSeeder extends Seeder
     {
         DB::table('employers')->insert(
             [             
-                'company' => 'janusz soft',
+                'company' => 'JanuszSoft',
             ]
         );
         DB::table('employers')->insert(
             [             
-                'company' => 'krzak spółka zoo',
+                'company' => 'Krzak sp z.o.o.',
+            ]
+        );
+        DB::table('employers')->insert(
+            [             
+                'company' => 'Microsoft Corporation',
+            ]
+        );
+        DB::table('employers')->insert(
+            [             
+                'company' => 'Apple Inc.',
             ]
         );
     }

@@ -15,17 +15,32 @@ class WorkersTableSeeder extends Seeder
     {
         DB::table('workers')->insert(
             [             
-                'lastname' => 'kowalski',
+                'lastname' => 'Kowalski',
+                'pesel' => '99010303835',
             ]
         );
         DB::table('workers')->insert(
             [             
-                'lastname' => 'kowalski',
+                'lastname' => 'Kowalski',
+                'pesel' => '100000000000',
             ]
         );
         DB::table('workers')->insert(
             [             
-                'lastname' => 'nowak',
+                'lastname' => 'Englerd',
+                'pesel' => '999999999999',
+            ]
+        );
+        DB::table('workers')->insert(
+            [             
+                'lastname' => 'Nowak',
+                'pesel' => '62040404777',
+            ]
+        );
+        DB::table('workers')->insert(
+            [             
+                'lastname' => 'Tymakowski',
+                'pesel' => '62040404666',
             ]
         );
     }
