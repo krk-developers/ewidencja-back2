@@ -22,7 +22,7 @@ Route::apiResource('legends', 'API\LegendController')
     ->only(['index', 'store', 'destroy']);
 
 Route::apiResource('events', 'API\EventController')
-    ->only(['index']);
+    ->only(['index', 'store', 'destroy']);
 
 Route::apiResource('users', 'API\UserController')
     ->only(['index']);

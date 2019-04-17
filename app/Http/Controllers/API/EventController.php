@@ -32,9 +32,17 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        // return response()->json($request, 201);
+        
+        $created = Event::create_($request->all());
+
+        if (! $created) {
+            return response()->json(['created' => false]);
+        }
+
+        return response()->json(['created' => true], 201);
     }
 
     /**
@@ -63,11 +71,18 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id ID
+     * 
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        $deleted = Event::destroy_($id);
+        
+        if (! $deleted) {
+            return response()->json(['deleted' => false]);
+        }
+
+        return response()->json(['deleted' => true]); 
     }
 }

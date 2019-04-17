@@ -16,14 +16,14 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'start', 'end', 'title',];
+    protected $fillable = ['legend_id', 'worker_id', 'start', 'end', 'title',];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['user_id', 'legend_id', 'created_at', 'updated_at',];
+    // protected $hidden = ['worker_id', 'legend_id', 'created_at', 'updated_at',];
 
     /**
      * Get the user that owns the event.
@@ -69,6 +69,31 @@ class Event extends Model
             ->get();
     }
 
+    public static function create_(array $data): Event
+    {
+        return self::create(
+            [
+                'legend_id' => $data['legend_id'],
+                'worker_id' => $data['worker_id'],
+                'start' => $data['start'],
+                'end' => $data['end'],
+                'title' => $data['title'],
+            ]
+        );        
+    }
+    /**
+     * Delete record by primary key.
+     * Return 0 or 1.
+     *
+     * @param integer $id Primary key
+     * 
+     * @return int
+     */
+    public static function destroy_(int $id): int
+    {
+        return self::destroy($id);
+    }
+    
     /**
      * Events assigned to worker
      *

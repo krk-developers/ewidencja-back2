@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Legend;
 use App\Http\Resources\Legend as LegendResource;
-// use Illuminate\Http\JsonResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LegendController extends Controller
@@ -31,9 +31,10 @@ class LegendController extends Controller
      * 
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         // return response()->json($request, 201);
+
         $created = Legend::create_($request->all());
 
         if (! $created) {
@@ -72,7 +73,7 @@ class LegendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
         $deleted = Legend::destroy_($id);
         

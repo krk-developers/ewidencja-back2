@@ -53,7 +53,7 @@ class Legend extends Model
         return self::all();
     }
 
-    public static function create_(array $data)
+    public static function create_(array $data): Legend
     {
         return self::create(
             [
