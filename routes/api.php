@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 
 Route::apiResource('legends', 'API\LegendController')
-    ->only(['index']);
+    ->only(['index', 'store', 'destroy']);
 
 Route::apiResource('events', 'API\EventController')
     ->only(['index']);

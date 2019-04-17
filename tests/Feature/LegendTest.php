@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Foundation\Testing\WithFaker;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -47,5 +48,51 @@ class LegendTest extends TestCase
                 ]
             ]
         );
-    }    
+    }
+
+    /**
+     * If store page create a event's legend
+     *
+     * @return void
+     */
+    public function testLegendStorePage(): void
+    {
+        // $legend = factory(\App\Legend::class)->make();
+        // create()        
+
+        $this->withoutExceptionHandling();
+
+        $response = $this->json(
+            'POST',
+            route('legends.store'),
+            [
+                'name' => 'XXX',
+                'display_name' => 'Dzień filmów X',
+                'description' => 'Dzień oglądania filmów dla dorosłych',
+                'working_day' => 0,
+            ]
+        );
+        
+        $response
+            ->assertStatus(201)
+            ->assertJson(['created' => true]);
+    }
+
+    /**
+     * If destroy page delete event's legend
+     *
+     * @return void
+     */
+    public function testLegendDestroyPage(): void
+    {
+        $this->withoutExceptionHandling();
+
+        // $id = 31;
+        $lastID = DB::table('legends')->max('id');
+        $response = $this->json('DELETE', route('legends.destroy', $lastID));
+        
+        $response
+            ->assertStatus(200)
+            ->assertJson(['deleted' => true]);
+    }
 }

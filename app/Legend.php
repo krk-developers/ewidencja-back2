@@ -22,7 +22,16 @@ class Legend extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'display_name', 'description',];
+    protected $fillable = ['name', 'display_name', 'description', 'working_day'];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'working_day' => 1,
+    ];
 
     /**
      * Get the events for the legend.
@@ -42,5 +51,30 @@ class Legend extends Model
     public static function all_(): Collection
     {
         return self::all();
+    }
+
+    public static function create_(array $data)
+    {
+        return self::create(
+            [
+                'name' => $data['name'],
+                'display_name' => $data['display_name'],
+                'description' => $data['description'],
+                'working_day' => $data['working_day'],
+            ]
+        );
+    }
+
+    /**
+     * Delete record by primary key.
+     * Return 0 or 1.
+     *
+     * @param integer $id Primary key
+     * 
+     * @return int
+     */
+    public static function destroy_(int $id): int
+    {
+        return self::destroy($id);
     }
 }

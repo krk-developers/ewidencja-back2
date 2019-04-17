@@ -27,12 +27,20 @@ class LegendController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request Request
+     * 
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
+        // return response()->json($request, 201);
+        $created = Legend::create_($request->all());
+
+        if (! $created) {
+            return response()->json(['created' => false]);
+        }
+
+        return response()->json(['created' => true], 201);        
     }
 
     /**
@@ -64,8 +72,14 @@ class LegendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $deleted = Legend::destroy_($id);
+        
+        if (! $deleted) {
+            return response()->json(['deleted' => false]);
+        }
+
+        return response()->json(['deleted' => true]);        
     }
 }
