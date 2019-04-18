@@ -30,9 +30,11 @@ class HomeController extends Controller
         
         $userID = Auth::id();
         $apiToken = User::apiToken($userID);
-
+        $minutes = 60;
+        
         return response()
             ->view('home')
-            ->header('API-Token', $apiToken);
+            ->header('API-Token', $apiToken)
+            ->cookie('rectok', $apiToken, $minutes);
     }
 }

@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 // use Illuminate\Foundation\Testing\WithFaker;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,19 +19,26 @@ class LegendTest extends TestCase
      */
     public function testLegendIndexPage(): void
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         
         // route('legends.index')
-        $token = 'Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx';
-        // ?api_token=
+        // $token = 'Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx';
+        // $request = new Request();
+        // $token = $request->cookie('rectok');
+        // $token = \Cookie::get('rectok');
+        // dd($token);
+        $user = \App\User::find(1);
+        $token = \App\User::apiToken($user->id);
+        // dd($user);
+        $response = $this->actingAs($user)->get(route('home'));
+        $response->assertCookie('rectok', $token);  // , $value = null
+
         $response = $this->withHeaders(
             [
                 'Authorization' => 'Bearer ' . $token,
             ]
-        )->get('http://127.0.0.1:8000/api/legends');
-        // $response = $this->get('http://127.0.0.1:8000/api/legends?api_token=Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx');
-        // http://127.0.0.1:8000/api/legends/
-        // 127.0.0.1:8000/api/legends?api_token=Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx
+        )->get(route('legends.index'));
+
         $response->assertStatus(200);
         
         $response->assertJsonFragment(
@@ -57,6 +65,13 @@ class LegendTest extends TestCase
                 ]
             ]
         );
+    }
+
+    public function _testUnauthenticatedLegendIndexPage(): void
+    {
+        $response = $this->get(route('legends.index'));
+
+        $response->assertStatus(302);
     }
 
     /**
