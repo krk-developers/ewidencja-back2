@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -23,18 +26,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): Response
     {
-        // return view('home');
-        // $user = Auth::user();
-        
         $userID = Auth::id();
-        $user = Auth::user();
+        // $user = Auth::user();
         $apiToken = User::apiToken($userID);
         $minutes = 60;
         
         return response()
-            ->view('home', ['user' => $user])
+            ->view('home')
             ->header('API-Token', $apiToken)
             ->cookie('rectok', $apiToken, $minutes);
     }
