@@ -22,10 +22,11 @@ Route::middleware('auth:api')->get(
 */
 Route::middleware('auth:api')->group(
     function () {
-        Route::apiResource('legends', 'API\LegendController')
-            ->only(['index', 'store', 'destroy']);
     }
 );
+
+Route::apiResource('legends', 'API\LegendController')
+    ->only(['index', 'store', 'destroy']);
 
 Route::apiResource('events', 'API\EventController')
     ->only(['index', 'store', 'destroy']);
