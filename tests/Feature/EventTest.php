@@ -77,7 +77,7 @@ class EventTest extends TestCase
                 'worker_id' => $worker->id,
                 'start' => date('Y-m-d'),
                 'end' => date('Y-m-d'),
-                'title' => now(),
+                // 'title' => now(),
             ]
         );
         // dd($response);

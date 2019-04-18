@@ -20,8 +20,17 @@ class LegendTest extends TestCase
     {
         $this->withoutExceptionHandling();
         
-        $response = $this->get(route('legends.index'));
-        
+        // route('legends.index')
+        $token = 'Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx';
+        // ?api_token=
+        $response = $this->withHeaders(
+            [
+                'Authorization' => 'Bearer ' . $token,
+            ]
+        )->get('http://127.0.0.1:8000/api/legends');
+        // $response = $this->get('http://127.0.0.1:8000/api/legends?api_token=Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx');
+        // http://127.0.0.1:8000/api/legends/
+        // 127.0.0.1:8000/api/legends?api_token=Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx
         $response->assertStatus(200);
         
         $response->assertJsonFragment(
@@ -55,7 +64,7 @@ class LegendTest extends TestCase
      *
      * @return void
      */
-    public function testLegendStorePage(): void
+    public function _testLegendStorePage(): void
     {
         // $legend = factory(\App\Legend::class)->make();
         // create()        
@@ -83,7 +92,7 @@ class LegendTest extends TestCase
      *
      * @return void
      */
-    public function testLegendDestroyPage(): void
+    public function _testLegendDestroyPage(): void
     {
         $this->withoutExceptionHandling();
 

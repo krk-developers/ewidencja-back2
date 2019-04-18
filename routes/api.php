@@ -13,13 +13,19 @@
 |
 */
 /*
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->get(
+    '/user',
+    function (Request $request) {
+        return $request->user();
+    }
+);
 */
-
-Route::apiResource('legends', 'API\LegendController')
-    ->only(['index', 'store', 'destroy']);
+Route::middleware('auth:api')->group(
+    function () {
+        Route::apiResource('legends', 'API\LegendController')
+            ->only(['index', 'store', 'destroy']);
+    }
+);
 
 Route::apiResource('events', 'API\EventController')
     ->only(['index', 'store', 'destroy']);

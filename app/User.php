@@ -92,4 +92,16 @@ class User extends Authenticatable
             ->join('types', 'users.type_id', '=', 'types.id')
             ->get();
     }
+
+    /**
+     * Get api token for the user
+     *
+     * @param integer $id User ID
+     * 
+     * @return string API Token
+     */
+    public static function apiToken(int $id): string
+    {
+        return DB::table('users')->where('id', $id)->value('api_token');
+    }
 }
