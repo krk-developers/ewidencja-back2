@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-            <div class="row"><div class="col-sm"></div></div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 

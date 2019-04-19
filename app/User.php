@@ -93,6 +93,19 @@ class User extends Authenticatable
             ->get();
     }
 
+    public static function byType(string $name): Collection
+    {
+        return DB::table('users')
+            ->select(
+                'users.id', 'users.name as firstname',
+                'users.email', 'types.display_name as type_display_name',
+                'types.description'
+            )
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->where('types.name', $name)
+            ->get();
+    }
+
     /**
      * Get api token for the user
      *
