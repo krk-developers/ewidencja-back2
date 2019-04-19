@@ -16,7 +16,8 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer(
-            'includes.footer', 'App\Http\View\Composers\FooterComposer'
+            ['includes.footer', 'includes.nav'],
+            'App\Http\View\Composers\FooterComposer'
         );
 
         // Using Closure based composers...

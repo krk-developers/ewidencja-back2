@@ -1,17 +1,23 @@
 @extends('layouts.base')
 
+@section('title', 'Logowanie')
+
 @section('nav')
+@endsection
+
+@section('css')
+        <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
             <div class="row"><div class="col-sm"></div></div>
-            <form method="POST" action="{{ route('login') }}" class="mt-5">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group row justify-content-center">
                     <label for="email" class="col-sm-2 col-form-label text-right">E-mail</label>
                     <div class="col-sm-6">
-                        <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="e-mail" autofocus> <!-- required -->
+                        <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="E-mail" autofocus> <!-- required -->
 @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -48,4 +54,7 @@
                     </div>
                 </div>
             </form>
+@endsection
+
+@section('footer')
 @endsection
