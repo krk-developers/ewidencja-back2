@@ -97,8 +97,9 @@ class User extends Authenticatable
     {
         return DB::table('users')
             ->select(
-                'users.id', 'users.name as firstname',
-                'users.email', 'types.display_name as type_display_name',
+                'users.id', 'users.userable_id',
+                'users.name as firstname', 'users.email',
+                'types.display_name as type_display_name',
                 'types.description'
             )
             ->join('types', 'users.type_id', '=', 'types.id')

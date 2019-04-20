@@ -22,40 +22,61 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::resource('superadmins', 'User\SuperAdminController');
-
-Route::get(
-    'superadministratorzy',
-    'User\SuperAdmin\IndexController'
-)
-->name('superadmins.index');
-
-Route::get(
-    'administratorzy',
-    'User\Admin\IndexController'
-)
-->name('admins.index');
-
-Route::get(
-    'pracodawcy',
-    'User\Employer\IndexController'
-)
-->name('employers.index');
-
-Route::get(
-    'pracownicy',
-    'User\Worker\IndexController'
-)
-->name('workers.index');
+Route::middleware('auth')->group(
+    function () {
+        
+        Route::get(
+            'superadministratorzy',
+            'User\SuperAdmin\IndexController'
+        )
+        ->name('superadmins.index');
 
 
-Route::get(
-    'legenda',
-    'Calendar\Legend\IndexController'
-)
-->name('legends.index');
+        Route::get(
+            'administratorzy',
+            'User\Admin\IndexController'
+        )
+        ->name('admins.index');
 
-Route::get(
-    'wydarzenia',
-    'Calendar\Event\IndexController'
-)
-->name('events.index');
+
+        Route::get(
+            'pracodawcy',
+            'User\Employer\IndexController'
+        )
+        ->name('employers.index');
+        
+
+        Route::get(
+            'pracownicy',
+            'User\Worker\IndexController'
+        )
+        ->name('workers.index');
+
+        Route::get(
+            'pracownicy/{worker}',
+            'User\Worker\ShowController'
+        )
+        ->name('workers.show');
+
+        
+        Route::get(
+            'legenda',
+            'Calendar\Legend\IndexController'
+        )
+        ->name('legends.index');
+        
+
+        Route::get(
+            'wydarzenia',
+            'Calendar\Event\IndexController'
+        )
+        ->name('events.index');
+
+        Route::get(
+            'wolne',
+            'Calendar\PublicHoliday\IndexController'
+        )
+        ->name('holidays.index');
+        
+    }
+);

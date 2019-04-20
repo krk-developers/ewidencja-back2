@@ -26,8 +26,8 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td><a href="{{ route('workers.show', $user->userable_id) }}" title=""><i class="fas fa-eye"></i> {{ $user->firstname }}</a></td>
+                                <td><a href="mailto:{{ $user->email }}">{{-- <i class="fas fa-external-link-alt"></i> --}}<i class="fas fa-paper-plane"></i> {{ $user->email }}</a></td>
                                 <td>{{ $user->type_display_name }}</td>
                                 <td>{{ $user->description }}</td>
                             </tr>

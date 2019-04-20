@@ -49,7 +49,7 @@
 
                 <div class="form-group row justify-content-center">
                     <div class="col-sm-8 text-right">
-                        <button type="submit" class="btn btn-secondary">Zaloguj</button>
+                        <button type="submit" class="btn btn-primary">Zaloguj</button>
                     </div>
                 </div>
             </form>

@@ -16,10 +16,10 @@ class IndexController extends Controller
      *
      * @return View
      */
-    public function __invoke(): View  // Request $request
+    public function __invoke()//: View  // Request $request
     {
         $users = User::byType('worker');
-        // return $users;
+        // return dd($users[0]->userable_id);
         return view(
             'user.worker.index',
             ['users' => $users]

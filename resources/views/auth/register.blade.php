@@ -73,7 +73,7 @@
 
                 <div class="form-group row justify-content-center">
                     <div class="col-sm-8 text-right">
-                        <button type="submit" class="btn btn-secondary">Załóż</button>
+                        <button type="submit" class="btn btn-primary">Załóż</button>
                     </div>
                 </div>
             </form>

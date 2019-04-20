@@ -30,6 +30,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('legends.index') }}" title="Typy wydarzeń">Legenda</a>
+                            <a class="dropdown-item" href="{{ route('holidays.index') }}" title="Dni ustawowo wolne od pracy">Wolne</a>
                             <a class="dropdown-item" href="{{ route('events.index') }}" title="Wszystkie wydarzenia">Wydarzenia</a>
                         </div>
                     </li>
