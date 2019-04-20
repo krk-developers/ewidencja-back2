@@ -58,6 +58,23 @@ Route::middleware('auth')->group(
         )
         ->name('workers.show');
 
+        Route::put(
+            'pracownicy/{worker}',
+            'User\Worker\UpdateController'
+        )
+        ->name('workers.update');
+
+        Route::delete(
+            'pracownicy/{worker}',
+            'User\Worker\DestroyController'
+        )
+        ->name('workers.destroy');
+        
+        Route::get(
+            'pracownicy/{worker}/edytuj',
+            'User\Worker\EditController'
+        )
+        ->name('workers.edit');
         
         Route::get(
             'legenda',

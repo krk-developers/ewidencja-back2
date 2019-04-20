@@ -46,10 +46,21 @@
                             </p>
                         </div>
                         <footer class="card-footer bg-white">
-                            <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
-                                <i class="fas fa-angle-left"></i> Powrót
-                            </a>
-                            <a href="#" title="" class="btn btn-primary">Go somewhere</a>
+                            <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">
+                                @csrf
+
+                                @method('DELETE')
+
+                                <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                    <i class="fas fa-angle-left"></i> Powrót
+                                </a>
+                                <a href="{{ route('workers.edit', $worker->id) }}" title="Edycja" class="btn btn-primary">
+                                    <i class="fas fa-user-edit"></i> Edytuj
+                                </a>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-eraser"></i> Usuń
+                                </button>
+                            </form>
                         </footer>
                     </div>
                 </div>
