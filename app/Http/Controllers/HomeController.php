@@ -28,14 +28,19 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        $userID = Auth::id();
-        // $user = Auth::user();
-        $apiToken = User::apiToken($userID);
+        // $id = Auth::id();
+        $user = Auth::user();
+        // $user = User::find_($id);
+        $apiToken = $user->api_token;  // User::apiToken($userID);
         $minutes = 60;
+
+        $userType = $user->type->name;
         
         return response()
             ->view('home')
             ->header('API-Token', $apiToken)
-            ->cookie('rectok', $apiToken, $minutes);
+            ->header('User-Type', $userType)
+            ->cookie('rectok', $apiToken, $minutes)
+            ->cookie('usertype', $userType, $minutes);
     }
 }

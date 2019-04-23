@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
+    public static function find_(int $id): User
+    {
+        return self::find($id);
+    }
+    
     /**
      * Collection of Users
      *
