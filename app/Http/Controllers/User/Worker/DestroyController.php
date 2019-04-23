@@ -16,6 +16,7 @@ class DestroyController extends Controller
      */
     public function __invoke(Worker $worker)  // Request $request
     {
+        $this->authorize('delete', $worker);
         return $worker;
     }
 }

@@ -17,6 +17,7 @@ class ShowController extends Controller
      */
     public function __invoke(Worker $worker)  // Request $request
     {
+        $this->authorize('view', $worker);
         // $users = User::byType('worker');
         // return dd($users[0]->userable_id);
         return view(
