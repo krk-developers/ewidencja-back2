@@ -15,6 +15,12 @@
 @auth
         @include('includes.nav')
 @endauth
+@if (session('success'))
+        @include('includes.success')
+@endif
+@if (session('info'))
+        @include('includes.info')
+@endif
         <div class="container-fluid">
 @yield('content')
         </div>

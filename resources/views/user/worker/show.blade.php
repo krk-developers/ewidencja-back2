@@ -22,7 +22,11 @@
                                             <td>{{ $worker->lastname }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Pesel</th>
+                                            <th scope="row">
+                                                <abbr title="Powszechny Elektroniczny System Ewidencji Ludności">
+                                                    PESEL
+                                                </abbr>
+                                            </th>
                                             <td>{{ $worker->pesel }}</td>
                                         </tr>
                                         <tr>

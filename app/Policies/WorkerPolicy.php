@@ -10,11 +10,13 @@ class WorkerPolicy
 {
     use HandlesAuthorization;
 
-    public function show()
+    public function before($user)  // , $ability
     {
-        die("I'm being called...");
-        // return false; // $worker->id === Auth::user()->userable->id;
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
     }
+
     /**
      * Determine whether the user can view the worker.
      *

@@ -19,7 +19,7 @@ class Worker extends Model
      * @var array
      */
     protected $fillable = [
-        'lastname',
+        'lastname', 'pesel',
     ];
 
     /**
@@ -77,5 +77,12 @@ class Worker extends Model
             ->join('types', 'users.type_id', '=', 'types.id')
             ->where('types.name', 'worker')
             ->get();        
+    }
+
+    public function delete_()
+    {
+        $this->employers()->detach();
+        $this->user->delete();
+        return $this->delete();
     }
 }

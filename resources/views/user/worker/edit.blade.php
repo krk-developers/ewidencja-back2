@@ -16,19 +16,60 @@
 
                                     @csrf
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Imię</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ $worker->user->name }}" placeholder="np. Jan" autofocus> <!-- required -->
+@if ($errors->has('name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+@else
+                                            <small id="nameHelp" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+                                    <div class="form-group row">
+                                        <label for="lastname" class="col-sm-2 col-form-label">Nazwisko</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="lastname" name="lastname" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" value="{{ $worker->lastname }}" placeholder="np. Kowalski"> <!-- required -->
+@if ($errors->has('lastname'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('lastname') }}</strong>
+                                            </span>
+@else
+                                            <small id="lastnameHelp" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
                                     </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                                    <div class="form-group row">
+                                        <label for="pesel" class="col-sm-2 col-form-label">
+                                            <abbr title="Powszechny Elektroniczny System Ewidencji Ludności">
+                                                PESEL
+                                            </abbr>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" id="pesel" name="pesel" class="form-control{{ $errors->has('pesel') ? ' is-invalid' : '' }}" value="{{ $worker->pesel }}" placeholder="np. 82040303734"> <!-- required -->
+@if ($errors->has('pesel'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('pesel') }}</strong>
+                                            </span>
+@else
+                                            <small id="peselHelp" class="form-text text-muted">Tylko cyfry</small>
+@endif
+                                        </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" id="email" name="email" class="form-control" value="{{ $worker->user->email }}" readonly>
+                                            <small id="emailHelp" class="form-text text-muted">Pola nie można edytować</small>
+                                        </div>
+                                    </div>
+
                                     <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>

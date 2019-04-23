@@ -13,7 +13,8 @@ class EditController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Worker $worker Worker
+     * 
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Worker $worker)  // Request $request

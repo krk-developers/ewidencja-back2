@@ -43,7 +43,7 @@
                 <form class="form-inline my-2 my-lg-0" action="{{ route('logout') }}" method="POST">
                     @csrf
                     
-                    <button class="btn btn-outline-secondary btn-sm " type="submit"><i class="fas fa-sign-out-alt"></i> Wyloguj</button>
+                    <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="fas fa-sign-out-alt"></i> Wyloguj</button>
                 </form>
             </div>
         </nav>

@@ -43,3 +43,14 @@ h1 {
 .form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
     box-shadow: 0 0 0 .1rem rgba(220,53,69,.25);
 }
+
+
+.alert {
+    border: 0;
+    border-radius: .1rem;
+}
+.alert-success {
+    color: #33691e;
+    background-color: #8bc34a;
+    /* border-color: inherit; */
+}
