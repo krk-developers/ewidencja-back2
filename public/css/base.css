@@ -6,9 +6,12 @@ a {
     color: #2196f3;
 }
 
-h1 {
-    font-size: 1.5rem;
+h2, h3 {
     color: #5c6bc0; /* #6c757d; */
+}
+
+h3 {
+    font-size: 1.5rem;
 }
 
 

@@ -12,16 +12,12 @@ use App\User;
 
 class IndexController extends Controller
 {
-    public function __construct()
-    {
-        
-    }
     /**
      * Display a listing of the resource.
      *
      * @return View
      */
-    public function __invoke()//: View  // Request $request
+    public function __invoke(): View
     {
         // workers can only see their profile
         if (Auth::user()->type->name == 'worker') {
@@ -29,7 +25,7 @@ class IndexController extends Controller
         }
         
         $users = User::byType('worker');
-        // return dd($users[0]->userable_id);
+        
         return view(
             'user.worker.index',
             ['users' => $users]

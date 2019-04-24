@@ -5,7 +5,7 @@
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
-                    <h1><i class="fas fa-user-shield"></i> Super Administratorzy</h1>
+                    <h3><i class="fas fa-user-shield"></i> Super Administratorzy</h3>
                 </div>
             </div>
             <div class="row mt-3">

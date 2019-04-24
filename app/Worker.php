@@ -55,9 +55,9 @@ class Worker extends Model
      *
      * @return Worker
      */
-    public static function create_(): Worker
+    public static function create_(array $data): Worker
     {
-        return self::create();
+        return self::create($data);
     }
 
     /**
@@ -79,10 +79,20 @@ class Worker extends Model
             ->get();        
     }
 
-    public function delete_()
+    /**
+     * Delete worker
+     *
+     * @return boolean
+     */
+    public function delete_(): bool
     {
+        // remove a many-to-many relationship record
         $this->employers()->detach();
+
+        // remove user
         $this->user->delete();
+
+        // remove worker
         return $this->delete();
     }
 }

@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -98,6 +100,21 @@ class User extends Authenticatable
             ->get();
     }
 
+    public static function create_(array $data)
+    {
+        return User::create(
+            [
+                'type_id' => $data['type_id'],  // user's type
+                'userable_id' => $data['userable_id'],  // user's profile id
+                'userable_type' => $data['userable_type'],  // user's profile type
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'api_token' => Str::random(60),
+            ]
+        );
+    }
+    
     public static function byType(string $name): Collection
     {
         return DB::table('users')

@@ -4,39 +4,31 @@ namespace App\Http\Controllers\User\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Worker;
 
 class UpdateController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request Request
+     * @param Worker  $worker  Worker
+     * 
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request, Worker $worker)  // Request $request
+    public function __invoke(Request $request, Worker $worker): RedirectResponse
     {
-        // $worker->lastname = $request->input('lastname');
-        // $saved = $worker->save();
         $saved = false;
 
         $worker->fill($request->all());  // Worker class
         if ($worker->isDirty()) {
             $saved = $worker->save();  // bool
-
-            /*
-            $saved .= ' worker saved ';
-            $saved .= $s;
-            */
         }
 
         $worker->user->name = $request->input('name');
         if ($worker->user->isDirty()) {
             $saved = $worker->user->save();
-            /*
-            $saved .= ' user saved ';
-            $saved .= $s;
-            */
         }
 
         if ($saved) {

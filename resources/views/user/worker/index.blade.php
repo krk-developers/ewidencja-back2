@@ -5,7 +5,14 @@
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
-                    <h1><i class="fas fa-user"></i> Pracownicy</h1>
+                    <h3><i class="fas fa-user"></i> Pracownicy</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a class="btn btn-success" href="{{ route('workers.create') }}" title="Dodawanie pracownika" role="button">
+                        <i class="fas fa-user-plus"></i> Dodaj
+                    </a>
                 </div>
             </div>
             <div class="row mt-3">

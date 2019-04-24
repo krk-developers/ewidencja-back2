@@ -4,17 +4,21 @@ namespace App\Http\Controllers\User\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Worker;
 
 class DestroyController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request Request
+     * @param Worker  $worker  Worker
+     * 
+     * @return View|RedirectResponse
      */
-    public function __invoke(Request $request, Worker $worker)  // Request $request
+    public function __invoke(Request $request, Worker $worker): object  // View|RedirectResponse
     {
         $this->authorize('delete', $worker);
 
@@ -31,20 +35,13 @@ class DestroyController extends Controller
 
             // remove worker
             // $w = $worker->delete();
-            $w = $worker->delete_();
 
-            // var_dump($d); var_dump($u);
-            dd($w);
-            /*
-            $imgStorage->setDirectoryName(config('settings.blog_img_dir'));
-            $d = $imgStorage->deleteDirectory($post->id);  // true|false
-            
-            $post->delete_();  // true|false
-            
+            $worker->delete_();
+
             return redirect()
-                ->route('categories.show', $category->id)
+                ->route('workers.index')
                 ->with('success', 'Usunięto');
-            */
+            
         }
 
         if ($delete == 'No') {

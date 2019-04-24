@@ -52,6 +52,18 @@ Route::middleware('auth')->group(
         )
         ->name('workers.index');
 
+        Route::post(
+            'pracownicy',
+            'User\Worker\StoreController'
+        )
+        ->name('workers.store');
+
+        Route::get(
+            'pracownicy/utworz',
+            'User\Worker\CreateController'
+        )
+        ->name('workers.create');
+
         Route::get(
             'pracownicy/{worker}',
             'User\Worker\ShowController'

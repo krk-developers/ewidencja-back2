@@ -1,13 +1,13 @@
 @extends('layouts.base')
 
-@section('title', 'Usuwanie użytkownika:' . $worker->user->name . ' ' .$worker->lastname)
+@section('title', 'Usuwanie pracownika:' . $worker->user->name . ' ' .$worker->lastname)
 
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-eraser"></i> Czy usunąć {{ $worker->user->name}} {{ $worker->lastname }}?
+                            <i class="fas fa-eraser"></i> Czy usunąć pracownika {{ $worker->user->name}} {{ $worker->lastname }}?
                         </div>
                         <div class="card-body">
                             <p class="card-text">

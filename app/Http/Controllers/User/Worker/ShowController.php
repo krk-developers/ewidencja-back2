@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\User\Worker;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\Worker;
 
 class ShowController extends Controller
@@ -15,20 +16,13 @@ class ShowController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Worker $worker)  // Request $request
+    public function __invoke(Worker $worker): View
     {
         $this->authorize('view', $worker);
-        // $users = User::byType('worker');
-        // return dd($users[0]->userable_id);
+
         return view(
             'user.worker.show',
             ['worker' => $worker]
-        );        
-        // return $worker->user;
+        );
     }
-    
-    /*
-    public function index(Worker $worker)
-    {}
-    */
 }
