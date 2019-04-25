@@ -52,18 +52,23 @@ class HomeController extends Controller
         session()->forget('previous');
 
         if (\App::environment('local')) {
-            if ($previous == config('record.local_main_page')) {  // local main page
-                // return 'from main page';
-                return $this->redirectToFrontend($apiToken, $userType, $rectok, $usertype);
+            if ($previous == config('record.local_main_page') || $previous == config('record.host_main_page')) {  // local main page
+                return $this->redirectToFrontend(
+                    $apiToken, $userType, $rectok, $usertype
+                );
             }
 
             // return 'from login page';
-        } else {
+        } /* else {
+            dd($previous);
             if ($previous == config('record.host_main_page')) {  // host main page
-                return $this->redirectToFrontend($apiToken, $userType, $rectok, $usertype);
+                return $this->redirectToFrontend(
+                    $apiToken, $userType, $rectok, $usertype
+                );
             }
         }
-        
+        */
+
         return response()
             ->view('home', ['previous' => $previous])
             ->header('API-Token', $apiToken)

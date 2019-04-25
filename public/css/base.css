@@ -19,6 +19,10 @@ h3 {
     background-color: #e8eaf6 !important;
 }
 
+.jumbotron-fluid {
+    background-color: #FFFFFF;
+}
+
 .btn {
     border-radius: 0.1rem;
 }
