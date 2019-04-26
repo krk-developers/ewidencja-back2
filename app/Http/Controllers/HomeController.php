@@ -5,10 +5,8 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-// use App\User;
-// use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class HomeController extends Controller
@@ -28,7 +26,7 @@ class HomeController extends Controller
      *
      * @param Request $request Request
      * 
-     * @return Response|RedirectResponse
+     * @return View|RedirectResponse
      */
     public function index(Request $request): object
     {

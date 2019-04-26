@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\UrlGenerator;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class WelcomeController extends Controller
 {
@@ -14,11 +14,10 @@ class WelcomeController extends Controller
     /**
      * Show the welcome page.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return View|RedirectResponse
      */
-    public function index(Request $request)//: Response
+    public function index(Request $request): object
     {
-        // $value = request()->cookie();  // $request->cookie('rectok');
         $rectok = $request->cookie('rectok');
         $usertype = $request->cookie('usertype');
 
@@ -35,11 +34,14 @@ class WelcomeController extends Controller
         session(['previous' => route('welcome')]);
 
         return redirect()->route('login');
-
-        // return view('welcome');
     }
 
-    public function logout()
+    /**
+     * Show logout page
+     *
+     * @return View
+     */
+    public function logout(): View
     {
         return view('welcome');
     }

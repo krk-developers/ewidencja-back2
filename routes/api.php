@@ -12,14 +12,7 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-/*
-Route::middleware('auth:api')->get(
-    '/user',
-    function (Request $request) {
-        return $request->user();
-    }
-);
-*/
+
 Route::middleware('auth:api')->group(
     function () {
         Route::apiResource('legends', 'API\LegendController')
@@ -46,7 +39,7 @@ Route::middleware('auth:api')->group(
             'employers/{employer}/workers/{worker}',
             'API\EmployerController@event'
         )->name('employers.workers.event');
-        
+
         Route::apiResource('employers', 'API\EmployerController')
             ->only(['index', 'show']);
         
