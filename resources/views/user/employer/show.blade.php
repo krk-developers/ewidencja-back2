@@ -30,7 +30,7 @@
                                             <td>
                                                 <ul class="list-group list-group-flush">
 @forelse ($employer->workers as $worker)
-                                                    <li class="list-group-item"><i class="fas fa-industry"></i> {{ $worker->lastname }}</li>
+                                                    <li class="list-group-item"><i class="fas fa-user"></i></i> {{ $worker->lastname }}</li>
 @empty
                                                     <li class="list-group-item text-danger">Brak pracowników</li>
 @endforelse
@@ -56,7 +56,7 @@
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
-                                <a href="#" title="Dodawanie pracownika" class="btn btn-success">
+                                <a href="{{ route('employers.workers.create', $employer->id) }}" title="Dodawanie pracownika" class="btn btn-success">
                                     <i class="fas fa-user-plus"></i> Dodaj pracownika
                                 </a>
                             </form>

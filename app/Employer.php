@@ -148,4 +148,14 @@ class Employer extends Model
     {
         return self::create();
     }
+
+    public function addWorker(int $id)
+    {
+        return $this->workers()->attach($id);
+    }
+
+    public function removeWorker(int $id)
+    {
+        return $this->workers()->detach($id);
+    }
 }

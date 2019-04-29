@@ -78,6 +78,19 @@ Route::middleware('auth')->group(
         )
         ->name('employers.edit');
         
+        //
+
+        Route::get(
+            'pracodawcy/{employer}/pracownicy/dodaj',
+            'User\Employer\Worker\CreateController'
+        )
+        ->name('employers.workers.create');
+        Route::post(
+            'pracodawcy/{employer}/pracownicy',
+            'User\Employer\Worker\StoreController'
+        )
+        ->name('employers.workers.store');
+
         // worker ////////////////////////////////////////////////////////////
         Route::get(
             'pracownicy',

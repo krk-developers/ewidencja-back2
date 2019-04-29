@@ -79,6 +79,17 @@ class Worker extends Model
             ->get();        
     }
 
+    public static function all__(): Collection
+    {
+        return DB::table('workers')
+            ->select('users.name', 'workers.id', 'workers.lastname', 'workers.pesel')
+            ->join('users', 'workers.id', '=', 'users.userable_id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->where('types.name', 'worker')
+            ->orderBy('name')
+            ->get();
+    }
+
     /**
      * Delete worker
      *
