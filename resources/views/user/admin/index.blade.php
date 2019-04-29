@@ -8,8 +8,16 @@
                     <h3><i class="fas fa-user-cog"></i> Administratorzy</h3>
                 </div>
             </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a class="btn btn-success" href="{{ route('admins.create') }}" title="Dodawanie administratora" role="button">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </a>
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($users->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -26,14 +34,17 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td><a href="{{ route('admins.show', $user->userable_id) }}" title="Szczególy"><i class="fas fa-eye"></i> {{ $user->firstname }}</a></td>
+                                <td><a href="mailto:{{ $user->email }}"><i class="fas fa-paper-plane"></i> {{ $user->email }}</a></td>
                                 <td>{{ $user->type_display_name }}</td>
                                 <td>{{ $user->description }}</td>
                             </tr>
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak administratorów</div>
+@endif
                 </div>
             </div>
 @endsection

@@ -18,7 +18,8 @@ class StoreController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreWorker $request Validation
-     * @return \Illuminate\Http\Response
+     * 
+     * @return RedirectResponse
      */
     public function __invoke(StoreWorker $request): RedirectResponse
     {
