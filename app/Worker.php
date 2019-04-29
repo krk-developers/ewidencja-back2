@@ -95,4 +95,14 @@ class Worker extends Model
         // remove worker
         return $this->delete();
     }
+
+    public function addEmployer(int $id)
+    {
+        return $this->employers()->attach($id);
+    }
+
+    public function removeEmployer(int $id)
+    {
+        return $this->employers()->detach($id);
+    }
 }

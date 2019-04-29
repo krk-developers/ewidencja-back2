@@ -100,6 +100,19 @@ class User extends Authenticatable
             ->get();
     }
 
+    public static function employers(): Collection
+    {
+        $users = self::all();
+
+        $employers = $users->filter(
+            function ($value) {
+                return $value->userable_type === 'App\Employer';
+            }
+        );
+
+        return ($employers);
+    }
+
     public static function create_(array $data)
     {
         return User::create(

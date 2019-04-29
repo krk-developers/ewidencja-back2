@@ -8,6 +8,13 @@
                     <h3><i class="fas fa-user-tie"></i> Pracodawcy</h3>
                 </div>
             </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a class="btn btn-success" href="{{ route('employers.create') }}" title="Dodawanie pracodawcy" role="button">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </a>
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col-sm">
                     <table class="table">
@@ -22,14 +29,22 @@
                             </tr>
                         </thead>
                         <tbody>
-@foreach ($users as $user)
+@foreach ($employers as $employer)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->type_display_name }}</td>
-                                <td>{{ $user->description }}</td>
+                                <td>{{ $employer->id }}</td>
+                                <td>
+                                    <a href="{{ route('employers.show', $employer->userable_id) }}" title="">
+                                        <i class="fas fa-eye"></i> {{ $employer->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="mailto:{{ $employer->email }}">
+                                        <i class="fas fa-paper-plane"></i> {{ $employer->email }}
+                                    </a>
+                                </td>
+                                <td>{{ $employer->type->display_name }}</td>
+                                <td>{{ $employer->type->description }}</td>
                             </tr>
 @endforeach
                         </tbody>

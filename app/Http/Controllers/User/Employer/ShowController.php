@@ -2,28 +2,26 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\User\Worker;
+namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Worker;
+use App\Employer;
 
 class ShowController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @param Worker $worker Worker
+     * @param Employer $employer Employer
      * 
      * @return View
      */
-    public function __invoke(Worker $worker): View
+    public function __invoke(Employer $employer): View
     {
-        $this->authorize('view', $worker);
-
         return view(
-            'user.worker.show',
-            ['worker' => $worker]
+            'user.employer.show',
+            ['employer' => $employer]
         );
     }
 }

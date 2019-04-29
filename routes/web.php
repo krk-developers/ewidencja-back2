@@ -17,6 +17,7 @@ Route::get('/wyloguj', 'WelcomeController@logout')->name('bye');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::middleware('auth')->group(
     function () {
         
@@ -32,15 +33,52 @@ Route::middleware('auth')->group(
             'User\Admin\IndexController'
         )
         ->name('admins.index');
+        
 
-
+        // employer //////////////////////////////////////////////////////////
         Route::get(
             'pracodawcy',
             'User\Employer\IndexController'
         )
         ->name('employers.index');
-        
 
+        Route::post(
+            'pracodawcy',
+            'User\Employer\StoreController'
+        )
+        ->name('employers.store');
+
+        Route::get(
+            'pracodawcy/utworz',
+            'User\Employer\CreateController'
+        )
+        ->name('employers.create');
+
+        Route::get(
+            'pracodawcy/{employer}',
+            'User\Employer\ShowController'
+        )
+        ->name('employers.show');
+
+        Route::put(
+            'pracodawcy/{employer}',
+            'User\Employer\UpdateController'
+        )
+        ->name('employers.update');
+
+        Route::delete(
+            'pracodawcy/{employer}',
+            'User\Employer\DestroyController'
+        )
+        ->name('employers.destroy');
+        
+        Route::get(
+            'pracodawcy/{employer}/edytuj',
+            'User\Employer\EditController'
+        )
+        ->name('employers.edit');
+        
+        // worker ////////////////////////////////////////////////////////////
         Route::get(
             'pracownicy',
             'User\Worker\IndexController'
@@ -83,6 +121,27 @@ Route::middleware('auth')->group(
         )
         ->name('workers.edit');
         
+        //
+
+        Route::get(
+            'pracownicy/{worker}/pracodawcy/dodaj',
+            'User\Worker\Employer\ShowController'
+        )
+        ->name('workers.employers.add');
+        
+        Route::post(
+            'pracownicy/{worker}/pracodawcy',
+            'User\Worker\Employer\StoreController'
+        )
+        ->name('workers.employers.store');
+        
+        Route::delete(
+            'pracownicy/{worker}/pracodawcy/{employer}',
+            'User\Worker\Employer\DestroyController'
+        )
+        ->name('workers.employers.destroy');
+        
+        //////////////////////////////////////////////////////////////////////
         Route::get(
             'legenda',
             'Calendar\Legend\IndexController'

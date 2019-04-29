@@ -38,7 +38,19 @@
                                             <td>
                                                 <ul class="list-group list-group-flush">
 @forelse ($worker->employers as $employer)
-                                                    <li class="list-group-item"><i class="fas fa-industry"></i> {{ $employer->company }}</li>
+                                                    <li class="list-group-item">
+                                                        <i class="fas fa-industry"></i>
+                                                        {{ $employer->company }}
+                                                        <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" method="POST">
+                                                            @csrf
+
+                                                            @method('DELETE')
+
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                                <i class="fas fa-eraser"></i> Usuń
+                                                            </button>
+                                                        </form>
+                                                    </li>
 @empty
                                                     <li class="list-group-item text-danger">Brak zatrudnienia</li>
 @endforelse
@@ -64,6 +76,9 @@
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
+                                <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> Dodaj pracodawcę
+                                </a>
                             </form>
                         </footer>
                     </div>

@@ -68,6 +68,19 @@ class Employer extends Model
     }
 
     /**
+     * All employers in alphabetical order
+     *
+     * @return Collection
+     */
+    public static function all__(): Collection
+    {
+        return DB::table('employers')
+            ->select('id', 'company')
+            ->orderBy('company')
+            ->get();
+    }
+    
+    /**
      * Workers who work for the employer
      *
      * @param integer $id Employer identifier

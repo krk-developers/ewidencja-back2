@@ -8,6 +8,7 @@ namespace App\Http\Controllers\User\Employer;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\User;
+use Illuminate\Support\Collection;
 
 class IndexController extends Controller
 {
@@ -16,13 +17,14 @@ class IndexController extends Controller
      *
      * @return View
      */
-    public function __invoke(): View  // Request $request
+    public function __invoke()//: View  // Request $request
     {
-        $users = User::byType('employer');
+        $employers = User::employers();
+        // $users = User::byType('employer');
         // return $users;
         return view(
             'user.employer.index',
-            ['users' => $users]
+            ['employers' => $employers]
         );
     }
 }
