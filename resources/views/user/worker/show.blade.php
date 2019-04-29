@@ -41,7 +41,7 @@
                                                     <li class="list-group-item">
                                                         <i class="fas fa-industry"></i>
                                                         {{ $employer->company }}
-                                                        <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" method="POST">
+                                                        <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" class="form-inline" method="POST">
                                                             @csrf
 
                                                             @method('DELETE')

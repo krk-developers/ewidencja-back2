@@ -85,11 +85,18 @@ Route::middleware('auth')->group(
             'User\Employer\Worker\CreateController'
         )
         ->name('employers.workers.create');
+
         Route::post(
             'pracodawcy/{employer}/pracownicy',
             'User\Employer\Worker\StoreController'
         )
         ->name('employers.workers.store');
+
+        Route::delete(
+            'pracodawcy/{employer}/pracownicy/{worker}',
+            'User\Employer\Worker\DestroyController'
+        )
+        ->name('employers.workers.destroy');
 
         // worker ////////////////////////////////////////////////////////////
         Route::get(
@@ -138,7 +145,7 @@ Route::middleware('auth')->group(
 
         Route::get(
             'pracownicy/{worker}/pracodawcy/dodaj',
-            'User\Worker\Employer\ShowController'
+            'User\Worker\Employer\CreateController'
         )
         ->name('workers.employers.add');
         

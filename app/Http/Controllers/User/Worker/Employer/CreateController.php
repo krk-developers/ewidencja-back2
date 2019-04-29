@@ -4,26 +4,26 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker\Employer;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Worker;
 use App\Employer;
 
-class ShowController extends Controller
+class CreateController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Worker $worker Worker
+     * 
+     * @return View
      */
-    public function __invoke(Worker $worker)//: View
+    public function __invoke(Worker $worker): View
     {
         $employers = Employer::all__();
-        // return $employers;
+        
         return view(
-            'user.worker.add_employer.show',
+            'user.worker.employer.create',
             [
                 'employers' => $employers,
                 'worker' => $worker,

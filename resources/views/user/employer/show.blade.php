@@ -10,7 +10,6 @@
                             <i class="fas fa-user-tie"></i> Pracodawca
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -30,7 +29,19 @@
                                             <td>
                                                 <ul class="list-group list-group-flush">
 @forelse ($employer->workers as $worker)
-                                                    <li class="list-group-item"><i class="fas fa-user"></i></i> {{ $worker->lastname }}</li>
+                                                    <li class="list-group-item">
+                                                        <i class="fas fa-user"></i>
+                                                        {{ $worker->lastname }}
+                                                        <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
+                                                            @csrf
+
+                                                            @method('DELETE')
+
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm" title="Usuwa pracownika z listy zatrudnionych">
+                                                                <i class="fas fa-eraser"></i> Zwolnij
+                                                            </button>
+                                                        </form>
+                                                    </li>
 @empty
                                                     <li class="list-group-item text-danger">Brak pracowników</li>
 @endforelse
@@ -39,7 +50,6 @@
                                         </tr>                                        
                                     </tbody>
                                 </table>
-                            </p>
                         </div>
                         <footer class="card-footer bg-white">
                             <form action="{{ route('employers.destroy', $employer->id) }}" method="POST">
