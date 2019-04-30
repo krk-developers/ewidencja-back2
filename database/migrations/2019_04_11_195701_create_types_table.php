@@ -20,11 +20,10 @@ class CreateTypesTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->boolean('registrable');
-                $table->string('model', 30);  // ->nullable()
-                $table->string('name', 20);  // ->nullable()
-                $table->string('display_name', 40);  // ->nullable()
+                $table->string('model', 30)->unique();
+                $table->string('name', 20)->unique();
+                $table->string('display_name', 40);
                 $table->string('description', 120)->nullable();
-                // $table->timestamps();
             }
         );
     }

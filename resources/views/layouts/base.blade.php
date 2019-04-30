@@ -22,6 +22,9 @@
 @if (session('info'))
         @include('includes.info')
 @endif
+@if (session('danger'))
+        @include('includes.danger')
+@endif
         <div class="container-fluid">
 @yield('content')
         </div>

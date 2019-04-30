@@ -18,10 +18,10 @@ class StoreController extends Controller
     {
         $id = (int) $request->input('employer_id');
 
-        $worker->addEmployer($id);
-
+        $result = $worker->addEmployer($id);
+        // dd($success['message']);
         return redirect()
             ->route('workers.show', $worker->id)
-            ->with('success', 'Dodano');
+            ->with($result['status'], $result['message']);
     }
 }

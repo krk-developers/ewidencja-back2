@@ -21,7 +21,9 @@ class CreateEmployerWorkerTable extends Migration
                 $table->increments('id');
                 $table->integer('employer_id');
                 $table->integer('worker_id');
-                // $table->timestamps();
+
+                // only one employee the same id at one employer
+                $table->unique(['employer_id', 'worker_id']);
             }
         );
     }

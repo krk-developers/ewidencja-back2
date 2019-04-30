@@ -107,9 +107,27 @@ class Worker extends Model
         return $this->delete();
     }
 
-    public function addEmployer(int $id)
+    public function addEmployer(int $id): array
     {
-        return $this->employers()->attach($id);
+        try {
+            $this->employers()->attach($id);  // null
+
+            return [
+                'status' => 'success',
+                'message' => 'Dodano'
+            ];
+        } catch (\Illuminate\Database\QueryException $e) {
+            return [
+                'status' => 'danger',
+                'message' => $e->getMessage()
+            ];
+
+        } catch (\PDOException $e) {
+            return [
+                'status' => 'danger',
+                'message' => $e->getMessage()
+            ];
+        }       
     }
 
     public function removeEmployer(int $id)

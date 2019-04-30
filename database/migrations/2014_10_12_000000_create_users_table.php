@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
                 $table->increments('id');
                 $table->integer('type_id'); // what type is the user. info about type
                 $table->integer('userable_id');  // 'subclasses' of users. specifies the user
-                $table->string('userable_type');
+                $table->string('userable_type')->index();
                 $table->string('name');
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
