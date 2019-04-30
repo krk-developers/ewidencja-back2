@@ -2,40 +2,37 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\User\Employer;
+namespace App\Http\Controllers\User\SuperAdmin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Employer;
-use App\Http\Requests\StoreEmployer;
+use App\SuperAdmin;
 
 class UpdateController extends Controller
 {
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreEmployer $request  Validator
-     * @param Employer      $employer Employer
+     * @param Request    $request    Request
+     * @param SuperAdmin $superadmin SuperAdmin
      * 
      * @return RedirectResponse
      */
     public function __invoke(
-        StoreEmployer $request,
-        Employer $employer
+        Request $request,
+        SuperAdmin $superadmin
     ): RedirectResponse {
         $saved = false;
 
-        $employer->fill($request->all());
-        
-        if ($employer->isDirty()) {
-            $saved = $employer->save();
+        $superadmin->fill($request->all());  // SuperAdmin class
+        if ($superadmin->isDirty()) {
+            $saved = $superadmin->save();  // bool
         }
 
-        $employer->user->name = $request->input('name');
-
-        if ($employer->user->isDirty()) {
-            $saved = $employer->user->save();
+        $superadmin->user->name = $request->input('name');
+        if ($superadmin->user->isDirty()) {
+            $saved = $superadmin->user->save();
         }
 
         if ($saved) {
@@ -47,7 +44,7 @@ class UpdateController extends Controller
         }
 
         return redirect()
-            ->route('employers.show', $employer->id)
+            ->route('superadmins.show', $superadmin->id)
             ->with($status, $message);
     }
 }

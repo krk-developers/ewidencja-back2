@@ -34,7 +34,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $employer->id }}</td>
                                 <td>
-                                    <a href="{{ route('employers.show', $employer->userable_id) }}" title="">
+                                    <a href="{{ route('employers.show', $employer->userable_id) }}" title="Szczegóły">
                                         <i class="fas fa-eye"></i> {{ $employer->name }}
                                     </a>
                                 </td>

@@ -10,7 +10,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm">
-                    <a class="btn btn-success" href="{{ route('admins.create') }}" title="Dodawanie administratora" role="button">
+                    <a class="btn btn-success" href="{{ route('admins.create') }}" title="Dodawanie Administratora" role="button">
                         <i class="fas fa-plus"></i> Dodaj
                     </a>
                 </div>
@@ -43,7 +43,7 @@
                         </tbody>
                     </table>
 @else
-                    <div class="alert alert-secondary" role="alert">Brak administratorów</div>
+                    <div class="alert alert-secondary" role="alert">Brak Administratorów</div>
 @endif
                 </div>
             </div>

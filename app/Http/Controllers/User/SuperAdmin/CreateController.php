@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace App\Http\Controllers\User\Admin;
+namespace App\Http\Controllers\User\SuperAdmin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +15,6 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        return view('user.admin.create');
+        return view('user.superadmin.create');
     }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.base')
 
-@section('title', 'Dodawanie pracownika')
+@section('title', 'Dodawanie Administratora')
 
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-plus"></i> Dodawanie administratora
+                            <i class="fas fa-plus"></i> Dodawanie Administratora
                         </div>
                         <div class="card-body">
                             <p class="card-text">

@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\User\Admin;
+namespace App\Http\Controllers\User\SuperAdmin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\{Type, User, Admin};
+use App\{Type, User, SuperAdmin};
 
 class StoreController extends Controller
 {
-    private const TYPE_MODEL_NAME = 'App\Admin';
+    private const TYPE_MODEL_NAME = 'App\SuperAdmin';
 
     /**
      * Store a newly created resource in storage.
@@ -22,16 +22,15 @@ class StoreController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse
     {
-        // return $request;
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
-        $admin = Admin::create_($request->all());
+        $superadmin = SuperAdmin::create_($request->all());
 
-        $request['userable_id'] = $admin->id;
+        $request['userable_id'] = $superadmin->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
         $user = User::create_($request->all());
 
-        return redirect()->route('admins.index')->with('success', 'Dodano');
+        return redirect()->route('superadmins.index')->with('success', 'Dodano');
     }
 }

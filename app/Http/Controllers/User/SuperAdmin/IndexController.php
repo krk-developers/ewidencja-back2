@@ -18,9 +18,8 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
-        // return __FUNCTION__;
         $users = User::byType('superadmin');
-        // return $users;
+        
         return view(
             'user.superadmin.index',
             ['users' => $users]

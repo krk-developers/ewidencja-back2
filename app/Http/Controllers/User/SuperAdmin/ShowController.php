@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\User\Admin;
+namespace App\Http\Controllers\User\SuperAdmin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Admin;
+use App\SuperAdmin;
 
 class ShowController extends Controller
 {
@@ -17,14 +17,11 @@ class ShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Admin $admin): View
+    public function __invoke(Request $request, SuperAdmin $superadmin): View
     {
-        // return $admin;
-        // $this->authorize('view', $worker);
-
         return view(
-            'user.admin.show',
-            ['admin' => $admin]
+            'user.superadmin.show',
+            ['superadmin' => $superadmin]
         );
     }
 }

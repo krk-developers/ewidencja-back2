@@ -1,16 +1,54 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class SuperAdmin extends Model
 {
     /**
-     * Get the profile's user.
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
-    public function user()
+    protected $fillable = [
+        'lastname',
+    ];
+
+    /**
+     * Get the superadmin's user.
+     *
+     * @return MorphOne
+     */
+    public function user(): MorphOne
     {
         return $this->morphOne('App\User', 'userable');
+    }
+
+    /**
+     * Create superadmin
+     *
+     * @param array $data Request data
+     * 
+     * @return SuperAdmin
+     */
+    public static function create_(array $data): SuperAdmin
+    {
+        return self::create($data);
+    }
+
+    /**
+     * Remove 'userable' record from users's table
+     * Remove record from super_admins's table
+     *
+     * @return boolean
+     */
+    public function delete_(): bool
+    {
+        $this->user->delete();
+        return $this->delete();
     }
 }

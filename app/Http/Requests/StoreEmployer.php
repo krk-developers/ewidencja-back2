@@ -26,6 +26,11 @@ class StoreEmployer extends FormRequest
         return [
             'name' => ['required', 'string', 'max:191'],
             'company' => ['string', 'max:191'],
+            /*
+            'lastname' => 'max:30',
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            */
         ];
     }
 }

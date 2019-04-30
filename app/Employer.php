@@ -144,9 +144,9 @@ class Employer extends Model
      *
      * @return Employer
      */
-    public static function create_(): Employer
+    public static function create_(array $data): Employer
     {
-        return self::create();
+        return self::create($data);
     }
 
     public function addWorker(int $id)

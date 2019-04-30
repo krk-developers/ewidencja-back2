@@ -21,11 +21,48 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(
     function () {
         
+        // superadmin ////////////////////////////////////////////////////////
         Route::get(
             'superadministratorzy',
             'User\SuperAdmin\IndexController'
         )
         ->name('superadmins.index');
+
+        Route::post(
+            'superadministratorzy',
+            'User\SuperAdmin\StoreController'
+        )
+        ->name('superadmins.store');
+
+        Route::get(
+            'superadministratorzy/utworz',
+            'User\SuperAdmin\CreateController'
+        )
+        ->name('superadmins.create');
+
+        Route::get(
+            'superadministratorzy/{superadmin}',
+            'User\SuperAdmin\ShowController'
+        )
+        ->name('superadmins.show');
+
+        Route::put(
+            'superadministratorzy/{superadmin}',
+            'User\SuperAdmin\UpdateController'
+        )
+        ->name('superadmins.update');
+
+        Route::delete(
+            'superadministratorzy/{superadmin}',
+            'User\SuperAdmin\DestroyController'
+        )
+        ->name('superadmins.destroy');
+
+        Route::get(
+            'superadministratorzy/{superadmin}/edytuj',
+            'User\SuperAdmin\EditController'
+        )
+        ->name('superadmins.edit');
 
         // admin /////////////////////////////////////////////////////////////
         Route::get(

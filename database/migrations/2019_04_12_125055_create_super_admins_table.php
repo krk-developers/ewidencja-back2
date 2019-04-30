@@ -20,6 +20,7 @@ class CreateSuperAdminsTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('lastname', 30)->nullable();
+                $table->timestamps();
             }
         );
     }

@@ -17,8 +17,9 @@ class UpdateController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Worker $worker): RedirectResponse
+    public function __invoke(Request $request, Worker $worker)//: RedirectResponse
     {
+        return $request;
         $saved = false;
 
         $worker->fill($request->all());  // Worker class

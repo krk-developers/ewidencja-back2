@@ -8,8 +8,16 @@
                     <h3><i class="fas fa-user-shield"></i> Super Administratorzy</h3>
                 </div>
             </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a class="btn btn-success" href="{{ route('superadmins.create') }}" title="Dodawanie Super Administratora" role="button">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </a>
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($users->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -26,14 +34,21 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>
+                                    <a href="{{ route('superadmins.show', $user->userable_id) }}" title="Szczegóły">
+                                        {{ $user->firstname }}
+                                    </a>
+                                </td>
+                                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</td>
                                 <td>{{ $user->type_display_name }}</td>
                                 <td>{{ $user->description }}</td>
                             </tr>
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak Super Administratorów</div>
+@endif
                 </div>
             </div>
 @endsection

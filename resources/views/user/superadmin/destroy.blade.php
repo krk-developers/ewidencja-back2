@@ -1,21 +1,21 @@
 @extends('layouts.base')
 
-@section('title', 'Usuwanie Administratora:' . $admin->user->name . ' ' .$admin->lastname)
+@section('title', 'Usuwanie Super Administratora:' . $superadmin->user->name . ' ' .$superadmin->lastname)
 
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-eraser"></i> Czy usunąć Administratora: {{ $admin->user->name}} {{ $admin->lastname }}?
+                            <i class="fas fa-eraser"></i> Czy usunąć Super Administratora: {{ $superadmin->user->name}} {{ $superadmin->lastname }}?
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text text-danger">
                                 Operacja bezpowrotna
                             </p>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{ route('admins.destroy', $admin->id) }}" method="POST">
+                            <form action="{{ route('superadmins.destroy', $superadmin->id) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')
