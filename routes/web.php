@@ -213,7 +213,7 @@ Route::middleware('auth')->group(
         )
         ->name('workers.edit');
         
-        //
+        // worker/employer
 
         Route::get(
             'pracownicy/{worker}/pracodawcy/dodaj',
@@ -233,6 +233,44 @@ Route::middleware('auth')->group(
         )
         ->name('workers.employers.destroy');
         
+        // worker/event
+        
+        Route::get(
+            'pracownicy/{worker}/wydarzenia',
+            'User\Worker\Event\IndexController'
+        )
+        ->name('workers.events.index');
+
+        Route::post(
+            'pracownicy/{worker}/wydarzenia/{event}',
+            'User\Worker\Event\StoreController'
+        )
+        ->name('workers.events.store');
+
+        Route::get(
+            'pracownicy/{worker}/wydarzenia/{event}',
+            'User\Worker\Event\ShowController'
+        )
+        ->name('workers.events.show');
+
+        Route::put(
+            'pracownicy/{worker}/wydarzenia/{event}',
+            'User\Worker\Event\UpdateController'
+        )
+        ->name('workers.events.update');
+
+        Route::delete(
+            'pracownicy/{worker}/wydarzenia/{event}',
+            'User\Worker\Event\DestroyController'
+        )
+        ->name('workers.events.destroy');
+
+        Route::get(
+            'pracownicy/{worker}/wydarzenia/{event}/edytuj',
+            'User\Worker\Event\EditController'
+        )
+        ->name('workers.events.edit');
+
         //////////////////////////////////////////////////////////////////////
         Route::get(
             'legenda',
