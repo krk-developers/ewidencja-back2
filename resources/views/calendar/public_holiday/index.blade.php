@@ -6,17 +6,16 @@
             <div class="row mt-5">
                 <div class="col-sm">
                     <h2>
-                        <i class="fas fa-bed"></i>
-                        <small class="text-muted">
-                            Pierwszy wolny dzień:                            
-                        </small>
+                        <small class="text-muted">Pierwszy wolny dzień:</small>
                         {{ $nearest_public_holiday['title'] }}. {{ $nearest_public_holiday['start'] }}
                     </h2>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-sm">
-                    <h3><i class="far fa-calendar-times"></i> Dni ustawowo wolne od pracy</h3>
+                    <h3>
+                        <i class="fas fa-bed"></i> Dni ustawowo wolne od pracy
+                    </h3>
                 </div>
             </div>
             <div class="row mt-3">

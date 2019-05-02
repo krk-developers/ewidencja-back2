@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ewidencja</title>
+        <title>Ewipanel</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <style>
             html, body {
@@ -75,7 +75,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">Ewidencja</div>
+                <div class="title m-b-md"><i class="fab fa-elementor"></i> Ewipanel</div>
                 {{--
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

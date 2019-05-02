@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 // use App\User;
 
-class FooterComposer
+class UserComposer
 {
     /**
      * The user repository implementation.

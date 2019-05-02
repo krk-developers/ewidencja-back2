@@ -14,12 +14,23 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Using class based composers...
         View::composer(
-            ['includes.footer', 'includes.nav'],
-            'App\Http\View\Composers\FooterComposer'
+            [
+                'includes.nav',
+                'home',
+                'includes.footer',
+            ],
+            'App\Http\View\Composers\UserComposer'
         );
 
+        View::composer(
+            [
+                'includes.nav',
+                'includes.footer',
+            ],
+            'App\Http\View\Composers\PathComposer'
+        );
+        
         // Using Closure based composers...
         /*
         View::composer('dashboard', function ($view) {
