@@ -11,8 +11,8 @@
                             Czy usunąć wydarzenie: {{ $event->title }}, przypisane do pracownika {{ $worker->user->name}} {{ $worker->lastname }}, o numerze PESEL: {{ $worker->pesel }}?
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
-                                Operacja bezpowrotna
+                            <p class="card-text text-danger">
+                                <i class="fas fa-skull-crossbones"></i> Operacja bezpowrotna
                             </p>
                         </div>
                         <footer class="card-footer bg-white">

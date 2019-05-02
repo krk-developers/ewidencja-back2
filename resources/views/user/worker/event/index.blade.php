@@ -16,15 +16,13 @@
                     </h4>
                 </div>
             </div>
-            {{--
             <div class="row mt-5">
                 <div class="col-sm">
-                    <a class="btn btn-success" href="{{ route('workers.create') }}" title="Dodawanie pracownika" role="button">
-                        <i class="fas fa-user-plus"></i> Dodaj
+                    <a class="btn btn-success" href="{{ route('workers.events.create', $worker->id) }}" title="Dodawanie wydarzenia dla pracownika" role="button">
+                        <i class="fas fa-calendar-plus"></i> Dodaj
                     </a>
                 </div>
             </div>
-            --}}
             <div class="row mt-3">
                 <div class="col-sm">
 @if ($worker->events->count() > 0)

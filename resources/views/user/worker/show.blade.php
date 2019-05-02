@@ -60,14 +60,10 @@
                                         <tr>
                                             <th scope="row">Wydarzenia</th>
                                             <td>
-@if ($worker->events->count() > 0)
                                                 <a href="{{ route('workers.events.index', $worker->id) }}" title="Szczegóły">
                                                     <i class="fas fa-eye"></i> Wydarzenia
                                                 </a>
                                                 <span class="badge badge-light">{{ $worker->events->count() }}</span>
-@else
-                                                <i class="fas fa-calendar-times"></i> Brak wydarzeń
-@endif
                                             </td>
                                         </tr>
                                     </tbody>

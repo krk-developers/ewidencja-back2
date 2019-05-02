@@ -242,11 +242,17 @@ Route::middleware('auth')->group(
         ->name('workers.events.index');
 
         Route::post(
-            'pracownicy/{worker}/wydarzenia/{event}',
+            'pracownicy/{worker}/wydarzenia',
             'User\Worker\Event\StoreController'
         )
         ->name('workers.events.store');
-
+        
+        Route::get(
+            'pracownicy/{worker}/wydarzenia/utworz',
+            'User\Worker\Event\CreateController'
+        )
+        ->name('workers.events.create');
+        
         Route::get(
             'pracownicy/{worker}/wydarzenia/{event}',
             'User\Worker\Event\ShowController'
