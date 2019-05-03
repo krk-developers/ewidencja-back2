@@ -284,6 +284,42 @@ Route::middleware('auth')->group(
         )
         ->name('legends.index');
         
+        Route::post(
+            'legenda',
+            'Calendar\Legend\StoreController'
+        )
+        ->name('legends.store');
+
+        Route::get(
+            'legenda/utworz',
+            'Calendar\Legend\CreateController'
+        )
+        ->name('legends.create');
+
+        Route::get(
+            'legenda/{legend}',
+            'Calendar\Legend\ShowController'
+        )
+        ->name('legends.show');
+
+        Route::put(
+            'legenda/{legend}',
+            'Calendar\Legend\UpdateController'
+        )
+        ->name('legends.update');
+
+        Route::delete(
+            'legenda/{legend}',
+            'Calendar\Legend\DestroyController'
+        )
+        ->name('legends.destroy');
+        
+        Route::get(
+            'legenda/{legend}/edytuj',
+            'Calendar\Legend\EditController'
+        )
+        ->name('legends.edit');
+        
         // event /////////////////////////////////////////////////////////////
         Route::get(
             'wydarzenia',
@@ -320,7 +356,7 @@ Route::middleware('auth')->group(
             'Calendar\Event\DestroyController'
         )
         ->name('events.destroy');
-        
+
         Route::get(
             'wydarzenia/{event}/edytuj',
             'Calendar\Event\EditController'

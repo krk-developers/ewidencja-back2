@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEvent extends FormRequest
+class StoreLegend extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class StoreEvent extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // false;
+        return true;  // false;
     }
 
     /**
@@ -26,10 +26,10 @@ class StoreEvent extends FormRequest
     public function rules(): array
     {
         return [
-            'legend_id' => 'required|numeric',
-            'worker_id' => 'required|numeric',
-            'start' => 'required|date',
-            'title' => 'max:80',
+            'name' => ['required', 'unique:legends', 'max:10'],
+            'display_name' => ['max:80'],
+            'description' => ['max:191'],
+            'working_day' => ['required', 'numeric', 'min:0', 'max:1'],
         ];
     }
 }

@@ -12,7 +12,7 @@ use App\{Event, Legend, Worker};
 class EditController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Show the form for editing the specified resource.
      *
      * @param Event $event Event
      * 

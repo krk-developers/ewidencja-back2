@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\Calendar\Event;
+namespace App\Http\Controllers\Calendar\Legend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Event;
+use App\Legend;
 
 class DestroyController extends Controller
 {
@@ -16,31 +16,28 @@ class DestroyController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request Request
-     * @param Event   $event   Event
      * 
      * @return View|RedirectResponse
      */
-    public function __invoke(Request $request, Event $event): object
+    public function __invoke(Request $request, Legend $legend): object
     {
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $event->destroy_($event->id);
+            $legend->destroy_($legend->id);
 
             return redirect()
-                ->route('events.index')
+                ->route('legends.index')
                 ->with('success', 'Usunięto');
             
         }
 
         if ($delete == 'No') {
             return redirect()
-                ->route('events.show', $event->id)
+                ->route('legends.show', $legend->id)
                 ->with('info', 'Nie usunięto');
         }
 
-        return view(
-            'calendar.event.destroy', ['event' => $event]
-        );
+        return view('calendar.legend.destroy', ['legend' => $legend]);
     }
 }

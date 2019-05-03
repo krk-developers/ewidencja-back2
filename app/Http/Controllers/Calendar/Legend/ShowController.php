@@ -8,20 +8,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Legend;
 
-class IndexController extends Controller
+class ShowController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Display the specified resource.
      *
+     * @param Legend $legend Legend
+     * 
      * @return View
      */
-    public function __invoke(): View
+    public function __invoke(Legend $legend): View
     {
-        $legends = Legend::all_();
-
         return view(
-            'calendar.legend.index',
-            ['legends' => $legends]
+            'calendar.legend.show',
+            ['legend' => $legend]
         );
     }
 }
