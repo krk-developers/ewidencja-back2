@@ -5,11 +5,19 @@
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
-                    <h3><i class="fas fa-calendar-alt"></i> Wydarzenia</h3>
+                    <h3><i class="fas fa-calendar-alt"></i> Wszystkie wydarzenia</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a class="btn btn-success" href="{{ route('events.create') }}" title="Dodawanie wydarzenia" role="button">
+                        <i class="fas fa-calendar-plus"></i> Dodaj
+                    </a>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($events->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -17,10 +25,10 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nazwa</th>
                                 <th scope="col">Skrót</th>
-                                <th scope="col">Imię</th>
-                                <th scope="col">Nazwisko</th>
                                 <th scope="col">Początek</th>
                                 <th scope="col">Koniec</th>
+                                <th scope="col">Imię</th>
+                                <th scope="col">Nazwisko</th>
                                 <th scope="col">Pesel</th>
                                 <th scope="col">E-mail</th>
                             </tr>
@@ -30,18 +38,29 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $event->id }}</td>
-                                <td>{{ $event->title }}</td>
+                                <td>
+                                    <a href="{{ route('events.show', $event->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $event->title }}
+                                    </a>
+                                </td>
                                 <td>{{ $event->legend_name }}</td>
-                                <td>{{ $event->firstname }}</td>
-                                <td>{{ $event->lastname }}</td>
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
+                                <td>{{ $event->firstname }}</td>
+                                <td>{{ $event->lastname }}</td>
                                 <td>{{ $event->pesel }}</td>
-                                <td>{{ $event->email }}</td>
+                                <td>
+                                    <a href="mailto:{{ $event->email }}" title="Wysyła e-mail">
+                                        {{ $event->email }}
+                                    </a>
+                                </td>
                             </tr>
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak wydarzeń</div>
+@endif
                 </div>
             </div>
 @endsection

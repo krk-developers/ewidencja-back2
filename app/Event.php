@@ -30,7 +30,7 @@ class Event extends Model
      * 
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function worker(): BelongsTo
     {
         return $this->belongsTo('App\Worker');
     }

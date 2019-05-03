@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="jumbotron jumbotron-fluid">
-                        <h1 class="display-4">Witaj {{ $user->name }}</h1>
+                        <h1 class="display-5">{{ $user->name }}</h1>
                         <p class="lead">Uprawnienia: {{ $user->type->display_name }}</p>
                         <hr class="my-4">
                         <p>Możesz korzystać z programu wybierając interesujący Cię dział z menu lub przejść na:</p>

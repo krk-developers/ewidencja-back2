@@ -277,20 +277,57 @@ Route::middleware('auth')->group(
         )
         ->name('workers.events.edit');
 
-        //////////////////////////////////////////////////////////////////////
+        // legend ////////////////////////////////////////////////////////////
         Route::get(
             'legenda',
             'Calendar\Legend\IndexController'
         )
         ->name('legends.index');
         
-
+        // event /////////////////////////////////////////////////////////////
         Route::get(
             'wydarzenia',
             'Calendar\Event\IndexController'
         )
         ->name('events.index');
 
+        Route::post(
+            'wydarzenia',
+            'Calendar\Event\StoreController'
+        )
+        ->name('events.store');
+
+        Route::get(
+            'wydarzenia/utworz',
+            'Calendar\Event\CreateController'
+        )
+        ->name('events.create');
+
+        Route::get(
+            'wydarzenia/{event}',
+            'Calendar\Event\ShowController'
+        )
+        ->name('events.show');
+
+        Route::put(
+            'wydarzenia/{event}',
+            'Calendar\Event\UpdateController'
+        )
+        ->name('events.update');
+
+        Route::delete(
+            'wydarzenia/{event}',
+            'Calendar\Event\DestroyController'
+        )
+        ->name('events.destroy');
+        
+        Route::get(
+            'wydarzenia/{event}/edytuj',
+            'Calendar\Event\EditController'
+        )
+        ->name('events.edit');
+
+        // public holiday ////////////////////////////////////////////////////
         Route::get(
             'wolne',
             'Calendar\PublicHoliday\IndexController'

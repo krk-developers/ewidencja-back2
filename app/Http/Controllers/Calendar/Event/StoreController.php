@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\Event;
+declare(strict_types = 1);
+
+namespace App\Http\Controllers\Calendar\Event;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEvent;
-use App\{Worker, Event};
+use App\Event;
 
 class StoreController extends Controller
 {
@@ -17,14 +19,14 @@ class StoreController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(StoreEvent $request, Worker $worker): RedirectResponse
+    public function __invoke(StoreEvent $request)//: RedirectResponse
     {
         $validated = $request->validated();
-
+        // return $request;
         Event::create_($request->all());
         
         return redirect()
-            ->route('workers.events.index', $worker->id)
+            ->route('events.index')
             ->with('success', 'Dodano');
     }
 }
