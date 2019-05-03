@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Calendar\Event;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEvent;
@@ -19,10 +19,10 @@ class StoreController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(StoreEvent $request)//: RedirectResponse
+    public function __invoke(StoreEvent $request): RedirectResponse
     {
         $validated = $request->validated();
-        // return $request;
+
         Event::create_($request->all());
         
         return redirect()

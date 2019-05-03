@@ -17,9 +17,8 @@ class ShowController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Event $event)//: View
+    public function __invoke(Event $event): View
     {
-        // return $event->worker->user;
         return view(
             'calendar.event.show',
             ['event' => $event]

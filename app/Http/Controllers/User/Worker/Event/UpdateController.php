@@ -11,7 +11,7 @@ use App\{Worker, Event};
 class UpdateController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Update the specified resource in storage.
      *
      * @param StoreEvent $request Validation
      * @param Worker     $worker  Worker 

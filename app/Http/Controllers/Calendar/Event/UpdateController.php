@@ -20,7 +20,7 @@ class UpdateController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(StoreEvent $request, Event $event)//: RedirectResponse
+    public function __invoke(StoreEvent $request, Event $event): RedirectResponse
     {
         $validated = $request->validated();
         

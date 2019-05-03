@@ -61,3 +61,11 @@ h3 {
     background-color: #8bc34a;
     /* border-color: inherit; */
 }
+
+.table {
+    color: #4c5257;
+}
+
+.table tr td {
+    font-family: 'Fira Mono', monospace;    
+}

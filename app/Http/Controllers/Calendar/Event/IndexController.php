@@ -16,10 +16,10 @@ class IndexController extends Controller
      *
      * @return View
      */
-    public function __invoke()//: View  // Request $request
+    public function __invoke(): View
     {
         $events = Event::all_();
-        // return $events;
+
         return view(
             'calendar.event.index',
             ['events' => $events]
