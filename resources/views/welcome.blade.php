@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ewipanel</title>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" sizes="16x16">
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -41,16 +42,18 @@
 
             .title {
                 font-size: 84px;
+                font-family: 'Major Mono Display', monospace;
+                color: #3949ab;
             }
 
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
-                font-weight: 600;
+                /* font-weight: 600; */
                 letter-spacing: .1rem;
                 text-decoration: none;
-                text-transform: uppercase;
+                /* text-transform: uppercase; */
             }
 
             .m-b-md {
@@ -75,7 +78,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md"><i class="fab fa-elementor"></i> Ewipanel</div>
+                <div class="title m-b-md">ewipAnel</div>
                 {{--
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

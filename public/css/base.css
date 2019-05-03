@@ -2,6 +2,19 @@ body {
     background-color: #fcfcfc;
 }
 
+.navbar-brand {
+    font-family: 'Major Mono Display', monospace;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-brand {
+    color: #3949ab;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: rgba(0,0,0,.9);
+}
+
 a {
     color: #2196f3;
 }

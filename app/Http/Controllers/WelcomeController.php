@@ -10,10 +10,11 @@ use Illuminate\Http\RedirectResponse;
 
 class WelcomeController extends Controller
 {
-
     /**
      * Show the welcome page.
      *
+     * @param Request $request Request
+     * 
      * @return View|RedirectResponse
      */
     public function index(Request $request): object
