@@ -19,6 +19,16 @@ a {
     color: #2196f3;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #fcfcfc;
+    background-color: #2196f3;
+}
+
+.dropdown-menu {
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .1rem;
+}
+
 h2, h3 {
     color: #5c6bc0; /* #6c757d; */
 }
@@ -63,6 +73,11 @@ btn-primary.focus, .btn-primary:focus {
 
 .card {
     border-radius: .1rem;
+}
+
+.card-header {
+    color: #5c6bc0;
+    font-size: 17px;
 }
 
 
