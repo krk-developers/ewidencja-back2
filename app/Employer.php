@@ -159,7 +159,25 @@ class Employer extends Model
 
     public function addWorker(int $id)
     {
-        return $this->workers()->attach($id);
+        try {
+            $this->workers()->attach($id);
+            
+            return [
+                'status' => 'success',
+                'message' => 'Dodano'
+            ];
+        } catch (\Illuminate\Database\QueryException $e) {
+            return [
+                'status' => 'danger',
+                'message' => $e->getMessage()
+            ];
+
+        } catch (\PDOException $e) {
+            return [
+                'status' => 'danger',
+                'message' => $e->getMessage()
+            ];
+        }
     }
 
     public function removeWorker(int $id)

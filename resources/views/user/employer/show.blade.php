@@ -38,8 +38,8 @@
                                                 <ul class="list-group list-group-flush">
 @forelse ($employer->workers as $worker)
                                                     <li class="list-group-item">
-                                                        <i class="fas fa-user"></i>
-                                                        {{ $worker->lastname }}
+                                                        <i class="fas fa-user" data-toggle="tooltip"></i>
+                                                        <span data-placement="top" title="{{ $worker->pesel }}">{{ $worker->user->name }} {{ $worker->lastname }}</span>
                                                         <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
                                                             @csrf
 

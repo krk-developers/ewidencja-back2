@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Employer\Worker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Employer;
+use App\Http\Requests\StoreEmployerWorker;
 
 class StoreController extends Controller
 {
@@ -14,15 +15,17 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Employer $employer)
+    public function __invoke(StoreEmployerWorker $request, Employer $employer)
     {
         // return $request;
+        $validated = $request->validated();
+
         $id = (int) $request->input('worker_id');
 
-        $employer->addWorker($id);
-
+        $result = $employer->addWorker($id);
+        // dd($result);
         return redirect()
             ->route('employers.show', $employer->id)
-            ->with('success', 'Dodano');
+            ->with($result['status'], $result['message']);
     }
 }

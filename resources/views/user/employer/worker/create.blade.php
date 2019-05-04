@@ -19,7 +19,9 @@
                                         <div class="col-sm-10">
                                             <select id="worker_id" name="worker_id" class="form-control">
 @forelse ($workers as $worker)
-                                                <option value="{{ $worker->id }}">{{ $worker->name }} {{ $worker->lastname }}</option>
+                                                <option value="{{ $worker->id }}" title="{{ $worker->pesel }}">
+                                                    {{ $worker->name }} {{ $worker->lastname }}
+                                                </option>
 @endforeach
                                             </select>
                                         </div>
