@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UpdateAdmin;
 use App\Admin;
 
 class UpdateController extends Controller
@@ -14,14 +15,15 @@ class UpdateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request Request
-     * @param Admin   $admin   Admin
+     * @param UpdateAdmin $request Validation
+     * @param Admin       $admin   Admin
      * 
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Admin $admin)
+    public function __invoke(UpdateAdmin $request, Admin $admin)
     {
-        // return $request;
+        $validated = $request->validated();
+        
         $saved = false;
 
         $admin->fill($request->all());  // Admin class

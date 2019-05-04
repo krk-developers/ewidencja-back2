@@ -24,6 +24,14 @@
                                         <th scope="row">E-mail</th>
                                         <td><a href="mailto:{{ $admin->email }}" title="Wysyła e-mail"><i class="fas fa-paper-plane"></i> {{ $admin->user->email }}</a></td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">Uprawnienia</th>
+                                        <td>{{ $admin->user->type->display_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Opis</th>
+                                        <td>{{ $admin->user->type->description }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
