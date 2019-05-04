@@ -28,6 +28,11 @@ class Admin extends Model
         return $this->morphOne('App\User', 'userable');
     }
 
+    public static function all_()
+    {
+        return self::all();
+    }
+    
     /**
      * Create admin
      *
