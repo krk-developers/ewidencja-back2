@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User\SuperAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UpdateSuperAdmin;
 use App\SuperAdmin;
 
 class UpdateController extends Controller
@@ -14,15 +15,17 @@ class UpdateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request    $request    Request
-     * @param SuperAdmin $superadmin SuperAdmin
+     * @param UpdateSuperAdmin $request    Validation
+     * @param SuperAdmin       $superadmin SuperAdmin
      * 
      * @return RedirectResponse
      */
     public function __invoke(
-        Request $request,
+        UpdateSuperAdmin $request,
         SuperAdmin $superadmin
     ): RedirectResponse {
+        $request->validated();
+        
         $saved = false;
 
         $superadmin->fill($request->all());  // SuperAdmin class

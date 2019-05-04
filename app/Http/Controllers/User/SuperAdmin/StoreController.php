@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User\SuperAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreSuperAdmin;
 use App\{Type, User, SuperAdmin};
 
 class StoreController extends Controller
@@ -16,12 +17,14 @@ class StoreController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request Request
+     * @param StoreSuperAdmin $request Validation
      * 
      * @return RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(StoreSuperAdmin $request): RedirectResponse
     {
+        $request->validated();
+
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
         $superadmin = SuperAdmin::create_($request->all());
@@ -29,7 +32,7 @@ class StoreController extends Controller
         $request['userable_id'] = $superadmin->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        $user = User::create_($request->all());
+        User::create_($request->all());
 
         return redirect()->route('superadmins.index')->with('success', 'Dodano');
     }

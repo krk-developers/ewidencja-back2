@@ -7,7 +7,7 @@ namespace App\Http\Controllers\User\SuperAdmin;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\User;
+use App\SuperAdmin;
 
 class IndexController extends Controller
 {
@@ -18,11 +18,11 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
-        $users = User::byType('superadmin');
-        
+        $superadmins = SuperAdmin::all_();
+
         return view(
             'user.superadmin.index',
-            ['users' => $users]
+            ['superadmins' => $superadmins]
         );
     }
 }

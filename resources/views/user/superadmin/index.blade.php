@@ -17,31 +17,37 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
-@if ($users->count() > 0)
+@if ($superadmins->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">L.P.</th>
                                 <th scope="col">#</th>
                                 <th scope="col">Imię</th>
+                                <th scope="col">Nazwisko</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Uprawnienia</th>
-                                <th scope="col">Opis</th>
                             </tr>
                         </thead>
                         <tbody>
-@foreach ($users as $user)
+@foreach ($superadmins as $superadmin)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $user->id }}</td>
+                                <td>{{ $superadmin->id }}</td>
                                 <td>
-                                    <a href="{{ route('superadmins.show', $user->userable_id) }}" title="Szczegóły">
-                                        {{ $user->firstname }}
+                                    <a href="{{ route('superadmins.show', $superadmin->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $superadmin->user['name'] }}
                                     </a>
                                 </td>
-                                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</td>
-                                <td>{{ $user->type_display_name }}</td>
-                                <td>{{ $user->description }}</td>
+                                <td>
+                                    <a href="{{ route('superadmins.show', $superadmin->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $superadmin->lastname }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="mailto:{{ $superadmin->user['email'] }}" title="Wysyła e-mail">
+                                        <i class="fas fa-paper-plane"></i> {{ $superadmin->user['email'] }}
+                                    </a>
+                                </td>
                             </tr>
 @endforeach
                         </tbody>

@@ -6,6 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Collection;
 
 class SuperAdmin extends Model
 {
@@ -28,6 +29,16 @@ class SuperAdmin extends Model
         return $this->morphOne('App\User', 'userable');
     }
 
+    /**
+     * All Super Admins
+     *
+     * @return Collection
+     */
+    public static function all_(): Collection
+    {
+        return self::all();
+    }
+    
     /**
      * Create superadmin
      *

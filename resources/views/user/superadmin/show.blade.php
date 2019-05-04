@@ -28,6 +28,14 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">Uprawnienia</th>
+                                        <td>{{ $superadmin->user->type->display_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Opis</th>
+                                        <td>{{ $superadmin->user->type->description }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
