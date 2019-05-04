@@ -51,8 +51,9 @@
                                                 <ul class="list-group list-group-flush">
 @forelse ($worker->employers as $employer)
                                                     <li class="list-group-item">
-                                                        <i class="fas fa-industry"></i>
-                                                        {{ $employer->company }}
+                                                        <a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">
+                                                            <i class="fas fa-industry"></i> {{ $employer->company }}
+                                                        </a>
                                                         <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" class="form-inline" method="POST">
                                                             @csrf
 
