@@ -8,7 +8,7 @@ namespace App\Http\Controllers\User\Worker;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\{User, Worker};
 
 class IndexController extends Controller
 {
@@ -25,10 +25,11 @@ class IndexController extends Controller
         }
         
         $users = User::byType('worker');
-        
+        $workers = Worker::all___();
+
         return view(
             'user.worker.index',
-            ['users' => $users]
+            ['workers' => $workers]
         );
     }
 }

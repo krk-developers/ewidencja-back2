@@ -17,27 +17,39 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
-@if ($users->count() > 0)
+@if ($workers->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">L.P.</th>
                                 <th scope="col">#</th>
                                 <th scope="col">Imię</th>
+                                <th scope="col">Nazwisko</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Uprawnienia</th>
-                                <th scope="col">Opis</th>
+                                <th scope="col">Pesel</th>
                             </tr>
                         </thead>
                         <tbody>
-@foreach ($users as $user)
+@foreach ($workers as $worker)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $user->id }}</td>
-                                <td><a href="{{ route('workers.show', $user->userable_id) }}" title=""><i class="fas fa-eye"></i> {{ $user->firstname }}</a></td>
-                                <td><a href="mailto:{{ $user->email }}"><i class="fas fa-paper-plane"></i> {{ $user->email }}</a></td>
-                                <td>{{ $user->type_display_name }}</td>
-                                <td>{{ $user->description }}</td>
+                                <td>{{ $worker->id }}</td>
+                                <td>
+                                    <a href="{{ route('workers.show', $worker->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $worker->user->name }}</td>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('workers.show', $worker->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $worker->lastname }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="mailto:{{ $worker->user->email }}" title="Wysyła e-mail">
+                                        <i class="fas fa-paper-plane"></i> {{ $worker->user->email }}
+                                    </a>
+                                </td>
+                                <td>{{ $worker->pesel }}</td>
                             </tr>
 @endforeach
                         </tbody>

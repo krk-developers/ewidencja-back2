@@ -61,7 +61,7 @@
 @endif
                                         </div>
                                     </div>
-
+                                    
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                                         <div class="col-sm-10">
@@ -69,7 +69,7 @@
                                             <small id="emailHelp" class="form-text text-muted">Pola nie można edytować</small>
                                         </div>
                                     </div>
-
+                                    
                                     <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>

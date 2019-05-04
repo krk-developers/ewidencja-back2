@@ -31,7 +31,19 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">E-mail</th>
-                                            <td>{{ $worker->user->email }}</td>
+                                            <td>
+                                                <a href="mailto:{{ $worker->user->email }}" title="Wysyła e-mail">
+                                                    <i class="fas fa-paper-plane"></i> {{ $worker->user->email }}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Uprawnienia</th>
+                                            <td>{{ $worker->user->type->display_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Opis</th>
+                                            <td>{{ $worker->user->type->description }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Pracodawca</th>

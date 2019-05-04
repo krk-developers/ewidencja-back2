@@ -7,8 +7,8 @@ namespace App\Http\Controllers\User\Worker;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\{Type, User, Worker};
 use App\Http\Requests\StoreWorker;
+use App\{Type, User, Worker};
 
 class StoreController extends Controller
 {
@@ -24,7 +24,7 @@ class StoreController extends Controller
     public function __invoke(StoreWorker $request): RedirectResponse
     {
         $validated = $request->validated();
-
+        
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
         $worker = Worker::create_($request->all());
@@ -33,7 +33,7 @@ class StoreController extends Controller
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
         $user = User::create_($request->all());
-
+        
         return redirect()->route('workers.index')->with('success', 'Dodano');
     }
 }

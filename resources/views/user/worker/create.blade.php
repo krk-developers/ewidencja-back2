@@ -51,7 +51,7 @@
                                                 <strong>{{ $errors->first('lastname') }}</strong>
                                             </span>
 @else
-                                            <small id="lastnameHelp" class="form-text text-muted">Pole obowiązkowe</small>
+                                            <small id="lastnameHelp" class="form-text text-muted">Pole nieobowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                                 <strong>{{ $errors->first('pesel') }}</strong>
                                             </span>
 @else
-                                            <small id="peselHelp" class="form-text text-muted">Tylko cyfry</small>
+                                            <small id="peselHelp" class="form-text text-muted">Jedenaście cyfr. Pole nieobowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                                         <div class="col-sm-10">
-                                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl">
+                                            <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl">
 @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -105,7 +105,7 @@
                                     <div class="form-group row">
                                         <label for="password-confirm" class="col-sm-2 col-form-label">Powtórz hasło</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="password-confirm" name="password-confirm" class="form-control" value="" placeholder="np. Jan1879Ko"> <!-- required -->
+                                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" value="" placeholder="np. Jan1879Ko"> <!-- required -->
 @if ($errors->has('password-confirm'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password-confirm') }}</strong>

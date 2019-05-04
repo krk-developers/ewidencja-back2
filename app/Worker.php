@@ -90,6 +90,11 @@ class Worker extends Model
             ->get();
     }
 
+    public static function all___()
+    {
+        return self::all();
+    }
+
     /**
      * Delete worker
      *

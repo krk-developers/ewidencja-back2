@@ -5,23 +5,34 @@ namespace App\Http\Controllers\User\Worker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\EditWorker;
 use App\Worker;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class UpdateController extends Controller
 {
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request Request
-     * @param Worker  $worker  Worker
+     * @param EditWorker $request Validation
+     * @param Worker     $worker  Worker
      * 
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Worker $worker)//: RedirectResponse
+    public function __invoke(EditWorker $request, Worker $worker): RedirectResponse
     {
-        return $request;
+        Validator::make(
+            $request->all(),
+            [
+                'pesel' => [Rule::unique('workers')->ignore($worker->id)]
+            ]
+        );
+        
+        $validated = $request->validated();
+        
         $saved = false;
-
+        
         $worker->fill($request->all());  // Worker class
         if ($worker->isDirty()) {
             $saved = $worker->save();  // bool
@@ -31,7 +42,7 @@ class UpdateController extends Controller
         if ($worker->user->isDirty()) {
             $saved = $worker->user->save();
         }
-
+        
         if ($saved) {
             $status = 'success';
             $message = "Zmieniono";
@@ -39,7 +50,7 @@ class UpdateController extends Controller
             $status = 'info';
             $message = "Nie zmieniono";
         }
-
+        
         return redirect()
             ->route('workers.show', $worker->id)
             ->with($status, $message);

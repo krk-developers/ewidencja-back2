@@ -1,19 +1,17 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWorker extends FormRequest
+class EditWorker extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;  // false;
     }
@@ -23,14 +21,12 @@ class StoreWorker extends FormRequest
      *
      * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'lastname' => ['max:30'],
-            'pesel' => ['nullable', 'digits:11'],
             'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'pesel' => ['nullable', 'digits:11']
         ];
     }
 }
