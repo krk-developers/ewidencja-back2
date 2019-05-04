@@ -4,26 +4,25 @@ namespace App\Http\Controllers\User\Employer\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Employer;
-use App\Http\Requests\StoreEmployerWorker;
 
 class StoreController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request  $request  Request
+     * @param Employer $employer Employer
+     * 
+     * @return RedirectResponse
      */
-    public function __invoke(StoreEmployerWorker $request, Employer $employer)
+    public function __invoke(Request $request, Employer $employer): RedirectResponse
     {
-        // return $request;
-        $validated = $request->validated();
-
         $id = (int) $request->input('worker_id');
 
         $result = $employer->addWorker($id);
-        // dd($result);
+
         return redirect()
             ->route('employers.show', $employer->id)
             ->with($result['status'], $result['message']);

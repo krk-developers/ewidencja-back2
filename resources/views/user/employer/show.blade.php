@@ -18,7 +18,12 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">E-mail</th>
-                                            <td>{{ $employer->user->email }}</td>
+                                            <td>
+                                                <a href="{{ $employer->user->email }}" title="Wysyła e-mail">
+                                                    <i class="fas fa-paper-plane"></i>
+                                                    {{ $employer->user->email }}
+                                                </a>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Nazwa firmy</th>
@@ -38,8 +43,10 @@
                                                 <ul class="list-group list-group-flush">
 @forelse ($employer->workers as $worker)
                                                     <li class="list-group-item">
-                                                        <i class="fas fa-user" data-toggle="tooltip"></i>
-                                                        <span data-placement="top" title="{{ $worker->pesel }}">{{ $worker->user->name }} {{ $worker->lastname }}</span>
+                                                        <a href="{{ route('workers.show', $worker->id) }}" data-placement="top" title="{{ $worker->pesel }}">
+                                                            <i class="fas fa-user"></i>
+                                                            {{ $worker->user->name }} {{ $worker->lastname }}
+                                                        </a>
                                                         <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
                                                             @csrf
 
