@@ -60,7 +60,7 @@
                                             <th scope="row">E-mail</th>
                                             <td>
                                                 <a href="mailto:{{ $event->worker->user->email }}" title="Wysyła e-mail">
-                                                    {{ $event->worker->user->email }}
+                                                    <i class="fas fa-paper-plane"></i> {{ $event->worker->user->email }}
                                                 </a>
                                             </td>
                                         </tr>

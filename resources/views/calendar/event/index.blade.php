@@ -43,15 +43,27 @@
                                         <i class="fas fa-eye"></i> {{ $event->title }}
                                     </a>
                                 </td>
-                                <td>{{ $event->legend_name }}</td>
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="top" title="{{ $event->legend_display_name }}">
+                                        {{ $event->legend_name }}
+                                    </span>
+                                </td>
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
-                                <td>{{ $event->firstname }}</td>
-                                <td>{{ $event->lastname }}</td>
+                                <td>
+                                    <a href="{{ route('workers.show', $event->worker_id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $event->firstname }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('workers.show', $event->worker_id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $event->lastname }}
+                                    </a>
+                                </td>
                                 <td>{{ $event->pesel }}</td>
                                 <td>
                                     <a href="mailto:{{ $event->email }}" title="Wysyła e-mail">
-                                        {{ $event->email }}
+                                        <i class="fas fa-paper-plane"></i> {{ $event->email }}
                                     </a>
                                 </td>
                             </tr>
