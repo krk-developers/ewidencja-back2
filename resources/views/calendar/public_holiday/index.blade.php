@@ -3,6 +3,7 @@
 @section('title', 'Dni ustawowo wolne od pracy')
 
 @section('content')
+@if ($nearest_public_holiday->count() > 0)
             <div class="row mt-5">
                 <div class="col-sm">
                     <h2>
@@ -11,6 +12,7 @@
                     </h2>
                 </div>
             </div>
+@endif
             <div class="row mt-5">
                 <div class="col-sm">
                     <h3>
@@ -20,6 +22,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($public_holidays->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -42,6 +45,17 @@
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak rekordów</div>
+@endif
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm">
+                    <a href="{{ route('holidays.show', $previousYear) }}" title="{{ $previousYear }}" class="btn btn-outline-secondary btn-block" role="button">Poprzedni rok</a>
+                </div>
+                <div class="col-sm">
+                    <a href="{{ route('holidays.show', $nextYear) }}" title="$nextYear" class="btn btn-outline-secondary btn-block" role="button">Następny rok</a>
                 </div>
             </div>
 @endsection

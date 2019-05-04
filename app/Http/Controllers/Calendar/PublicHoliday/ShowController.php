@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Http\Controllers\Calendar\PublicHoliday;
 
 use App\Http\Controllers\Controller;
@@ -9,20 +7,22 @@ use Illuminate\View\View;
 use App\Event;
 use Carbon\Carbon;
 
-class IndexController extends Controller
+class ShowController extends Controller
 {
     /**
-     * Display a listing of the public holidays.
+     * Display public holidays for the year
      *
+     * @param int $year Year
+     * 
      * @return View
      */
-    public function __invoke(): View
+    public function __invoke(int $year): View
     {
         $nextYear = Carbon::now()->addYear()->year;
         $previousYear = Carbon::now()->subYear()->year;
 
-        $publicHolidays = Event::publicHolidays(Carbon::now()->year);
-        $nearestPublicHolidays = Event::nearestPublicHolidays(Carbon::now()->year);
+        $publicHolidays = Event::publicHolidays($year);
+        $nearestPublicHolidays = Event::nearestPublicHolidays($year);
 
         return view(
             'calendar.public_holiday.index',

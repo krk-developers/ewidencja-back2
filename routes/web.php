@@ -370,5 +370,10 @@ Route::middleware('auth')->group(
         )
         ->name('holidays.index');
         
+        Route::get(
+            'wolne/{year}',
+            'Calendar\PublicHoliday\ShowController'
+        )
+        ->name('holidays.show');
     }
 );

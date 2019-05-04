@@ -120,7 +120,7 @@ class Event extends Model
      *
      * @return Collection
      */
-    public static function publicHolidays(): Collection
+    public static function publicHolidays(int $year): Collection
     {
         return DB::table('events')
             ->select(
@@ -131,6 +131,7 @@ class Event extends Model
             )
             ->join('legends', 'legend_id', 'legends.id')
             ->where('legends.name', 'DZUW')
+            ->whereRaw("YEAR(start) = ?", [$year])
             ->get();
     }
 
@@ -139,7 +140,7 @@ class Event extends Model
      *
      * @return Collection
      */
-    public static function nearestPublicHolidays(): Collection
+    public static function nearestPublicHolidays(int $year): Collection
     {
         $nearestPublicHolidays = DB::table('events')
             ->select(
@@ -151,6 +152,7 @@ class Event extends Model
             ->join('legends', 'legend_id', 'legends.id')
             ->where('legends.name', 'DZUW')
             ->whereDate('start', '>', today())
+            ->whereRaw("YEAR(start) = ?", [$year])
             ->first();
         
         return collect($nearestPublicHolidays);
