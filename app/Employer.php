@@ -6,6 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -42,8 +43,10 @@ class Employer extends Model
 
     /**
      * The workers that belong to the employer.
+     * 
+     * @return BelongsToMany
      */
-    public function workers()
+    public function workers(): BelongsToMany
     {
         return $this->belongsToMany('App\Worker');
     }
@@ -78,6 +81,11 @@ class Employer extends Model
             ->select('id', 'company')
             ->orderBy('company')
             ->get();
+    }
+    
+    public static function all___()
+    {
+        return self::all();
     }
     
     /**

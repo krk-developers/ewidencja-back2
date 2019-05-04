@@ -24,8 +24,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Imię</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Uprawnienia</th>
-                                <th scope="col">Opis</th>
+                                <th scope="col">Nazwa firmy</th>
+                                <th scope="col">Liczba pracowników</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,17 +34,23 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $employer->id }}</td>
                                 <td>
-                                    <a href="{{ route('employers.show', $employer->userable_id) }}" title="Szczegóły">
-                                        <i class="fas fa-eye"></i> {{ $employer->name }}
+                                    <a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $employer->user['name'] }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="mailto:{{ $employer->email }}">
-                                        <i class="fas fa-paper-plane"></i> {{ $employer->email }}
+                                    <a href="mailto:{{ $employer->user['email'] }}">
+                                        <i class="fas fa-paper-plane"></i> {{ $employer->user['email'] }}
                                     </a>
                                 </td>
-                                <td>{{ $employer->type->display_name }}</td>
-                                <td>{{ $employer->type->description }}</td>
+                                <td>{{ $employer->company }}</td>
+                                <td>
+@if ($employer->workers->count() > 0)
+                                    <span class="badge badge-secondary">{{ $employer->workers->count() }}</span>
+@else
+                                    <span class="badge badge-light">{{ $employer->workers->count() }}</span>
+@endif
+                                </td>
                             </tr>
 @endforeach
                         </tbody>

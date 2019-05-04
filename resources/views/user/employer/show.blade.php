@@ -25,6 +25,14 @@
                                             <td><i class="fas fa-industry"></i> {{ $employer->company }}</td>
                                         </tr>
                                         <tr>
+                                            <th scope="row">Uprawnienia</th>
+                                            <td>{{ $employer->user->type->display_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Opis</th>
+                                            <td>{{ $employer->user->type->description }}</td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row">Pracownicy</th>
                                             <td>
                                                 <ul class="list-group list-group-flush">

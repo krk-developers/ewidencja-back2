@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\User;
 use Illuminate\Support\Collection;
+use App\Employer;
 
 class IndexController extends Controller
 {
@@ -19,7 +20,9 @@ class IndexController extends Controller
      */
     public function __invoke()//: View  // Request $request
     {
-        $employers = User::employers();
+        // $employers = User::employers();
+        $employers = Employer::all___();
+        // return $employers;
         // $users = User::byType('employer');
         // return $users;
         return view(
