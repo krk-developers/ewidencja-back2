@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User\Worker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\EditWorker;
+use App\Http\Requests\UpdateWorker;
 use App\Worker;
 use Illuminate\Validation\Rule;
 use Validator;
@@ -15,12 +15,12 @@ class UpdateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param EditWorker $request Validation
+     * @param UpdateWorker $request Validation
      * @param Worker     $worker  Worker
      * 
      * @return RedirectResponse
      */
-    public function __invoke(EditWorker $request, Worker $worker): RedirectResponse
+    public function __invoke(UpdateWorker $request, Worker $worker): RedirectResponse
     {
         Validator::make(
             $request->all(),

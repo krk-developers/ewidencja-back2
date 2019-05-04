@@ -46,7 +46,7 @@
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                                         <div class="col-sm-10">
-                                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl">
+                                            <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl">
 @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>

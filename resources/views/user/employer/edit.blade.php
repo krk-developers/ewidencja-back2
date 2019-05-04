@@ -11,6 +11,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">
+                                {{ pr($errors) }}
                                 <form action="{{ route('employers.update', $employer->id) }}" method="POST">
                                     @method('PUT')
 

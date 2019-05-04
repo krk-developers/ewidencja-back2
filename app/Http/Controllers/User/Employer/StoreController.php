@@ -23,8 +23,6 @@ class StoreController extends Controller
      */
     public function __invoke(StoreEmployer $request): RedirectResponse
     {
-        // dd($request);
-        // return $request;
         $validated = $request->validated();
 
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);

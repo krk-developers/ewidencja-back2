@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Employer;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Employer;
-use App\Http\Requests\StoreEmployer;
+use App\Http\Requests\UpdateEmployer;
 
 class UpdateController extends Controller
 {
@@ -21,7 +21,7 @@ class UpdateController extends Controller
      * @return RedirectResponse
      */
     public function __invoke(
-        StoreEmployer $request,
+        UpdateEmployer $request,
         Employer $employer
     ): RedirectResponse {
         $saved = false;
