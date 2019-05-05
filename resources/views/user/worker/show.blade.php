@@ -65,7 +65,9 @@
                                                         </form>
                                                     </li>
 @empty
-                                                    <li class="list-group-item text-danger">Brak zatrudnienia</li>
+                                                    <li class="list-group-item text-danger">
+                                                        <i class="fas fa-times"></i> Brak zatrudnienia
+                                                    </li>
 @endforelse
                                                 </ul>
                                             </td>

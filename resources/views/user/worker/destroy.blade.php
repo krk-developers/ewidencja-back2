@@ -7,7 +7,7 @@
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-eraser"></i> Czy usunąć pracownika {{ $worker->user->name}} {{ $worker->lastname }}?
+                            <i class="fas fa-eraser"></i> Czy usunąć pracownika {{ $worker->user->name}} {{ $worker->lastname }} i wszystkie jego wydarzenia?
                         </div>
                         <div class="card-body">
                             <p class="card-text">

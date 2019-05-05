@@ -33,7 +33,7 @@ class CreateEventsTable extends Migration
 
                 $table->foreign('worker_id')
                     ->references('id')->on('workers')
-                    ->onDelete('set null');
+                    ->onDelete('cascade');
             }
         );
     }
