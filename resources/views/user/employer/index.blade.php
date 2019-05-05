@@ -17,6 +17,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($employers->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -46,15 +47,18 @@
                                 <td>{{ $employer->company }}</td>
                                 <td>
 @if ($employer->workers->count() > 0)
-                                    <span class="badge badge-secondary">{{ $employer->workers->count() }}</span>
+                                    <span class="badge badge-warning">{{ $employer->workers->count() }}</span>
 @else
-                                    <span class="badge badge-light">{{ $employer->workers->count() }}</span>
+                                    <span class="badge badge-secondary">{{ $employer->workers->count() }}</span>
 @endif
                                 </td>
                             </tr>
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak pracodawców</div>
+@endif
                 </div>
             </div>
 @endsection

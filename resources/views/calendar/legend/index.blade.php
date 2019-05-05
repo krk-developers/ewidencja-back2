@@ -17,6 +17,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
+@if ($legends->count() > 0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -45,6 +46,9 @@
 @endforeach
                         </tbody>
                     </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak legendy</div>
+@endif
                 </div>
             </div>
 @endsection

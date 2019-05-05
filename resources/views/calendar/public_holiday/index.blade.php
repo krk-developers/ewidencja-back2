@@ -55,7 +55,7 @@
                     <a href="{{ route('holidays.show', $previousYear) }}" title="{{ $previousYear }}" class="btn btn-outline-secondary btn-block" role="button">Poprzedni rok</a>
                 </div>
                 <div class="col-sm">
-                    <a href="{{ route('holidays.show', $nextYear) }}" title="$nextYear" class="btn btn-outline-secondary btn-block" role="button">Następny rok</a>
+                    <a href="{{ route('holidays.show', $nextYear) }}" title="{{ $nextYear }}" class="btn btn-outline-secondary btn-block" role="button">Następny rok</a>
                 </div>
             </div>
 @endsection

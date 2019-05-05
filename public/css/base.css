@@ -71,6 +71,18 @@ btn-primary.focus, .btn-primary:focus {
     box-shadow: 0 0 0 .1rem rgba(225,83,97,.5);
 }
 
+.btn-outline-danger.focus, .btn-outline-danger:focus {
+    box-shadow: 0 0 0 .1rem rgba(220,53,69,.5);
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .1rem rgba(108,117,125,.5);
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .1rem rgba(108,117,125,.5);
+}
+
 .card {
     border-radius: .1rem;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\User\Worker;
 
 use Illuminate\Http\Request;
@@ -25,17 +27,6 @@ class DestroyController extends Controller
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            // return 'delete';
-
-            // remove a many-to-many relationship record
-            // $d = $worker->employers()->detach();
-
-            // remove user
-            // $u = $worker->user->delete();
-
-            // remove worker
-            // $w = $worker->delete();
-
             $worker->delete_();
 
             return redirect()
@@ -52,7 +43,5 @@ class DestroyController extends Controller
             'user.worker.destroy',
             ['worker' => $worker]
         );
-
-        // return $worker;
     }
 }

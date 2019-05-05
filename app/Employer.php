@@ -87,7 +87,24 @@ class Employer extends Model
     {
         return self::all();
     }
-    
+
+    /**
+     * Delete Employer
+     *
+     * @return boolean
+     */
+    public function delete_(): bool
+    {
+        // remove a many-to-many relationship record
+        $this->workers()->detach();
+
+        // remove user
+        $this->user->delete();
+
+        // remove worker
+        return $this->delete();
+    }
+
     /**
      * Workers who work for the employer
      *
@@ -149,6 +166,8 @@ class Employer extends Model
     
     /**
      * Create profile
+     * 
+     * @param array $data Data
      *
      * @return Employer
      */
@@ -157,7 +176,14 @@ class Employer extends Model
         return self::create($data);
     }
 
-    public function addWorker(int $id)
+    /**
+     * Assign worker to employer
+     *
+     * @param integer $id Worker ID
+     * 
+     * @return array Array with status and message
+     */
+    public function addWorker(int $id): array
     {
         try {
             $this->workers()->attach($id);
@@ -180,7 +206,14 @@ class Employer extends Model
         }
     }
 
-    public function removeWorker(int $id)
+    /**
+     * Remove the worker from the employer's list
+     *
+     * @param integer $id Worker ID
+     * 
+     * @return void bool
+     */
+    public function removeWorker(int $id): int
     {
         return $this->workers()->detach($id);
     }
