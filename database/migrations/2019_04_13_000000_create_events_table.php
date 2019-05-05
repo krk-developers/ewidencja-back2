@@ -19,13 +19,21 @@ class CreateEventsTable extends Migration
             'events',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('legend_id');  // ->nullable()->default(null)
-                $table->integer('worker_id')->nullable()->default(null);
+                $table->unsignedInteger('legend_id')->nullable();
+                $table->unsignedInteger('worker_id')->nullable()->default(null);
                 // $table->boolean('all_day')->default(1);
                 $table->date('start');
                 $table->date('end')->nullable()->default(null);
                 $table->string('title', 80)->nullable()->default(null);
                 $table->timestamps();
+                
+                $table->foreign('legend_id')
+                    ->references('id')->on('legends')
+                    ->onDelete('set null');
+
+                $table->foreign('worker_id')
+                    ->references('id')->on('workers')
+                    ->onDelete('set null');
             }
         );
     }

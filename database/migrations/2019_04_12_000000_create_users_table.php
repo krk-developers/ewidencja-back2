@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             'users',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('type_id'); // what type is the user. info about type
-                $table->integer('userable_id');  // 'subclasses' of users. specifies the user
+                $table->unsignedInteger('type_id')->nullable();
+                $table->integer('userable_id');
                 $table->string('userable_type')->index();
                 $table->string('name');
                 $table->string('email')->unique();
@@ -28,6 +28,10 @@ class CreateUsersTable extends Migration
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();
+                
+                $table->foreign('type_id')
+                    ->references('id')->on('types')
+                    ->onDelete('set null');
             }
         );
     }
