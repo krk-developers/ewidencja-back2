@@ -15,9 +15,9 @@ class IndexController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function __invoke(): View
+    public function __invoke(): object
     {
         // workers can only see their profile
         if (Auth::user()->type->name == 'worker') {
