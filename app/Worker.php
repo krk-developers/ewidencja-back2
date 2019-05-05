@@ -47,7 +47,7 @@ class Worker extends Model
      */
     public function events(): HasMany
     {
-        return $this->hasMany('App\Event');
+        return $this->hasMany('App\Event')->orderBy('start');
     }
 
     /**

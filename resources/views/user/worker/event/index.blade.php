@@ -5,15 +5,7 @@
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
-                    <h3><i class="fas fa-user"></i> Wydarzenia. Pracownik: {{ $worker->user->name }} {{ $worker->lastname }}</h3>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-sm">
-                    <h4>
-                        Liczba przepracowanych dni: {{ $worked_days }} 
-                        <small class="text-muted">(po odliczeniu weekendów i nieobecności)</small>
-                    </h4>
+                    <h3><i class="fas fa-user"></i> Wszystkie Wydarzenia. Pracownik: {{ $worker->user->name }} {{ $worker->lastname }}</h3>
                 </div>
             </div>
             <div class="row mt-5">
@@ -52,7 +44,11 @@
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
                                 <td>{{ $event->legend->name }}</td>
-                                <td>{{ $event->legend->display_name }}</td>
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="top" title="{{ $event->legend->description }}">
+                                        {{ $event->legend->display_name }}
+                                    </span>
+                                </td>
                             </tr>
 @endforeach
                         </tbody>
