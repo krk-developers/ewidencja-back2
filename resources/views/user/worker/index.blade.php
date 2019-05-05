@@ -27,6 +27,8 @@
                                 <th scope="col">Nazwisko</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Pesel</th>
+                                <th scope="col" class="text-center">Pracodawcy</th>
+                                <th scope="col" class="text-center">Wydarzenia</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +52,20 @@
                                     </a>
                                 </td>
                                 <td>{{ $worker->pesel }}</td>
+                                <td class="text-center">
+@if ($worker->employers->count() > 0)
+                                    <span class="badge badge-warning">{{ $worker->employers->count() }}</span>
+@else
+                                    <span class="badge badge-secondary">{{ $worker->employers->count() }}</span>
+@endif
+                                </td>
+                                <td class="text-center">
+@if ($worker->events->count() > 0)
+                                    <span class="badge badge-warning">{{ $worker->events->count() }}</span>
+@else
+                                    <span class="badge badge-secondary">{{ $worker->events->count() }}</span>
+@endif
+                                </td>
                             </tr>
 @endforeach
                         </tbody>

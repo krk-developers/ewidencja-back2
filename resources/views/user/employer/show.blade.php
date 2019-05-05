@@ -58,7 +58,9 @@
                                                         </form>
                                                     </li>
 @empty
-                                                    <li class="list-group-item text-danger">Brak pracowników</li>
+                                                    <li class="list-group-item text-danger">
+                                                        <i class="fas fa-user-slash"></i> Brak pracowników
+                                                    </li>
 @endforelse
                                                 </ul>
                                             </td>

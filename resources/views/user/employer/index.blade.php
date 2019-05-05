@@ -26,7 +26,7 @@
                                 <th scope="col">Imię</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Nazwa firmy</th>
-                                <th scope="col">Liczba pracowników</th>
+                                <th scope="col" class="text-center">Pracownicy</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +45,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $employer->company }}</td>
-                                <td>
+                                <td class="text-center">
 @if ($employer->workers->count() > 0)
                                     <span class="badge badge-warning">{{ $employer->workers->count() }}</span>
 @else

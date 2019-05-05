@@ -25,7 +25,9 @@ class IndexController extends Controller
     {
         $pluckedEvents = $worker->events->pluck('start');
         // return $pluckedEvents;
-        $pluckedPublicHolidays = Event::publicHolidays()->pluck('start');
+        $pluckedPublicHolidays = Event::publicHolidays(
+            Carbon::now()->year
+        )->pluck('start');
         // $pluckedPublicHolidays = Days::pluck($publicHolidays);
 
 
