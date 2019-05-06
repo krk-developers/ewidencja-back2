@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+// use Symfony\Component\HttpFoundation\Cookie;
 
 class HomeController extends Controller
 {
@@ -33,18 +34,27 @@ class HomeController extends Controller
         $user = Auth::user();        
         $apiToken = $user->api_token;
         $userType = $user->type->name;
-
+        
         $rectok = cookie(
             'rectok',
             $apiToken,
-            config('record.cookie_expires_in_minutes')
+            config('record.cookie_expires_in_minutes'),            
+            '/',
+            '',            
+            true,
+            false
         );
+        
         $usertype = cookie(
             'usertype',
             $userType,
-            config('record.cookie_expires_in_minutes')
+            config('record.cookie_expires_in_minutes'),
+            '/',
+            '',
+            true,
+            false
         );
-
+        // setcookie ( string $name [, string $value = "" [, int $expires = 0 [, string $path = "" [, string $domain = "" [, bool $secure = FALSE [, bool $httponly = FALSE ]]]]]] ) : bool
         // from where user came   
         $previous = session('previous');
         session()->forget('previous');

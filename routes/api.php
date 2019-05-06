@@ -15,9 +15,17 @@
 
 Route::middleware('auth:api')->group(
     function () {
+        /*
         Route::apiResource('legends', 'API\LegendController')
         ->only(['index', 'store', 'destroy']);
-    
+        */
+        Route::get('legends', 'API\LegendController@index')
+            ->name('api.legends.index');
+        Route::post('legends', 'API\LegendController@store')
+            ->name('api.legends.store');
+        Route::delete('legends/{legend}', 'API\LegendController@destroy')
+            ->name('api.legends.destroy');
+        /*
         Route::apiResource('events', 'API\EventController')
             ->only(['index', 'store', 'destroy']);
         
@@ -39,11 +47,18 @@ Route::middleware('auth:api')->group(
             'employers/{employer}/workers/{worker}',
             'API\EmployerController@event'
         )->name('employers.workers.event');
-
+        */
+        /*
+        Route::get('employers', 'API\EmployerController@index')
+            ->name('api.employers.index');
+        */
+        /*
         Route::apiResource('employers', 'API\EmployerController')
             ->only(['index', 'show']);
-        
+        */
+        /*
         Route::apiResource('workers', 'API\WorkerController')
             ->only(['index', 'show']);
+        */
     }
 );

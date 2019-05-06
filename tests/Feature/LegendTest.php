@@ -21,24 +21,18 @@ class LegendTest extends TestCase
     {
         // $this->withoutExceptionHandling();
         
-        // route('legends.index')
-        // $token = 'Al5TWJKhV7vviKEN4JFYpVX0li8SMCQLHGlkZjqKcXSlXQ2rOOP4VyNZm9fx';
-        // $request = new Request();
-        // $token = $request->cookie('rectok');
-        // $token = \Cookie::get('rectok');
-        // dd($token);
-        $user = \App\User::find(1);
-        $token = \App\User::apiToken($user->id);
-        // dd($user);
+        $user = \App\User::find(1);        
+        $token = $user['api_token'];
         $response = $this->actingAs($user)->get(route('home'));
-        $response->assertCookie('rectok', $token);  // , $value = null
-
+        
+        $response->assertCookie('rectok', $token);
+        
         $response = $this->withHeaders(
             [
                 'Authorization' => 'Bearer ' . $token,
             ]
-        )->get(route('legends.index'));
-
+        )->get(route('api.legends.index'));
+        
         $response->assertStatus(200);
         
         $response->assertJsonFragment(
@@ -67,9 +61,9 @@ class LegendTest extends TestCase
         );
     }
 
-    public function _testUnauthenticatedLegendIndexPage(): void
+    public function testUnauthenticatedLegendIndexPage(): void
     {
-        $response = $this->get(route('legends.index'));
+        $response = $this->get(route('api.legends.index'));
 
         $response->assertStatus(302);
     }
@@ -79,16 +73,18 @@ class LegendTest extends TestCase
      *
      * @return void
      */
-    public function _testLegendStorePage(): void
+    public function testLegendStorePage(): void
     {
         // $legend = factory(\App\Legend::class)->make();
-        // create()        
-
-        $this->withoutExceptionHandling();
-
-        $response = $this->json(
+        // $this->withoutExceptionHandling();
+        $user = \App\User::find(1);
+        $token = $user['api_token'];
+        // dd($token);
+        $response = $this->withHeaders(
+            ['Authorization' => 'Bearer ' . $token]
+        )->json(
             'POST',
-            route('legends.store'),
+            route('api.legends.store'),
             [
                 'name' => 'XXX',
                 'display_name' => 'Dzień filmów X',
@@ -107,13 +103,15 @@ class LegendTest extends TestCase
      *
      * @return void
      */
-    public function _testLegendDestroyPage(): void
+    public function testLegendDestroyPage(): void
     {
-        $this->withoutExceptionHandling();
-
-        // $id = 31;
+        // $this->withoutExceptionHandling();
+        $user = \App\User::find(1);
+        $token = $user['api_token'];
         $lastID = DB::table('legends')->max('id');
-        $response = $this->json('DELETE', route('legends.destroy', $lastID));
+        $response = $this->withHeaders(
+            ['Authorization' => 'Bearer ' . $token]
+        )->json('DELETE', route('api.legends.destroy', $lastID));
         
         $response
             ->assertStatus(200)
