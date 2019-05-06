@@ -51,15 +51,10 @@ class HomeController extends Controller
 
         if (\App::environment('local')) {
             if ($previous == config('record.local_main_page') || $previous == config('record.host_main_page')) {  // local main page
-                echo 'frontend';
-                /*
                 return $this->redirectToFrontend(
                     $apiToken, $userType, $rectok, $usertype
                 );
-                */
             }
-
-            // return 'from login page';
         } /* else {
             dd($previous);
             if ($previous == config('record.host_main_page')) {  // host main page
