@@ -76,7 +76,11 @@
                                             <th scope="row">Wydarzenia</th>
                                             <td>
                                                 <a href="{{ route('workers.events.index', $worker->id) }}" title="Szczegóły"><i class="fas fa-eye"></i> Wszystkie wydarzenia</a>
-                                                <span class="badge badge-light">{{ $worker->events->count() }}</span>
+@if ($worker->events->count() > 0)
+                                                <span class="badge badge-warning">{{ $worker->events->count() }}</span>
+@else
+                                                <span class="badge badge-secondary">{{ $worker->events->count() }}</span>
+@endif
                                             </td>
                                         </tr>
                                     </tbody>
