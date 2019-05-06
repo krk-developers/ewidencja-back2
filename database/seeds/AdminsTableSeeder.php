@@ -13,6 +13,7 @@ class AdminsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        /*
         DB::table('admins')->insert(
             [             
                 'lastname' => 'Sztefko',
@@ -23,5 +24,6 @@ class AdminsTableSeeder extends Seeder
                 'lastname' => 'Hołymczuk',
             ]
         );
+        */
     }
 }

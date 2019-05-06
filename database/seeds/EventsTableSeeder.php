@@ -107,7 +107,7 @@ class EventsTableSeeder extends Seeder
         );
         
         // ///////////////////////////////////////////////////////////////////
-        
+        /*
         DB::table('events')->insert(
             [
                 'legend_id' => 1,
@@ -201,6 +201,6 @@ class EventsTableSeeder extends Seeder
                 'title' => 'Iść z prośbą o podwyżkę',
             ]
         );
-        
+        */
     }
 }

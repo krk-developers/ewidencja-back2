@@ -24,13 +24,11 @@ class UsersTableSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]
         );
-        
-
         DB::table('users')->insert(
             [
-                'type_id' => 2,
+                'type_id' => 1,
                 'userable_id' => 1,
-                'userable_type' => 'App\Admin',                
+                'userable_type' => 'App\SuperAdmin',
                 'name' => 'Kamil',
                 'email' => 'kamil.sztefko@krkds.com',
                 'password' => bcrypt('12345678'),
@@ -39,9 +37,9 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
             [
-                'type_id' => 2,
-                'userable_id' => 2,
-                'userable_type' => 'App\Admin',                
+                'type_id' => 1,
+                'userable_id' => 1,
+                'userable_type' => 'App\SuperAdmin',
                 'name' => 'Monika',
                 'email' => 'monika.holymczuk@krkds.com',
                 'password' => bcrypt('12345678'),
@@ -49,7 +47,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-
+        // ///////////////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
                 'type_id' => 3,
@@ -95,7 +93,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-
+        // ///////////////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
                 'type_id' => 4,
