@@ -277,6 +277,12 @@ Route::middleware('auth')->group(
         )
         ->name('workers.events.edit');
 
+        Route::get(
+            'pracownicy/{worker}/ewidencja/{year_month}',
+            'User\Worker\Record\IndexController'
+        )
+        ->name('workers.records.index');
+
         // legend ////////////////////////////////////////////////////////////
         Route::get(
             'legenda',

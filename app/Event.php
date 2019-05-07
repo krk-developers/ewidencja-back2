@@ -136,6 +136,27 @@ class Event extends Model
     }
 
     /**
+     * All public holidays
+     *
+     * @return Collection
+     */
+    public static function publicHolidaysInMonth(int $year, int $month): Collection
+    {
+        return DB::table('events')
+            ->select(
+                'events.id', 'events.start', 'events.title',
+                'legends.name as legend_name',
+                'legends.display_name as legend_diplay_name',
+                'legends.description as legend_description'
+            )
+            ->join('legends', 'legend_id', 'legends.id')
+            ->where('legends.name', 'DZUW')
+            ->whereRaw("YEAR(start) = ?", [$year])
+            ->whereRaw("MONTH(start) = ?", [$month])
+            ->get();
+    }
+
+    /**
      * Nearest public holidays
      *
      * @return Collection

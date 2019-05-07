@@ -75,12 +75,22 @@
                                         <tr>
                                             <th scope="row">Wydarzenia</th>
                                             <td>
-                                                <a href="{{ route('workers.events.index', $worker->id) }}" title="Szczegóły"><i class="fas fa-eye"></i> Wszystkie wydarzenia</a>
+                                                <a href="{{ route('workers.events.index', $worker->id) }}" title="Szczegóły">
+                                                    <i class="fas fa-eye"></i> Wszystkie
+                                                </a>
 @if ($worker->events->count() > 0)
                                                 <span class="badge badge-warning">{{ $worker->events->count() }}</span>
 @else
                                                 <span class="badge badge-secondary">{{ $worker->events->count() }}</span>
 @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ewidencja</th>
+                                            <td>
+                                                <a href="{{ route('workers.records.index', [$worker->id, $year_month]) }}" title="{{ $year_month }}">
+                                                    <i class="fas fa-eye"></i> Ewidencja. Miesiąc {{ $month_name }}
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

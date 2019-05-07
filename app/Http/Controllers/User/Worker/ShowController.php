@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User\Worker;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Worker;
+use Carbon\Carbon;
 
 class ShowController extends Controller
 {
@@ -17,13 +18,18 @@ class ShowController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Worker $worker): View
+    public function __invoke(Worker $worker)//: View
     {
-        $this->authorize('view', $worker);
+        // return Carbon::now()->format('Y-m');
+        // $this->authorize('view', $worker);
 
         return view(
             'user.worker.show',
-            ['worker' => $worker]
+            [
+                'worker' => $worker,
+                'year_month' => Carbon::now()->format('Y-m'),
+                'month_name' => Carbon::now()->monthName,
+            ]
         );
     }
 }
