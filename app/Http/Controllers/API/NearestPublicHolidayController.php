@@ -8,6 +8,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Http\Resources\Event as EventResource;
+use Carbon\Carbon;
 
 class NearestPublicHolidayController extends Controller
 {
@@ -19,6 +20,6 @@ class NearestPublicHolidayController extends Controller
     public function __invoke(): EventResource
     {
         // return response()->json(['function' => __FUNCTION__]);
-        return new EventResource(Event::nearestPublicHolidays());
+        return new EventResource(Event::nearestPublicHolidays(Carbon::now()->year));
     }
 }

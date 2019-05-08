@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
-
 use Carbon\CarbonPeriod;
 use App\{Worker, Event};
 use App\Days;
@@ -22,7 +21,7 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Worker $worker, $year_month): View
+    public function __invoke(Request $request, Worker $worker, $year_month)//: View
     {
         // return $period;
         $start = Days::start($year_month);
@@ -31,6 +30,7 @@ class IndexController extends Controller
         $end = Days::end($monthName, $start);
         // dd($end);
         $daysInMonth = $start->daysInMonth;
+        // dd($daysInMonth);
         $isFuture = $start > Carbon::now();
         
         $previousMonthStart = $start->subMonth()->startOfMonth();
@@ -40,6 +40,7 @@ class IndexController extends Controller
         $nextMonth = $start->addMonth()->format('Y-m');
 
         $timePeriod = CarbonPeriod::between($start, $end);
+        // dd($timePeriod);
         /*
         $weekendFilter = function ($date) {
             return $date->isWeekday();  // isWeekend();
@@ -48,13 +49,13 @@ class IndexController extends Controller
         */
 
         $timePeriod = Days::weekendFilter($timePeriod);
-        // $timePeriod->count();
+        // return $timePeriod->count();
 
         $publicHolidaysInMonth = Event::publicHolidaysInMonth(
             $start->year, $start->month
         );
         $pluckedPublicHolidaysInMonth = $publicHolidaysInMonth->pluck('start');
-
+        // return $pluckedPublicHolidaysInMonth;
         // dd($pluckedPublicHolidaysInMonth);
         // return $pluckedPublicHolidaysInMonth;
         // $pluckedPublicHolidaysInMonth = $publicHolidaysInMonth->pluck('start');
@@ -72,13 +73,18 @@ class IndexController extends Controller
         };
         $timePeriodPublicHolidayFilter = $timePeriod->filter($publicHolidayFilter);
         */
+        // pr($timePeriod);
+        // return $pluckedPublicHolidaysInMonth;
         $timePeriodPublicHolidayFilter = Days::publicHolidayFilter(
             $timePeriod, $pluckedPublicHolidaysInMonth
         );
         $timePeriodPublicHolidayFilterCount = $timePeriodPublicHolidayFilter
             ->count();
+        // pr($timePeriodPublicHolidayFilter);
+        // return $timePeriodPublicHolidayFilterCount;
 
         $workerEvents = $worker->eventsByTimePeriod($start, $end);  // $worker->events;
+        // return $workerEvents;
         // dd($workerEvents);
         // '2019-04-01', '2019-04-31'
         
@@ -92,7 +98,9 @@ class IndexController extends Controller
         
         $absenceInDays = Days::absenceInDays($workerEvents);
         // return $absenceInDays;
+        // return $timePeriod->count();
         $workingDays = $timePeriod->count() - $absenceInDays;
+        // return $workingDays;
 
         return view(
             'user.worker.record.index',

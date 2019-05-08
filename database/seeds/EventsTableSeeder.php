@@ -111,6 +111,7 @@ class EventsTableSeeder extends Seeder
             [
                 'legend_id' => 18,
                 'worker_id' => 1,
+                'employer_id' => 1,
                 'start' => '2019-04-17',
                 'end' => '2019-04-19',
                 'title' => 'Choroba',
@@ -120,6 +121,7 @@ class EventsTableSeeder extends Seeder
             [
                 'legend_id' => 18,
                 'worker_id' => 1,
+                'employer_id' => 1,
                 'start' => '2019-05-06',
                 'end' => '2019-05-06',
                 'title' => 'Choroba',
@@ -130,6 +132,7 @@ class EventsTableSeeder extends Seeder
             [
                 'legend_id' => 18,
                 'worker_id' => 2,
+                'employer_id' => 2,
                 'start' => '2019-04-08',
                 'end' => '2019-04-11',
                 'title' => '',

@@ -16,7 +16,9 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = ['legend_id', 'worker_id', 'start', 'end', 'title',];
+    protected $fillable = [
+        'legend_id', 'worker_id', 'employer_id', 'start', 'end', 'title'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

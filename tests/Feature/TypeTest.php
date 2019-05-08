@@ -19,7 +19,7 @@ class TypeTest extends TestCase
     {
         $this->withoutExceptionHandling();
         
-        $response = $this->get(route('user_types.index'));
+        $response = $this->get(route('api.user_types.index'));
 
         $response->assertStatus(200);
         

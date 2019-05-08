@@ -51,7 +51,7 @@
                                             <strong>{{ $errors->first('end') }}</strong>
                                         </span>
 @else
-                                        <small id="end_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+                                        <small id="end_help" class="form-text text-muted">Pole obowiązkowe</small>
 @endif
                                     </div>
                                 </div>
@@ -85,6 +85,24 @@
 @if ($errors->has('worker_id'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('worker_id') }}</strong>
+                                        </span>
+@else
+                                        <small id="worker_id_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="employer_id" class="col-sm-2 col-form-label">Pracodawca</label>
+                                    <div class="col-sm-10">
+                                        <select id="employer_id" name="employer_id" class="form-control{{ $errors->has('employer_id') ? ' is-invalid' : '' }}">
+@foreach ($employers as $employer)
+                                            <option value="{{ $employer->id }}" title="{{ $employer->user->name }}">{{ $employer->company }}</option>
+@endforeach
+                                        </select>
+@if ($errors->has('employer_id'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('employer_id') }}</strong>
                                         </span>
 @else
                                         <small id="worker_id_help" class="form-text text-muted">Pole obowiązkowe</small>

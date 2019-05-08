@@ -19,7 +19,7 @@ class PublicHolidayTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get(route('public_holidays.index'));
+        $response = $this->get(route('api.public_holidays.index'));
 
         $response->assertStatus(200);
 
@@ -61,7 +61,7 @@ class PublicHolidayTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get(route('nearest_public_holidays.index'));
+        $response = $this->get(route('api.nearest_public_holidays.index'));
 
         $response->assertStatus(200);
 

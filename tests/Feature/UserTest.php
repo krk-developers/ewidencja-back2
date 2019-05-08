@@ -19,7 +19,7 @@ class UserTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get(route('users.index'));
+        $response = $this->get(route('api.users.index'));
 
         $response->assertStatus(200);
         // $response->assertJson(['function' => 'index']);        

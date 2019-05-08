@@ -10,7 +10,7 @@
                             <i class="fas fa-user"></i> Pracownik
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -48,28 +48,39 @@
                                         <tr>
                                             <th scope="row">Pracodawca</th>
                                             <td>
-                                                <ul class="list-group list-group-flush">
-@forelse ($worker->employers as $employer)
-                                                    <li class="list-group-item">
-                                                        <a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">
-                                                            <i class="fas fa-industry"></i> {{ $employer->company }}
-                                                        </a>
-                                                        <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" class="form-inline" method="POST">
-                                                            @csrf
+@if ($worker->employers->count() > 0)
+                                                <table>
+                                                    <tbody>
+@foreach ($worker->employers as $employer)
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">
+                                                                    <i class="fas fa-industry"></i> {{ $employer->company }}
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" class="form-inline" method="POST">
+                                                                    @csrf
 
-                                                            @method('DELETE')
+                                                                    @method('DELETE')
 
-                                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                                <i class="fas fa-eraser"></i> Usuń
-                                                            </button>
-                                                        </form>
-                                                    </li>
-@empty
-                                                    <li class="list-group-item text-danger">
-                                                        <i class="fas fa-times"></i> Brak zatrudnienia
-                                                    </li>
-@endforelse
-                                                </ul>
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                                        <i class="fas fa-eraser"></i> Usuń
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('workers.records1.index', [$worker->id, $employer->id, $year_month]) }}" title="">
+                                                                    <i class="fas fa-eye"></i> Ewidencja. Miesiąc {{ $month_name }}
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+@endforeach
+                                                    </tbody>
+                                                </table>
+@else
+                                                <div class="alert alert-secondary" role="alert"><i class="fas fa-times"></i> Brak zatrudnienia</div>
+@endif
                                             </td>
                                         </tr>
                                         <tr>
@@ -85,6 +96,7 @@
 @endif
                                             </td>
                                         </tr>
+                                        {{--
                                         <tr>
                                             <th scope="row">Ewidencja</th>
                                             <td>
@@ -93,9 +105,9 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        --}}
                                     </tbody>
                                 </table>
-                            </p>
                         </div>
                         <footer class="card-footer bg-white">
                             <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">

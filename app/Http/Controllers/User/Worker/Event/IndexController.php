@@ -18,8 +18,9 @@ class IndexController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Worker $worker): View
+    public function __invoke(Worker $worker)//: View
     {
+        // return $worker->employers;//->wherePivot('worker_id', 1);
         return view(
             'user.worker.event.index', ['worker' => $worker]
         );

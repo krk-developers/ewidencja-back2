@@ -30,6 +30,7 @@ class Days
      */
     public static function start(string $yearMonth): CarbonImmutable
     {
+        // dd($yearMonth);
         return CarbonImmutable::parse($yearMonth);
     }
 

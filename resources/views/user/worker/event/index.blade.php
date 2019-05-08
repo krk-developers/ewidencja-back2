@@ -23,6 +23,7 @@
                             <tr>
                                 <th scope="col">L.P.</th>
                                 <th scope="col">#</th>
+                                <th scope="col">Pracodawca</th>
                                 <th scope="col">Nazwa</th>
                                 <th scope="col">Początek</th>
                                 <th scope="col">Koniec</th>
@@ -35,6 +36,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $event->id }}</td>
+                                <td>{{ $event->employer_id }}</td>
                                 <td>
                                     <a href="{{ route('workers.events.show', [$worker->id, $event->id]) }}" title="Szczegóły">
                                         <i class="fas fa-eye"></i>

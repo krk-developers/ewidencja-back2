@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // super admin ///////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
                 'type_id' => 1,
@@ -27,7 +28,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 'type_id' => 1,
-                'userable_id' => 1,
+                'userable_id' => 2,
                 'userable_type' => 'App\SuperAdmin',
                 'name' => 'Kamil',
                 'email' => 'kamil.sztefko@krkds.com',
@@ -38,7 +39,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 'type_id' => 1,
-                'userable_id' => 1,
+                'userable_id' => 3,
                 'userable_type' => 'App\SuperAdmin',
                 'name' => 'Monika',
                 'email' => 'monika.holymczuk@krkds.com',
@@ -46,8 +47,43 @@ class UsersTableSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]
         );
+        DB::table('users')->insert(
+            [
+                'type_id' => 1,
+                'userable_id' => 4,
+                'userable_type' => 'App\SuperAdmin',
+                'name' => 'Grzegorz',
+                'email' => 'grzegorz.zygulsk@krkds.com',
+                'password' => bcrypt('12345678'),
+                'api_token' => Str::random(60),
+            ]
+        );
+        DB::table('users')->insert(
+            [
+                'type_id' => 1,
+                'userable_id' => 5,
+                'userable_type' => 'App\SuperAdmin',
+                'name' => 'Mateusz',
+                'email' => 'mateusz.wilk@krkds.com',
+                'password' => bcrypt('12345678'),
+                'api_token' => Str::random(60),
+            ]
+        );
 
-        // ///////////////////////////////////////////////////////////////////
+        // admin /////////////////////////////////////////////////////////////
+        DB::table('users')->insert(
+            [
+                'type_id' => 2,
+                'userable_id' => 1,
+                'userable_type' => 'App\Admin',
+                'name' => 'Agnieszka',
+                'email' => 'agnieszka.karasewicz@krkds.com',
+                'password' => bcrypt('12345678'),
+                'api_token' => Str::random(60),
+            ]
+        );
+
+        // employer //////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
                 'type_id' => 3,
@@ -93,7 +129,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-        // ///////////////////////////////////////////////////////////////////
+        // worker ////////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
                 'type_id' => 4,

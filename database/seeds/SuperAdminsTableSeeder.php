@@ -18,14 +18,24 @@ class SuperAdminsTableSeeder extends Seeder
                 'lastname' => 'Miłkowski',
             ]
         );
-        DB::table('admins')->insert(
+        DB::table('super_admins')->insert(
             [             
                 'lastname' => 'Sztefko',
             ]
         );
-        DB::table('admins')->insert(
+        DB::table('super_admins')->insert(
             [             
                 'lastname' => 'Hołymczuk',
+            ]
+        );
+        DB::table('super_admins')->insert(
+            [             
+                'lastname' => 'Zygulski',
+            ]
+        );
+        DB::table('super_admins')->insert(
+            [             
+                'lastname' => 'Wilk',
             ]
         );
     }

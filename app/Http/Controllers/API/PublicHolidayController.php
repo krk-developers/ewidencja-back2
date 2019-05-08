@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Event;
 use App\Http\Resources\Event as EventResource;
+use Carbon\Carbon;
 
 class PublicHolidayController extends Controller
 {
@@ -20,7 +21,7 @@ class PublicHolidayController extends Controller
     public function index(): EventResource  // JsonResponse
     {
         // return response()->json(['function' => __FUNCTION__]);
-        return new EventResource(Event::publicHolidays());
+        return new EventResource(Event::publicHolidays(Carbon::now()->year));
     }
 
     /**

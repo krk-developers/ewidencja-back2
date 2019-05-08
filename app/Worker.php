@@ -67,6 +67,24 @@ class Worker extends Model
             ->get();
     }
 
+    public function eventsByTimePeriod1($start, $end, $employer_id)
+    {
+        return DB::table('events')
+            ->select(
+                'events.id', 'events.worker_id', 'events.start',
+                'events.end', 'events.title',
+                'legends.id as legend_id', 'legends.name as legend_name',
+                'legends.display_name as legend_display_name',
+                'legends.description as legend_description'
+            )
+            ->join('legends', 'events.legend_id', 'legends.id')
+            ->where('worker_id', $this->id)
+            ->where('employer_id', $employer_id)
+            ->whereDate('start', '>=', $start)
+            ->whereDate('end', '<=', $end)
+            ->get();
+    }
+
     /**
      * Create profile
      *

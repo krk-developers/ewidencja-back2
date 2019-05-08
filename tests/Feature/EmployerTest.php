@@ -56,12 +56,12 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function _testEmployerShowPage(): void
+    public function testEmployerShowPage(): void
     {
         $this->withoutExceptionHandling();
 
         $id = 1;
-        $response = $this->get(route('employers.show', $id));
+        $response = $this->get(route('api.employers.show', $id));
 
         $response->assertStatus(200);
 
@@ -101,7 +101,7 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function _testEmployerEventPage(): void
+    public function testEmployerEventPage(): void
     {
         $this->withoutExceptionHandling();
 
@@ -109,7 +109,7 @@ class EmployerTest extends TestCase
         $workerID = 2;
         $response = $this->get(
             route(
-                'employers.workers.event',
+                'api.employers.workers.event',
                 [
                     $employerID, $workerID
                 ]

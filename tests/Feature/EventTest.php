@@ -16,7 +16,7 @@ class EventTest extends TestCase
      */
     public function testEventIndexPage(): void
     {
-        $response = $this->get(route('events.index'));
+        $response = $this->get(route('api.events.index'));
 
         $response->assertStatus(200);
         // $response->assertJson(['function' => 'index']);
@@ -71,7 +71,7 @@ class EventTest extends TestCase
         */
         $response = $this->json(
             'POST',
-            route('events.store'),
+            route('api.events.store'),
             [
                 'legend_id' => $legendRandomID,
                 'worker_id' => $worker->id,
@@ -95,7 +95,7 @@ class EventTest extends TestCase
 
         // $id = 31;
         $lastID = DB::table('events')->max('id');
-        $response = $this->json('DELETE', route('events.destroy', $lastID));
+        $response = $this->json('DELETE', route('api.events.destroy', $lastID));
         
         $response
             ->assertStatus(200)

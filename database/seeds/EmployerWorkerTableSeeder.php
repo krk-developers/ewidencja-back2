@@ -13,7 +13,7 @@ class EmployerWorkerTableSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
+        
         DB::table('employer_worker')->insert(
             [
                 'employer_id' => '1',
@@ -30,10 +30,10 @@ class EmployerWorkerTableSeeder extends Seeder
         DB::table('employer_worker')->insert(
             [
                 'employer_id' => '2',
-                'worker_id' => '1',
+                'worker_id' => '2',
             ]
         );
-
+        /*
         DB::table('employer_worker')->insert(
             [
                 'employer_id' => '3',

@@ -13,8 +13,8 @@
 |
 */
 
-Route::middleware('auth:api')->group(
-    function () {
+// Route::middleware('auth:api')->group(
+    // function () {
         /*
         Route::apiResource('legends', 'API\LegendController')
         ->only(['index', 'store', 'destroy']);
@@ -28,30 +28,62 @@ Route::middleware('auth:api')->group(
         /*
         Route::apiResource('events', 'API\EventController')
             ->only(['index', 'store', 'destroy']);
-        
+        */
+        Route::get('events', 'API\EventController@index')
+            ->name('api.events.index');
+        Route::post('events', 'API\EventController@store')
+            ->name('api.events.store');
+        Route::delete('events/{event}', 'API\EventController@destroy')
+            ->name('api.events.destroy');
+        /*
         Route::apiResource('users', 'API\UserController')
             ->only(['index']);
-        
+        */
+        Route::get('users', 'API\UserController@index')
+            ->name('api.users.index');
+        /*    
         Route::apiResource('user_types', 'API\TypeController')
             ->only(['index']);
-            
+        */
+        Route::get('user_types', 'API\TypeController@index')
+            ->name('api.user_types.index');
+        /*
         Route::apiResource('public_holidays', 'API\PublicHolidayController')
             ->only(['index']);
-        
+        */
+        Route::get('public_holidays', 'API\PublicHolidayController@index')
+            ->name('api.public_holidays.index');
+        /*
         Route::get(
             'nearest_public_holidays',
             'API\NearestPublicHolidayController'
         )->name('nearest_public_holidays.index');
-        
+        */
+        Route::get(
+            'nearest_public_holidays',
+            'API\NearestPublicHolidayController'
+        )->name('api.nearest_public_holidays.index');
+        /*
         Route::get(
             'employers/{employer}/workers/{worker}',
             'API\EmployerController@event'
         )->name('employers.workers.event');
         */
-        /*
+        Route::get(
+            'employers/{employer}/workers/{worker}',
+            'API\EmployerController@event'
+        )->name('api.employers.workers.event');
+
+        
         Route::get('employers', 'API\EmployerController@index')
             ->name('api.employers.index');
-        */
+        Route::get('employers/{employer}', 'API\EmployerController@show')
+            ->name('api.employers.show');
+
+        Route::get('workers', 'API\WorkerController@index')
+            ->name('api.workers.index');
+        Route::get('workers/{worker}', 'API\WorkerController@show')
+            ->name('api.workers.show');
         /*
         Route::apiResource('employers', 'API\EmployerController')
             ->only(['index', 'show']);
@@ -60,5 +92,5 @@ Route::middleware('auth:api')->group(
         Route::apiResource('workers', 'API\WorkerController')
             ->only(['index', 'show']);
         */
-    }
-);
+    // }
+// );

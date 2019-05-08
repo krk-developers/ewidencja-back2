@@ -19,7 +19,7 @@ class WorkerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get(route('workers.index'));
+        $response = $this->get(route('api.workers.index'));
 
         $response->assertStatus(200);
 
@@ -69,7 +69,7 @@ class WorkerTest extends TestCase
         // $response->assertJson(['function' => "show$id"]);
 
         $id = 1;
-        $response = $this->get(route('workers.show', $id));
+        $response = $this->get(route('api.workers.show', $id));
 
         $response->assertStatus(200);
         

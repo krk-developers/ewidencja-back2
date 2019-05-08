@@ -18,9 +18,9 @@ class WelcomePageTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
-        $response->assertSee('Ewidencja');
-        $response->assertSeeText('Ewidencja');
-        $response->assertViewIs('welcome');        
+        $response->assertStatus(302);
+        // $response->assertSee('Ewipanel');
+        // $response->assertSeeText('Ewipanel');
+        // $response->assertViewIs('welcome');        
     }
 }

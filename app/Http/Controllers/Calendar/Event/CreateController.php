@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Calendar\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\{Worker, Legend};
+use App\{Legend, Worker, Employer};
 
 class CreateController extends Controller
 {
@@ -22,6 +22,7 @@ class CreateController extends Controller
             [
                 'legends' => Legend::all_(),
                 'workers' => Worker::all__(),
+                'employers' => Employer::all___(),
             ]
         );
     }
