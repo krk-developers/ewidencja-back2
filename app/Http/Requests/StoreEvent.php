@@ -27,8 +27,8 @@ class StoreEvent extends FormRequest
     {
         return [
             'legend_id' => 'required|numeric',
-            'worker_id' => 'required|numeric',
             'employer_id' => 'required|numeric',
+            'worker_id' => 'required|numeric',            
             'start' => 'required|date',
             'end' => 'required|date',
             'title' => 'max:80',

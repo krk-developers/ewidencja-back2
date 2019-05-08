@@ -6,19 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEvent;
-use App\{Worker, Event};
+use App\{Event, Worker, Employer};
 
 class StoreController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreEvent $request Validation
+     * @param StoreEvent $request  Validation
+     * @param Worker     $worker   Worker
+     * @param Employer   $employer Employer
      * 
      * @return RedirectResponse
      */
-    public function __invoke(StoreEvent $request, Worker $worker): RedirectResponse
+    public function __invoke(StoreEvent $request, Worker $worker, Employer $employer): RedirectResponse
     {
+        // return $request;
         $validated = $request->validated();
 
         Event::create_($request->all());

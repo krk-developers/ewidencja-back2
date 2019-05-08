@@ -8,12 +8,17 @@
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-calendar-plus"></i>
-                            Dodawanie wydarzenia dla pracownika: {{ $worker->user->name }} {{ $worker->lastname }}, o numerze PESEL: {{ $worker->pesel }}
+                            Dodawanie wydarzenia
+                            <i class="fas fa-user"></i> {{ $worker->user->name }} {{ $worker->lastname }}.
+                            PESEL: {{ $worker->pesel }}
+                            <i class="fas fa-user-tie"></i> {{ $employer->company }}
                         </div>
                         <div class="card-body">
                             <form action="{{ route('workers.events.store', $worker->id) }}" method="POST">
                                 @csrf
 
+                                <input type="hidden" id="worker_id" name="worker_id" value="{{ $worker->id }}">
+                                <input type="hidden" id="employer_id" name="employer_id" value="{{ $employer->id }}">
                                 <div class="form-group row">
                                     <label for="title" class="col-sm-2 col-form-label">Nazwa</label>
                                     <div class="col-sm-10">
@@ -73,7 +78,7 @@
 @endif
                                     </div>
                                 </div>
-
+                                {{--
                                 <div class="form-group row">
                                     <label for="worker_id" class="col-sm-2 col-form-label">Pracownik</label>
                                     <div class="col-sm-10">
@@ -91,6 +96,7 @@
 @endif
                                     </div>
                                 </div>
+                                --}}
 
                                 <a href="{{ route('workers.events.index', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót

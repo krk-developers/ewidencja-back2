@@ -16,8 +16,15 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'legend_id', 'worker_id', 'employer_id', 'start', 'end', 'title'
+    protected $fillable = 
+    [
+        'legend_id',
+        'employer_id',
+        'worker_id',
+        'employer_id',
+        'start',
+        'end',
+        'title'
     ];
 
     /**
@@ -76,6 +83,7 @@ class Event extends Model
         return self::create(
             [
                 'legend_id' => $data['legend_id'],
+                'employer_id' => $data['employer_id'],
                 'worker_id' => $data['worker_id'],
                 'start' => $data['start'],
                 'end' => $data['end'],

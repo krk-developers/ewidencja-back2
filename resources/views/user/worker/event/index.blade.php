@@ -8,6 +8,7 @@
                     <h3><i class="fas fa-user"></i> Wszystkie Wydarzenia. Pracownik: {{ $worker->user->name }} {{ $worker->lastname }}</h3>
                 </div>
             </div>
+            {{--
             <div class="row mt-5">
                 <div class="col-sm">
                     <a class="btn btn-success" href="{{ route('workers.events.create', $worker->id) }}" title="Dodawanie wydarzenia dla pracownika" role="button">
@@ -15,6 +16,7 @@
                     </a>
                 </div>
             </div>
+            --}}
             <div class="row mt-3">
                 <div class="col-sm">
 @if ($worker->events->count() > 0)

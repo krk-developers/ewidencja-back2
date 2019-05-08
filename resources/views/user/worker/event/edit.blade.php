@@ -10,11 +10,13 @@
                             <i class="fas fa-edit"></i> Edycja wydarzenia
                         </div>
                         <div class="card-body">
+                        {{ pr($errors) }}
                             <form action="{{ route('workers.events.update', [$worker->id, $event->id]) }}" method="POST">
                                 @method('PUT')
 
                                 @csrf
 
+                                <input type="hidden" id="employer_id" name="employer_id" value="{{ $employer->id }}">
                                 <div class="form-group row">
                                     <label for="title" class="col-sm-2 col-form-label">Nazwa</label>
                                     <div class="col-sm-10">
@@ -52,7 +54,7 @@
                                             <strong>{{ $errors->first('end') }}</strong>
                                         </span>
 @else
-                                        <small id="end_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+                                        <small id="end_help" class="form-text text-muted">Pole obowiązkowe</small>
 @endif
                                     </div>
                                 </div>

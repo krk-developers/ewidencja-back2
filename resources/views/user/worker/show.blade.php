@@ -49,7 +49,7 @@
                                             <th scope="row">Pracodawca</th>
                                             <td>
 @if ($worker->employers->count() > 0)
-                                                <table>
+                                                <table class="table table-bordered">
                                                     <tbody>
 @foreach ($worker->employers as $employer)
                                                         <tr>
@@ -69,9 +69,21 @@
                                                                     </button>
                                                                 </form>
                                                             </td>
+
+                                                            <td>
+                                                                <a href="{{ route('workers.employers.events.index', [$worker->id, $employer->id, $year_month]) }}" title="Szczegóły">
+                                                                    <i class="fas fa-calendar-alt"></i> Wydarzenia. Miesiąc {{ $month_name }}
+                                                                </a>
+                                                                {{-- $worker->events --}}
+                                                                {{--
+                                                                <a class="btn btn-success" href="{{ route('workers.events.create', [$worker->id, $employer->id]) }}" title="Dodawanie wydarzenia dla pracownika u pracodawcy" role="button">
+                                                                    <i class="fas fa-calendar-plus"></i> Dodaj wydarzenie
+                                                                </a>
+                                                                --}}
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('workers.records1.index', [$worker->id, $employer->id, $year_month]) }}" title="">
-                                                                    <i class="fas fa-eye"></i> Ewidencja. Miesiąc {{ $month_name }}
+                                                                    <i class="fas fa-align-justify"></i> <i class="fas fa-table"></i> Ewidencja. Miesiąc {{ $month_name }}
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -79,7 +91,10 @@
                                                     </tbody>
                                                 </table>
 @else
-                                                <div class="alert alert-secondary" role="alert"><i class="fas fa-times"></i> Brak zatrudnienia</div>
+                                                <div class="alert alert-secondary" role="alert">
+                                                    {{-- <i class="fas fa-times"></i> --}} 
+                                                    <i class="fas fa-pray"></i> Brak zatrudnienia
+                                                </div>
 @endif
                                             </td>
                                         </tr>
