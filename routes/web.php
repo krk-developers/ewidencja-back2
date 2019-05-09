@@ -285,50 +285,54 @@ Route::middleware('auth')->group(
         )
         ->name('workers.events.edit');
 
-        // worker / employer / event
+        // worker / employer / event /////////////////////////////////////////
         Route::get(
             'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{year_month}',
             'User\Worker\Employer\Event\IndexController'
         )
-        ->name('workers.employers.events.index');
-
+            ->name('workers.employers.events.index');
+            //->where('year_month', '[0-9][0-9][0-9][0-9]-[0-9][0-9]');
+        
         Route::post(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia',
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{year_month}',
             'User\Worker\Employer\Event\StoreController'
         )
         ->name('workers.employers.events.store');
 
-        Route::post(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/utworz',
+        Route::get(
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{year_month}/utworz',
             'User\Worker\Employer\Event\CreateController'
         )
-        ->name('workers.employers.events.create');
+            ->name('workers.employers.events.create');
+            //->where('year_month', '[0-9][0-9][0-9][0-9]-[0-9][0-9]');
 
         Route::get(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}',
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}',
             'User\Worker\Employer\Event\ShowController'
         )
-        ->name('workers.employers.events.show');
+            ->name('workers.employers.events.show')
+            ->where('event', '[0-9]+');
 
         Route::put(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}',
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}',
             'User\Worker\Employer\Event\UpdateController'
         )
         ->name('workers.employers.events.update');
-
+        
         Route::delete(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}',
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}',
             'User\Worker\Employer\Event\DestroyController'
         )
         ->name('workers.employers.events.destroy');
 
+
         Route::get(
-            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/edytuj',
+            'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}/edytuj',
             'User\Worker\Employer\Event\EditController'
         )
-        ->name('workers.employers.events.edit');
-        
-        // worker record
+            ->name('workers.employers.events.edit');
+
+        // worker record /////////////////////////////////////////////////////
         Route::get(
             'pracownicy/{worker}/ewidencja/{year_month}',
             'User\Worker\Record\IndexController'

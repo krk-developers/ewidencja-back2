@@ -26,11 +26,12 @@ class IndexController extends Controller
 
         $startAsString = $start->toDateString();
         $endAsString = $end->toDateString();
-
+        // return $startAsString;
         $previousMonth = $start->subMonth()->startOfMonth();
         // return $previousMonth;
         $previousMonthAsYearMonth = $previousMonth->format('Y-m');
         $nextMonthAsYearMonth = $start->addMonth()->format('Y-m');
+        // return $previousMonthAsYearMonth;
         // return $end->toDateString();
         $events = $worker->eventsByEmployerID(
             $employer->id, $startAsString, $endAsString
@@ -44,6 +45,7 @@ class IndexController extends Controller
                 'events' => $events,
                 'start' => $startAsString,
                 'end' => $endAsString,
+                'year_month' => $year_month,
                 'previous_month' => $previousMonthAsYearMonth,
                 'next_month' => $nextMonthAsYearMonth,
             ]

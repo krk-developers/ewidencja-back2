@@ -1,20 +1,27 @@
 @extends('layouts.base')
 
-@section('title', $event->title)
+@section('title', 'Edycja wydarzenia ' . $event->title)
 
 @section('content')
             <div class="row mt-5">
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-edit"></i> Edycja wydarzenia
+                            <i class="fas fa-edit"></i>
+                            Edycja wydarzenia
+                            <i class="fas fa-user"></i>
+                            {{ $worker->user->name }} {{ $worker->lastname }}.
+                            PESEL: {{ $worker->pesel }}
+                            <i class="fas fa-user-tie"></i>
+                            {{ $employer->company }}
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('workers.events.update', [$worker->id, $event->id]) }}" method="POST">
+                            <form action="{{ route('workers.employers.events.update', [$worker->id, $employer->id, $event->id, $year_month]) }}" method="POST">
                                 @method('PUT')
 
                                 @csrf
 
+                                <input type="hidden" id="worker_id" name="worker_id" value="{{ $worker->id }}">
                                 <input type="hidden" id="employer_id" name="employer_id" value="{{ $employer->id }}">
                                 <div class="form-group row">
                                     <label for="title" class="col-sm-2 col-form-label">Nazwa</label>
@@ -76,6 +83,7 @@
                                     </div>
                                 </div>
 
+                                {{--
                                 <div class="form-group row">
                                     <label for="worker_id" class="col-sm-2 col-form-label">Pracownik</label>
                                     <div class="col-sm-10">
@@ -93,8 +101,9 @@
 @endif
                                     </div>
                                 </div>
+                                --}}
 
-                                <a href="{{ route('workers.events.show', [$worker->id, $event->id]) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <a href="{{ route('workers.employers.events.show', [$worker->id, $employer->id, $event->id, $year_month]) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
                                 <button type="submit" class="btn btn-primary">

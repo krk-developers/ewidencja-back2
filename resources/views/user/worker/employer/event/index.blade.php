@@ -18,7 +18,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm">
-                    <a class="btn btn-success" href="{{-- route('workers.events.create', $worker->id) --}}" title="Dodawanie wydarzenia dla pracownika u pracodawcy" role="button">
+                    <a class="btn btn-success" href="{{ route('workers.employers.events.create', [$worker->id, $employer->id, $year_month]) }}" title="Dodawanie wydarzenia dla pracownika u pracodawcy" role="button">
                         <i class="fas fa-calendar-plus"></i> Dodaj
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $event->id }}</td>
                                 <td>
-                                    <a href="#" title="Szczegóły">
+                                    <a href="{{ route('workers.employers.events.show', [$worker->id, $employer->id, $event->id, $year_month]) }}" title="Szczegóły">
                                         <i class="fas fa-eye"></i>
                                         {{ $event->title }}
                                     </a>
