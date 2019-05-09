@@ -40,31 +40,48 @@
                                         <tr>
                                             <th scope="row">Pracownicy</th>
                                             <td>
-                                                <ul class="list-group list-group-flush">
-@forelse ($employer->workers as $worker)
-                                                    <li class="list-group-item">
-                                                        <a href="{{ route('workers.show', $worker->id) }}" data-placement="top" title="{{ $worker->pesel }}">
-                                                            <i class="fas fa-user"></i>
-                                                            {{ $worker->user->name }} {{ $worker->lastname }}
-                                                        </a>
-                                                        <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
-                                                            @csrf
+@if ($employer->workers->count() > 0)
+                                                <table class="table table-bordered">
+                                                    <tbody>
+@foreach ($employer->workers as $worker)
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{ route('workers.show', $worker->id) }}" data-placement="top" title="Szczegóły">
+                                                                    <i class="fas fa-user"></i>
+                                                                    {{ $worker->user->name }} {{ $worker->lastname }}. PESEL: {{ $worker->pesel }}
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
+                                                                    @csrf
 
-                                                            @method('DELETE')
+                                                                    @method('DELETE')
 
-                                                            <button type="submit" class="btn btn-outline-danger btn-sm" title="Usuwa pracownika z listy zatrudnionych">
-                                                                <i class="fas fa-eraser"></i> Zwolnij
-                                                            </button>
-                                                        </form>
-                                                    </li>
-@empty
-                                                    <li class="list-group-item text-danger">
-                                                        <i class="fas fa-user-slash"></i> Brak pracowników
-                                                    </li>
-@endforelse
-                                                </ul>
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Usuwa pracownika z listy zatrudnionych">
+                                                                        <i class="fas fa-eraser"></i> Zwolnij
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+@endforeach
+                                                    </tbody>
+                                                </table>
+@else
+                                                <div class="alert alert-secondary" role="alert">
+                                                    <i class="fas fa-user-slash"></i> Brak pracowników
+                                                </div>
+@endif
                                             </td>
-                                        </tr>                                        
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ewidencja zbiorcza</th>
+                                            <td>
+                                                <a href="{{ route('employers.records.index', [$employer->id, $year_month]) }}" title="Szczegóły">
+                                                    <i class="fas fa-align-justify"></i>
+                                                    Miesiąc {{ $month_name }}
+                                                </a>
+                                            </td>
+                                        </tr>                                      
                                     </tbody>
                                 </table>
                         </div>

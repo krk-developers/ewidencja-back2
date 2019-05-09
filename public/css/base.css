@@ -129,6 +129,10 @@ btn-primary.focus, .btn-primary:focus {
     font-size: .8rem;
 }
 
-table .holiday {
+table .holiday, table .record {
+    font-size: smaller;
+}
+
+.period {
     font-size: smaller;
 }

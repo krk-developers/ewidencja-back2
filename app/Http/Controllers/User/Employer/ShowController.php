@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use Carbon\Carbon;
 use App\Employer;
 
 class ShowController extends Controller
@@ -21,7 +22,11 @@ class ShowController extends Controller
     {
         return view(
             'user.employer.show',
-            ['employer' => $employer]
+            [
+                'employer' => $employer,
+                'year_month' => Carbon::now()->format('Y-m'),
+                'month_name' => Carbon::now()->monthName,
+            ]
         );
     }
 }

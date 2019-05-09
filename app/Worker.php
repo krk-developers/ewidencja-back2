@@ -118,6 +118,11 @@ class Worker extends Model
         return self::create($data);
     }
 
+    public static function find_(int $id)
+    {
+        return self::find($id);
+    }
+    
     /**
      * All events assigned to workers.
      *

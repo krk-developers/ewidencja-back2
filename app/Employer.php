@@ -131,6 +131,30 @@ class Employer extends Model
             )
             ->get();
     }
+
+    public static function workersWithEventsByEmployerID(int $id, string $start, string $end): Collection
+    {
+        return DB::table('workers')
+            ->select(
+                'workers.id', 'users.name as firstname', 'workers.lastname',
+                'workers.pesel', 'users.email',
+                'types.display_name as type_display_name',
+                'events.start', 'events.end', 'events.title'
+            )
+            ->join('employer_worker', 'workers.id', '=', 'employer_worker.worker_id')
+            ->join('users', 'workers.id', '=', 'users.userable_id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->join('events', 'workers.id', '=', 'events.worker_id')
+            ->where(
+                [
+                    ['employer_worker.employer_id', '=', $id],
+                    ['types.name', '=', 'worker']
+                ]
+            )
+            ->whereDate('events.start', '>=', $start)
+            ->whereDate('events.end', '<=', $end)
+            ->get();
+    }
     
     /**
      * Events of the worker who works for the employer

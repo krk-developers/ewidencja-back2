@@ -150,8 +150,14 @@ Route::middleware('auth')->group(
         )
         ->name('employers.edit');
         
-        //
-
+        // employer / record
+        Route::get(
+            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}',
+            'User\Employer\Record\IndexController'
+        )
+        ->name('employers.records.index');
+        
+        // employer / worker
         Route::get(
             'pracodawcy/{employer}/pracownicy/dodaj',
             'User\Employer\Worker\CreateController'
@@ -171,6 +177,7 @@ Route::middleware('auth')->group(
         ->name('employers.workers.destroy');
 
         // worker ////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
         Route::get(
             'pracownicy',
             'User\Worker\IndexController'
