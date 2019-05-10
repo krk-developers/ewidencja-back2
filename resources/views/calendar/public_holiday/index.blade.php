@@ -52,10 +52,14 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm">
-                    <a href="{{ route('holidays.show', $previousYear) }}" title="{{ $previousYear }}" class="btn btn-outline-secondary btn-block" role="button">Poprzedni rok</a>
+                    <a href="{{ route('holidays.show', $previousYear) }}" title="{{ $previousYear }}" class="btn btn-outline-secondary btn-block" role="button">
+                        <i class="fas fa-chevron-left"></i> Poprzedni rok
+                    </a>
                 </div>
                 <div class="col-sm">
-                    <a href="{{ route('holidays.show', $nextYear) }}" title="{{ $nextYear }}" class="btn btn-outline-secondary btn-block" role="button">Następny rok</a>
+                    <a href="{{ route('holidays.show', $nextYear) }}" title="{{ $nextYear }}" class="btn btn-outline-secondary btn-block" role="button">
+                        Następny rok <i class="fas fa-chevron-right"></i>
+                    </a>
                 </div>
             </div>
 @endsection

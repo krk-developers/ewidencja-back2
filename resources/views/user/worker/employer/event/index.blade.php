@@ -67,12 +67,12 @@
                     <div class="row mt-5">
                         <div class="col-sm">
                             <a href="{{ route('workers.employers.events.index', [$worker->id, $employer->id, $previous_month]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
-                                Poprzedni miesięc
+                                <i class="fas fa-chevron-left"></i> Poprzedni miesięc
                             </a>
                         </div>
                         <div class="col-sm">
                             <a href="{{ route('workers.employers.events.index', [$worker->id, $employer->id, $next_month]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
-                                Następny miesiąc
+                                Następny miesiąc <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
                     </div>

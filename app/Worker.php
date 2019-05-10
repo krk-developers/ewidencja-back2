@@ -137,6 +137,7 @@ class Worker extends Model
             ]
         )
         ->get();
+        
         /*
         return DB::table('workers')
             ->select(

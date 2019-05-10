@@ -121,6 +121,10 @@ btn-primary.focus, .btn-primary:focus {
     color: #4c5257;
 }
 
+.table thead th {
+    border-bottom: 1px solid #babcbd;
+}
+
 .table tr td {
     font-family: 'Fira Mono', monospace;    
 }

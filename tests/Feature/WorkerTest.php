@@ -25,12 +25,9 @@ class WorkerTest extends TestCase
 
         // $response->assertJson(['function' => 'index']);
         
-        $response->assertJsonFragment(
-            [
-                'type_display_name' => 'Pracownik'
-            ]
-        );
-
+        // $response->assertJsonFragment([]);
+        
+        /*
         $response->assertJsonMissingExact(
             [
                 'type_display_name' => 'Super Administrator',
@@ -38,7 +35,8 @@ class WorkerTest extends TestCase
                 'type_display_name' => 'Pracodawca'
             ]
         );
-
+        */
+        
         $response->assertJsonStructure(
             [
                 'data' => 
@@ -46,15 +44,20 @@ class WorkerTest extends TestCase
                     '*' =>
                     [
                         'id',
-                        'firstname',
                         'lastname',
                         'pesel',
-                        'email',
-                        'type_display_name',
+                        'employers' => [],  // can be empty
+                        'user' => 
+                        [
+                            'id',
+                            'type_id',
+                            'name',
+                            'email',
+                        ]
                     ]
                 ]
             ]
-        );        
+        );
     }
 
     /**

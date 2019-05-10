@@ -30,15 +30,6 @@
                                         <th scope="row">Liczba dni w miesiącu</th>
                                         <td>{{ $days_in_month }}</td>
                                     </tr>
-                                    {{--
-                                    <tr>
-                                        <th scope="row">
-                                            Liczba dni pracujących
-                                            <small class="text-secondary">po odliczeniu sobót i niedziel<small>
-                                        </th>
-                                        <td>{{ $time_period_weekend_filter }}</td>
-                                    </tr>
-                                    --}}
                                     <tr>
                                         <th scope="row">
                                             Liczba dni pracujących
