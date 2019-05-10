@@ -80,10 +80,17 @@ class Event extends Model
 
     public static function create_(array $data): Event
     {
+        // employer_id is nullable
+        if (isset($data['employer_id'])) {
+            $employer_id = $data['employer_id'];
+        } else {
+            $employer_id = null;
+        }
+
         return self::create(
             [
                 'legend_id' => $data['legend_id'],
-                'employer_id' => $data['employer_id'],
+                'employer_id' => $employer_id,
                 'worker_id' => $data['worker_id'],
                 'start' => $data['start'],
                 'end' => $data['end'],
