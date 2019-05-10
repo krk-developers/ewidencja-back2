@@ -33,7 +33,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item @if($path == 'legenda')active @endif" href="{{ route('legends.index') }}" title="Typy wydarzeń">Legenda @if($path == 'legenda')<span class="sr-only">(current)</span>@endif</a>
                             <a class="dropdown-item @if($path == 'wolne')active @endif" href="{{ route('holidays.index') }}" title="Dni ustawowo wolne od pracy">Wolne @if($path == 'wolne')<span class="sr-only">(current)</span>@endif</a>
+@if ($user->type->name == 'superadmin' || $user->type->name == 'admin')
                             <a class="dropdown-item @if($path == 'wydarzenia')active @endif" href="{{ route('events.index') }}" title="Wszystkie wydarzenia">Wydarzenia @if($path == 'wydarzenia')<span class="sr-only">(current)</span>@endif</a>
+@endif
                         </div>
                     </li>
                 </ul>
