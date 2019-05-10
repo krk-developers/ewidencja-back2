@@ -130,16 +130,32 @@ class Worker extends Model
      */
     public static function all_(): Collection
     {
+        return Worker::with(
+            [
+                'employers:employers.id,employers.company',
+                'user'
+            ]
+        )
+        ->get();
+        /*
         return DB::table('workers')
             ->select(
                 'workers.id', 'users.name as firstname',
                 'workers.lastname', 'workers.pesel', 'users.email',
-                'types.display_name as type_display_name'
+                'types.display_name as type_display_name',
+                'employers.id as employer_id', 'employers.company'
             )
             ->join('users', 'workers.id', '=', 'users.userable_id')
             ->join('types', 'users.type_id', '=', 'types.id')
+            ->leftJoin(
+                'employer_worker', 'workers.id', '=', 'employer_worker.worker_id'
+            )
+            ->leftJoin(
+                'employers', 'employer_worker.employer_id', '=', 'employers.id'
+            )
             ->where('types.name', 'worker')
-            ->get();        
+            ->get();
+        */
     }
 
     public static function all__(): Collection
