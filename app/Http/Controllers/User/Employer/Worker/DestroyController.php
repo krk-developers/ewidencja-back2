@@ -16,10 +16,35 @@ class DestroyController extends Controller
      */
     public function __invoke(Request $request, Employer $employer, Worker $worker)
     {
+        // return __CLASS__;
+        /*
         $employer->removeWorker($worker->id);  // int
 
         return redirect()
             ->route('employers.show', $employer->id)
             ->with('success', 'Usunięto');
+        */
+
+        $delete = $request->input('delete');
+
+        if ($delete == 'Yes') {
+            $employer->removeWorker($worker->id);  // int
+
+            return redirect()
+                ->route('employers.show', $employer->id)
+                ->with('success', 'Usunięto');
+        }
+
+        if ($delete == 'No') {
+            return redirect()->route('employers.show', $employer->id);
+        }
+
+        return view(
+            'user.employer.worker.destroy',
+            [
+                'employer' => $employer,
+                'worker' => $worker
+            ]
+        );
     }
 }

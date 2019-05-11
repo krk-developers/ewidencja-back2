@@ -73,6 +73,7 @@
 @endif
                                             </td>
                                         </tr>
+@if ($employer->workers->count() > 0)
                                         <tr>
                                             <th scope="row">Ewidencja zbiorcza</th>
                                             <td>
@@ -81,7 +82,8 @@
                                                     Miesiąc {{ $month_name }}
                                                 </a>
                                             </td>
-                                        </tr>                                      
+                                        </tr>
+@endif
                                     </tbody>
                                 </table>
                         </div>
