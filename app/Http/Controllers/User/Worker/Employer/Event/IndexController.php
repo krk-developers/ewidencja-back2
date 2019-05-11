@@ -22,7 +22,8 @@ class IndexController extends Controller
         // return $start->toDateString();
         $monthName = $start->monthName;
 
-        $end = Days::end($monthName, $start);  // current day or end of the month
+        // $end = Days::end($monthName, $start);  // current day or end of the month
+        $end = $start->endOfMonth();
 
         $startAsString = $start->toDateString();
         $endAsString = $end->toDateString();

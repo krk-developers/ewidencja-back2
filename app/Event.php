@@ -78,6 +78,13 @@ class Event extends Model
             ->get();
     }
 
+    /**
+     * Create event
+     *
+     * @param array $data event's data
+     * 
+     * @return Event
+     */
     public static function create_(array $data): Event
     {
         // employer_id is nullable
@@ -98,6 +105,7 @@ class Event extends Model
             ]
         );        
     }
+    
     /**
      * Delete record by primary key.
      * Return 0 or 1.

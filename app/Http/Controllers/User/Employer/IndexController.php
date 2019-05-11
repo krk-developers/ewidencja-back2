@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use App\User;
 use Illuminate\Support\Collection;
 use App\Employer;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -21,6 +22,12 @@ class IndexController extends Controller
     public function __invoke()//: View  // Request $request
     {
         // $employers = User::employers();
+        
+        // employers can only see their profile
+        if (Auth::user()->type->name == 'employer') {
+            return redirect()->route('employers.show', Auth::user()->userable->id);
+        }
+
         $employers = Employer::all___();
         // return $employers;
         // $users = User::byType('employer');

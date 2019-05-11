@@ -22,6 +22,8 @@ class DestroyController extends Controller
      */
     public function __invoke(Request $request, SuperAdmin $superadmin): object
     {
+        $this->authorize('delete', $superadmin);
+
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {

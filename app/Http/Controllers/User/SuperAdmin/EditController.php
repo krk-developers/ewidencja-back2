@@ -19,9 +19,8 @@ class EditController extends Controller
      */
     public function __invoke(SuperAdmin $superadmin): View  // Request $request, 
     {
-        // return __FUNCTION__;
-        // return $superadmin;
-        // return $request;
+        $this->authorize('update', $superadmin);
+
         return view(
             'user.superadmin.edit',
             ['superadmin' => $superadmin]

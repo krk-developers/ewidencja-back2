@@ -28,7 +28,7 @@ class TypesTableSeeder extends Seeder
                 'model' => 'App\Admin',
                 'name' => 'admin',
                 'display_name' => 'Administrator',
-                'description' => 'Dodawanie i edycja wydarzeń',
+                'description' => 'Dodawanie administratorów, dodawanie i edycja pracodawców, pracowników i wydarzeń',
             ]
         );
         DB::table('types')->insert(

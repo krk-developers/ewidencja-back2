@@ -22,6 +22,8 @@ class DestroyController extends Controller
      */
     public function __invoke(Request $request, Admin $admin): object  // View|RedirectResponse
     {
+        $this->authorize('delete', $admin);
+
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {

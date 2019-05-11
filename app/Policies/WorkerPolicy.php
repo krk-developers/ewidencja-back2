@@ -10,7 +10,7 @@ class WorkerPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user)  // , $ability
+    public function before($user, $ability)
     {
         if ($user->type->name === 'superadmin') {
             return true;
@@ -26,13 +26,27 @@ class WorkerPolicy
      */
     public function view(User $user, Worker $worker)
     {
+        if ($user->type->name === 'worker') {
+            return $user->userable_id === $worker->id;
+        }
 
-        // dd($user->userable_id);
-        // dd($worker->id);
-        // die($user);
-        return $user->userable_id === $worker->id;
+        return true;
     }
 
+    public function employerViewWorker()
+    {
+        return true;
+    }
+
+    public function showWorkersList(User $user, Worker $worker)
+    {
+        if ($user->type->name === 'worker') {
+            return false;
+        }
+
+        return true;
+    }
+    
     /**
      * Determine whether the user can create workers.
      *

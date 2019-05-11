@@ -91,9 +91,11 @@
 
                                 @method('DELETE')
 
+@can('showEmployersList', $employer)
                                 <a href="{{ route('employers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
+@endcan
                                 <a href="{{ route('employers.edit', $employer->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Edytuj
                                 </a>
