@@ -43,6 +43,11 @@ class Legend extends Model
         return $this->hasMany('App\Event');
     }
 
+    public static function find_(int $id)
+    {
+        return self::find($id);
+    }
+    
     /**
      * All event's legend
      *
