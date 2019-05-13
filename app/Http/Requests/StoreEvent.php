@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Rules\StartEvent;
 
 class StoreEvent extends FormRequest
 {
@@ -15,7 +17,7 @@ class StoreEvent extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // false;
+        return true;
     }
 
     /**
@@ -25,13 +27,23 @@ class StoreEvent extends FormRequest
      */
     public function rules(): array
     {
+        //dd($this->all());
+
         return [
-            'legend_id' => 'required|numeric',
-            'employer_id' => 'required|numeric',
-            'worker_id' => 'required|numeric',            
-            'start' => 'required|date',
-            'end' => 'required|date',
-            'title' => 'max:80',
+            'legend_id' =>
+                [
+                    'required',
+                    'numeric',
+                    new StartEvent(
+                        $this->all(),
+                        Auth::id()
+                    )
+                ],
+            'employer_id' => ['required', 'numeric'],
+            'worker_id' => ['required', 'numeric'],
+            'start' => ['required', 'date'],
+            'end' => ['required', 'date'],
+            'title' => ['max:80'],
         ];
     }
 }

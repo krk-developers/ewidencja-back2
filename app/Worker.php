@@ -90,6 +90,24 @@ class Worker extends Model
             ->get();
     }
 
+    /**
+     * Childrencare day count
+     *
+     * @param integer $id   Worker ID
+     * @param integer $year Year
+     * 
+     * @return int
+     */
+    public static function childcareDayCount(int $id, int $year): int
+    {
+        return DB::table('events')
+            ->join('legends', 'events.legend_id', 'legends.id')
+            ->where('events.worker_id', $id)
+            ->whereRaw("YEAR(events.start) = ?", [$year])
+            ->where('legends.name', 'DOD')
+            ->count();
+    }
+
     public function eventsByTimePeriod1($start, $end, $employer_id)
     {
         return DB::table('events')

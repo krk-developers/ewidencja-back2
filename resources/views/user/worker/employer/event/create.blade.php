@@ -66,7 +66,7 @@
                                     <div class="col-sm-10">
                                         <select id="legend_id" name="legend_id" class="form-control{{ $errors->has('legend_id') ? ' is-invalid' : '' }}">
 @foreach ($legends as $legend)
-                                            <option value="{{ $legend->id }}" title="{{ $legend->display_name }}">{{ $legend->name }}</option>
+                                            <option value="{{ $legend->id }}" title="{{ $legend->display_name }}" @if ($legend->id == old('legend_id')) selected @endif>{{ $legend->name }}</option>
 @endforeach
                                         </select>
 @if ($errors->has('legend_id'))
