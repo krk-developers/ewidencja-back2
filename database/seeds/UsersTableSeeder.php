@@ -69,6 +69,17 @@ class UsersTableSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]
         );
+        DB::table('users')->insert(
+            [
+                'type_id' => 1,
+                'userable_id' => 6,
+                'userable_type' => 'App\SuperAdmin',
+                'name' => 'Agnieszka',
+                'email' => 'agnieszka.kowalczyk@krkds.com',
+                'password' => bcrypt('1234ABCD'),
+                'api_token' => Str::random(60),
+            ]
+        );
 
         // admin /////////////////////////////////////////////////////////////
         DB::table('users')->insert(
