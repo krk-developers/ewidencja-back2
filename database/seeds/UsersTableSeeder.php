@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'userable_type' => 'App\SuperAdmin',
                 'name' => 'Kamil',
                 'email' => 'kamil.sztefko@krkds.com',
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('KamilKamil'),
                 'api_token' => Str::random(60),
             ]
         );
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                 'userable_type' => 'App\SuperAdmin',
                 'name' => 'Grzegorz',
                 'email' => 'grzegorz.zygulsk@krkds.com',
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('123123'),
                 'api_token' => Str::random(60),
             ]
         );
@@ -65,7 +65,7 @@ class UsersTableSeeder extends Seeder
                 'userable_type' => 'App\SuperAdmin',
                 'name' => 'Mateusz',
                 'email' => 'mateusz.wilk@krkds.com',
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('87654321'),
                 'api_token' => Str::random(60),
             ]
         );
@@ -82,7 +82,28 @@ class UsersTableSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]
         );
-
+        DB::table('users')->insert(
+            [
+                'type_id' => 2,
+                'userable_id' => 2,
+                'userable_type' => 'App\Admin',
+                'name' => 'Tomasz',
+                'email' => 'tomasz.tomaszewski@gmail.com',
+                'password' => bcrypt('1A2B3C4D'),
+                'api_token' => Str::random(60),
+            ]
+        );
+        DB::table('users')->insert(
+            [
+                'type_id' => 2,
+                'userable_id' => 3,
+                'userable_type' => 'App\Admin',
+                'name' => 'Ernest',
+                'email' => 'kepa@o2.pl',
+                'password' => bcrypt('24680135'),
+                'api_token' => Str::random(60),
+            ]
+        );
         // employer //////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [
@@ -100,9 +121,9 @@ class UsersTableSeeder extends Seeder
                 'type_id' => 3,
                 'userable_id' => 2,
                 'userable_type' => 'App\Employer',           
-                'name' => 'Grażyna',
-                'email' => 'grazka@biz.pl',
-                'password' => bcrypt('12345678'),
+                'name' => 'Sebastian',
+                'email' => 'seba@biz.pl',
+                'password' => bcrypt('ABCDEF'),
                 'api_token' => Str::random(60),
             ]
         );

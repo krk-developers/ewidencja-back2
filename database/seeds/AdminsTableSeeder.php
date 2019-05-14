@@ -19,12 +19,15 @@ class AdminsTableSeeder extends Seeder
                 'lastname' => 'Karasewicz',
             ]
         );
-        /*
         DB::table('admins')->insert(
             [             
-                'lastname' => 'Hołymczuk',
+                'lastname' => 'Tomaszewski',
             ]
         );
-        */
+        DB::table('admins')->insert(
+            [             
+                'lastname' => 'Kępicki',
+            ]
+        );
     }
 }

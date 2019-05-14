@@ -39,7 +39,18 @@
                                         <td>{{ $worker->workingDays }}</td>
                                         <td>
 @if ($worker->workerEvents->count() > 0)
-                                            <table class="table table-bordered record text-muted">
+                                            <table class="table table-bordered record text-muted inner-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">L.P.</th>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nazwa</th>
+                                                        <th scope="col">Początek</th>
+                                                        <th scope="col">Koniec</th>
+                                                        <th scope="col">Legenda</th>
+                                                        <th scope="col">Legenda opis</th>
+                                                    </tr>
+                                                </thead>
                                                 <tbody>
 @foreach ($worker->workerEvents as $event)
                                                     <tr>

@@ -23,11 +23,35 @@ class DestroyController extends Controller
         Request $request,
         Worker $worker,
         Employer $employer
-    ): RedirectResponse {
+    ) {  // : RedirectResponse
+        // return __CLASS__;
+        /*
         $worker->removeEmployer($employer->id);  // int
 
         return redirect()
             ->route('workers.show', $worker->id)
             ->with('success', 'Usunięto');
+        */
+        $delete = $request->input('delete');
+
+        if ($delete == 'Yes') {
+            $worker->removeEmployer($employer->id);  // int
+    
+            return redirect()
+                ->route('workers.show', $worker->id)
+                ->with('success', 'Usunięto');
+        }
+    
+        if ($delete == 'No') {
+            return redirect()->route('workers.show', $worker->id);
+        }
+    
+        return view(
+            'user.worker.employer.destroy',
+            [
+                'worker' => $worker,
+                'employer' => $employer
+            ]
+        );
     }
 }

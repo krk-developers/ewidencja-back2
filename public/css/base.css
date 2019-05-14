@@ -129,6 +129,10 @@ btn-primary.focus, .btn-primary:focus {
     font-family: 'Fira Mono', monospace;    
 }
 
+table .inner-table thead th {
+    font-weight: normal;
+}
+
 .description {
     font-size: .8rem;
 }

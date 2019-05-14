@@ -114,7 +114,7 @@ class EventsTableSeeder extends Seeder
                 'employer_id' => 1,
                 'start' => '2019-04-17',
                 'end' => '2019-04-19',
-                'title' => 'Choroba',
+                'title' => 'Przeziębienie',
             ]
         );
         DB::table('events')->insert(
@@ -124,7 +124,7 @@ class EventsTableSeeder extends Seeder
                 'employer_id' => 1,
                 'start' => '2019-05-06',
                 'end' => '2019-05-06',
-                'title' => 'Choroba',
+                'title' => 'Badania słuchu',
             ]
         );
 
@@ -135,7 +135,7 @@ class EventsTableSeeder extends Seeder
                 'employer_id' => 2,
                 'start' => '2019-04-08',
                 'end' => '2019-04-11',
-                'title' => '',
+                'title' => 'Zwichnięcie palca u nogi',
             ]
         );
         /*

@@ -20,7 +20,7 @@ class EmployersTableSeeder extends Seeder
         );
         DB::table('employers')->insert(
             [             
-                'company' => 'Mech sp. z o.o.',
+                'company' => 'Sebix',
             ]
         );
         DB::table('employers')->insert(

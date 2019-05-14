@@ -64,7 +64,7 @@
 
                                                                     @method('DELETE')
 
-                                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Pracownik już nie pracuje u tego pracodawcy">
                                                                         <i class="fas fa-eraser"></i> Usuń
                                                                     </button>
                                                                 </form>
@@ -98,19 +98,17 @@
 @endif
                                             </td>
                                         </tr>
+@if ($worker->events->count() > 0)
                                         <tr>
                                             <th scope="row">Wydarzenia</th>
                                             <td>
                                                 <a href="{{ route('workers.events.index', $worker->id) }}" title="Szczegóły">
                                                     <i class="fas fa-eye"></i> Wszystkie
                                                 </a>
-@if ($worker->events->count() > 0)
                                                 <span class="badge badge-warning">{{ $worker->events->count() }}</span>
-@else
-                                                <span class="badge badge-secondary">{{ $worker->events->count() }}</span>
-@endif
                                             </td>
                                         </tr>
+@endif
                                         {{--
                                         <tr>
                                             <th scope="row">Ewidencja</th>
@@ -139,7 +137,7 @@
                                 <a href="{{ route('workers.edit', $worker->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger" title="Usuwa pracownika i jego wszystkie wydarzenia">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
                                 <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
