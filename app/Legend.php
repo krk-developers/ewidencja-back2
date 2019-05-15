@@ -43,7 +43,14 @@ class Legend extends Model
         return $this->hasMany('App\Event');
     }
 
-    public static function find_(int $id)
+    /**
+     * Find Legend by its primary key.
+     *
+     * @param integer $id Primary key
+     * 
+     * @return Legend
+     */
+    public static function find_(int $id): Legend
     {
         return self::find($id);
     }

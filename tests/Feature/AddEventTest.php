@@ -14,12 +14,12 @@ class AddEventTest extends TestCase
      *
      * @return void
      */
-    public function testCreateŚCHEvent()
+    public function _testCreateSCHEvent()
     {
         $this->withoutExceptionHandling();
         $user = User::find_(1);
         $data = [
-            'worker_id'	=> "1",
+            'worker_id' => "1",
             'employer_id' => "1",
             'title' => '',
             'start' => "2019-05-11",

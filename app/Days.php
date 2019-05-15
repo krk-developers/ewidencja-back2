@@ -109,8 +109,10 @@ class Days
      * 
      * @return boolean
      */
-    public static function areWorkingDays(CarbonPeriod $timePeriod): bool
+    public static function areWorkingDays($start, $end): bool
     {
+        $timePeriod = CarbonPeriod::between($start, $end);
+
         foreach ($timePeriod as $date) {
             if ($date->isWeekend()) {
                 return false;
@@ -132,6 +134,42 @@ class Days
         $dt = new Carbon($day);
 
         return $dt->isWeekend();
+    }
+
+    /**
+     * If both, start and end are weekend days
+     *
+     * @param string $start Day one
+     * @param string $end   Day two
+     * 
+     * @return boolean
+     */
+    public static function areWeekend(string $start, string $end): bool
+    {
+        $day1 = self::isWeekend($start);
+        $day2 = self::isWeekend($end);
+
+        if ($day1 == true && $day2 == true) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    /**
+     * Is the start date earlier than the end date
+     *
+     * @param string $start YYYY-MM-DD
+     * @param string $end   YYYY-MM-DD
+     * 
+     * @return boolean
+     */
+    public static function correctOrder(string $start, string $end): bool
+    {
+        $first = Carbon::create($start);
+        $second = Carbon::create($end);
+        
+        return $first->lessThanOrEqualTo($second);
     }
 
     /*

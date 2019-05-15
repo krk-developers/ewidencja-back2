@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Rules\StartEvent;
+use App\Rules\{Legend, Date};
 
 class StoreEvent extends FormRequest
 {
@@ -27,21 +27,21 @@ class StoreEvent extends FormRequest
      */
     public function rules(): array
     {
-        //dd($this->all());
-
         return [
             'legend_id' =>
                 [
                     'required',
                     'numeric',
-                    new StartEvent(
-                        $this->all(),
-                        Auth::id()
-                    )
+                    new Legend($this->all(), Auth::id())
                 ],
             'employer_id' => ['required', 'numeric'],
             'worker_id' => ['required', 'numeric'],
-            'start' => ['required', 'date'],
+            'start' => 
+                [
+                    'required',
+                    'date',
+                    new Date($this->all()),
+                ],
             'end' => ['required', 'date'],
             'title' => ['max:80'],
         ];

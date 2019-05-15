@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker\Employer\Event;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\{Worker, Employer, Legend};
@@ -14,14 +13,17 @@ class CreateController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Worker $worker Worker
-     * @param Employer $employer Employer
-     * @param string $year_month Year and month. Format: YYYY-MM
+     * @param Worker   $worker     Worker
+     * @param Employer $employer   Employer
+     * @param string   $year_month Year and month. Format: YYYY-MM
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Worker $worker, Employer $employer, string $year_month)//: use Illuminate\View\View;  // Request $request,
-    {
-        // return __CLASS__;
+    public function __invoke(
+        Worker $worker,
+        Employer $employer,
+        string $year_month
+    ): View {
         return view(
             'user.worker.employer.event.create', 
             [

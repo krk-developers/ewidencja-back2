@@ -1,27 +1,33 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\User\Worker\Employer\Event;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEvent;
 use App\{Worker, Employer, Event};
 
 class StoreController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreEvent $request    Validation
+     * @param Worker     $worker     Worker
+     * @param Employer   $employer   Employer
+     * @param string     $year_month YYYY-MM
+     * 
+     * @return RedirectResponse
      */
-    public function __invoke(StoreEvent $request, Worker $worker, Employer $employer, string $year_month)
-    {
-        // return __CLASS__;
-        // return $request;
+    public function __invoke(
+        StoreEvent $request,
+        Worker $worker,
+        Employer $employer,
+        string $year_month
+    ): RedirectResponse {
         $validated = $request->validated();
-        // return $validated;
-        // Event::create_($request->all());
 
         $event = Event::create_($validated);
 

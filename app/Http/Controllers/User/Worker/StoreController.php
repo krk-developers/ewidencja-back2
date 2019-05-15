@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreWorker;
@@ -23,7 +22,7 @@ class StoreController extends Controller
      */
     public function __invoke(StoreWorker $request): RedirectResponse
     {
-        $validated = $request->validated();
+        $request->validated();
         
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 

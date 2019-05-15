@@ -3,10 +3,11 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Carbon\{Carbon, CarbonPeriod};
-use App\{Legend, Worker, User, Days};
+// use Carbon\{Carbon, CarbonPeriod};
+use App\{Worker, User, Days};
+use App\Rules\LegendHelper;
 
-class StartEvent implements Rule
+class Legend implements Rule
 {
     private const FIELD_NAME = 'Pole ';
     private const WEEKEND_DAY_MESSAGE = ' nanosimy tylko na sobotę i niedzielę';
@@ -19,6 +20,7 @@ class StartEvent implements Rule
     private $isWeekend = false;
     private $legend = null;
     private $childcareDayCountGreaterThen2 = false;
+    private $start, $end;
 
     /**
      * Create a new rule instance.
@@ -31,6 +33,10 @@ class StartEvent implements Rule
     public function __construct(array $request, int $userID)
     {
         $this->request = $request;
+
+        $this->start = $request['start'];
+        $this->end = $request['end'];
+
         $user = User::find_($userID);
         $this->workerID = $user->userable->id;
     }
@@ -45,27 +51,28 @@ class StartEvent implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        if ($this->request['start'] == null || $this->request['end'] == null) {
+        // dd($attribute);  // legend_id
+        // dd($value);  // 2
+
+        $this->legend = LegendHelper::findLegend($value);
+        $requestIsNotNull = LegendHelper::requestIsNotNull($this->start, $this->end);
+        
+        if ($requestIsNotNull === false) {
             return false;
         }
         
-        $this->legend = Legend::find_($value);
-        
-        $isWeekend1 = Days::isWeekend($this->request['start']);
-        $isWeekend2 = Days::isWeekend($this->request['end']);
+        // $isWeekend1 = Days::isWeekend($this->start);
+        // $isWeekend2 = Days::isWeekend($this->end);
 
         switch($this->legend->name) {
             case 'Ś/CH':
-                return ($isWeekend1 && $isWeekend2);
+                return Days::areWeekend($this->start, $this->end);  // ($isWeekend1 && $isWeekend2);
                 break;
             case 'UW':
-                $timePeriod = CarbonPeriod::between(
-                    $this->request['start'],
-                    $this->request['end']
-                );
-                return Days::areWorkingDays($timePeriod);
+                return Days::areWorkingDays($this->start, $this->end);
                 break;
             case 'DOD':
+                /*
                 $carbon = new Carbon($this->request['start']);
                 $year = $carbon->year;
                 $childcareDayCount = Worker::childcareDayCount(
@@ -78,8 +85,9 @@ class StartEvent implements Rule
 
                     return false;
                 }
+                */
 
-                return (! $isWeekend1 && ! $isWeekend2);  // only working days
+                return Days::areWorkingDays($this->start, $this->end);
                 break;
             default:
                 return true;
@@ -93,10 +101,11 @@ class StartEvent implements Rule
      */
     public function message()
     {
+        /*
         if ($this->legend == null) {
             return 'Wypełnij pola początek i koniec';
         }
-
+        */
         switch($this->legend->name) {
             case 'Ś/CH':
                 return self::FIELD_NAME . 
@@ -118,21 +127,4 @@ class StartEvent implements Rule
                 'Nieznany błąd';
         }
     }
-
-    /**
-     * Is the weekend
-     *
-     * @param string $dt Date time, format YYYY-MM-DD
-     * 
-     * @return boolean
-     */
-    /*
-    private function isWeekend(string $dt)
-    {
-        $startEvent = new Carbon($dt);
-        $this->isWeekend = $startEvent->isWeekend();
-
-        return $this->isWeekend;
-    }
-    */
 }
