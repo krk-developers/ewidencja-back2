@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Carbon\Carbon;
-use App\{Legend, Worker, User};
+use Carbon\{Carbon, CarbonPeriod};
+use App\{Legend, Worker, User, Days};
 
 class StartEvent implements Rule
 {
@@ -17,7 +17,7 @@ class StartEvent implements Rule
     private $request = [];
     private $workerID;
     private $isWeekend = false;
-    private $legendName;
+    private $legend = null;
     private $childcareDayCountGreaterThen2 = false;
 
     /**
@@ -45,23 +45,32 @@ class StartEvent implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        $this->legendName = Legend::find_($value);
+        if ($this->request['start'] == null || $this->request['end'] == null) {
+            return false;
+        }
         
-        $isWeekend1 = $this->isWeekend($this->request['start']);
-        $isWeekend2 = $this->isWeekend($this->request['end']);
+        $this->legend = Legend::find_($value);
+        
+        $isWeekend1 = Days::isWeekend($this->request['start']);
+        $isWeekend2 = Days::isWeekend($this->request['end']);
 
-        switch($this->legendName->name) {
+        switch($this->legend->name) {
             case 'Ś/CH':
                 return ($isWeekend1 && $isWeekend2);
                 break;
             case 'UW':
-                return (! $isWeekend1 && ! $isWeekend2);
+                $timePeriod = CarbonPeriod::between(
+                    $this->request['start'],
+                    $this->request['end']
+                );
+                return Days::areWorkingDays($timePeriod);
                 break;
             case 'DOD':
                 $carbon = new Carbon($this->request['start']);
                 $year = $carbon->year;
                 $childcareDayCount = Worker::childcareDayCount(
-                    $this->workerID, $year
+                    $this->workerID,
+                    $year
                 );
                 
                 if ($childcareDayCount >= self::MAXIMUM_CHILDCARE_DAY_COUNT) {
@@ -70,7 +79,7 @@ class StartEvent implements Rule
                     return false;
                 }
 
-                return (! $isWeekend1 && ! $isWeekend2);
+                return (! $isWeekend1 && ! $isWeekend2);  // only working days
                 break;
             default:
                 return true;
@@ -84,14 +93,18 @@ class StartEvent implements Rule
      */
     public function message()
     {
-        switch($this->legendName->name) {
+        if ($this->legend == null) {
+            return 'Wypełnij pola początek i koniec';
+        }
+
+        switch($this->legend->name) {
             case 'Ś/CH':
                 return self::FIELD_NAME . 
-                    $this->legendName->name . self::WEEKEND_DAY_MESSAGE;
+                    $this->legend->name . self::WEEKEND_DAY_MESSAGE;
                 break;
             case 'UW':
                 return self::FIELD_NAME .
-                    $this->legendName->name . self::WORKING_DAY_MESSAGE;
+                    $this->legend->name . self::WORKING_DAY_MESSAGE;
                 break;
                 case 'DOD':
                     if ($this->childcareDayCountGreaterThen2) {
@@ -99,7 +112,7 @@ class StartEvent implements Rule
                     }
 
                     return self::FIELD_NAME .
-                        $this->legendName->name . self::WORKING_DAY_MESSAGE;
+                        $this->legend->name . self::WORKING_DAY_MESSAGE;
                 break;
             default:
                 'Nieznany błąd';
@@ -113,6 +126,7 @@ class StartEvent implements Rule
      * 
      * @return boolean
      */
+    /*
     private function isWeekend(string $dt)
     {
         $startEvent = new Carbon($dt);
@@ -120,4 +134,5 @@ class StartEvent implements Rule
 
         return $this->isWeekend;
     }
+    */
 }

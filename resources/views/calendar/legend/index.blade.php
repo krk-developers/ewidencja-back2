@@ -32,9 +32,9 @@
                         <tbody>
 @foreach ($legends as $legend)
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th scope="row">{{ $loop->iteration }}<a name="{{ Str::slug($legend->name) }}"></a></th>
                                 <td>{{ $legend->id }}</td>
-                                <td>{{ $legend->name }}</td>
+                                <td><a href="#{{ Str::slug($legend->name) }}">{{ $legend->name }}</a></td>
                                 <td>
                                     <a href="{{ route('legends.show', $legend->id) }}" title="Szczegóły">
                                         <i class="fas fa-eye"></i> {{ $legend->display_name }}

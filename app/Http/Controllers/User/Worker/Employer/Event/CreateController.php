@@ -1,20 +1,25 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\User\Worker\Employer\Event;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\{Worker, Employer, Legend};
 
 class CreateController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Worker $worker Worker
+     * @param Employer $employer Employer
+     * @param string $year_month Year and month. Format: YYYY-MM
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Worker $worker, Employer $employer, string $year_month)
+    public function __invoke(Worker $worker, Employer $employer, string $year_month)//: use Illuminate\View\View;  // Request $request,
     {
         // return __CLASS__;
         return view(

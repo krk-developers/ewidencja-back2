@@ -35,7 +35,14 @@ class StoreController extends Controller
         
               
         return redirect()
-            ->route('workers.employers.events.index', [$worker->id, $employer->id, $year_month])
+            ->route(
+                'workers.employers.events.index',
+                [
+                    $worker->id,
+                    $employer->id,
+                    $year_month
+                ]
+            )
             ->with($info, $message);
     }
 }

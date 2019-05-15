@@ -102,19 +102,42 @@ class Days
         return $absenceInDays;
     }
     
+    /**
+     * Whether time period are working days
+     *
+     * @param CarbonPeriod $timePeriod Time period
+     * 
+     * @return boolean
+     */
+    public static function areWorkingDays(CarbonPeriod $timePeriod): bool
+    {
+        foreach ($timePeriod as $date) {
+            if ($date->isWeekend()) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Whether is weekend day.
+     *
+     * @param string $day Day. Format YYYY-MM-DD
+     * 
+     * @return boolean
+     */
+    public static function isWeekend(string $day): bool
+    {
+        $dt = new Carbon($day);
+
+        return $dt->isWeekend();
+    }
+
     /*
     public static function createTimePeriod(Carbon $start, Carbon $end): CarbonPeriod
     {
         return CarbonPeriod::between($start, $end);
-    }
-
-    public static function weekendFilter(CarbonPeriod $timePeriod): CarbonPeriod
-    {
-        $weekendFilter = function ($date) {
-            return $date->isWeekday();
-        };
-
-        return $timePeriod->filter($weekendFilter);
     }
     
     public static function workerEventFilter(
