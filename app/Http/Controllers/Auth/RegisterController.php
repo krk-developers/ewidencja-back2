@@ -68,7 +68,7 @@ class RegisterController extends Controller
         $type_id = \App\Type::findIDByModelName($data['userable_type']);
         
         if ($data['userable_type'] == 'App\Worker') {
-            $worker = \App\Worker::create_($data);
+            $worker = \App\Worker::createRow($data);
             $userable_id = $worker->id;
         }
         

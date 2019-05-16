@@ -7,6 +7,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\ValidationException;
+use App\{User, Worker};
+use Illuminate\Support\Facades\DB;
 
 class WorkerTest extends TestCase
 {
@@ -71,8 +74,8 @@ class WorkerTest extends TestCase
         
         // $response->assertJson(['function' => "show$id"]);
 
-        $id = 1;
-        $response = $this->get(route('api.workers.show', $id));
+        $workerID = 1;
+        $response = $this->get(route('api.workers.show', $workerID));
 
         $response->assertStatus(200);
         
@@ -93,5 +96,59 @@ class WorkerTest extends TestCase
                 ]
             ]
         );
+    }
+
+    /**
+     * Wheter the Worker was created
+     *
+     * @return void
+     */
+    public function testCreateWorker(): void
+    {
+        // $this->withoutExceptionHandling();
+
+        // $user = factory(User::class)->make();
+        // dd($user);
+        // $worker = factory(Worker::class)->make();
+        // dd($worker);
+
+        $response = $this->json(
+            'POST',
+            route('api.workers.store'),
+            [
+                'lastname' => 'Odyniec',
+                'pesel' => '86486434569',
+                'name' => 'Natalia',
+                'email' => 'natka@gmail.com',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
+        
+        $response
+            ->assertStatus(201)
+            ->assertJson(['created' => true]);
+        
+    }
+
+    /**
+     * Whether the worker is deleted
+     *
+     * @return void
+     */
+    public function testEventDestroyPage(): void
+    {
+        $this->withoutExceptionHandling();
+
+        // $id = 31;
+        $lastID = DB::table('workers')->max('id');
+        // dd($lastID);
+        $response = $this->json('DELETE', route('api.workers.destroy', $lastID));
+        
+        $response
+            ->assertStatus(200)
+            ->assertJson(['deleted' => true]);
     }
 }

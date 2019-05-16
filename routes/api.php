@@ -84,6 +84,10 @@
             ->name('api.workers.index');
         Route::get('workers/{worker}', 'API\WorkerController@show')
             ->name('api.workers.show');
+        Route::post('workers', 'API\WorkerController@store')
+            ->name('api.workers.store');
+        Route::delete('workers/{worker}', 'API\WorkerController@destroy')
+            ->name('api.workers.destroy');
         /*
         Route::apiResource('employers', 'API\EmployerController')
             ->only(['index', 'show']);

@@ -26,12 +26,12 @@ class StoreController extends Controller
         
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
-        $worker = Worker::create_($request->all());
+        $worker = Worker::createRow($request->all());
 
         $request['userable_id'] = $worker->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        $user = User::create_($request->all());
+        $user = User::createRow($request->all());
         
         return redirect()->route('workers.index')->with('success', 'Dodano');
     }

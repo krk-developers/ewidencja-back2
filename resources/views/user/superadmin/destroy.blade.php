@@ -10,9 +10,7 @@
                             <i class="fas fa-eraser"></i> Czy usunąć Super Administratora: {{ $superadmin->user->name}} {{ $superadmin->lastname }}?
                         </div>
                         <div class="card-body">
-                            <p class="card-text text-danger">
-                                Operacja bezpowrotna
-                            </p>
+                            <p class="card-text">Operacja bezpowrotna</p>
                         </div>
                         <footer class="card-footer bg-white">
                             <form action="{{ route('superadmins.destroy', $superadmin->id) }}" method="POST">

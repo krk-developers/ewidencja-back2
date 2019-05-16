@@ -113,7 +113,14 @@ class User extends Authenticatable
         return ($employers);
     }
 
-    public static function create_(array $data)
+    /**
+     * Create User
+     *
+     * @param array $data User data
+     * 
+     * @return User
+     */
+    public static function createRow(array $data): User
     {
         return User::create(
             [

@@ -32,7 +32,7 @@ class StoreController extends Controller
         $request['userable_id'] = $employer->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        $user = User::create_($request->all());
+        $user = User::createRow($request->all());
 
         return redirect()->route('employers.index')->with('success', 'Dodano');
     }

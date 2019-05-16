@@ -8,12 +8,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // use Illuminate\Http\JsonResponse;
 // use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use App\{Worker, Event};
+use App\{Worker, User, Event, Type};
 use App\Http\Resources\Worker as WorkerResource;
 use App\Http\Resources\Event as EventResource;
+use App\Http\Requests\StoreWorker;
+use Illuminate\Validation\ValidationException;
 
 class WorkerController extends Controller
 {
+    private const TYPE_MODEL_NAME = 'App\Worker';
+
     /**
      * Display a listing of the resource.
      *
@@ -28,12 +32,31 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request Request
+     * 
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreWorker $request)//: Response
     {
-        //
+        $request->validated();
+
+        $worker = Worker::createRow($request->all());
+
+        if (! $worker) {
+            return response()->json(['created' => false]);
+        }
+
+        $request['userable_id'] = $worker->id;
+        $request['userable_type'] = self::TYPE_MODEL_NAME;
+        $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
+
+        $user = User::createRow($request->all());
+
+        if (! $user) {
+            return response()->json(['created' => false]);
+        }
+
+        return response()->json(['created' => true], 201);
     }
 
     /**
@@ -69,8 +92,14 @@ class WorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Worker $worker)
     {
-        //
+        $deleted = $worker->deleteRow();
+        
+        if (! $deleted) {
+            return response()->json(['deleted' => false]);
+        }
+
+        return response()->json(['deleted' => true]);
     }
 }

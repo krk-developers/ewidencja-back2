@@ -93,22 +93,31 @@ class Worker extends Model
     /**
      * Childrencare day count
      *
-     * @param integer $id   Worker ID
-     * @param integer $year Year
+     * @param integer $workerID Worker ID
+     * @param integer $year     Year
      * 
      * @return int
      */
-    public static function childcareDayCount(int $id, int $year): int
+    public static function childcareDayCount(int $workerID, int $year): int
     {
         return DB::table('events')
             ->join('legends', 'events.legend_id', 'legends.id')
-            ->where('events.worker_id', $id)
+            ->where('events.worker_id', $workerID)
             ->whereRaw("YEAR(events.start) = ?", [$year])
             ->where('legends.name', 'DOD')
             ->count();
     }
 
-    public function eventsByTimePeriod1($start, $end, $employer_id)
+    /**
+     * Workers's event in time period
+     *
+     * @param string $start      Period start
+     * @param string $end        Period end
+     * @param int    $employerID Employer ID
+     * 
+     * @return void
+     */
+    public function eventsByTimePeriod1(string $start, stribg $end, int $employerID)
     {
         return DB::table('events')
             ->select(
@@ -120,7 +129,7 @@ class Worker extends Model
             )
             ->join('legends', 'events.legend_id', 'legends.id')
             ->where('worker_id', $this->id)
-            ->where('employer_id', $employer_id)
+            ->where('employer_id', $employerID)
             ->whereDate('start', '>=', $start)
             ->whereDate('end', '<=', $end)
             ->get();
@@ -128,10 +137,12 @@ class Worker extends Model
 
     /**
      * Create profile
-     *
+     * 
+     * @param array $data User data
+     * 
      * @return Worker
      */
-    public static function create_(array $data): Worker
+    public static function createRow(array $data): Worker
     {
         return self::create($data);
     }
@@ -198,7 +209,7 @@ class Worker extends Model
      *
      * @return boolean
      */
-    public function delete_(): bool
+    public function deleteRow(): bool
     {
         // remove a many-to-many relationship record
         $this->employers()->detach();

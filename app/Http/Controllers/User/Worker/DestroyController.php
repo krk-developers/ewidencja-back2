@@ -27,7 +27,7 @@ class DestroyController extends Controller
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $worker->delete_();
+            $worker->deleteRow();
 
             return redirect()
                 ->route('workers.index')

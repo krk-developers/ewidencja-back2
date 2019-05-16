@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreAdmin;
@@ -33,7 +32,7 @@ class StoreController extends Controller
         $request['userable_id'] = $admin->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        User::create_($request->all());
+        User::createRow($request->all());
 
         return redirect()->route('admins.index')->with('success', 'Dodano');
     }

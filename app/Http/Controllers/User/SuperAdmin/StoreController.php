@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\SuperAdmin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreSuperAdmin;
@@ -32,7 +31,7 @@ class StoreController extends Controller
         $request['userable_id'] = $superadmin->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        User::create_($request->all());
+        User::createRow($request->all());
 
         return redirect()->route('superadmins.index')->with('success', 'Dodano');
     }
