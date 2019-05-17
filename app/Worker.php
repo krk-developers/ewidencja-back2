@@ -117,7 +117,7 @@ class Worker extends Model
      * 
      * @return void
      */
-    public function eventsByTimePeriod1(string $start, stribg $end, int $employerID)
+    public function eventsByTimePeriod1(string $start, string $end, int $employerID)
     {
         return DB::table('events')
             ->select(
