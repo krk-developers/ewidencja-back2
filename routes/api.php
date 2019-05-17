@@ -86,6 +86,8 @@
             ->name('api.workers.show');
         Route::post('workers', 'API\WorkerController@store')
             ->name('api.workers.store');
+        Route::put('workers/{worker}', 'API\WorkerController@update')
+            ->name('api.workers.update');
         Route::delete('workers/{worker}', 'API\WorkerController@destroy')
             ->name('api.workers.destroy');
         /*

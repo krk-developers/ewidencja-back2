@@ -147,7 +147,24 @@ class Worker extends Model
         return self::create($data);
     }
 
-    public static function find_(int $id)
+    /**
+     * Set attributes on the model and save it.
+     *
+     * @return boolean
+     */
+    public function saveRecord(): bool
+    {
+        return self::save();
+    }
+
+    /**
+     * Find by primary key
+     *
+     * @param integer $id Primary key
+     * 
+     * @return Worker
+     */
+    public static function findRow(int $id): Worker
     {
         return self::find($id);
     }

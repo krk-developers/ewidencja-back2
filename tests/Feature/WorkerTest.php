@@ -18,7 +18,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testWorkerIndexPage(): void
+    public function testWorkerIndex(): void
     {
         $this->withoutExceptionHandling();
 
@@ -68,7 +68,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testWorkerShowPage(): void
+    public function testWorkerShow(): void
     {
         $this->withoutExceptionHandling();
         
@@ -105,12 +105,10 @@ class WorkerTest extends TestCase
      */
     public function testCreateWorker(): void
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         // $user = factory(User::class)->make();
-        // dd($user);
-        // $worker = factory(Worker::class)->make();
-        // dd($worker);
+        // $worker = factory(Worker::class)->make();        
 
         $response = $this->json(
             'POST',
@@ -131,6 +129,32 @@ class WorkerTest extends TestCase
             ->assertStatus(201)
             ->assertJson(['created' => true]);
         
+    }
+
+    public function testUpdateWorker(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $lastID = DB::table('workers')->max('id');
+        // dd($lastID);
+        $response = $this->json(
+            'PUT',
+            route('api.workers.update', $lastID),
+            [
+                'name' => 'Zofia',
+                'lastname' =>  'Odyniec',
+                'pesel' => '12345678909',
+            ],
+            [
+                'id' => $lastID,
+            ]
+        );
+        // dd($response->content());
+        // dd($response->status());
+        // dd($response->status());
+        $response
+            ->assertStatus(200)
+            ->assertJson(['updated' => true]);
     }
 
     /**

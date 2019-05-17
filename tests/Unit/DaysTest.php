@@ -122,7 +122,7 @@ class DaysTest extends TestCase
      */
     public function _testDOD()
     {
-        $worker = Worker::find_(1);
+        $worker = Worker::findRow(1);
         $year = 2019;
         $maximumTwoDaysAyear = 2;
 

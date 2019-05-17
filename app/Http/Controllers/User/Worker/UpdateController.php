@@ -16,7 +16,7 @@ class UpdateController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateWorker $request Validation
-     * @param Worker     $worker  Worker
+     * @param Worker       $worker  Worker
      * 
      * @return RedirectResponse
      */
@@ -30,25 +30,25 @@ class UpdateController extends Controller
         );
         
         $validated = $request->validated();
-        
+
         $saved = false;
         
-        $worker->fill($request->all());  // Worker class
+        $worker->fill($validated);
         if ($worker->isDirty()) {
-            $saved = $worker->save();  // bool
+            $saved = $worker->saveRecord();
         }
 
         $worker->user->name = $request->input('name');
         if ($worker->user->isDirty()) {
-            $saved = $worker->user->save();
+            $saved = $worker->user->saveRow();            
         }
-        
+
+        $status = 'info';
+        $message = "Nie zmieniono";
+
         if ($saved) {
             $status = 'success';
             $message = "Zmieniono";
-        } else {
-            $status = 'info';
-            $message = "Nie zmieniono";
         }
         
         return redirect()

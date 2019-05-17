@@ -135,6 +135,16 @@ class User extends Authenticatable
         );
     }
     
+    /**
+     * Set attributes on the model and save it.
+     *
+     * @return boolean
+     */
+    public function saveRow(): bool
+    {
+        return self::save();
+    }
+
     public static function byType(string $name): Collection
     {
         return DB::table('users')

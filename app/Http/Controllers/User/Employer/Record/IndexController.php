@@ -66,19 +66,13 @@ class IndexController extends Controller
         
         
         foreach ($workers as $worker) {
-            // pr($worker->id);
-            // $workerObject = Worker::find_($worker->id);
-            // pr($workerObject);
             $workerEvents = $worker->eventsByTimePeriod1($start, $end, $employer->id);
             $absenceInDays = Days::absenceInDays($workerEvents);
             $workingDays = $timePeriod->count() - $absenceInDays;
-
             
             $worker->workerEvents = $workerEvents;
             $worker->absenceInDays = $absenceInDays;
             $worker->workingDays = $workingDays;
-            // pr($workerEvents);
-            // pr($worker);
         }
         
         // return $workers;

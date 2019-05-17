@@ -11,7 +11,9 @@ use App\Http\Controllers\Controller;
 use App\{Worker, User, Event, Type};
 use App\Http\Resources\Worker as WorkerResource;
 use App\Http\Resources\Event as EventResource;
-use App\Http\Requests\StoreWorker;
+use App\Http\Requests\{StoreWorker, UpdateWorker};
+use Illuminate\Validation\Rule;
+use Validator;
 use Illuminate\Validation\ValidationException;
 
 class WorkerController extends Controller
@@ -81,9 +83,43 @@ class WorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateWorker $request, int $id)  // $request
     {
-        //
+        $worker = Worker::findRow($id);
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'pesel' => [Rule::unique('workers')->ignore($worker->id)]
+            ]
+        );
+        // dd($validator->fails());
+        // dd($validator->errors());
+        $message = 'updated';
+
+        if ($validator->fails()) {
+            return response()->json([$message => false, $validator->errors()], 422);
+        }
+
+        $validated = $request->validated();
+        
+        $saved = false;
+        
+        $worker->fill($validated);
+        if ($worker->isDirty()) {
+            $saved = $worker->saveRecord();
+        }
+
+        $worker->user->name = $request['name'];
+        if ($worker->user->isDirty()) {
+            $saved = $worker->user->saveRow();            
+        }
+        /*
+        if ($saved) {
+            $message = true;
+        }
+        */
+        return response()->json([$message => $saved], 200);
     }
 
     /**
