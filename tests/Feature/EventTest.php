@@ -14,7 +14,7 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    public function testEventIndexPage(): void
+    public function testEventIndex(): void
     {
         $response = $this->get(route('api.events.index'));
 
@@ -43,18 +43,21 @@ class EventTest extends TestCase
             ]
         );
     }
+
     /**
      * If store page create a worker's event
      *
      * @return void
      */
-    public function testEventStorePage(): void
+    public function testEventStore(): void
     {
         $this->withoutExceptionHandling();
-
+        /*
         $maxWorkerID = DB::table('workers')->max('id');
         $workerRandomID = rand(1, $maxWorkerID);
-        $worker = \App\Worker::find($workerRandomID);
+        */
+        $lastID = DB::table('workers')->max('id');
+        $worker = \App\Worker::find($lastID);
         
         $maxLegendID = DB::table('legends')->max('id');
         $legendRandomID = rand(1, $maxLegendID);
@@ -89,7 +92,12 @@ class EventTest extends TestCase
         // dd($saved);
     }
 
-    public function testEventDestroyPage(): void
+    /**
+     * Whether the event is deleted.
+     *
+     * @return void
+     */
+    public function testEventDestroy(): void
     {
         $this->withoutExceptionHandling();
 

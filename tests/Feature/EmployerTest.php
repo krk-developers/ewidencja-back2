@@ -7,6 +7,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 // use Illuminate\Foundation\Testing\WithFaker;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 
 class EmployerTest extends TestCase
 {
@@ -15,7 +16,7 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function testEmployerIndexPage(): void
+    public function _testEmployerIndex(): void
     {
         $response = $this->get(route('api.employers.index'));
         // dd(route('api.employers.index'));
@@ -56,12 +57,12 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function testEmployerShowPage(): void
+    public function _testShowEmployer(): void
     {
         $this->withoutExceptionHandling();
 
-        $id = 1;
-        $response = $this->get(route('api.employers.show', $id));
+        $employerID = 1;
+        $response = $this->get(route('api.employers.show', $employerID));
 
         $response->assertStatus(200);
 
@@ -101,7 +102,7 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function testEmployerEventPage(): void
+    public function _testEmployerEvent(): void
     {
         $this->withoutExceptionHandling();
 
@@ -134,5 +135,94 @@ class EmployerTest extends TestCase
                 ]
             ]
         );
+    }
+
+    /**
+     * Is the employer created
+     *
+     * @return void
+     */
+    public function testStoreEmployer(): void
+    {
+        // $this->withoutExceptionHandling();
+
+        $response = $this->json(
+            'POST',
+            route('api.employers.store'),
+            [
+                'name' => 'Henryk',
+                'email' => 'test@test.pl',
+                'company' => 'Henryx',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+            ]
+        );
+
+        // $response->assertJson(['function' => "store"]);
+        // $response->assertStatus(200);
+
+        // dd($response->content());
+        // dd($response->getOriginalContent()['errors']);
+        // dd($response->status());
+
+        $response
+            ->assertStatus(201)
+            ->assertJson(['created' => true]);
+    }
+
+    public function testUpdateEmployer(): void
+    {
+        // $this->withoutExceptionHandling();
+
+        $lastID = DB::table('employers')->max('id');
+        
+        $response = $this->json(
+            'PUT',
+            route('api.employers.update', $lastID),
+            [
+                'name' => 'Henryk',
+                'lastname' => 'Walezy',
+                // 'email' => 'test@test.pl',
+                'company' => 'Henryx',
+                // 'password' => '12345678',
+                // 'password_confirmation' => '12345678',
+            ]
+        );
+        
+        // $response->dump();
+        // dd($response);
+        $response
+            ->assertStatus(200)
+            ->assertJson(['updated' => false]);
+        
+        
+        $response = $this->json(
+            'PUT',
+            route('api.employers.update', $lastID),
+            [
+                'name' => 'Paweł',
+                // 'email' => 'test@test.pl',
+                'company' => 'Pawelo',
+                // 'password' => '12345678',
+                // 'password_confirmation' => '12345678',
+            ]
+        );
+        $response->assertStatus(200)->assertJson(['updated' => true]);
+    }
+    
+    /**
+     * If the employer is deleted
+     *
+     * @return void
+     */
+    public function testDestroyEmployer(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $lastID = DB::table('employers')->max('id');
+        
+        $response = $this->json('DELETE', route('api.employers.destroy', $lastID));
+
+        $response->assertStatus(200)->assertJson(['deleted' => true]);
     }
 }

@@ -105,7 +105,7 @@ class WorkerTest extends TestCase
      */
     public function testCreateWorker(): void
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         // $user = factory(User::class)->make();
         // $worker = factory(Worker::class)->make();        
@@ -124,13 +124,18 @@ class WorkerTest extends TestCase
                 'updated_at' => now(),
             ]
         );
-        
+        // $response->dump();
         $response
             ->assertStatus(201)
             ->assertJson(['created' => true]);
         
     }
 
+    /**
+     * Whether the worker is update
+     *
+     * @return void
+     */
     public function testUpdateWorker(): void
     {
         $this->withoutExceptionHandling();
@@ -143,15 +148,12 @@ class WorkerTest extends TestCase
             [
                 'name' => 'Zofia',
                 'lastname' =>  'Odyniec',
-                'pesel' => '12345678909',
-            ],
-            [
-                'id' => $lastID,
+                'pesel' => '86486123569',
             ]
         );
-        // dd($response->content());
-        // dd($response->status());
-        // dd($response->status());
+        
+        // $response->dump();
+
         $response
             ->assertStatus(200)
             ->assertJson(['updated' => true]);
@@ -166,9 +168,8 @@ class WorkerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        // $id = 31;
         $lastID = DB::table('workers')->max('id');
-        // dd($lastID);
+
         $response = $this->json('DELETE', route('api.workers.destroy', $lastID));
         
         $response

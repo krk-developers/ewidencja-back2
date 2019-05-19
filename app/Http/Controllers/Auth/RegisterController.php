@@ -73,7 +73,7 @@ class RegisterController extends Controller
         }
         
         if ($data['userable_type'] == 'App\Employer') {
-            $employer = \App\Employer::create_($data);
+            $employer = \App\Employer::createRow($data);
             $userable_id = $employer->id;
         }
         
