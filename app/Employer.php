@@ -52,6 +52,38 @@ class Employer extends Model
     }
 
     /**
+     * Find by primary key
+     *
+     * @param integer $employerID Employer ID
+     * 
+     * @return Employer
+     */
+    public static function findRow(int $employerID): Employer
+    {
+        return self::find($employerID);
+    }
+
+    /**
+     * Save Employer
+     *
+     * @return boolean
+     */
+    public function saveRow(): bool
+    {
+        return $this->save();
+    }
+    
+    /**
+     * Save morph User
+     *
+     * @return boolean
+     */
+    public function saveUserRow(): bool
+    {
+        return $this->user->save();
+    }
+
+    /**
      * All employers
      *
      * @return Collection
@@ -93,7 +125,7 @@ class Employer extends Model
      *
      * @return boolean
      */
-    public function delete_(): bool
+    public function deleteRow(): bool
     {
         // remove a many-to-many relationship record
         $this->workers()->detach();
@@ -195,7 +227,7 @@ class Employer extends Model
      *
      * @return Employer
      */
-    public static function create_(array $data): Employer
+    public static function createRow(array $data): Employer
     {
         return self::create($data);
     }

@@ -27,7 +27,7 @@ class StoreController extends Controller
 
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
-        $employer = Employer::create_($request->all());
+        $employer = Employer::createRow($request->all());
 
         $request['userable_id'] = $employer->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;

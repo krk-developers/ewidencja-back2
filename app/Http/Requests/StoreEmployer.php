@@ -13,7 +13,7 @@ class StoreEmployer extends FormRequest
      */
     public function authorize()
     {
-        return true;  // false;
+        return true;
     }
 
     /**
