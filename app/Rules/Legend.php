@@ -10,9 +10,9 @@ use App\Rules\LegendHelper;
 class Legend implements Rule
 {
     private const FIELD_NAME = 'Pole ';
-    private const WEEKEND_DAY_MESSAGE = ' nanosimy tylko na sobotę i niedzielę';
-    private const WORKING_DAY_MESSAGE = ' nanosimy tylko na dni robocze';
-    private const CHILDCARE_DAY_COUNT_MESSAGE = 'Maksymalnie dwa dni w roku';
+    private const WEEKEND_DAY_MESSAGE = ' nanosimy tylko na sobotę i niedzielę.';
+    private const WORKING_DAY_MESSAGE = ' nanosimy tylko na dni robocze.';
+    private const CHILDCARE_DAY_COUNT_MESSAGE = 'Maksymalnie dwa dni w roku.';
     // private const MAXIMUM_CHILDCARE_DAY_COUNT = 2;
 
     private $request = [];

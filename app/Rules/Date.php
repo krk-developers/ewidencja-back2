@@ -49,6 +49,6 @@ class Date implements Rule
      */
     public function message()
     {
-        return 'Data początkowa musi być wcześniejsza lub taka sama jak końcowa';
+        return 'Data początkowa musi być wcześniejsza lub taka sama jak końcowa.';
     }
 }

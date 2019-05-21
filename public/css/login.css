@@ -1,3 +1,6 @@
-form {
-    margin-top: 10%;    
+.logo {
+    font-size: 84px;
+    font-family: 'Major Mono Display', monospace;
+    color: #3949ab;
+    margin-top: 7%;
 }

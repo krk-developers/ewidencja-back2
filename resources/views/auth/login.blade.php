@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+            @include('includes.logo')
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
