@@ -20,8 +20,9 @@ class UpdateController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(UpdateWorker $request, Worker $worker): RedirectResponse
+    public function __invoke(UpdateWorker $request, Worker $worker)//: RedirectResponse
     {
+        // return $request; 
         Validator::make(
             $request->all(),
             [
@@ -30,12 +31,20 @@ class UpdateController extends Controller
         );
         
         $validated = $request->validated();
-
+        /*
+        if ($validated['equivalent'] == 0) {
+            $validated['equivalent_amount'] = 0;
+        }
+        */
+        // dd($validated);
+        // dd($request->all());
         $saved = false;
-        
-        $worker->fill($validated);
+        // dd($worker->isDirty());
+        // dd($worker->user->isDirty());
+        $worker->fill($validated);  // $request->all()
         if ($worker->isDirty()) {
             $saved = $worker->saveRecord();
+            // dd($saved);
         }
 
         $worker->user->name = $request->input('name');

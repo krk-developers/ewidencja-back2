@@ -31,7 +31,7 @@
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label">Imię</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="np. Jan" autofocus> <!-- required -->
+                                            <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="np. Jan" autofocus required>
 @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -77,7 +77,7 @@
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                                         <div class="col-sm-10">
-                                            <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl">
+                                            <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="np. jan.kowalski@onet.pl" required>
 @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -91,7 +91,7 @@
                                     <div class="form-group row">
                                         <label for="password" class="col-sm-2 col-form-label">Hasło</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="" placeholder="np. Jan1879Ko"> <!-- required -->
+                                            <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="" placeholder="np. Jan1879Ko" required>
 @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -105,13 +105,108 @@
                                     <div class="form-group row">
                                         <label for="password-confirm" class="col-sm-2 col-form-label">Powtórz hasło</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" value="" placeholder="np. Jan1879Ko"> <!-- required -->
+                                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" value="" placeholder="np. Jan1879Ko" required>
 @if ($errors->has('password-confirm'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password-confirm') }}</strong>
                                             </span>
 @else
                                             <small id="password-confirmHelp" class="form-text text-muted">Pole obowiązkowe.</small>
+@endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="contract_from" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa od</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" id="contract_from" name="contract_from" class="form-control{{ $errors->has('contract_from') ? ' is-invalid' : '' }}" value="{{ old('contract_from') }}" placeholder="Początkowa data umowy o pracę" required>
+@if ($errors->has('contract_from'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('contract_from') }}</strong>
+                                            </span>
+@else
+                                            <small id="contract_from_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="contract_to" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa do</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" id="contract_to" name="contract_to" class="form-control{{ $errors->has('contract_to') ? ' is-invalid' : '' }}" value="{{ old('contract_to') }}" placeholder="Końcowa data umowy o pracę">
+@if ($errors->has('contract_to'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('contract_to') }}</strong>
+                                            </span>
+@else
+                                            <small id="contract_to_help" class="form-text text-muted">Pole nieobowiązkowe. Brak daty oznacza umowę na czas nieokreślony</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="part_time" class="col-sm-2 col-form-label">Wymiar etatu</label>
+                                        <div class="col-sm-10">
+                                            <select id="part_time" name="part_time" class="form-control{{ $errors->has('part_time') ? ' is-invalid' : '' }}" placeholder="Wymiar etatu">
+                                                <option value="1">1</option>
+                                                <option value="0.75">0.75</option>
+                                                <option value="0.5">0.5</option>
+                                                <option value="0.25">0.25</option>
+                                            </select>
+@if ($errors->has('part_time'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('part_time') }}</strong>
+                                            </span>
+@else
+                                            <small id="part_time_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="equivalent" class="col-sm-2 col-form-label">Ekwiwalent</label>
+                                        <div class="col-sm-10">
+                                            <select id="equivalent" name="equivalent" class="form-control{{ $errors->has('equivalent') ? ' is-invalid' : '' }}" placeholder="Ekwiwalent">
+                                                <option value="0" @if (old('equivalent') == 0)selected @endif>Nie</option>
+                                                <option value="1" @if (old('equivalent') == 1)selected @endif>Tak</option>
+                                            </select>
+@if ($errors->has('equivalent'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('equivalent') }}</strong>
+                                            </span>
+@else
+                                            <small id="part_time_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" id="equivalent-amount-group">
+                                        <label for="equivalent_amount" class="col-sm-2 col-form-label">Kwota ekwiwalentu (PLN)</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" id="equivalent_amount" name="equivalent_amount" class="form-control{{ $errors->has('equivalent_amount') ? ' is-invalid' : '' }}" value="0" min="0" placeholder=""> <!-- required -->
+@if ($errors->has('equivalent_amount'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('equivalent_amount') }}</strong>
+                                            </span>
+@else
+                                            <small id="equivalent_amount_help" class="form-text text-muted">Pole obowiązkowe jeśli ekwiwalent zaznaczony na tak</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="effective" class="col-sm-2 col-form-label">Etat efektywny</label>
+                                        <div class="col-sm-10">
+                                            <select id="effective" name="effective" class="form-control{{ $errors->has('effective') ? ' is-invalid' : '' }}" placeholder="Etat efektywny">
+                                                <option value="1">1</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+@if ($errors->has('effective'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('effective') }}</strong>
+                                            </span>
+@else
+                                            <small id="effective_help" class="form-text text-muted">Pole obowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -128,4 +223,7 @@
                     </div>
                 </div>
             </div>
+@endsection
+@section('js')
+        <script src="{{ asset('js/equivalent.js') }}"></script>
 @endsection

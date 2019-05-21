@@ -20,6 +20,12 @@ class Worker extends Model
      */
     protected $fillable = [
         'lastname', 'pesel',
+        'contract_from',
+        'contract_to',
+        'part_time',
+        'equivalent',
+        'equivalent_amount',
+        'effective'
     ];
 
     /**

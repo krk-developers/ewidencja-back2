@@ -98,6 +98,38 @@
 @endif
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th scope="row">Umowa od</th>
+                                            <td>{{ $worker->contract_from }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Umowa do</th>
+                                            <td>{{ $worker->contract_to }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Wymiar etatu</th>
+                                            <td>{{ $worker->part_time }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ekwiwalent</th>
+                                            <td>
+@if ($worker->equivalent == 0)
+                                                Nie
+@else
+                                                Tak
+@endif
+                                            </td>
+                                        </tr>
+@if ($showEuivalentAmount)
+                                        <tr>
+                                            <th scope="row">Kwota ekwiwalentu</th>
+                                            <td>{{ $worker->equivalent_amount }} PLN</td>
+                                        </tr>
+@endif
+                                        <tr>
+                                            <th scope="row">Etat efektywny</th>
+                                            <td>{{ $worker->effective }}</td>
+                                        </tr>
 @if ($worker->events->count() > 0)
                                         <tr>
                                             <th scope="row">Wydarzenia</th>

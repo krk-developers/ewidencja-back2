@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
@@ -15,9 +14,8 @@ class CreateController extends Controller
      *
      * @return View $view View
      */
-    public function __invoke(): View  // Request $request
+    public function __invoke(): View
     {
-        // return __FUNCTION__;
         return view('user.worker.create');
     }
 }

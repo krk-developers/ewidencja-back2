@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreWorker;
 use App\{Type, User, Worker};
+use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -22,6 +23,12 @@ class StoreController extends Controller
      */
     public function __invoke(StoreWorker $request): RedirectResponse
     {
+        // return $request;
+        /*
+        if ($request['equivalent'] == 0) {
+            $request['equivalent_amount'] = 0;
+        }
+        */
         $request->validated();
         
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
@@ -31,7 +38,7 @@ class StoreController extends Controller
         $request['userable_id'] = $worker->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        $user = User::createRow($request->all());
+        User::createRow($request->all());
         
         return redirect()->route('workers.index')->with('success', 'Dodano');
     }

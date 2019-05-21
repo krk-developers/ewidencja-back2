@@ -8,8 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Worker;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Collection;
 
 class ShowController extends Controller
 {
@@ -20,27 +18,20 @@ class ShowController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Worker $worker)//: View
+    public function __invoke(Worker $worker): View
     {
-        // return __CLASS__;
-        // return $user;
-        // return $worker;
-        // return $worker->employers->pluck('id');
-        // return $id = Auth::id();
-        $user = Auth::user();
-        // return $user->userable_id;
-        // return $worker->employers->pluck('id');
-
-        // return $user->userable_id;
-        
         $this->authorize('view', $worker);
-        // $this->authorize('employerViewWorker');
-        // $this->authorize('delete', $worker);
+
+        $showEuivalentAmount = true;
+        if ($worker->equivalent == 0) {
+            $showEuivalentAmount = false;
+        }
 
         return view(
             'user.worker.show',
             [
                 'worker' => $worker,
+                'showEuivalentAmount' => $showEuivalentAmount,
                 'year_month' => Carbon::now()->format('Y-m'),
                 'month_name' => Carbon::now()->monthName,
             ]

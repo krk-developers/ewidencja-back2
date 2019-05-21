@@ -70,6 +70,103 @@
                                         </div>
                                     </div>
                                     
+                                    <div class="form-group row">
+                                        <label for="contract_from" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa od</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" id="contract_from" name="contract_from" class="form-control{{ $errors->has('contract_from') ? ' is-invalid' : '' }}" value="{{ $worker->contract_from }}" placeholder="Początkowa data umowy o pracę" required>
+@if ($errors->has('contract_from'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('contract_from') }}</strong>
+                                            </span>
+@else
+                                            <small id="contract_from_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="contract_to" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa do</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" id="contract_to" name="contract_to" class="form-control{{ $errors->has('contract_to') ? ' is-invalid' : '' }}" value="{{ $worker->contract_to }}" placeholder="Końcowa data umowy o pracę">
+@if ($errors->has('contract_to'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('contract_to') }}</strong>
+                                            </span>
+@else
+                                            <small id="contract_to_help" class="form-text text-muted">Pole nieobowiązkowe. Brak daty oznacza umowę na czas nieokreślony</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="part_time" class="col-sm-2 col-form-label">Wymiar etatu</label>
+                                        <div class="col-sm-10">
+                                            <select id="part_time" name="part_time" class="form-control{{ $errors->has('part_time') ? ' is-invalid' : '' }}" placeholder="Wymiar etatu">
+                                                <option value="1.00" @if ($worker->part_time == 1.00)selected @endif>1</option>
+                                                <option value="0.75" @if ($worker->part_time == 0.75)selected @endif>0.75</option>
+                                                <option value="0.50" @if ($worker->part_time == 0.50)selected @endif>0.5</option>
+                                                <option value="0.25" @if ($worker->part_time == 0.25)selected @endif>0.25</option>
+                                            </select>
+@if ($errors->has('part_time'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('part_time') }}</strong>
+                                            </span>
+@else
+                                            <small id="part_time_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="equivalent" class="col-sm-2 col-form-label">Ekwiwalent {{ old('equivalent') }}</label>
+                                        <div class="col-sm-10">
+                                            <select id="equivalent" name="equivalent" class="form-control{{ $errors->has('equivalent') ? ' is-invalid' : '' }}" placeholder="Ekwiwalent">
+                                                <option value="0" @if ($worker->equivalent == 0)selected @endif @if (old('equivalent') == 0)selected @endif>Nie</option>
+                                                <option value="1" @if ($worker->equivalent == 1)selected @endif @if (old('equivalent') == 1)selected @endif>Tak</option>
+                                            </select>
+@if ($errors->has('equivalent'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('equivalent') }}</strong>
+                                            </span>
+@else
+                                            <small id="part_time_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" id="equivalent-amount-group">
+                                        <label for="equivalent_amount" class="col-sm-2 col-form-label">Kwota ekwiwalentu (PLN)</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" id="equivalent_amount" name="equivalent_amount" class="form-control{{ $errors->has('equivalent_amount') ? ' is-invalid' : '' }}" value="{{ $worker->equivalent_amount }}" min="0" placeholder="Wypełnij, jeśli zaznaczyłeś ekwiwalent" required> <!-- required -->
+@if ($errors->has('equivalent_amount'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('equivalent_amount') }}</strong>
+                                            </span>
+@else
+                                            <small id="equivalent_amount_help" class="form-text text-muted">Pole obowiązkowe jeśli ekwiwalent zaznaczony na tak</small>
+@endif
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="effective" class="col-sm-2 col-form-label">Etat efektywny</label>
+                                        <div class="col-sm-10">
+                                            <select id="effective" name="effective" class="form-control{{ $errors->has('effective') ? ' is-invalid' : '' }}" placeholder="Etat efektywny">
+                                                <option value="1" @if ($worker->effective == 1)selected @endif>1</option>
+                                                <option value="3" @if ($worker->effective == 3)selected @endif>3</option>
+                                                <option value="4" @if ($worker->effective == 4)selected @endif>4</option>
+                                            </select>
+@if ($errors->has('effective'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('effective') }}</strong>
+                                            </span>
+@else
+                                            <small id="effective_help" class="form-text text-muted">Pole obowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
                                     <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>
@@ -82,4 +179,7 @@
                     </div>
                 </div>
             </div>
+@endsection
+@section('js')
+        <script src="{{ asset('js/equivalent.js') }}"></script>
 @endsection
