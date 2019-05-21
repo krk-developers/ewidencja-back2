@@ -158,7 +158,7 @@ class Worker extends Model
      *
      * @return boolean
      */
-    public function saveRecord(): bool
+    public function saveRow(): bool
     {
         return self::save();
     }

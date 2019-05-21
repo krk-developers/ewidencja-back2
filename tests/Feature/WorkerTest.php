@@ -115,7 +115,35 @@ class WorkerTest extends TestCase
             route('api.workers.store'),
             [
                 'lastname' => 'Odyniec',
-                'pesel' => '86486434569',
+                'pesel' => 86486434569,
+                'contract_from' => '2019-05-19',
+                'part_time' => 0.75,
+                'equivalent' => 1,  // The equivalent amount field is required
+                'effective' => 3,
+                'name' => 'Natalia',
+                'email' => 'natka@gmail.com',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
+
+        // The equivalent amount field is required
+        $response->assertStatus(422);
+
+
+        $response = $this->json(
+            'POST',
+            route('api.workers.store'),
+            [
+                'lastname' => 'Odyniec',
+                'pesel' => 86486434569,
+                'contract_from' => '2019-05-19',
+                'part_time' => 0.75,
+                'equivalent' => 1,
+                'equivalent_amount' => 20,
+                'effective' => 3,
                 'name' => 'Natalia',
                 'email' => 'natka@gmail.com',
                 'password' => '12345678',
@@ -125,10 +153,10 @@ class WorkerTest extends TestCase
             ]
         );
         // $response->dump();
+        
         $response
             ->assertStatus(201)
             ->assertJson(['created' => true]);
-        
     }
 
     /**
@@ -138,20 +166,49 @@ class WorkerTest extends TestCase
      */
     public function testUpdateWorker(): void
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         $lastID = DB::table('workers')->max('id');
+        // $worker = Worker::findRow($lastID);
         // dd($lastID);
+        // dd($worker);
+
         $response = $this->json(
             'PUT',
             route('api.workers.update', $lastID),
             [
                 'name' => 'Zofia',
                 'lastname' =>  'Odyniec',
-                'pesel' => '86486123569',
+                'pesel' => 86486123569,
+                'contract_from' => '2019-05-19',
+                'contract_to' => null,
+                'part_time' => 0.50,
+                'equivalent' => 1,  // equivalent_amount required
+                // 'equivalent_amount' => 0,
+                'effective' => 3,
             ]
         );
+        // $response->dump();
         
+        $response->assertStatus(422);
+
+
+        $response = $this->json(
+            'PUT',
+            route('api.workers.update', $lastID),
+            [
+                'name' => 'Zofia',
+                'lastname' =>  'Odyniec',
+                'pesel' => 86486123569,
+                'contract_from' => '2019-05-19',
+                'contract_to' => '2019-05-20',
+                'part_time' => 0.50,
+                'equivalent' => 1,
+                'equivalent_amount' => 20,
+                'effective' => 1,
+            ]
+        );
+
         // $response->dump();
 
         $response
@@ -164,7 +221,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testEventDestroyPage(): void
+    public function testDestroyWorker(): void
     {
         $this->withoutExceptionHandling();
 

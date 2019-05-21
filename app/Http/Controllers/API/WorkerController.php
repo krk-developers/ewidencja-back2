@@ -85,6 +85,7 @@ class WorkerController extends Controller
      */
     public function update(UpdateWorker $request, int $id)  // $request
     {
+        // dd($request);
         $worker = Worker::findRow($id);
 
         $validator = Validator::make(
@@ -96,18 +97,23 @@ class WorkerController extends Controller
         // dd($validator->fails());
         // dd($validator->errors());
         $message = 'updated';
-
+        /*
         if ($validator->fails()) {
             return response()->json([$message => false, $validator->errors()], 422);
         }
-
+        */
         $validated = $request->validated();
-        
+        // dd($validated);
+
         $saved = false;
         
         $worker->fill($validated);
+        
+        // dd($worker->isDirty());
+
+        // TODO why is dirty?
         if ($worker->isDirty()) {
-            $saved = $worker->saveRecord();
+            $saved = $worker->saveRow();
         }
 
         $worker->user->name = $request['name'];

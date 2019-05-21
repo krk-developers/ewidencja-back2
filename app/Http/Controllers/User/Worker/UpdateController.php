@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User\Worker;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpdateWorker;
@@ -43,7 +43,7 @@ class UpdateController extends Controller
         // dd($worker->user->isDirty());
         $worker->fill($validated);  // $request->all()
         if ($worker->isDirty()) {
-            $saved = $worker->saveRecord();
+            $saved = $worker->saveRow();
             // dd($saved);
         }
 

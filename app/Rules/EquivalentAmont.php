@@ -27,8 +27,12 @@ class EquivalentAmont implements Rule
      */
     public function passes($attribute, $value)
     {
+        // dd($this->request['equivalent_amount']);
         if (intval($this->request['equivalent']) === 1) {                        
-            if (intval($this->request['equivalent_amount']) ===  0) {
+            if (intval($this->request['equivalent_amount']) === 0) {
+                return false;
+            }
+            if ($this->request['equivalent_amount'] === null) {
                 return false;
             }
         }

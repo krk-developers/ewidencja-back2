@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\EquivalentAmont;
+use Illuminate\Validation\Rule;
 
 class UpdateWorker extends FormRequest
 {
@@ -28,17 +29,31 @@ class UpdateWorker extends FormRequest
     {
         return [
             'lastname' => ['max:30'],
-            'contract_from' => ['required'],
-            'part_time' => ['required', 'numeric'],
-            'equivalent' => ['required', 'numeric'],
-            'equivalent_amount' => 
+            'contract_from' => ['required', 'date_format:Y-m-d'],
+            'contract_to' => ['nullable', 'date_format:Y-m-d'],
+            'part_time' =>
+                [
+                    'required',
+                    'numeric',
+                    Rule::in([1.00, 0.75, 0.50, 0.25])
+                ],
+            'equivalent' => ['required', 'numeric', Rule::in([0, 1])],
+            'equivalent_amount' =>
                 [
                     'numeric',
-                    new EquivalentAmont($this->all()),
+                    Rule::requiredIf($this->all()['equivalent'] == 1),
+                    new EquivalentAmont($this->all())
                 ],
-            'effective' => ['numeric'],
+            'effective' => ['required', 'numeric', Rule::in([1, 3, 4])],
             'name' => ['required', 'string', 'max:191'],
-            'pesel' => ['nullable', 'digits:11']
+            // 'pesel' => ['nullable', 'digits:11']
         ];
     }
 }
+                /*
+                [
+                    Rule::requiredIf($this->all()['equivalent'] == 1),
+                    'numeric',
+                    // 'digits_between:1,10000'
+                ],
+                */
