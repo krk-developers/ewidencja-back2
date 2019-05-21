@@ -29,6 +29,13 @@ a {
     border-radius: .1rem;
 }
 
+
+h1.display-1 {
+    font-family: 'Major Mono Display', monospace;
+    color: #3949ab;
+}
+
+
 h2, h3 {
     color: #5c6bc0; /* #6c757d; */
 }
