@@ -20,7 +20,7 @@ class CreateController extends Controller
         return view(
             'calendar.event.create', 
             [
-                'legends' => Legend::all_(),
+                'legends' => Legend::allSortBy(),
                 'workers' => Worker::all__(),
                 'employers' => Employer::allSortBy(),
             ]

@@ -24,7 +24,7 @@ class EditController extends Controller
             'calendar.event.edit',
             [
                 'event' => $event,
-                'legends' => Legend::all_(),
+                'legends' => Legend::allSortBy(),
                 'workers' => Worker::all__(),
             ]
         );

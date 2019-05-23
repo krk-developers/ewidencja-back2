@@ -24,7 +24,7 @@ class CreateController extends Controller
             'user.worker.event.create', 
             [
                 'worker' => $worker,
-                'legends' => Legend::all_(),
+                'legends' => Legend::allSortBy(),
                 'workers' => Worker::all__(),
                 'employer' => $employer,
             ]

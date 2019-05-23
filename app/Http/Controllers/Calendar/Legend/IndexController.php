@@ -17,7 +17,7 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
-        $legends = Legend::all_();
+        $legends = Legend::allSortBy();
 
         return view(
             'calendar.legend.index',

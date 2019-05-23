@@ -6,7 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
 class Legend extends Model
@@ -70,13 +70,17 @@ class Legend extends Model
     }
     
     /**
-     * All event's legend
+     * All event's legend sorted by name
      *
      * @return Collection
      */
-    public static function all_(): Collection
+    public static function allSortBy(): Collection
     {
-        return self::all();
+        $legends = self::all();
+        $collection = collect($legends);
+        $sorted = $collection->sortBy('name');
+
+        return $sorted;
     }
 
     public static function create_(array $data): Legend

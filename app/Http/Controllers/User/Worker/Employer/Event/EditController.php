@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Worker\Employer\Event;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\{Worker, Employer, Event, Legend};
 
 class EditController extends Controller
@@ -11,12 +11,19 @@ class EditController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Worker   $worker     Worker
+     * @param Employer $employer   Employer
+     * @param Event    $event      Event
+     * @param string   $year_month Year and month YYYY-MM
+     * 
+     * @return View
      */
-    public function __invoke(Request $request, Worker $worker, Employer $employer, Event $event, string $year_month)
-    {
-        // return __CLASS__;
+    public function __invoke(
+        Worker $worker,
+        Employer $employer,
+        Event $event,
+        string $year_month
+    ): View {
         return view(
             'user.worker.employer.event.edit',
             [
@@ -24,7 +31,7 @@ class EditController extends Controller
                 'employer' => $employer,
                 'event' => $event,
                 'year_month' => $year_month,
-                'legends' => Legend::all_(),
+                'legends' => Legend::allSortBy(),
             ]
         );
     }

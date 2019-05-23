@@ -30,7 +30,7 @@ class CreateController extends Controller
                 'worker' => $worker,
                 'employer' => $employer,
                 'year_month' => $year_month,
-                'legends' => Legend::all_(),
+                'legends' => Legend::allSortBy(),
                 'workers' => Worker::all__(),
             ]
         );

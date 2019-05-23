@@ -21,7 +21,7 @@ class LegendController extends Controller
     public function index(): AnonymousResourceCollection
     {
         // return response()->json(['function' => __FUNCTION__]);
-        return LegendResource::collection(Legend::all_());
+        return LegendResource::collection(Legend::allSortBy());
     }
 
     /**
