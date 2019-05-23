@@ -22,7 +22,7 @@ class CreateController extends Controller
             [
                 'legends' => Legend::all_(),
                 'workers' => Worker::all__(),
-                'employers' => Employer::all___(),
+                'employers' => Employer::allSortBy(),
             ]
         );
     }

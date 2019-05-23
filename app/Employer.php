@@ -115,9 +115,13 @@ class Employer extends Model
             ->get();
     }
     
-    public static function all___()
+    public static function allSortBy(): Collection
     {
-        return self::all();
+        $employers = self::all();
+        $collection = collect($employers);
+        $sorted = $collection->sortBy('company');
+
+        return $sorted;
     }
 
     /**
