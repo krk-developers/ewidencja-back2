@@ -24,7 +24,7 @@
                                                 <strong>{{ $errors->first('name') }}</strong>
                                             </span>
 @else
-                                            <small id="nameHelp" class="form-text text-muted">Pole obowiązkowe</small>
+                                            <small id="name_help" class="form-text text-muted">Pole obowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -38,7 +38,78 @@
                                                 <strong>{{ $errors->first('company') }}</strong>
                                             </span>
 @else
-                                            <small id="company-help" class="form-text text-muted">Pole nieobowiązkowe</small>
+                                            <small id="company_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="nip" class="col-sm-2 col-form-label"><abbr title="Numer identyfikacji podatkowej">NIP</abbr></label>
+                                        <div class="col-sm-10">
+                                            <input type="number" id="nip" name="nip" class="form-control{{ $errors->has('nip') ? ' is-invalid' : '' }}" value="{{ old('nip') }}" placeholder=""> <!-- required -->
+@if ($errors->has('nip'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('nip') }}</strong>
+                                            </span>
+@else
+                                            <small id="nip_help" class="form-text text-muted">Dziesięć cyfr. Pole nieobowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="street" class="col-sm-2 col-form-label">Ulica i numer domu / lokalu</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="street" name="street" class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}" value="{{ old('street') }}" placeholder="">
+@if ($errors->has('street'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('street') }}</strong>
+                                            </span>
+@else
+                                            <small id="street_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="zip_code" class="col-sm-2 col-form-label">Kod pocztowy</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="zip_code" name="zip_code" class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}" value="{{ old('zip_code') }}" placeholder="np. 00-001">
+@if ($errors->has('zip_code'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('zip_code') }}</strong>
+                                            </span>
+@else
+                                            <small id="zip_code_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="city" class="col-sm-2 col-form-label">Miasto</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="city" name="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" value="{{ old('city') }}" placeholder="np. Warszawa">
+@if ($errors->has('city'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('city') }}</strong>
+                                            </span>
+@else
+                                            <small id="city_help" class="form-text text-muted">Pole nieobowiązkowe</small>
+@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="province_id" class="col-sm-2 col-form-label">Województwo</label>
+                                        <div class="col-sm-10">
+                                            <select id="province_id" name="province_id" class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}">
+                                            </select>
+@if ($errors->has('province_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('province_id') }}</strong>
+                                            </span>
+@else
+                                            <small id="province_id_help" class="form-text text-muted">Pole nieobowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -52,7 +123,7 @@
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </span>
 @else
-                                            <small id="emailHelp" class="form-text text-muted">Pole obowiązkowe</small>
+                                            <small id="email_help" class="form-text text-muted">Pole obowiązkowe</small>
 @endif
                                         </div>
                                     </div>
@@ -66,7 +137,7 @@
                                                 <strong>{{ $errors->first('password') }}</strong>
                                             </span>
 @else
-                                            <small id="passwordHelp" class="form-text text-muted">Pole obowiązkowe. Minimum 8 znaków. Litery, cyfry, znaki specjalne</small>
+                                            <small id="password_help" class="form-text text-muted">Pole obowiązkowe. Minimum 8 znaków. Litery, cyfry, znaki specjalne</small>
 @endif
                                         </div>
                                     </div>
@@ -80,7 +151,7 @@
                                                 <strong>{{ $errors->first('password-confirm') }}</strong>
                                             </span>
 @else
-                                            <small id="password-confirmHelp" class="form-text text-muted">Pole obowiązkowe.</small>
+                                            <small id="password_confirm_help" class="form-text text-muted">Pole obowiązkowe.</small>
 @endif
                                         </div>
                                     </div>

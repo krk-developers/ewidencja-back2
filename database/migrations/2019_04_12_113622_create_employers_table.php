@@ -20,6 +20,10 @@ class CreateEmployersTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('company')->nullable();
+                $table->unsignedBigInteger('nip')->unique()->nullable();
+                $table->string('street', 60)->nullable();
+                $table->string('zip_code', 6)->nullable();
+                $table->string('city', 30)->nullable();
                 $table->timestamps();
             }
         );
