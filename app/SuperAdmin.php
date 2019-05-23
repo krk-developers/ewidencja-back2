@@ -6,7 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class SuperAdmin extends Model
 {
@@ -30,13 +30,17 @@ class SuperAdmin extends Model
     }
 
     /**
-     * All Super Admins
+     * All Super Admins sorted by last name
      *
      * @return Collection
      */
-    public static function all_(): Collection
+    public static function allSortBy(): Collection
     {
-        return self::all();
+        $superadmins = self::all();
+        $collection = collect($superadmins);
+        $sorted = $collection->sortBy('lastname');
+
+        return $sorted;
     }
     
     /**
@@ -46,7 +50,7 @@ class SuperAdmin extends Model
      * 
      * @return SuperAdmin
      */
-    public static function create_(array $data): SuperAdmin
+    public static function createRow(array $data): SuperAdmin
     {
         return self::create($data);
     }
@@ -57,7 +61,7 @@ class SuperAdmin extends Model
      *
      * @return boolean
      */
-    public function delete_(): bool
+    public function deleteRow(): bool
     {
         $this->user->delete();
         return $this->delete();

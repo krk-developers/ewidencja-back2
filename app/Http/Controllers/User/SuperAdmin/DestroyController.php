@@ -27,7 +27,7 @@ class DestroyController extends Controller
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $superadmin->delete_();
+            $superadmin->deleteRow();
             
             return redirect()
                 ->route('superadmins.index')

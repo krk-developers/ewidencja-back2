@@ -26,7 +26,7 @@ class StoreController extends Controller
 
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
 
-        $superadmin = SuperAdmin::create_($request->all());
+        $superadmin = SuperAdmin::createRow($request->all());
 
         $request['userable_id'] = $superadmin->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
