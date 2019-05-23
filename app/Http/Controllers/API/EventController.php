@@ -36,7 +36,7 @@ class EventController extends Controller
     {
         // return response()->json($request, 201);
         
-        $created = Event::create_($request->all());
+        $created = Event::createRow($request->all());
 
         if (! $created) {
             return response()->json(['created' => false]);
@@ -77,7 +77,7 @@ class EventController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        $deleted = Event::destroy_($id);
+        $deleted = Event::destroyRow($id);
         
         if (! $deleted) {
             return response()->json(['deleted' => false]);

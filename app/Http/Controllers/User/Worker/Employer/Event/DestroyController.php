@@ -22,7 +22,7 @@ class DestroyController extends Controller
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $event::destroy_($event->id);
+            $event::destroyRow($event->id);
 
             return redirect()
                 ->route(

@@ -24,7 +24,7 @@ class StoreController extends Controller
         // return $request;
         $validated = $request->validated();
 
-        Event::create_($request->all());
+        Event::createRow($request->all());
         
         return redirect()
             ->route('workers.events.index', $worker->id)

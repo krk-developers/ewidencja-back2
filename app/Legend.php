@@ -7,6 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class Legend extends Model
 {
@@ -41,6 +42,19 @@ class Legend extends Model
     public function events(): HasMany
     {
         return $this->hasMany('App\Event');
+    }
+
+    /**
+     * Scope a query to only include legends of a given name.
+     *
+     * @param Builder $query Query
+     * @param string  $name  Name
+     * 
+     * @return Builder
+     */
+    public function scopeOfName(Builder $query, $name): Builder
+    {
+        return $query->where('name', $name);
     }
 
     /**

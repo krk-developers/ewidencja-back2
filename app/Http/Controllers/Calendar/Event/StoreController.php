@@ -23,7 +23,7 @@ class StoreController extends Controller
     {
         $validated = $request->validated();
 
-        Event::create_($request->all());
+        Event::createRow($request->all());
         
         return redirect()
             ->route('events.index')

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEvent;
 use App\{Worker, Employer, Event};
+use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -27,9 +28,11 @@ class StoreController extends Controller
         Employer $employer,
         string $year_month
     ): RedirectResponse {
+        // dd($request->segment(2));
+        // $se = new StoreEvent($worker->id);
         $validated = $request->validated();
 
-        $event = Event::create_($validated);
+        $event = Event::createRow($validated);
 
         if ($event) {
             $info = 'success';

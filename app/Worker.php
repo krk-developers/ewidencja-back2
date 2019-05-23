@@ -92,7 +92,6 @@ class Worker extends Model
             ->whereDate('start', '>=', $start)
             ->whereDate('end', '<=', $end)
             ->orderBy('start', 'asc')
-            // ->orderByRaw('start DESC')
             ->get();
     }
 
@@ -104,14 +103,17 @@ class Worker extends Model
      * 
      * @return int
      */
-    public static function childcareDayCount(int $workerID, int $year): int
+    public static function childcareDay(int $workerID, int $year): Collection
     {
         return DB::table('events')
+            ->select('start', 'end')
             ->join('legends', 'events.legend_id', 'legends.id')
             ->where('events.worker_id', $workerID)
             ->whereRaw("YEAR(events.start) = ?", [$year])
             ->where('legends.name', 'DOD')
-            ->count();
+            ->orderBy('start')
+            ->get();
+            //->count();
     }
 
     /**

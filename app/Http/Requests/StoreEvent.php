@@ -32,7 +32,7 @@ class StoreEvent extends FormRequest
                 [
                     'required',
                     'numeric',
-                    new Legend($this->all(), Auth::id())
+                    new Legend($this),
                 ],
             'employer_id' => ['required', 'numeric'],
             'worker_id' => ['required', 'numeric'],

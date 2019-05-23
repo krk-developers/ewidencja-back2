@@ -30,7 +30,6 @@ class Days
      */
     public static function start(string $yearMonth): CarbonImmutable
     {
-        // dd($yearMonth);
         return CarbonImmutable::parse($yearMonth);
     }
 
@@ -79,18 +78,25 @@ class Days
      */
     public static function publicHolidayFilter(
         CarbonPeriod $timePeriod,
-        Collection $pluckedPublicHolidaysInMonth
+        Collection $publicHolidaysInMonth
     ): CarbonPeriod {
-        $publicHolidayFilter = function ($value) use ($pluckedPublicHolidaysInMonth) {
+        $publicHolidayFilter = function ($value) use ($publicHolidaysInMonth) {
             return ! in_array(
                 $value->format('Y-m-d'),
-                $pluckedPublicHolidaysInMonth->toArray()
+                $publicHolidaysInMonth->toArray()
             );
         };
         
         return $timePeriod->filter($publicHolidayFilter);
     }
     
+    /**
+     * Number of absences.
+     *
+     * @param Collection $workerEvents Worker's events
+     * 
+     * @return integer
+     */
     public static function absenceInDays(Collection $workerEvents): int
     {
         $absenceInDays = 0;
@@ -105,7 +111,8 @@ class Days
     /**
      * Whether time period are working days
      *
-     * @param CarbonPeriod $timePeriod Time period
+     * @param string $start Event's start
+     * @param string $end   Event's end
      * 
      * @return boolean
      */
@@ -121,7 +128,22 @@ class Days
         
         return true;
     }
-    
+
+    /**
+     * Number of days in a given period time
+     *
+     * @param string $start Period start date YYYY-MM-DD
+     * @param string $end   Period end date YYYY-MM-DD
+     * 
+     * @return integer
+     */
+    public static function timePeriodCount(string $start, string $end): int
+    {
+        $timePeriod = CarbonPeriod::between($start, $end);
+
+        return $timePeriod->count();
+    }
+
     /**
      * Whether is weekend day.
      *
@@ -131,9 +153,9 @@ class Days
      */
     public static function isWeekend(string $day): bool
     {
-        $dt = new Carbon($day);
+        $date = new Carbon($day);
 
-        return $dt->isWeekend();
+        return $date->isWeekend();
     }
 
     /**

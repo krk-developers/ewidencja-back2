@@ -16,8 +16,7 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = 
-    [
+    protected $fillable = [
         'legend_id',
         'employer_id',
         'worker_id',
@@ -85,19 +84,19 @@ class Event extends Model
      * 
      * @return Event
      */
-    public static function create_(array $data): Event
+    public static function createRow(array $data): Event
     {
         // employer_id is nullable
         if (isset($data['employer_id'])) {
-            $employer_id = $data['employer_id'];
+            $employerID = $data['employer_id'];
         } else {
-            $employer_id = null;
+            $employerID = null;
         }
 
         return self::create(
             [
                 'legend_id' => $data['legend_id'],
-                'employer_id' => $employer_id,
+                'employer_id' => $employerID,
                 'worker_id' => $data['worker_id'],
                 'start' => $data['start'],
                 'end' => $data['end'],
@@ -110,23 +109,23 @@ class Event extends Model
      * Delete record by primary key.
      * Return 0 or 1.
      *
-     * @param integer $id Primary key
+     * @param integer $eventID Primary key
      * 
      * @return int
      */
-    public static function destroy_(int $id): int
+    public static function destroyRow(int $eventID): int
     {
-        return self::destroy($id);
+        return self::destroy($eventID);
     }
     
     /**
-     * Events assigned to worker
+     * Events assigned to worker.
      *
-     * @param integer $id Worker's identifier.
+     * @param integer $workerID Worker's identifier
      * 
      * @return Collection
      */
-    public static function byWorkerID(int $id): Collection
+    public static function byWorkerID(int $workerID): Collection
     {
         return DB::table('events')
             ->select(
@@ -136,7 +135,7 @@ class Event extends Model
                 'events.worker_id'
             )
             ->join('legends', 'events.legend_id', '=', 'legends.id')
-            ->where('worker_id', $id)
+            ->where('worker_id', $workerID)
             ->get();
     }
 

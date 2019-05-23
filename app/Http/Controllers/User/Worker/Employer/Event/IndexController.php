@@ -16,13 +16,10 @@ class IndexController extends Controller
      */
     public function __invoke(Worker $worker, Employer $employer, string $year_month)  // Request $request
     {
+        // return __CLASS__;
         // pracownicy/{worker}/pracodawcy/{employer}/wydarzenia
         // return $year_month;
         $start = Days::start($year_month);  // start period time for which we calculate the statistics
-        // return $start->toDateString();
-        $monthName = $start->monthName;
-
-        // $end = Days::end($monthName, $start);  // current day or end of the month
         $end = $start->endOfMonth();
 
         $startAsString = $start->toDateString();
@@ -30,10 +27,11 @@ class IndexController extends Controller
         // return $startAsString;
         $previousMonth = $start->subMonth()->startOfMonth();
         // return $previousMonth;
-        $previousMonthAsYearMonth = $previousMonth->format('Y-m');
-        $nextMonthAsYearMonth = $start->addMonth()->format('Y-m');
+        $previousMonth = $previousMonth->format('Y-m');
+        $nextMonth = $start->addMonth()->format('Y-m');
         // return $previousMonthAsYearMonth;
         // return $end->toDateString();
+        // return $worker->id;
         $events = $worker->eventsByEmployerID(
             $employer->id, $startAsString, $endAsString
         );
@@ -47,8 +45,8 @@ class IndexController extends Controller
                 'start' => $startAsString,
                 'end' => $endAsString,
                 'year_month' => $year_month,
-                'previous_month' => $previousMonthAsYearMonth,
-                'next_month' => $nextMonthAsYearMonth,
+                'previous_month' => $previousMonth,
+                'next_month' => $nextMonth,
             ]
         );
     }

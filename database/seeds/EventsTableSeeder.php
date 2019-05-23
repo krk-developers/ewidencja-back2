@@ -107,6 +107,7 @@ class EventsTableSeeder extends Seeder
         );
         
         // ///////////////////////////////////////////////////////////////////
+        /*
         DB::table('events')->insert(
             [
                 'legend_id' => 18,
@@ -138,6 +139,7 @@ class EventsTableSeeder extends Seeder
                 'title' => 'Zwichnięcie palca u nogi',
             ]
         );
+        */
         /*
         DB::table('events')->insert(
             [
