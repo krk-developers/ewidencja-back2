@@ -13,25 +13,9 @@ class EmployersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('employers')->insert(
-            [             
-                'company' => 'JanuszSoft',
-            ]
-        );
-        DB::table('employers')->insert(
-            [             
-                'company' => 'Sebix',
-            ]
-        );
-        DB::table('employers')->insert(
-            [             
-                'company' => 'Microsoft Corporation',
-            ]
-        );
-        DB::table('employers')->insert(
-            [             
-                'company' => 'Apple Inc.',
-            ]
-        );
+        DB::table('employers')->insert(['company' => 'Janusz Soft']);
+        DB::table('employers')->insert(['company' => 'Sebix']);
+        DB::table('employers')->insert(['company' => 'Microsoft Corporation']);
+        DB::table('employers')->insert(['company' => 'Apple Inc.']);
     }
 }

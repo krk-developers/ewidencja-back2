@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LegendsTableSeeder::class);
         $this->call(EventsTableSeeder::class);
         $this->call(EmployerWorkerTableSeeder::class);
+        $this->call(ProvincesTableSeeder::class);
     }
 }
