@@ -56,7 +56,15 @@ class Worker extends Model
         return $this->hasMany('App\Event')->orderBy('start');
     }
 
-    public function eventsByTimePeriod($start, $end)
+    /**
+     * Worker's events beetwen dates.
+     *
+     * @param string $start Start date
+     * @param string $end   End   date
+     * 
+     * @return Collection
+     */
+    public function eventsByTimePeriod(string $start, string $end): Collection
     {
         return DB::table('events')
             ->select(
@@ -73,11 +81,20 @@ class Worker extends Model
             ->get();
     }
 
-    public function eventsByEmployerID(int $employerID, string $start, string $end)
-    {
-        // return DB::table('events')
-        // ->where('employer_id', 1)->get()
-        // return $this->events()
+    /**
+     * Worker's events between dates at the given employer.
+     *
+     * @param integer $employerID Emplopyer id
+     * @param string $start Start date
+     * @param string $end End date
+     * 
+     * @return Collection
+     */
+    public function eventsByEmployerID(
+        int $employerID,
+        string $start,
+        string $end
+    ): Collection {
         return DB::table('events')
             ->select(
                 'events.id', 'events.employer_id', 'events.worker_id', 
@@ -168,13 +185,13 @@ class Worker extends Model
     /**
      * Find by primary key
      *
-     * @param integer $id Primary key
+     * @param integer $workerID Primary key
      * 
      * @return Worker
      */
-    public static function findRow(int $id): Worker
+    public static function findRow(int $workerID): Worker
     {
-        return self::find($id);
+        return self::find($workerID);
     }
     
     /**
@@ -182,6 +199,7 @@ class Worker extends Model
      *
      * @return void
      */
+    
     public static function all_(): Collection
     {
         return Worker::with(
@@ -191,27 +209,8 @@ class Worker extends Model
             ]
         )
         ->get();
-        
-        /*
-        return DB::table('workers')
-            ->select(
-                'workers.id', 'users.name as firstname',
-                'workers.lastname', 'workers.pesel', 'users.email',
-                'types.display_name as type_display_name',
-                'employers.id as employer_id', 'employers.company'
-            )
-            ->join('users', 'workers.id', '=', 'users.userable_id')
-            ->join('types', 'users.type_id', '=', 'types.id')
-            ->leftJoin(
-                'employer_worker', 'workers.id', '=', 'employer_worker.worker_id'
-            )
-            ->leftJoin(
-                'employers', 'employer_worker.employer_id', '=', 'employers.id'
-            )
-            ->where('types.name', 'worker')
-            ->get();
-        */
     }
+    
 
     public static function all__(): Collection
     {
@@ -224,9 +223,18 @@ class Worker extends Model
             ->get();
     }
 
-    public static function all___()
+    /**
+     * Workers sorted by last name
+     *
+     * @return Collection
+     */
+    public static function allSortBy(): Collection
     {
-        return self::all();
+        $workers = self::all();
+        $collection = collect($workers);
+        $sorted = $collection->sortBy('lastname');
+
+        return $sorted;
     }
 
     /**

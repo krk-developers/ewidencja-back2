@@ -24,8 +24,7 @@ class IndexController extends Controller
             return redirect()->route('workers.show', Auth::user()->userable->id);
         }
         
-        $users = User::byType('worker');
-        $workers = Worker::all___();
+        $workers = Worker::allSortBy();
 
         return view(
             'user.worker.index',
