@@ -6,6 +6,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Collection;
 
 class Admin extends Model
 {
@@ -28,24 +29,38 @@ class Admin extends Model
         return $this->morphOne('App\User', 'userable');
     }
 
-    public static function all_()
+    /**
+     * Admins sorted by las name
+     *
+     * @return Collection
+     */
+    public static function allSortBy(): Collection
     {
-        return self::all();
+        $admins = self::all();
+        $collection = collect($admins);
+        $sorted = $collection->sortBy('lastname');
+
+        return $sorted;
     }
     
     /**
-     * Create admin
+     * Create Admin
      *
      * @param array $data Request data
      * 
      * @return Admin
      */
-    public static function create_(array $data): Admin
+    public static function createRow(array $data): Admin
     {
         return self::create($data);
     }
 
-    public function delete_()
+    /**
+     * Delete Admin
+     *
+     * @return void
+     */
+    public function deleteRow(): void
     {
         $this->user->delete();
         $this->delete();

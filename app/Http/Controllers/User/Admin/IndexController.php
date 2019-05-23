@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Admin;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Admin;
@@ -16,11 +15,9 @@ class IndexController extends Controller
      *
      * @return View
      */
-    public function __invoke(): View  // Request $request
+    public function __invoke(): View
     {
-        // $users = User::byType('admin');
-        // return $users;
-        $admins = Admin::all_();
+        $admins = Admin::allSortBy();
 
         return view(
             'user.admin.index',
