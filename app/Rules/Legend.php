@@ -31,9 +31,21 @@ class Legend implements Rule
      */
     public function __construct(StoreEvent $storeEvent)
     {
-        $workerID = (int) $storeEvent->segment(2);
+        // dd($storeEvent['worker_id']);
+        // $workerID = (int) $storeEvent->segment(2);
+        // $employerID = (int) $storeEvent->segment(4);
+        $workerID = $storeEvent['worker_id'];
+        $employerID = $storeEvent['employer_id'];
+        /*
+        if (isset($storeEvent['worker_id'])) {
+            $workerID = $storeEvent['worker_id'];
+        }
+        if (isset($storeEvent['employer_id'])) {
+            $employerID = $storeEvent['employer_id'];
+        }
+        */
         $this->_worker = Worker::findRow($workerID);
-        $employerID = (int) $storeEvent->segment(4);
+        
         // dd($employerID);
         $this->_eventStart = $storeEvent['start'];
         $this->_eventEnd = $storeEvent['end'];

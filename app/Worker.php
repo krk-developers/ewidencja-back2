@@ -20,9 +20,9 @@ class Worker extends Model
      */
     protected $fillable = [
         'lastname', 'pesel',
-        'contract_from',
+        /*'contract_from',
         'contract_to',
-        'part_time',
+        'part_time',*/
         'equivalent',
         'equivalent_amount',
         'effective'
@@ -189,7 +189,7 @@ class Worker extends Model
      * 
      * @return Worker
      */
-    public static function findRow(int $workerID): Worker
+    public static function findRow(int $workerID): ?Worker
     {
         return self::find($workerID);
     }

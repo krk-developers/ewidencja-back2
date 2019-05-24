@@ -22,9 +22,11 @@ class CreateWorkersTable extends Migration
                 $table->increments('id');
                 $table->string('lastname', 30)->nullable();
                 $table->unsignedBigInteger('pesel')->unique()->nullable();
+                /*
                 $table->date('contract_from')->default(DB::raw('CURRENT_TIMESTAMP'));  // umowa o pracę
                 $table->date('contract_to')->nullable()->default(null);
                 $table->float('part_time', 8, 2)->default(1);  // wymiar etatu
+                */
                 $table->boolean('equivalent')->default(0);  // ekwiwalent
                 $table->decimal('equivalent_amount', 4, 2)->default(0);  // kwota ekwiwalentu
                 $table->tinyInteger('effective')->default(1);  // etat efektywny

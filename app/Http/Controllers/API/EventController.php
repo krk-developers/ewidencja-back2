@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 
 // use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Event;
+use App\Http\Requests\StoreEvent;
 use App\Http\Resources\Event as EventResource;
 
 class EventController extends Controller
@@ -32,11 +33,12 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreEvent $request): JsonResponse
     {
+        $validated = $request->validated();
         // return response()->json($request, 201);
         
-        $created = Event::createRow($request->all());
+        $created = Event::createRow($validated);  // $request->all()
 
         if (! $created) {
             return response()->json(['created' => false]);

@@ -28,6 +28,7 @@ class StoreController extends Controller
         Employer $employer,
         string $year_month
     ): RedirectResponse {
+        // return $request;
         // dd($request->segment(2));
         // $se = new StoreEvent($worker->id);
         $validated = $request->validated();

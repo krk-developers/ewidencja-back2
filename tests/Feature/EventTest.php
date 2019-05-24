@@ -14,7 +14,7 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    public function testEventIndex(): void
+    public function _testEventIndex(): void
     {
         $response = $this->get(route('api.events.index'));
 
@@ -51,16 +51,20 @@ class EventTest extends TestCase
      */
     public function testEventStore(): void
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         /*
         $maxWorkerID = DB::table('workers')->max('id');
         $workerRandomID = rand(1, $maxWorkerID);
         */
         $lastID = DB::table('workers')->max('id');
+        // dd($lastID);
         $worker = \App\Worker::find($lastID);
-        
+        // dd($worker->employers[0]['id']);
+        $employerID = $worker->employers[0]['id'];
         $maxLegendID = DB::table('legends')->max('id');
+        // dd($maxLegendID);
         $legendRandomID = rand(1, $maxLegendID);
+        // dd($legendRandomID);
         /*
         $event = new \App\Event(
             [
@@ -76,6 +80,8 @@ class EventTest extends TestCase
             'POST',
             route('api.events.store'),
             [
+                // 'worker_id' => $worker->id,
+                'employer_id' => $employerID,
                 'legend_id' => $legendRandomID,
                 'worker_id' => $worker->id,
                 'start' => date('Y-m-d'),
@@ -83,6 +89,7 @@ class EventTest extends TestCase
                 'title' => now(),
             ]
         );
+        // $response->dump();
         // dd($response);
         $response
             ->assertStatus(201)
@@ -97,7 +104,7 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    public function testEventDestroy(): void
+    public function _testEventDestroy(): void
     {
         $this->withoutExceptionHandling();
 

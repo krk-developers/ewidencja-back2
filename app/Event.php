@@ -86,11 +86,11 @@ class Event extends Model
      */
     public static function createRow(array $data): Event
     {
+        $employerID = null;
+        
         // employer_id is nullable
         if (isset($data['employer_id'])) {
             $employerID = $data['employer_id'];
-        } else {
-            $employerID = null;
         }
 
         return self::create(
