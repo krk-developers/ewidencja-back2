@@ -21,7 +21,7 @@ class CreateProvincesTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 // $table->tinyInteger('teryt');
-                $table->string('province', 20);  // TODO short
+                $table->string('name', 20);
                 // $table->string('provincial_city', 60);
             }
         );

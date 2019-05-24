@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Employer;
+use App\{Province, Employer};
 
 class EditController extends Controller
 {
@@ -19,9 +19,14 @@ class EditController extends Controller
      */
     public function __invoke(Employer $employer): View
     {
+        $provinces = Province::allRows();
+
         return view(
             'user.employer.edit',
-            ['employer' => $employer]
+            [
+                'employer' => $employer,
+                'provinces' => $provinces
+            ]
         );
     }
 }

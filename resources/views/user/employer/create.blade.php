@@ -103,6 +103,9 @@
                                         <label for="province_id" class="col-sm-2 col-form-label">Województwo</label>
                                         <div class="col-sm-10">
                                             <select id="province_id" name="province_id" class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}">
+@foreach ($provinces as $province)
+                                                <option value="{{ $province->id }}" @if (old('province_id') == $province->id)selected @endif>{{ $province->name }}</option>
+@endforeach
                                             </select>
 @if ($errors->has('province_id'))
                                             <span class="invalid-feedback" role="alert">

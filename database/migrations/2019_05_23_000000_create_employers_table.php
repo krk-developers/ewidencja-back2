@@ -24,7 +24,12 @@ class CreateEmployersTable extends Migration
                 $table->string('street', 60)->nullable();
                 $table->string('zip_code', 6)->nullable();
                 $table->string('city', 30)->nullable();
+                $table->unsignedInteger('province_id')->nullable()->default(null);
                 $table->timestamps();
+                
+                $table->foreign('province_id')
+                    ->references('id')->on('provinces')
+                    ->onDelete('set null');
             }
         );
     }

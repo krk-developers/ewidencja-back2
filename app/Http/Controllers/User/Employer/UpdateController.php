@@ -38,14 +38,14 @@ class UpdateController extends Controller
             $saved = $employer->user->save();
         }
 
+        $status = 'info';
+        $message = "Nie zmieniono";
+        
         if ($saved) {
             $status = 'success';
             $message = "Zmieniono";
-        } else {
-            $status = 'info';
-            $message = "Nie zmieniono";
         }
-
+        
         return redirect()
             ->route('employers.show', $employer->id)
             ->with($status, $message);

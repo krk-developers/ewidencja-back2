@@ -30,6 +30,22 @@
                                             <td><i class="fas fa-industry"></i> {{ $employer->company }}</td>
                                         </tr>
                                         <tr>
+                                            <th scope="row">NIP</th>
+                                            <td>{{ $employer->nip }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ulica i numer</th>
+                                            <td>{{ $employer->street }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Kod pocztowy i miasto</th>
+                                            <td>{{ $employer->zip_code }} {{ $employer->city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Województwo</th>
+                                            <td>@isset($employer->province){{ $employer->province->name }}@endisset</td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row">Uprawnienia</th>
                                             <td>{{ $employer->user->type->display_name }}</td>
                                         </tr>

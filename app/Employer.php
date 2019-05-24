@@ -7,6 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class Employer extends Model
      * @var array
      */
     protected $fillable = [
-        'company',
+        'company', 'nip', 'street', 'zip_code', 'city', 'province_id'
     ];
        
     /**
@@ -49,6 +50,16 @@ class Employer extends Model
     public function workers(): BelongsToMany
     {
         return $this->belongsToMany('App\Worker');
+    }
+
+    /**
+     * Get the province that owns the employer's address.
+     *
+     * @return BelongsTo
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo('App\Province');
     }
 
     /**
@@ -135,7 +146,9 @@ class Employer extends Model
         $this->workers()->detach();
 
         // remove user
-        $this->user->delete();
+        if ($this->user) {
+            $this->user->delete();
+        }
 
         // remove worker
         return $this->delete();

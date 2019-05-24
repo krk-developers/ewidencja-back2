@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use App\Province;
 
 class CreateController extends Controller
 {
@@ -14,6 +15,8 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        return view('user.employer.create');
+        $provinces = Province::allRows();
+        
+        return view('user.employer.create', ['provinces' => $provinces]);
     }
 }

@@ -21,8 +21,9 @@ class StoreController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(StoreEmployer $request): RedirectResponse
+    public function __invoke(StoreEmployer $request)//: RedirectResponse Request
     {
+        // return $request;
         $validated = $request->validated();
 
         $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
@@ -32,7 +33,7 @@ class StoreController extends Controller
         $request['userable_id'] = $employer->id;
         $request['userable_type'] = self::TYPE_MODEL_NAME;
 
-        $user = User::createRow($request->all());
+        User::createRow($request->all());
 
         return redirect()->route('employers.index')->with('success', 'Dodano');
     }
