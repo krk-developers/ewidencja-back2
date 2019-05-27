@@ -99,18 +99,6 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Umowa od</th>
-                                            <td>{{ $worker->contract_from }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Umowa do</th>
-                                            <td>{{ $worker->contract_to }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Wymiar etatu</th>
-                                            <td>{{ $worker->part_time }}</td>
-                                        </tr>
-                                        <tr>
                                             <th scope="row">Ekwiwalent</th>
                                             <td>
 @if ($worker->equivalent == 0)

@@ -16,9 +16,11 @@ class CreateController extends Controller
      */
     public function __invoke(Request $request, Employer $employer)
     {
-
-        $workers = Worker::all__();
-
+        // return __CLASS__;
+        // $workers = Worker::all__();
+        $workers = Worker::allSortBy();
+        // return $workers->user->name;
+        // return $workers;
         return view(
             'user.employer.worker.create',
             [

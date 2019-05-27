@@ -69,53 +69,6 @@
                                             <small id="emailHelp" class="form-text text-muted">Pola nie można edytować</small>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group row">
-                                        <label for="contract_from" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa od</label>
-                                        <div class="col-sm-10">
-                                            <input type="date" id="contract_from" name="contract_from" class="form-control{{ $errors->has('contract_from') ? ' is-invalid' : '' }}" value="{{ $worker->contract_from }}" placeholder="Początkowa data umowy o pracę" required>
-@if ($errors->has('contract_from'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('contract_from') }}</strong>
-                                            </span>
-@else
-                                            <small id="contract_from_help" class="form-text text-muted">Pole obowiązkowe</small>
-@endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="contract_to" class="col-sm-2 col-form-label" data-toggle="tooltip" data-placement="top" title="Umowa o pracę">Umowa do</label>
-                                        <div class="col-sm-10">
-                                            <input type="date" id="contract_to" name="contract_to" class="form-control{{ $errors->has('contract_to') ? ' is-invalid' : '' }}" value="{{ $worker->contract_to }}" placeholder="Końcowa data umowy o pracę">
-@if ($errors->has('contract_to'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('contract_to') }}</strong>
-                                            </span>
-@else
-                                            <small id="contract_to_help" class="form-text text-muted">Pole nieobowiązkowe. Brak daty oznacza umowę na czas nieokreślony</small>
-@endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="part_time" class="col-sm-2 col-form-label">Wymiar etatu</label>
-                                        <div class="col-sm-10">
-                                            <select id="part_time" name="part_time" class="form-control{{ $errors->has('part_time') ? ' is-invalid' : '' }}" placeholder="Wymiar etatu">
-                                                <option value="1.00" @if ($worker->part_time == 1.00)selected @endif>1</option>
-                                                <option value="0.75" @if ($worker->part_time == 0.75)selected @endif>0.75</option>
-                                                <option value="0.50" @if ($worker->part_time == 0.50)selected @endif>0.5</option>
-                                                <option value="0.25" @if ($worker->part_time == 0.25)selected @endif>0.25</option>
-                                            </select>
-@if ($errors->has('part_time'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('part_time') }}</strong>
-                                            </span>
-@else
-                                            <small id="part_time_help" class="form-text text-muted">Pole obowiązkowe</small>
-@endif
-                                        </div>
-                                    </div>
 
                                     <div class="form-group row">
                                         <label for="equivalent" class="col-sm-2 col-form-label">Ekwiwalent {{ old('equivalent') }}</label>

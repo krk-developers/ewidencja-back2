@@ -252,14 +252,14 @@ class Employer extends Model
     /**
      * Assign worker to employer
      *
-     * @param integer $id Worker ID
+     * @param integer $workerID Worker ID
      * 
      * @return array Array with status and message
      */
-    public function addWorker(int $id): array
+    public function addWorker(int $workerID): array
     {
         try {
-            $this->workers()->attach($id);
+            $this->workers()->attach($workerID);
             
             return [
                 'status' => 'success',
@@ -284,10 +284,12 @@ class Employer extends Model
      *
      * @param integer $id Worker ID
      * 
-     * @return void bool
+     * @return int 0 | 1
      */
-    public function removeWorker(int $id): int
+    
+    public function removeWorker(int $workerID)//: int
     {
-        return $this->workers()->detach($id);
+        // dd($workerID);
+        return $this->workers()->detach($workerID);
     }
 }

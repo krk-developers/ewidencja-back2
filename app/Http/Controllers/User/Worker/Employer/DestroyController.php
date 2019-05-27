@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Worker\Employer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\{Worker, Employer};
 
 class DestroyController extends Controller
@@ -17,14 +18,15 @@ class DestroyController extends Controller
      * @param Worker   $worker   Worker
      * @param Employer $employer Employer
      * 
-     * @return RedirectResponse
+     * @return View|RedirectResponse
      */
     public function __invoke(
         Request $request,
         Worker $worker,
         Employer $employer
-    ) {  // : RedirectResponse
-        // return __CLASS__;
+    ): object {
+        
+        // dd($worker);
         /*
         $worker->removeEmployer($employer->id);  // int
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User\Employer\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\{Employer, Worker};
 
 class DestroyController extends Controller
@@ -11,25 +13,29 @@ class DestroyController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request  $request  Request
+     * @param Employer $employer Employer
+     * @param Worker   $worker   Worker
+     * 
+     * @return View|RedirectResponse
      */
-    public function __invoke(Request $request, Employer $employer, Worker $worker)
-    {
+    public function __invoke(
+        Request $request,
+        Employer $employer,
+        Worker $worker
+    ): object {
         // return __CLASS__;
-        /*
-        $employer->removeWorker($worker->id);  // int
-
-        return redirect()
-            ->route('employers.show', $employer->id)
-            ->with('success', 'Usunięto');
-        */
 
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $employer->removeWorker($worker->id);  // int
-
+            // $worker->removeEmployer($employer->id);
+            $employer->removeWorker($worker->id);
+            /*
+            return redirect()
+                ->route('workers.show', $worker->id)
+                ->with('success', 'Usunięto');
+            */
             return redirect()
                 ->route('employers.show', $employer->id)
                 ->with('success', 'Usunięto');

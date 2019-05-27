@@ -20,7 +20,7 @@
                                             <select id="worker_id" name="worker_id" class="form-control">
 @forelse ($workers as $worker)
                                                 <option value="{{ $worker->id }}" title="{{ $worker->pesel }}">
-                                                    {{ $worker->name }} {{ $worker->lastname }}
+                                                    {{ $worker->user->name }} {{ $worker->lastname }}
                                                 </option>
 @endforeach
                                             </select>

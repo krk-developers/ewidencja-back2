@@ -17,11 +17,12 @@ class StoreController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, Employer $employer): RedirectResponse
+    public function __invoke(Request $request, Employer $employer)//: RedirectResponse
     {
-        $id = (int) $request->input('worker_id');
+        // return __CLASS__;
+        $workerID = (int) $request->input('worker_id');
 
-        $result = $employer->addWorker($id);
+        $result = $employer->addWorker($workerID);
 
         return redirect()
             ->route('employers.show', $employer->id)

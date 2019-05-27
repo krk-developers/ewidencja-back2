@@ -20,9 +20,6 @@ class Worker extends Model
      */
     protected $fillable = [
         'lastname', 'pesel',
-        /*'contract_from',
-        'contract_to',
-        'part_time',*/
         'equivalent',
         'equivalent_amount',
         'effective'
@@ -254,10 +251,25 @@ class Worker extends Model
         return $this->delete();
     }
 
-    public function addEmployer(int $id): array
+    /**
+     * Attach the employer to the worker
+     *
+     * @param array $data Worker data
+     * 
+     * @return array
+     */
+    public function addEmployer(array $data): array
     {
+        // dd($data);
         try {
-            $this->employers()->attach($id);  // null
+            $this->employers()->attach(
+                $data['employer_id'],
+                [
+                    'contract_from' => $data['contract_from'],
+                    'contract_to' => $data['contract_to'],
+                    'part_time' => $data['part_time'],
+                ]
+            );  // null
 
             return [
                 'status' => 'success',
@@ -276,9 +288,16 @@ class Worker extends Model
             ];
         }       
     }
-
-    public function removeEmployer(int $id)
+    
+    /**
+     * Detach the employer from the worker
+     *
+     * @param integer $employerID Employer ID
+     * 
+     * @return integer 0|1
+     */
+    public function removeEmployer(int $employerID): int
     {
-        return $this->employers()->detach($id);
+        return $this->employers()->detach($employerID);
     }
 }

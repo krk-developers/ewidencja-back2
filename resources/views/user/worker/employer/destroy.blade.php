@@ -15,7 +15,7 @@
                             </p>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">
+                            <form action="{{ route('workers.employers.destroy', [$worker->id, $employer->id]) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')
