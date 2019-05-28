@@ -15,20 +15,28 @@
 
 // Route::middleware('auth:api')->group(
     // function () {
-        /*
-        Route::apiResource('legends', 'API\LegendController')
-        ->only(['index', 'store', 'destroy']);
-        */
-        Route::get('legends', 'API\LegendController@index')
-            ->name('api.legends.index');
-        Route::post('legends', 'API\LegendController@store')
-            ->name('api.legends.store');
-        Route::delete('legends/{legend}', 'API\LegendController@destroy')
-            ->name('api.legends.destroy');
-        /*
-        Route::apiResource('events', 'API\EventController')
-            ->only(['index', 'store', 'destroy']);
-        */
+        
+        // legend
+        Route::get(
+            'legends',
+            'API\LegendController@index'
+        )->name('api.legends.index');
+        Route::post(
+            'legends',
+            'API\LegendController@store'
+        )->name('api.legends.store');
+        Route::delete(
+            'legends/{legend}',
+            'API\LegendController@destroy'
+        )->name('api.legends.destroy');
+        
+        // province
+        Route::get(
+            'provinces',
+            'API\ProvinceController@index'
+        )->name('api.provinces.index');
+
+        // event
         Route::get('events', 'API\EventController@index')
             ->name('api.events.index');
         Route::post('events', 'API\EventController@store')
@@ -85,7 +93,7 @@
             ->name('api.employers.update');
         Route::delete('employers/{employer}', 'API\EmployerController@destroy')
             ->name('api.employers.destroy');
-
+        
         // worker ////////////////////////////////////////////////////////////
         Route::get('workers', 'API\WorkerController@index')
             ->name('api.workers.index');

@@ -220,8 +220,7 @@ Route::middleware('auth')->group(
         )
         ->name('workers.edit');
         
-        // worker/employer
-
+        // worker / employer
         Route::get(
             'pracownicy/{worker}/pracodawcy/dodaj',
             'User\Worker\Employer\CreateController'
@@ -240,8 +239,7 @@ Route::middleware('auth')->group(
         )
         ->name('workers.employers.destroy');
         
-        // worker/event
-        
+        // worker / event
         Route::get(
             'pracownicy/{worker}/wydarzenia',
             'User\Worker\Event\IndexController'
@@ -310,15 +308,13 @@ Route::middleware('auth')->group(
             'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{year_month}/utworz',
             'User\Worker\Employer\Event\CreateController'
         )
-            ->name('workers.employers.events.create');
-            //->where('year_month', '[0-9][0-9][0-9][0-9]-[0-9][0-9]');
+        ->name('workers.employers.events.create');
+        //->where('year_month', '[0-9][0-9][0-9][0-9]-[0-9][0-9]');
 
         Route::get(
             'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}',
             'User\Worker\Employer\Event\ShowController'
-        )
-            ->name('workers.employers.events.show')
-            ->where('event', '[0-9]+');
+        )->name('workers.employers.events.show')->where('event', '[0-9]+');
 
         Route::put(
             'pracownicy/{worker}/pracodawcy/{employer}/wydarzenia/{event}/{year_month}',
@@ -339,7 +335,7 @@ Route::middleware('auth')->group(
         )
             ->name('workers.employers.events.edit');
 
-        // worker record /////////////////////////////////////////////////////
+        // worker / record ///////////////////////////////////////////////////
         Route::get(
             'pracownicy/{worker}/ewidencja/{year_month}',
             'User\Worker\Record\IndexController'
