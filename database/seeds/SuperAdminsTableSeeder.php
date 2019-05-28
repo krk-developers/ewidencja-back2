@@ -13,35 +13,11 @@ class SuperAdminsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Miłkowski',
-            ]
-        );
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Sztefko',
-            ]
-        );
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Hołymczuk',
-            ]
-        );
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Zygulski',
-            ]
-        );
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Wilk',
-            ]
-        );
-        DB::table('super_admins')->insert(
-            [             
-                'lastname' => 'Kowalczyk',
-            ]
-        );
+        DB::table('super_admins')->insert(['lastname' => 'Miłkowski']);
+        DB::table('super_admins')->insert(['lastname' => 'Sztefko']);
+        DB::table('super_admins')->insert(['lastname' => 'Hołymczuk']);
+        DB::table('super_admins')->insert(['lastname' => 'Zygulski']);
+        DB::table('super_admins')->insert(['lastname' => 'Wilk']);
+        DB::table('super_admins')->insert(['lastname' => 'Kowalczyk']);
     }
 }

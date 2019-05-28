@@ -115,6 +115,7 @@ class UsersTableSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]
         );
+        
         // employer //////////////////////////////////////////////////////////
         DB::table('users')->insert(
             [

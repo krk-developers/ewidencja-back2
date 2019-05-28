@@ -13,21 +13,8 @@ class AdminsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        
-        DB::table('admins')->insert(
-            [             
-                'lastname' => 'Karasewicz',
-            ]
-        );
-        DB::table('admins')->insert(
-            [             
-                'lastname' => 'Tomaszewski',
-            ]
-        );
-        DB::table('admins')->insert(
-            [             
-                'lastname' => 'Kępicki',
-            ]
-        );
+        DB::table('admins')->insert(['lastname' => 'Karasewicz']);
+        DB::table('admins')->insert(['lastname' => 'Tomaszewski']);
+        DB::table('admins')->insert(['lastname' => 'Kępicki']);
     }
 }
