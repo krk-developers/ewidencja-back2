@@ -6,15 +6,12 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\JsonResponse;
-// use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\{Worker, User, Event, Type};
 use App\Http\Resources\Worker as WorkerResource;
 use App\Http\Resources\Event as EventResource;
 use App\Http\Requests\{StoreWorker, UpdateWorker};
 use Illuminate\Validation\Rule;
 use Validator;
-use Illuminate\Validation\ValidationException;
 
 class WorkerController extends Controller
 {
@@ -70,7 +67,6 @@ class WorkerController extends Controller
      */
     public function show(Worker $worker): EventResource
     {
-        // return $worker;
         // return response()->json(['function' => $worker->events]);
         // return response()->json(['function' => __FUNCTION__ . $worker->id]);
         return new EventResource(Event::byWorkerID($worker->id));
@@ -97,19 +93,12 @@ class WorkerController extends Controller
         // dd($validator->fails());
         // dd($validator->errors());
         $message = 'updated';
-        /*
-        if ($validator->fails()) {
-            return response()->json([$message => false, $validator->errors()], 422);
-        }
-        */
+
         $validated = $request->validated();
-        // dd($validated);
 
         $saved = false;
         
         $worker->fill($validated);
-        
-        // dd($worker->isDirty());
 
         // TODO why is dirty?
         if ($worker->isDirty()) {
@@ -120,11 +109,7 @@ class WorkerController extends Controller
         if ($worker->user->isDirty()) {
             $saved = $worker->user->saveRow();            
         }
-        /*
-        if ($saved) {
-            $message = true;
-        }
-        */
+
         return response()->json([$message => $saved], 200);
     }
 
@@ -143,5 +128,9 @@ class WorkerController extends Controller
         }
 
         return response()->json(['deleted' => true]);
+    }
+
+    public function addEmployer()
+    {
     }
 }

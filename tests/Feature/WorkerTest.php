@@ -8,7 +8,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\ValidationException;
-use App\{User, Worker};
+use App\{Employer, Worker};
 use Illuminate\Support\Facades\DB;
 
 class WorkerTest extends TestCase
@@ -116,9 +116,7 @@ class WorkerTest extends TestCase
             [
                 'lastname' => 'Odyniec',
                 'pesel' => 86486434569,
-                'contract_from' => '2019-05-19',
-                'part_time' => 0.75,
-                'equivalent' => 1,  // The equivalent amount field is required
+                'equivalent' => 1,
                 'effective' => 3,
                 'name' => 'Natalia',
                 'email' => 'natka@gmail.com',
@@ -139,8 +137,8 @@ class WorkerTest extends TestCase
             [
                 'lastname' => 'Odyniec',
                 'pesel' => 86486434569,
-                'contract_from' => '2019-05-19',
-                'part_time' => 0.75,
+                // 'contract_from' => '2019-05-19',
+                // 'part_time' => 0.75,
                 'equivalent' => 1,
                 'equivalent_amount' => 20,
                 'effective' => 3,
@@ -180,16 +178,14 @@ class WorkerTest extends TestCase
                 'name' => 'Zofia',
                 'lastname' =>  'Odyniec',
                 'pesel' => 86486123569,
-                'contract_from' => '2019-05-19',
-                'contract_to' => null,
-                'part_time' => 0.50,
-                'equivalent' => 1,  // equivalent_amount required
-                // 'equivalent_amount' => 0,
+                'equivalent' => 1,
+                // 'equivalent_amount' => 0,  // equivalent_amount required
                 'effective' => 3,
             ]
         );
         // $response->dump();
-        
+
+        // equivalent_amount required
         $response->assertStatus(422);
 
 
@@ -200,9 +196,6 @@ class WorkerTest extends TestCase
                 'name' => 'Zofia',
                 'lastname' =>  'Odyniec',
                 'pesel' => 86486123569,
-                'contract_from' => '2019-05-19',
-                'contract_to' => '2019-05-20',
-                'part_time' => 0.50,
                 'equivalent' => 1,
                 'equivalent_amount' => 20,
                 'effective' => 1,
@@ -232,5 +225,49 @@ class WorkerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(['deleted' => true]);
+    }
+
+    public function testAddEmployer(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $workerID = 1;
+        $employerID = 1;
+        $partTime = 1;
+        $response = $this->post(
+            route(
+                'api.workers.employers.store',
+                $workerID
+            ),
+            [
+                'employer_id' => $employerID,
+                'worker_id' => $workerID,
+                'contract_from' => '2019-05-01',
+                'contract_to' => '',
+                'part_time' => $partTime,
+            ]
+        );
+        // $response->assertJson(['function' => 'store']);
+        // $response->dump();
+        $response
+            ->assertStatus(201)
+            ->assertJson(['created' => true]);
+    }
+
+    public function testRemoveEmployer(): void
+    {
+        // $this->withoutExceptionHandling();
+
+        $workerID = 1;
+        $employerID = 1;
+
+        $response = $this->json(
+            'DELETE',
+            route('api.workers.employers.destroy', [$workerID, $employerID])
+        );
+
+        // $response->dump();
+
+        $response->assertStatus(200)->assertJson(['deleted' => true]);
     }
 }

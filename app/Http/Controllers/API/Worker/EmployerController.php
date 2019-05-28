@@ -1,30 +1,21 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use App\{Worker, Employer};
 
-// use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use App\Event;
-use App\Http\Requests\StoreEvent;
-use App\Http\Resources\Event as EventResource;
-
-class EventController extends Controller
+class EmployerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return EventResource
+     * @return \Illuminate\Http\Response
      */
-    public function index(): EventResource
+    public function index()
     {
-        // return response()->json(['function' => __FUNCTION__]);
-        
-        return new EventResource(Event::all_());
+        //
     }
 
     /**
@@ -33,15 +24,16 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEvent $request): JsonResponse
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-        // return response()->json($request, 201);
-        
-        $created = Event::createRow($validated);  // $request->all()
-
-        if (! $created) {
-            return response()->json(['created' => false]);
+        $worker = Worker::findRow($request['worker_id']);
+        // dd($worker);
+        $result = $worker->addEmployer($request->all());
+        // dd($result);
+        if ($result['status'] != 'success') {
+            return response()->json(
+                ['created' => false, 'message' => $result['message']]
+            );
         }
 
         return response()->json(['created' => true], 201);
@@ -73,18 +65,17 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id ID
-     * 
-     * @return JsonResponse
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(Worker $worker, Employer $employer)
     {
-        $deleted = Event::destroyRow($id);
-        
-        if (! $deleted) {
+        $deleted = $worker->removeEmployer($employer->id);  // 0|1
+
+        if ($deleted === 0) {
             return response()->json(['deleted' => false]);
         }
-
+        
         return response()->json(['deleted' => true]);
     }
 }

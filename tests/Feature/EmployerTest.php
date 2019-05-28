@@ -16,7 +16,7 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function _testEmployerIndex(): void
+    public function testEmployerIndex(): void
     {
         $response = $this->get(route('api.employers.index'));
         // dd(route('api.employers.index'));
@@ -102,7 +102,7 @@ class EmployerTest extends TestCase
      *
      * @return void
      */
-    public function _testEmployerEvent(): void
+    public function testEmployerEvent(): void
     {
         $this->withoutExceptionHandling();
 
@@ -152,9 +152,15 @@ class EmployerTest extends TestCase
             [
                 'name' => 'Henryk',
                 'email' => 'test@test.pl',
-                'company' => 'Henryx',
+                // 'company' => 'Henryx',
                 'password' => '12345678',
                 'password_confirmation' => '12345678',
+                'company' => 'Henryx',
+                'nip' => 12345678909,
+                'street' => 'Na Wspólnej 1/2',
+                'zip_code' => '00-001',
+                'city' => 'Warszawa',
+                'province_id' => 2,
             ]
         );
 
@@ -187,15 +193,11 @@ class EmployerTest extends TestCase
             [
                 'name' => 'Henryk',
                 'lastname' => 'Walezy',
-                // 'email' => 'test@test.pl',
                 'company' => 'Henryx',
-                // 'password' => '12345678',
-                // 'password_confirmation' => '12345678',
             ]
         );
-        
         // $response->dump();
-        // dd($response);
+        
         $response
             ->assertStatus(200)
             ->assertJson(['updated' => false]);
@@ -206,10 +208,8 @@ class EmployerTest extends TestCase
             route('api.employers.update', $lastID),
             [
                 'name' => 'Paweł',
-                // 'email' => 'test@test.pl',
                 'company' => 'Pawelo',
-                // 'password' => '12345678',
-                // 'password_confirmation' => '12345678',
+                'city' => 'Łódź',
             ]
         );
         $response->assertStatus(200)->assertJson(['updated' => true]);
