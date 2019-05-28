@@ -260,7 +260,6 @@ class Worker extends Model
      */
     public function addEmployer(array $data): array
     {
-        // dd($data);
         try {
             $this->employers()->attach(
                 $data['employer_id'],

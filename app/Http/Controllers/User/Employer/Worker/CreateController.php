@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Employer\Worker;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\{ Employer, Worker };
 
 class CreateController extends Controller
@@ -11,16 +11,14 @@ class CreateController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Employer $employer Employer
+     * 
+     * @return View
      */
-    public function __invoke(Request $request, Employer $employer)
+    public function __invoke(Employer $employer): View
     {
-        // return __CLASS__;
-        // $workers = Worker::all__();
         $workers = Worker::allSortBy();
-        // return $workers->user->name;
-        // return $workers;
+
         return view(
             'user.employer.worker.create',
             [

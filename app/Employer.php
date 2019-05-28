@@ -126,6 +126,11 @@ class Employer extends Model
             ->get();
     }
     
+    /**
+     * All employers, sort by comany name
+     * 
+     * @return Collection
+     */
     public static function allSortBy(): Collection
     {
         $employers = self::all();
@@ -157,11 +162,11 @@ class Employer extends Model
     /**
      * Workers who work for the employer
      *
-     * @param integer $id Employer identifier
+     * @param integer $employerID Employer identifier
      * 
      * @return Collection
      */
-    public static function workersByEmployerID(int $id): Collection
+    public static function workersByEmployerID(int $employerID): Collection
     {
         return DB::table('workers')
             ->select(
@@ -174,15 +179,18 @@ class Employer extends Model
             ->join('types', 'users.type_id', '=', 'types.id')
             ->where(
                 [
-                    ['employer_worker.employer_id', '=', $id],
+                    ['employer_worker.employer_id', '=', $employerID],
                     ['types.name', '=', 'worker']
                 ]
             )
             ->get();
     }
 
-    public static function workersWithEventsByEmployerID(int $id, string $start, string $end): Collection
-    {
+    public static function workersWithEventsByEmployerID(
+        int $employerID,
+        string $start,
+        string $end
+    ): Collection {
         return DB::table('workers')
             ->select(
                 'workers.id', 'users.name as firstname', 'workers.lastname',
@@ -196,7 +204,7 @@ class Employer extends Model
             ->join('events', 'workers.id', '=', 'events.worker_id')
             ->where(
                 [
-                    ['employer_worker.employer_id', '=', $id],
+                    ['employer_worker.employer_id', '=', $employerID],
                     ['types.name', '=', 'worker']
                 ]
             )
@@ -252,14 +260,21 @@ class Employer extends Model
     /**
      * Assign worker to employer
      *
-     * @param integer $workerID Worker ID
+     * @param array $data Worker data
      * 
      * @return array Array with status and message
      */
-    public function addWorker(int $workerID): array
+    public function addWorker(array $data): array
     {
         try {
-            $this->workers()->attach($workerID);
+            $this->workers()->attach(
+                $data['worker_id'],
+                [
+                    'contract_from' => $data['contract_from'],
+                    'contract_to' => $data['contract_to'],
+                    'part_time' => $data['part_time'],
+                ]
+            );  // null
             
             return [
                 'status' => 'success',
@@ -281,15 +296,13 @@ class Employer extends Model
 
     /**
      * Remove the worker from the employer's list
-     *
-     * @param integer $id Worker ID
      * 
-     * @return int 0 | 1
+     * @param integer $workerID Worker ID
+     * 
+     * @return int 0|1
      */
-    
-    public function removeWorker(int $workerID)//: int
+    public function removeWorker(int $workerID): int
     {
-        // dd($workerID);
         return $this->workers()->detach($workerID);
     }
 }
