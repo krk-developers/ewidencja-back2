@@ -230,4 +230,50 @@ class EmployerTest extends TestCase
 
         $response->assertStatus(200)->assertJson(['deleted' => true]);
     }
+
+    public function testAddWorker(): void
+    {
+        $employerID = 1;
+        $workerID = 1;
+
+        $data = [
+            'employer_id' => $employerID,
+            'worker_id' => $workerID,
+            'contract_from' => '2019-05-01',
+            'contract_to' => '',
+            'part_time' => 0.5,
+        ];
+
+        $response = $this->json(
+            'POST',
+            route(
+                'api.employers.workers.store',
+                $employerID
+            ),
+            $data
+        );
+
+        // $response->dump();
+        // $response->assertStatus(200);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson(['created' => true]);
+    }
+
+    public function testRemoveWorker(): void
+    {
+        $employerID = 1;
+        $workerID = 1;
+
+        $response = $this->json(
+            'DELETE',
+            route(
+                'api.employers.workers.destroy',
+                [$employerID, $workerID]
+            )
+        );
+
+        $response->assertStatus(200)->assertJson(['deleted' => true]);
+    }
 }

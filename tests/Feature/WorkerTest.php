@@ -263,7 +263,10 @@ class WorkerTest extends TestCase
 
         $response = $this->json(
             'DELETE',
-            route('api.workers.employers.destroy', [$workerID, $employerID])
+            route(
+                'api.workers.employers.destroy',
+                [$workerID, $employerID]
+            )
         );
 
         // $response->dump();

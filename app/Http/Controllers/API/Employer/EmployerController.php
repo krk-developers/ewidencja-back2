@@ -2,11 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Employer;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\JsonResponse;
 use App\{User, Employer, Worker, Type};
 use App\Http\Resources\Employer as EmployerResource;
 use App\Http\Requests\{StoreEmployer, UpdateEmployer};

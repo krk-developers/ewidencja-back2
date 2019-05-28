@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Worker;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -128,9 +128,5 @@ class WorkerController extends Controller
         }
 
         return response()->json(['deleted' => true]);
-    }
-
-    public function addEmployer()
-    {
     }
 }

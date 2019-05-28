@@ -77,43 +77,62 @@
             'API\EmployerController@event'
         )->name('employers.workers.event');
         */
-        Route::get(
-            'employers/{employer}/workers/{worker}',
-            'API\EmployerController@event'
-        )->name('api.employers.workers.event');
 
         // employer //////////////////////////////////////////////////////////
-        Route::get('employers', 'API\EmployerController@index')
-            ->name('api.employers.index');
-        Route::post('employers', 'API\EmployerController@store')
-            ->name('api.employers.store');
-        Route::get('employers/{employer}', 'API\EmployerController@show')
-            ->name('api.employers.show');
-        Route::put('employers/{employer}', 'API\EmployerController@update')
-            ->name('api.employers.update');
-        Route::delete('employers/{employer}', 'API\EmployerController@destroy')
-            ->name('api.employers.destroy');
+        Route::get(
+            'employers/{employer}/workers/{worker}',
+            'API\Employer\EmployerController@event'
+        )->name('api.employers.workers.event');
+        Route::get(
+            'employers',
+            'API\Employer\EmployerController@index'
+        )->name('api.employers.index');
+        Route::post(
+            'employers',
+            'API\Employer\EmployerController@store'
+        )->name('api.employers.store');
+        Route::get(
+            'employers/{employer}',
+            'API\Employer\EmployerController@show'
+        )->name('api.employers.show');
+        Route::put(
+            'employers/{employer}',
+            'API\Employer\EmployerController@update'
+        )->name('api.employers.update');
+        Route::delete(
+            'employers/{employer}',
+            'API\Employer\EmployerController@destroy'
+        )->name('api.employers.destroy');
+        // employer / worker
+        Route::post(
+            'employers/{employer}/workers',
+            'API\Employer\WorkerController@store'
+        )->name('api.employers.workers.store');
+        Route::delete(
+            'employers/{employer}/workers/{worker}',
+            'API\Employer\WorkerController@destroy'
+        )->name('api.employers.workers.destroy');
                 
         // worker ////////////////////////////////////////////////////////////
         Route::get(
             'workers',
-            'API\WorkerController@index'
+            'API\Worker\WorkerController@index'
         )->name('api.workers.index');
         Route::get(
             'workers/{worker}',
-            'API\WorkerController@show'
+            'API\Worker\WorkerController@show'
         )->name('api.workers.show');
         Route::post(
             'workers',
-            'API\WorkerController@store'
+            'API\Worker\WorkerController@store'
         )->name('api.workers.store');
         Route::put(
             'workers/{worker}',
-            'API\WorkerController@update'
+            'API\Worker\WorkerController@update'
         )->name('api.workers.update');
         Route::delete(
             'workers/{worker}',
-            'API\WorkerController@destroy'
+            'API\Worker\WorkerController@destroy'
         )->name('api.workers.destroy');
         // workers / employers
         Route::post(
