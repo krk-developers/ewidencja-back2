@@ -222,6 +222,11 @@ Route::middleware('auth')->group(
         
         // worker / employer
         Route::get(
+            'pracownicy/{worker}/pracodawcy/{employer}',
+            'User\Worker\Employer\ShowController'
+        )
+        ->name('workers.employers.index');
+        Route::get(
             'pracownicy/{worker}/pracodawcy/dodaj',
             'User\Worker\Employer\CreateController'
         )

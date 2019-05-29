@@ -40,7 +40,8 @@ class Worker extends Model
      */
     public function employers(): BelongsToMany
     {
-        return $this->belongsToMany('App\Employer');
+        return $this->belongsToMany('App\Employer')
+            ->withPivot('contract_from', 'contract_to', 'part_time');
     }
 
     /**
