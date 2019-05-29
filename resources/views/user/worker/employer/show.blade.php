@@ -21,7 +21,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Umowa do</th>
-                                        <td>{{ $employer_information->pivot->contract_to }}</td>
+                                        <td>@if( $employer_information->pivot->contract_to == null) <span class="text-success">Umowa bezterminowa</span> @else {{ $employer_information->pivot->contract_to }} @endif</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Wymiar etatu</th>

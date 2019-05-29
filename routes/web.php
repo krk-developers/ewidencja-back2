@@ -221,11 +221,7 @@ Route::middleware('auth')->group(
         ->name('workers.edit');
         
         // worker / employer
-        Route::get(
-            'pracownicy/{worker}/pracodawcy/{employer}',
-            'User\Worker\Employer\ShowController'
-        )
-        ->name('workers.employers.index');
+        
         Route::get(
             'pracownicy/{worker}/pracodawcy/dodaj',
             'User\Worker\Employer\CreateController'
@@ -244,6 +240,12 @@ Route::middleware('auth')->group(
         )
         ->name('workers.employers.destroy');
         
+        Route::get(
+            'pracownicy/{worker}/pracodawcy/{employer}',
+            'User\Worker\Employer\ShowController'
+        )
+        ->name('workers.employers.index');
+
         // worker / event
         Route::get(
             'pracownicy/{worker}/wydarzenia',
