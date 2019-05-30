@@ -77,16 +77,21 @@ Route::middleware('auth')->group(
             'User\Admin\Employer\IndexController'
         )
         ->name('admins.employers.index');
-        Route::get(
-            'administratorzy/{admin}/pracodawcy/dodaj',
-            'User\Admin\Employer\CreateController'
-        )
-        ->name('admins.employers.create');
         Route::post(
             'administratorzy/{admin}/pracodawcy',
             'User\Admin\Employer\StoreController'
         )
         ->name('admins.employers.store');
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/dodaj',
+            'User\Admin\Employer\CreateController'
+        )
+        ->name('admins.employers.create');
+        Route::delete(
+            'administratorzy/{admin}/pracodawcy/{employer}',
+            'User\Admin\Employer\DestroyController'
+        )
+        ->name('admins.employers.destroy');
         //
         
         Route::post(

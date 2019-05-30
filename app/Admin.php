@@ -121,4 +121,19 @@ class Admin extends Model
             ];
         }
     }
+
+    /**
+     * Detach a single Employer from the Admin
+     *
+     * @param integer $adminID    Admin    ID
+     * @param integer $employerID Employer ID
+     * 
+     * @return integer
+     */
+    public static function removeEmployer(int $adminID, int $employerID): int
+    {
+        $admin = self::findRow($adminID);  // 0|1
+
+        return $admin->employers()->detach($employerID);
+    }
 }
