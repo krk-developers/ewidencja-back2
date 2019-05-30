@@ -21,7 +21,7 @@ class EmployerController extends Controller
     public function index()
     {
         // return response()->json(['function' => __FUNCTION__]);
-        return new EmployerResource(Employer::all_());
+        return new EmployerResource(Employer::allSortBy());
     }
 
     /**

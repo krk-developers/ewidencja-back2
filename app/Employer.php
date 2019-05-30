@@ -64,8 +64,10 @@ class Employer extends Model
 
     /**
      * The admins that belong to the employer.
+     *
+     * @return BelongsToMany
      */
-    public function admins()
+    public function admins(): BelongsToMany
     {
         return $this->belongsToMany('App\Admin');
     }
@@ -107,6 +109,7 @@ class Employer extends Model
      *
      * @return Collection
      */
+    /*
     public static function all_(): Collection
     {
         return DB::table('employers')
@@ -120,6 +123,7 @@ class Employer extends Model
             ->where('types.name', '=', 'employer')
             ->get();
     }
+    */
 
     /**
      * All employers in alphabetical order
