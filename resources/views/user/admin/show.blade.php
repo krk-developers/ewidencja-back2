@@ -25,12 +25,24 @@
                                         <td><a href="mailto:{{ $admin->email }}" title="Wysyła e-mail"><i class="fas fa-paper-plane"></i> {{ $admin->user->email }}</a></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Uprawnienia</th>
-                                        <td>{{ $admin->user->type->display_name }}</td>
+                                        <th scope="row">
+                                            <span data-toggle="tooltip" data-placement="top" title="{{ $admin->user->type->description }}">
+                                                Uprawnienia
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <span data-toggle="tooltip" data-placement="top" title="{{ $admin->user->type->description }}">
+                                                {{ $admin->user->type->display_name }}
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Opis</th>
-                                        <td>{{ $admin->user->type->description }}</td>
+                                        <th scope="row">Pracodawcy</th>
+                                        <td>
+                                            <a class="btn btn-outline-secondary" href="{{ route('admins.employers.index', $admin->id) }}" role="button" title="Szczegóły">
+                                                <i class="fas fa-industry"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

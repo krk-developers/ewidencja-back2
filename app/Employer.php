@@ -63,6 +63,14 @@ class Employer extends Model
     }
 
     /**
+     * The admins that belong to the employer.
+     */
+    public function admins()
+    {
+        return $this->belongsToMany('App\Admin');
+    }
+
+    /**
      * Find by primary key
      *
      * @param integer $employerID Employer ID

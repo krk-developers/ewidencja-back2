@@ -71,6 +71,24 @@ Route::middleware('auth')->group(
         )
         ->name('admins.index');
 
+        // admin / employer
+        Route::get(
+            'administratorzy/{admin}/pracodawcy',
+            'User\Admin\Employer\IndexController'
+        )
+        ->name('admins.employers.index');
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/dodaj',
+            'User\Admin\Employer\CreateController'
+        )
+        ->name('admins.employers.create');
+        Route::post(
+            'administratorzy/{admin}/pracodawcy',
+            'User\Admin\Employer\StoreController'
+        )
+        ->name('admins.employers.store');
+        //
+        
         Route::post(
             'administratorzy',
             'User\Admin\StoreController'
