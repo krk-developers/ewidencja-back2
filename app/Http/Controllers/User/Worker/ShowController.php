@@ -22,16 +22,10 @@ class ShowController extends Controller
     {
         // $this->authorize('view', $worker);
 
-        $showEuivalentAmount = true;
-        if ($worker->equivalent == 0) {
-            $showEuivalentAmount = false;
-        }
-
         return view(
             'user.worker.show',
             [
                 'worker' => $worker,
-                'showEuivalentAmount' => $showEuivalentAmount,
                 'year_month' => Carbon::now()->format('Y-m'),
                 'month_name' => Carbon::now()->monthName,
             ]

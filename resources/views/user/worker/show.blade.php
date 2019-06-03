@@ -108,7 +108,7 @@
 @endif
                                             </td>
                                         </tr>
-@if ($showEuivalentAmount)
+@if ($worker->equivalent_amount > 0)
                                         <tr>
                                             <th scope="row">Kwota ekwiwalentu</th>
                                             <td>{{ $worker->equivalent_amount }} PLN</td>
