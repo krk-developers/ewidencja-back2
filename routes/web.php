@@ -375,17 +375,17 @@ Route::middleware('auth')->group(
 
         // worker / record ///////////////////////////////////////////////////
         Route::get(
-            'pracownicy/{worker}/ewidencja/{year_month}',
+            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}',
             'User\Worker\Record\IndexController'
         )
         ->name('workers.records.index');
-        
+        /*
         Route::get(
             'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}',
-            'User\Worker\Record\Index1Controller'
+            'User\Worker\Record\IndexController'
         )
         ->name('workers.records1.index');
-        
+        */
 
         // legend ////////////////////////////////////////////////////////////
         Route::get(

@@ -15,7 +15,7 @@
                                 <tbody>
 @if ($is_future)
                                     <tr class="bg-danger text-center text-white">
-                                        <th scope="row" colspan=2>Jesteś w przyszłości</th>
+                                        <th scope="row" colspan="2">Jesteś w przyszłości</th>
                                     </tr>
 @endif
                                     <tr>
@@ -30,19 +30,10 @@
                                         <th scope="row">Liczba dni w miesiącu</th>
                                         <td>{{ $days_in_month }}</td>
                                     </tr>
-                                    {{--
                                     <tr>
                                         <th scope="row">
                                             Liczba dni pracujących
-                                            <small class="text-secondary">po odliczeniu sobót i niedziel<small>
-                                        </th>
-                                        <td>{{ $time_period_weekend_filter }}</td>
-                                    </tr>
-                                    --}}
-                                    <tr>
-                                        <th scope="row">
-                                            Liczba dni pracujących
-                                            <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy<small>
+                                            <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy</small>
                                         </th>
                                         <td>{{ $time_period_public_holiday_filter }}</td>
                                     </tr>
@@ -81,18 +72,22 @@
                         <footer class="card-footer bg-white">
                             <div class="row mt-3">
                                 <div class="col-sm">
-                                    <a href="{{ route('workers.records.index', [$worker->id, $previous_month]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">Poprzedni miesięc</a>
+                                    <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $previous_month]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        <i class="fas fa-chevron-left"></i> Poprzedni miesięc
+                                    </a>
                                 </div>
                                 <div class="col-sm">
-                                    <a href="{{ route('workers.records.index', [$worker->id, $next_month]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">Następny miesiąc</a>
+                                    <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $next_month]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        Następny miesiąc <i class="fas fa-chevron-right"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-sm">
-                            <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
-                                <i class="fas fa-angle-left"></i> Powrót
-                            </a>
-                            </div>
+                                    <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                        <i class="fas fa-angle-left"></i> Powrót
+                                    </a>
+                                </div>
                             </div>
                         </footer>
                     </div>
