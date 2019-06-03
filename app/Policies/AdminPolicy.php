@@ -10,13 +10,14 @@ class AdminPolicy
 {
     use HandlesAuthorization;
 
+    /*
     public function before(User $user, $ability)
     {
         if ($user->type->name === 'superadmin') {
             return true;
         }
     }
-
+    */
     /**
      * Determine whether the user can view the admin.
      *

@@ -148,11 +148,11 @@
 
                                 @method('DELETE')
 
-@can('showWorkersList', $worker)
+{{-- @can('showWorkersList', $worker) --}}
                                 <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-@endcan
+{{-- @endcan --}}
 
                                 <a href="{{ route('workers.edit', $worker->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj

@@ -9,14 +9,14 @@ use App\Worker;
 class WorkerPolicy
 {
     use HandlesAuthorization;
-
+    /*
     public function before($user, $ability)
     {
         if ($user->type->name === 'superadmin') {
             return true;
         }
     }
-
+    */
     /**
      * Determine whether the user can view the worker.
      *
@@ -32,12 +32,13 @@ class WorkerPolicy
 
         return true;
     }
-
+    /*
     public function employerViewWorker()
     {
         return true;
     }
-
+    */
+    /*
     public function showWorkersList(User $user, Worker $worker)
     {
         if ($user->type->name === 'worker') {
@@ -46,7 +47,7 @@ class WorkerPolicy
 
         return true;
     }
-    
+    */
     /**
      * Determine whether the user can create workers.
      *

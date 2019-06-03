@@ -1,32 +1,30 @@
 <?php
 
-declare(strict_types = 1);
+namespace App\Http\Controllers\User\Admin\Employer;
 
-namespace App\Http\Controllers\User\Employer;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Employer;
-use App\User;
+use App\{Admin, Employer};
 
 class ShowController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Show employer profile.
      *
+     * @param Admin    $admin    Admin
      * @param Employer $employer Employer
      * 
      * @return View
      */
-    public function __invoke(Employer $employer): View
+    public function __invoke(Admin $admin, Employer $employer)  // Request $request,
     {
-        // $this->authorize('view', $employer);
-        
+        // return $admin;
+        // return $employer;
         return view(
-            'user.employer.show',
+            'user.admin.employer.show',
             [
+                'admin' => $admin,
                 'employer' => $employer,
                 'year_month' => Carbon::now()->format('Y-m'),
                 'month_name' => Carbon::now()->monthName,

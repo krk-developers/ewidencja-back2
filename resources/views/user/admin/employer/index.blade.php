@@ -40,7 +40,12 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $employer->id }}</td>
-                                <td><a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">{{ $employer->company }}</a></td>
+                                <td>
+                                    <a href="{{ route('admins.employers.show', [$admin->id, $employer->id]) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i>
+                                        {{ $employer->company }}
+                                    </a>
+                                </td>
                                 <td>{{ $employer->nip }}</td>
                                 <td>{{ $employer->street }}</td>
                                 <td>{{ $employer->zip_code }} {{ $employer->city }}</td>

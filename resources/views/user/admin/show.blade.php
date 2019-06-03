@@ -57,16 +57,16 @@
                                 <a href="{{ route('admins.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-@can('update', $admin)
+{{-- @can('update', $admin) --}}
                                 <a href="{{ route('admins.edit', $admin->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
-@endcan
-@can('delete', $admin)
+{{-- @endcan --}}
+{{-- @can('delete', $admin) --}}
                                 <button type="submit" class="btn btn-danger" title="Usuwa administratora">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
-@endcan
+{{-- @endcan --}}
                             </form>
                         </footer>
                     </div>

@@ -65,35 +65,43 @@ Route::middleware('auth')->group(
         ->name('superadmins.edit');
 
         // admin /////////////////////////////////////////////////////////////
-        Route::get(
-            'administratorzy',
-            'User\Admin\IndexController'
-        )
-        ->name('admins.index');
-
         // admin / employer
         Route::get(
             'administratorzy/{admin}/pracodawcy',
             'User\Admin\Employer\IndexController'
         )
         ->name('admins.employers.index');
+
         Route::post(
             'administratorzy/{admin}/pracodawcy',
             'User\Admin\Employer\StoreController'
         )
         ->name('admins.employers.store');
+
         Route::get(
             'administratorzy/{admin}/pracodawcy/dodaj',
             'User\Admin\Employer\CreateController'
         )
         ->name('admins.employers.create');
+
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}',
+            'User\Admin\Employer\ShowController'
+        )
+        ->name('admins.employers.show');
+        
         Route::delete(
             'administratorzy/{admin}/pracodawcy/{employer}',
             'User\Admin\Employer\DestroyController'
         )
         ->name('admins.employers.destroy');
         //
-        
+
+        Route::get(
+            'administratorzy',
+            'User\Admin\IndexController'
+        )
+        ->name('admins.index');        
         Route::post(
             'administratorzy',
             'User\Admin\StoreController'
