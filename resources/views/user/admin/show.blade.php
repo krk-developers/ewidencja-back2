@@ -41,6 +41,7 @@
                                         <td>
                                             <a class="btn btn-outline-secondary" href="{{ route('admins.employers.index', $admin->id) }}" role="button" title="Szczegóły">
                                                 <i class="fas fa-industry"></i>
+                                                [{{ $admin->employers->count() }}]
                                             </a>
                                         </td>
                                     </tr>

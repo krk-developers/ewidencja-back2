@@ -10,14 +10,6 @@ class EmployerPolicy
 {
     use HandlesAuthorization;
 
-    public function showEmployersList(User $user)  // , Worker $worker
-    {
-        if ($user->type->name === 'employer') {
-            return false;
-        }
-
-        return true;
-    }
     /**
      * Determine whether the user can view the employer.
      *
@@ -27,7 +19,11 @@ class EmployerPolicy
      */
     public function view(User $user, Employer $employer)
     {
-        //
+        if ($user->userable_id === $employer->id && $user->type->name === 'employer') {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -50,7 +46,7 @@ class EmployerPolicy
      */
     public function update(User $user, Employer $employer)
     {
-        //
+        return $user->userable_id === $employer->id;
     }
 
     /**
@@ -62,7 +58,7 @@ class EmployerPolicy
      */
     public function delete(User $user, Employer $employer)
     {
-        //
+        return $user->userable_id === $employer->id;
     }
 
     /**

@@ -6,8 +6,10 @@ namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Employer;
+use App\User;
 
 class ShowController extends Controller
 {
@@ -20,6 +22,8 @@ class ShowController extends Controller
      */
     public function __invoke(Employer $employer): View
     {
+        $this->authorize('view', $employer);
+        
         return view(
             'user.employer.show',
             [

@@ -90,7 +90,7 @@ class Admin extends Model
     }
 
     /**
-     * Assigns the employer to the administrator
+     * Attach the employer to the administrator
      *
      * @param int $adminID    Admin    ID
      * @param int $employerID Employer ID
