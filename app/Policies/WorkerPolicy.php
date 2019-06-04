@@ -9,14 +9,18 @@ use App\Worker;
 class WorkerPolicy
 {
     use HandlesAuthorization;
-    /*
-    public function before($user, $ability)
+    
+    public function before(User $user)
     {
         if ($user->type->name === 'superadmin') {
             return true;
         }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
     }
-    */
+    
     /**
      * Determine whether the user can view the worker.
      *
@@ -32,22 +36,7 @@ class WorkerPolicy
 
         return true;
     }
-    /*
-    public function employerViewWorker()
-    {
-        return true;
-    }
-    */
-    /*
-    public function showWorkersList(User $user, Worker $worker)
-    {
-        if ($user->type->name === 'worker') {
-            return false;
-        }
 
-        return true;
-    }
-    */
     /**
      * Determine whether the user can create workers.
      *
@@ -56,7 +45,13 @@ class WorkerPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
     }
 
     /**
@@ -68,7 +63,6 @@ class WorkerPolicy
      */
     public function update(User $user, Worker $worker)
     {
-        //
     }
 
     /**
@@ -81,9 +75,6 @@ class WorkerPolicy
     public function delete(User $user, Worker $worker)
     {
         // worker can not delete their profile
-        if ($user->type->name == 'worker') {
-            return false;
-        }
     }
 
     /**

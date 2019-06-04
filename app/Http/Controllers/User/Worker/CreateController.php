@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User\Worker;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use App\Worker;
 
 class CreateController extends Controller
 {
@@ -16,6 +17,8 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
+        $this->authorize('create', Worker::class);
+
         return view('user.worker.create');
     }
 }
