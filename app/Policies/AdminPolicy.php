@@ -26,7 +26,7 @@ class AdminPolicy
      */
     public function view(User $user, Admin $admin)
     {
-        return ($user->userable_id === $admin->id  && $user->type->name == 'admin');
+        return ($user->userable_id === $admin->id);  // && $user->type->name == 'admin'
     }
 
     /**

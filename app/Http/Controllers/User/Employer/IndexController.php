@@ -19,6 +19,8 @@ class IndexController extends Controller
      */
     public function __invoke(): object
     {
+        // dd(Auth::user()->userable_type);
+        // $this->authorize('view', Auth::user()->userable_type);
         // $this->authorize('view', Auth::user());
         // dd(Auth::user());  // ->type->name
         // employers can only see their profile

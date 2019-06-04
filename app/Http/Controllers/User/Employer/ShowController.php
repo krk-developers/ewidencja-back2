@@ -22,7 +22,7 @@ class ShowController extends Controller
      */
     public function __invoke(Employer $employer): View
     {
-        // $this->authorize('view', $employer);
+        $this->authorize('view', $employer);
         
         return view(
             'user.employer.show',

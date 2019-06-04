@@ -10,6 +10,13 @@ class EmployerPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->type->name === 'worker') {
+            return false;
+        }
+    }
+
     /**
      * Determine whether the user can view the employer.
      *
@@ -34,7 +41,6 @@ class EmployerPolicy
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
