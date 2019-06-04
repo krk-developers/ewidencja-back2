@@ -386,7 +386,6 @@ Route::middleware('auth')->group(
         )
         ->name('workers.records1.index');
         */
-
         // legend ////////////////////////////////////////////////////////////
         Route::get(
             'legenda',

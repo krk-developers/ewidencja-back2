@@ -82,7 +82,7 @@
                                                                 --}}
                                                             </td>
                                                             <td>
-                                                                <a href="{{ route('workers.records1.index', [$worker->id, $employer->id, $year_month]) }}" title="">
+                                                                <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $year_month]) }}" title="">
                                                                     <i class="fas fa-align-justify"></i>  Ewidencja. Miesiąc {{ $month_name }}
                                                                 </a>
                                                             </td>
