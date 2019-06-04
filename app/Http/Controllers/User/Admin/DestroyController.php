@@ -20,15 +20,14 @@ class DestroyController extends Controller
      * 
      * @return View|RedirectResponse
      */
-    public function __invoke(Request $request, Admin $admin): object  // View|RedirectResponse
+    public function __invoke(Request $request, Admin $admin): object
     {
-        $this->authorize('delete', $admin);
+        // $this->authorize('delete', $admin);
 
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
             $admin->deleteRow();
-            // return $admin->user;
             return redirect()
                 ->route('admins.index')
                 ->with('success', 'Usunięto');

@@ -19,7 +19,11 @@ class SuperAdminPolicy
      */
     public function view(User $user, SuperAdmin $superAdmin)
     {
-        //
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -30,7 +34,11 @@ class SuperAdminPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        return false;
     }
 
     /**

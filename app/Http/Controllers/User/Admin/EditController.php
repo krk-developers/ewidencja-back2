@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Admin;
@@ -20,7 +19,7 @@ class EditController extends Controller
      */
     public function __invoke(Admin $admin): View
     {
-        $this->authorize('update', $admin);
+        // $this->authorize('update', $admin);
         
         return view(
             'user.admin.edit',

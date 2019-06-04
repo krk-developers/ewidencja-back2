@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpdateAdmin;
@@ -36,12 +35,12 @@ class UpdateController extends Controller
             $saved = $admin->user->save();
         }
 
+        $status = 'info';
+        $message = "Nie zmieniono";
+        
         if ($saved) {
             $status = 'success';
             $message = "Zmieniono";
-        } else {
-            $status = 'info';
-            $message = "Nie zmieniono";
         }
 
         return redirect()
