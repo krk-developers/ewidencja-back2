@@ -19,7 +19,7 @@ class EditController extends Controller
      */
     public function __invoke(Admin $admin): View
     {
-        // $this->authorize('update', $admin);
+        $this->authorize('update', $admin);
         
         return view(
             'user.admin.edit',

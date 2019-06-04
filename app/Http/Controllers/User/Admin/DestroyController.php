@@ -22,7 +22,7 @@ class DestroyController extends Controller
      */
     public function __invoke(Request $request, Admin $admin): object
     {
-        // $this->authorize('delete', $admin);
+        $this->authorize('delete', $admin);
 
         $delete = $request->input('delete');
 

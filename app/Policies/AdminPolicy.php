@@ -2,22 +2,21 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Admin;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\User;
+use App\{SuperAdmin, Admin};
 
 class AdminPolicy
 {
     use HandlesAuthorization;
 
-    /*
-    public function before(User $user, $ability)
+    public function before(User $user)
     {
         if ($user->type->name === 'superadmin') {
             return true;
         }
     }
-    */
+
     /**
      * Determine whether the user can view the admin.
      *
@@ -27,7 +26,7 @@ class AdminPolicy
      */
     public function view(User $user, Admin $admin)
     {
-        //
+        return ($user->userable_id === $admin->id  && $user->type->name == 'admin');
     }
 
     /**
@@ -38,7 +37,6 @@ class AdminPolicy
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
@@ -50,7 +48,7 @@ class AdminPolicy
      */
     public function update(User $user, Admin $admin)
     {
-        return $user->userable_id === $admin->id;
+        return ($user->userable_id === $admin->id);
     }
 
     /**
