@@ -20,6 +20,8 @@ class EditController extends Controller
      */
     public function __invoke(Worker $worker): View
     {
+        $this->authorize('update', $worker);
+
         return view(
             'user.worker.edit',
             ['worker' => $worker]
