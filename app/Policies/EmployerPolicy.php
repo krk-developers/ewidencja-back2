@@ -12,9 +12,19 @@ class EmployerPolicy
 
     public function before(User $user)
     {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+
+        
         if ($user->type->name === 'worker') {
             return false;
         }
+        
     }
 
     /**
@@ -26,11 +36,7 @@ class EmployerPolicy
      */
     public function view(User $user, Employer $employer)
     {
-        if ($user->userable_id === $employer->id && $user->type->name === 'employer') {
-            return true;
-        }
-
-        return false;
+        return $user->userable_id === $employer->id;
     }
 
     /**
@@ -41,6 +47,13 @@ class EmployerPolicy
      */
     public function create(User $user)
     {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
     }
 
     /**

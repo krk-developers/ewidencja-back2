@@ -74,6 +74,9 @@ class WorkerPolicy
      */
     public function update(User $user, Worker $worker)
     {
+        if ($user->type->name === 'employer') {
+            return true;
+        }
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User\Employer;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Province;
-use Illuminate\Support\Facades\Auth;
+use App\Employer;
 
 class CreateController extends Controller
 {
@@ -16,7 +16,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        // $this->authorize('create');
+        $this->authorize('create', Employer::class);
 
         $provinces = Province::allRows();
         
