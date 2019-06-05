@@ -95,6 +95,13 @@ Route::middleware('auth')->group(
             'User\Admin\Employer\DestroyController'
         )
         ->name('admins.employers.destroy');
+        /*
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}',
+            'User\Admin\Employer\EditController'
+        )
+        ->name('admins.employers.edit');
+        */
         //
 
         Route::get(

@@ -16,10 +16,11 @@ class EmployerPolicy
             return true;
         }
 
+        /*
         if ($user->type->name === 'admin') {
             return true;
         }
-
+        */
         
         if ($user->type->name === 'worker') {
             return false;
@@ -27,6 +28,13 @@ class EmployerPolicy
         
     }
 
+    public function list(User $user)
+    {
+        if ($user->type->name === 'admin') {
+            return false;
+        }
+    }
+    
     /**
      * Determine whether the user can view the employer.
      *
@@ -36,6 +44,10 @@ class EmployerPolicy
      */
     public function view(User $user, Employer $employer)
     {
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+
         return $user->userable_id === $employer->id;
     }
 
@@ -65,6 +77,10 @@ class EmployerPolicy
      */
     public function update(User $user, Employer $employer)
     {
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+        
         return $user->userable_id === $employer->id;
     }
 
@@ -77,6 +93,10 @@ class EmployerPolicy
      */
     public function delete(User $user, Employer $employer)
     {
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+        
         return $user->userable_id === $employer->id;
     }
 

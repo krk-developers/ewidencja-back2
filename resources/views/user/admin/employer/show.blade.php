@@ -108,21 +108,21 @@
                             </table>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{-- route('employers.destroy', $employer->id) --}}" method="POST">
+                            <form action="{{ route('employers.destroy', $employer->id) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')
 
-                                <a href="{{-- route('employers.index') --}}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <a href="{{ route('employers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-                                <a href="{{-- route('employers.edit', $employer->id) --}}" title="Edycja" class="btn btn-primary">
+                                <a href="{{ route('employers.edit', $employer->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Edytuj
                                 </a>
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
-                                <a href="{{-- route('employers.workers.create', $employer->id) --}}" title="Dodawanie pracownika" class="btn btn-success">
+                                <a href="{{ route('employers.workers.create', $employer->id) }}" title="Dodawanie pracownika" class="btn btn-success">
                                     <i class="fas fa-user-plus"></i> Dodaj pracownika
                                 </a>
                             </form>

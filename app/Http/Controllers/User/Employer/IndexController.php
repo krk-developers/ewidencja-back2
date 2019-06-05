@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Employer;
-use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -19,10 +18,8 @@ class IndexController extends Controller
      */
     public function __invoke(): object
     {
-        // dd(Auth::user()->userable_type);
-        // $this->authorize('view', Auth::user()->userable_type);
-        // $this->authorize('view', Auth::user());
-        // dd(Auth::user());  // ->type->name
+        $this->authorize('list', Employer::class);
+           
         // employers can only see their profile
         /*
         if (Auth::user()->type->name == 'employer') {
