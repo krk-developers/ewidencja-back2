@@ -8,6 +8,7 @@
                     <h3><i class="fas fa-user-cog"></i> Administratorzy</h3>
                 </div>
             </div>
+@can('create', App\Admin::class)
             <div class="row mt-5">
                 <div class="col-sm">
                     <a class="btn btn-success" href="{{ route('admins.create') }}" title="Dodawanie Administratora" role="button">
@@ -15,6 +16,7 @@
                     </a>
                 </div>
             </div>
+@endcan
             <div class="row mt-3">
                 <div class="col-sm">
 @if ($admins->count() > 0)

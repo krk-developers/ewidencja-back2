@@ -12,18 +12,18 @@
                             Użytkownicy
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-{{-- @if ($user->type->name == 'superadmin') --}}
+@if ($user->type->name == 'superadmin')
                             <a class="dropdown-item @if($path == 'superadministratorzy')active @endif" href="{{ route('superadmins.index') }}" title="Super Administratorzy">Super Administratorzy @if($path == 'superadministratorzy')<span class="sr-only">(current)</span>@endif</a>
-{{-- @endif --}}
-{{-- @if ($user->type->name == 'superadmin' || $user->type->name == 'admin') --}}
+@endif
+@if ($user->type->name == 'superadmin' || $user->type->name == 'admin')
                             <a class="dropdown-item @if($path == 'administratorzy')active @endif" href="{{ route('admins.index') }}" title="Administratorzy">Administratorzy @if($path == 'administratorzy')<span class="sr-only">(current)</span>@endif</a>
-{{-- @endif --}}
-{{-- @if ($user->type->name == 'superadmin' || $user->type->name == 'admin' || $user->type->name == 'employer') --}}
+@endif
+@if ($user->type->name == 'superadmin' || $user->type->name == 'employer')
                             <a class="dropdown-item @if($path == 'pracodawcy')active @endif" href="{{ route('employers.index') }}" title="Pracodawcy">Pracodawcy @if($path == 'pracodawcy')<span class="sr-only">(current)</span>@endif</a>
-{{-- @endif --}}
-{{-- @if ($user->type->name == 'superadmin' || $user->type->name == 'admin' || $user->type->name == 'employer' || $user->type->name == 'worker') --}}
+@endif
+@if ($user->type->name == 'superadmin' || $user->type->name == 'worker')
                             <a class="dropdown-item @if($path == 'pracownicy')active @endif" href="{{ route('workers.index') }}" title="Pracownicy">Pracownicy @if($path == 'pracownicy')<span class="sr-only">(current)</span>@endif</a>
-{{-- @endif --}}
+@endif
                         </div>
                     </li>
                     <li class="nav-item dropdown @if($path == 'legenda' || $path == 'wolne' || $path == 'wydarzenia')active @endif">

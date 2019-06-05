@@ -16,9 +16,11 @@ class WorkerPolicy
             return true;
         }
 
+        /*
         if ($user->type->name === 'admin') {
             return true;
         }
+        */
     }
     
     public function list(User $user)
@@ -26,10 +28,12 @@ class WorkerPolicy
         if ($user->type->name === 'superadmin') {
             return true;
         }
-
+        
+        /*
         if ($user->type->name === 'admin') {
             return true;
         }
+        */
     }
 
     /**
