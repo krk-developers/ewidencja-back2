@@ -20,11 +20,12 @@ class IndexController extends Controller
     public function __invoke(): object
     {
         // workers can only see their profile
-        /*
         if (Auth::user()->type->name == 'worker') {
             return redirect()->route('workers.show', Auth::user()->userable->id);
         }
-        */
+
+        $this->authorize('list', Worker::class);
+
         $workers = Worker::allSortBy();
 
         return view(

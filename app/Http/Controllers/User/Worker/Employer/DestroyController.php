@@ -27,6 +27,8 @@ class DestroyController extends Controller
         Worker $worker,
         Employer $employer
     ): object {
+        $this->authorize('removeEmployer', Worker::class);
+
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {

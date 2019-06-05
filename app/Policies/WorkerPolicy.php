@@ -21,6 +21,17 @@ class WorkerPolicy
         }
     }
     
+    public function list(User $user)
+    {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the worker.
      *
@@ -75,6 +86,28 @@ class WorkerPolicy
     public function delete(User $user, Worker $worker)
     {
         // worker can not delete their profile
+    }
+
+    public function addEmployer(User $user)
+    {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+    }
+
+    public function removeEmployer(User $user)
+    {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
     }
 
     /**

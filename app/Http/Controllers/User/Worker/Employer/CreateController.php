@@ -20,6 +20,8 @@ class CreateController extends Controller
      */
     public function __invoke(Worker $worker): View
     {
+        $this->authorize('addEmployer', Worker::class);
+        
         $employers = Employer::all__();
         
         return view(
