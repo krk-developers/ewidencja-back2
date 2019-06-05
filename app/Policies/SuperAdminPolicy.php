@@ -10,6 +10,13 @@ class SuperAdminPolicy
 {
     use HandlesAuthorization;
 
+    public function list(User $user)
+    {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the super admin.
      *
@@ -37,8 +44,6 @@ class SuperAdminPolicy
         if ($user->type->name === 'superadmin') {
             return true;
         }
-
-        return false;
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
+use App\SuperAdmin;
 
 class CreateController extends Controller
 {
@@ -15,7 +15,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $this->authorize('create', Auth::user());
+        $this->authorize('create', SuperAdmin::class);
 
         return view('user.superadmin.create');
     }
