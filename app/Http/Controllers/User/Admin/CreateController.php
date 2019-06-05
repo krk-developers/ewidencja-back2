@@ -6,8 +6,7 @@ namespace App\Http\Controllers\User\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Admin;
 
 class CreateController extends Controller
 {
@@ -18,7 +17,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        // $this->authorize('create', Auth::user());
+        $this->authorize('create', Admin::class);
 
         return view('user.admin.create');
     }

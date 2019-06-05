@@ -17,6 +17,8 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
+        $this->authorize('list', Admin::class);
+
         $admins = Admin::allSortBy();
 
         return view(

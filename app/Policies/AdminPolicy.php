@@ -17,6 +17,17 @@ class AdminPolicy
         }
     }
 
+    public function list(User $user)
+    {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
+
+        if ($user->type->name === 'admin') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the admin.
      *
@@ -37,6 +48,9 @@ class AdminPolicy
      */
     public function create(User $user)
     {
+        if ($user->type->name === 'superadmin') {
+            return true;
+        }
     }
 
     /**
