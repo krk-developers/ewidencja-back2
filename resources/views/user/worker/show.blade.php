@@ -54,7 +54,7 @@
 @foreach ($worker->employers as $employer)
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('workers.employers.index', [$worker->id, $employer->id]) }}" title="Szczegóły">
+                                                                <a href="{{ route('workers.employers.show', [$worker->id, $employer->id]) }}" title="Szczegóły">
                                                                     <i class="fas fa-industry"></i> {{ $employer->company }}
                                                                 </a>
                                                             </td>

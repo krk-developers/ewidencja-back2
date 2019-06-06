@@ -65,6 +65,13 @@ Route::middleware('auth')->group(
         ->name('superadmins.edit');
 
         // admin /////////////////////////////////////////////////////////////
+        // admin / employer / worker
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}',
+            'User\Admin\Employer\Worker\ShowController'
+        )
+        ->name('admins.employers.workers.show');
+
         // admin / employer
         Route::get(
             'administratorzy/{admin}/pracodawcy',
@@ -282,7 +289,7 @@ Route::middleware('auth')->group(
             'pracownicy/{worker}/pracodawcy/{employer}',
             'User\Worker\Employer\ShowController'
         )
-        ->name('workers.employers.index');
+        ->name('workers.employers.show');
 
         // worker / event
         Route::get(

@@ -66,7 +66,7 @@
 @foreach ($employer->workers as $worker)
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('workers.show', $worker->id) }}" data-placement="top" title="Szczegóły">
+                                                                <a href="{{ route('admins.employers.workers.show', [$admin->id, $employer->id, $worker->id]) }}" data-placement="top" title="Szczegóły">
                                                                     <i class="fas fa-user"></i>
                                                                     {{ $worker->user->name }} {{ $worker->lastname }}. PESEL: {{ $worker->pesel }}
                                                                 </a>
@@ -113,7 +113,7 @@
 
                                 @method('DELETE')
 
-                                <a href="{{ route('employers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <a href="{{ route('admins.employers.index', $admin->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
                                 <a href="{{ route('employers.edit', $employer->id) }}" title="Edycja" class="btn btn-primary">

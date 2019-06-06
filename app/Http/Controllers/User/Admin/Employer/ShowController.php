@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Admin\Employer;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use Carbon\Carbon;
 use App\{Admin, Employer};
 
@@ -17,10 +17,8 @@ class ShowController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Admin $admin, Employer $employer)  // Request $request,
+    public function __invoke(Admin $admin, Employer $employer): View
     {
-        // return $admin;
-        // return $employer;
         return view(
             'user.admin.employer.show',
             [

@@ -31,8 +31,9 @@
                             </table>
                         </div>
                         <footer class="card-footer bg-white">
-                            <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
-                                <i class="fas fa-angle-left"></i> Powrót
+                            <a href="{{ URL::previous() }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <i class="fas fa-angle-left"></i>
+                                Powrót
                             </a>
                         </footer>
                     </div>
