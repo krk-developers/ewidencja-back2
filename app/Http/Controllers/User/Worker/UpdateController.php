@@ -22,7 +22,10 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateWorker $request, Worker $worker)//: RedirectResponse
     {
-        // return $request; 
+        $admin = $request->query('admin');
+        $employer = $request->query('employer');
+        // dd($admin);
+        // return $request;
         Validator::make(
             $request->all(),
             [
@@ -60,6 +63,17 @@ class UpdateController extends Controller
             $message = "Zmieniono";
         }
         
+        // admin edit
+        if ($admin) {
+            return redirect()
+                ->route(
+                    'admins.employers.workers.show',
+                    [$admin, $employer, $worker]
+                )
+                ->with($status, $message);
+        }
+
+        // super admin edit
         return redirect()
             ->route('workers.show', $worker->id)
             ->with($status, $message);

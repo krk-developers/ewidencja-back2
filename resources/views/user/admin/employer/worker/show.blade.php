@@ -101,7 +101,7 @@
                                 <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-                                <a href="{{ route('workers.edit', $worker->id) }}" title="Edycja" class="btn btn-primary">
+                                <a href="{{ route('admins.employers.workers.edit', [$admin->id, $employer->id, $worker->id]) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
                                 <button type="submit" class="btn btn-danger" title="Usuwa pracownika i jego wszystkie wydarzenia">

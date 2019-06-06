@@ -71,7 +71,13 @@ Route::middleware('auth')->group(
             'User\Admin\Employer\Worker\ShowController'
         )
         ->name('admins.employers.workers.show');
-
+        
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}/edytu',
+            'User\Admin\Employer\Worker\EditController'
+        )
+        ->name('admins.employers.workers.edit');
+        
         // admin / employer
         Route::get(
             'administratorzy/{admin}/pracodawcy',
