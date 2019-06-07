@@ -122,7 +122,7 @@
                                 <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Usuwa z listy">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
-                                <a href="{{ route('employers.workers.create', $employer->id) }}" title="Dodawanie pracownika" class="btn btn-success">
+                                <a href="{{ route('admins.employers.workers.create', [$admin, $employer]) }}" title="Dodawanie pracownika" class="btn btn-success">
                                     <i class="fas fa-user-plus"></i> Dodaj pracownika
                                 </a>
                             </form>

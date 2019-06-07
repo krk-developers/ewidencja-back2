@@ -67,11 +67,17 @@ Route::middleware('auth')->group(
         // admin /////////////////////////////////////////////////////////////
         // admin / employer / worker
         Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/dodaj',
+            'User\Admin\Employer\Worker\CreateController'
+        )
+        ->name('admins.employers.workers.create');
+        
+        Route::get(
             'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}',
             'User\Admin\Employer\Worker\ShowController'
         )
         ->name('admins.employers.workers.show');
-
+         
         Route::delete(
             'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}',
             'User\Admin\Employer\Worker\DestroyController'

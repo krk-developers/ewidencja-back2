@@ -21,6 +21,15 @@ class StoreController extends Controller
     {
         $result = $employer->addWorker($request->all());
 
+        $admin = $request->input('admin');
+        // dd($admin);
+        // dd($employer);
+        if ($admin) {
+            return redirect()
+                ->route('admins.employers.show', [$admin, $employer])
+                ->with($result['status'], $result['message']);            
+        }
+        
         return redirect()
             ->route('employers.show', $employer->id)
             ->with($result['status'], $result['message']);
