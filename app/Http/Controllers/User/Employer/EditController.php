@@ -19,7 +19,7 @@ class EditController extends Controller
      */
     public function __invoke(Employer $employer): View
     {
-        $this->authorize('update', $employer);
+        $this->authorize('update', $employer);        
 
         $provinces = Province::allRows();
 
@@ -27,7 +27,7 @@ class EditController extends Controller
             'user.employer.edit',
             [
                 'employer' => $employer,
-                'provinces' => $provinces
+                'provinces' => $provinces,
             ]
         );
     }

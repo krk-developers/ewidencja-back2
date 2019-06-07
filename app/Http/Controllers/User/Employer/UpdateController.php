@@ -25,7 +25,9 @@ class UpdateController extends Controller
         Employer $employer
     ): RedirectResponse {
         $saved = false;
-
+        
+        $admin = $request->input('admin');
+        // dd($admin);
         $employer->fill($request->all());
         
         if ($employer->isDirty()) {
@@ -46,6 +48,12 @@ class UpdateController extends Controller
             $message = "Zmieniono";
         }
         
+        if ($admin) {
+            return redirect()
+                ->route('admins.employers.show', [$admin, $employer])
+                ->with($status, $message);
+        }
+
         return redirect()
             ->route('employers.show', $employer->id)
             ->with($status, $message);

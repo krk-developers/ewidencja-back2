@@ -71,9 +71,15 @@ Route::middleware('auth')->group(
             'User\Admin\Employer\Worker\ShowController'
         )
         ->name('admins.employers.workers.show');
-        
+
+        Route::delete(
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}',
+            'User\Admin\Employer\Worker\DestroyController'
+        )
+        ->name('admins.employers.workers.destroy');
+
         Route::get(
-            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}/edytu',
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}/edytuj',
             'User\Admin\Employer\Worker\EditController'
         )
         ->name('admins.employers.workers.edit');
@@ -108,13 +114,13 @@ Route::middleware('auth')->group(
             'User\Admin\Employer\DestroyController'
         )
         ->name('admins.employers.destroy');
-        /*
+        
         Route::get(
-            'administratorzy/{admin}/pracodawcy/{employer}',
+            'administratorzy/{admin}/pracodawcy/{employer}/edytuj',
             'User\Admin\Employer\EditController'
         )
         ->name('admins.employers.edit');
-        */
+        
         //
 
         Route::get(

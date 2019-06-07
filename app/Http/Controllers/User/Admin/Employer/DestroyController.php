@@ -35,7 +35,7 @@ class DestroyController extends Controller
 
         if ($delete == 'No') {
             return redirect()->route(
-                'admins.employers.index',
+                'admins.employers.show',
                 [$admin->id, $employer->id]
             );
         }
