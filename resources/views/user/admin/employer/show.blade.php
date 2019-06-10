@@ -71,17 +71,6 @@
                                                                     {{ $worker->user->name }} {{ $worker->lastname }}. PESEL: {{ $worker->pesel }}
                                                                 </a>
                                                             </td>
-                                                            <td>
-                                                                <form action="{{ route('admins.employers.workers.destroy', [$admin, $employer, $worker]) }}" class="form-inline" method="POST">
-                                                                    @csrf
-
-                                                                    @method('DELETE')
-
-                                                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Usuwa pracownika z listy zatrudnionych">
-                                                                        <i class="fas fa-eraser"></i> Zwolnij
-                                                                    </button>
-                                                                </form>
-                                                            </td>
                                                         </tr>
 @endforeach
                                                     </tbody>
@@ -113,14 +102,14 @@
 
                                 @method('DELETE')
                                 
-                                <a href="{{ route('admins.employers.index', $admin->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <a href="{{ route('admins.employers.index', $admin) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
                                 <a href="{{ route('admins.employers.edit', [$admin, $employer]) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Edytuj
                                 </a>
-                                <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Usuwa z listy">
-                                    <i class="fas fa-eraser"></i> Usuń
+                                <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Usuwa z listy swoich pracodawców">
+                                    <i class="fas fa-eraser"></i> Usuń z listy
                                 </button>
                                 <a href="{{ route('admins.employers.workers.create', [$admin, $employer]) }}" title="Dodawanie pracownika" class="btn btn-success">
                                     <i class="fas fa-user-plus"></i> Dodaj pracownika

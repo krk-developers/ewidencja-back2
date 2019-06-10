@@ -10,8 +10,8 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm">
-                    <a class="btn btn-success" href="{{ route('admins.employers.create', $admin->id) }}" title="Dodawanie pracodawcy" role="button">
-                        <i class="fas fa-plus"></i> Dodaj
+                    <a class="btn btn-success" href="{{ route('admins.employers.create', $admin->id) }}" data-toggle="tooltip" data-placement="top" title="Dodaje do listy swoich pracodawców" role="button">
+                        <i class="fas fa-plus"></i> Dodaj do listy
                     </a>
                 </div>
             </div>

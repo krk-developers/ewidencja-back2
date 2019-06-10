@@ -23,8 +23,7 @@ class DestroyController extends Controller
         Admin $admin,
         Employer $employer,
         Worker $worker
-    ){//: object {
-        // return __CLASS__;
+    ): object {
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
@@ -32,14 +31,14 @@ class DestroyController extends Controller
             $employer->removeWorker($worker->id);
 
             return redirect()
-                ->route('admins.employers.show', [$admin->id, $employer->id])
+                ->route('admins.employers.show', [$admin, $employer])
                 ->with('success', 'Usunięto');
             
         }
 
         if ($delete == 'No') {
             return redirect()->route(
-                'admins.employers.show', [$admin->id, $employer->id]
+                'admins.employers.workers.show', [$admin, $employer, $worker]
             );
         }
 

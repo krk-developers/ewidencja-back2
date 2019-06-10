@@ -93,22 +93,22 @@
                                 </table>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{ route('admins.employers.workers.destroy', [$admin->id, $employer->id, $worker->id]) }}" method="POST">
+                            <form action="{{ route('admins.employers.workers.destroy', [$admin, $employer, $worker]) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')
 
-                                <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                <a href="{{ route('admins.employers.show', [$admin, $employer]) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
                                 <a href="{{ route('admins.employers.workers.edit', [$admin->id, $employer->id, $worker->id]) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
-                                <button type="submit" class="btn btn-danger" title="Usuwa pracownika i jego wszystkie wydarzenia">
-                                    <i class="fas fa-eraser"></i> Usuń__
+                                <button type="submit" class="btn btn-danger" title="Usuwa pracownika z listy zatrudnionych">
+                                    <i class="fas fa-eraser"></i> Zwolnij
                                 </button>
                                 <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
-                                    <i class="fas fa-plus"></i> Dodaj pracodawcę
+                                    <i class="fas fa-plus"></i> Dodaj pracodawcę==
                                 </a>
                             </form>
                         </footer>

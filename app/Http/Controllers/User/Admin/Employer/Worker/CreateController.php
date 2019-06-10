@@ -1,22 +1,28 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\User\Admin\Employer\Worker;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\{Admin, Employer, Worker};
 
+/**
+ * Adds an worker to the employer
+ */
 class CreateController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Show the form of adding a worker to the employer.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Admin    $admin    Admin
+     * @param Employer $employer Employer
+     * 
+     * @return View
      */
-    public function __invoke(Request $request, Admin $admin, Employer $employer)
+    public function __invoke(Admin $admin, Employer $employer): View
     {
-        // return __CLASS__;
         $workers = Worker::allSortBy();
 
         return view(
