@@ -21,6 +21,7 @@ class Legend implements Rule
     private $_childcareDayMax = false;
     private $_eventStart, $_eventEnd;
     private $_eventsOverlap = false;
+    private $_employerID;
 
     /**
      * Create a new rule instance.
@@ -31,32 +32,13 @@ class Legend implements Rule
      */
     public function __construct(StoreEvent $storeEvent)
     {
-        // dd($storeEvent['worker_id']);
-        // $workerID = (int) $storeEvent->segment(2);
-        // $employerID = (int) $storeEvent->segment(4);
         $workerID = $storeEvent['worker_id'];
-        $employerID = $storeEvent['employer_id'];
-        /*
-        if (isset($storeEvent['worker_id'])) {
-            $workerID = $storeEvent['worker_id'];
-        }
-        if (isset($storeEvent['employer_id'])) {
-            $employerID = $storeEvent['employer_id'];
-        }
-        */
+        $this->_employerID = $storeEvent['employer_id'];
+
         $this->_worker = Worker::findRow($workerID);
         
-        // dd($employerID);
         $this->_eventStart = $storeEvent['start'];
         $this->_eventEnd = $storeEvent['end'];
-        // dd($this->_eventStart);
-        $eventsCount = LegendHelper::eventsOverlap(
-            $this->_worker, $employerID, $this->_eventStart, $this->_eventEnd
-        );
-        // dd($events->count());
-        if ($eventsCount > 0) {
-            $this->_eventsOverlap = true;
-        }
     }
 
     /**
@@ -69,19 +51,21 @@ class Legend implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        // dd($attribute);  // legend_id
-        // dd($value);  // 2
-
         $this->_legend = LegendHelper::findLegend($value);
 
         $requestIsNotNull = LegendHelper::requestIsNotNull(
             $this->_eventStart, $this->_eventEnd
         );
-        
         if ($requestIsNotNull === false) {
             return false;
         }
-
+        
+        $eventsCount = LegendHelper::eventsOverlap(
+            $this->_worker, $this->_employerID, $this->_eventStart, $this->_eventEnd
+        );
+        if ($eventsCount > 0) {
+            $this->_eventsOverlap = true;
+        }
         if ($this->_eventsOverlap) {
             return false;
         }
@@ -142,12 +126,6 @@ class Legend implements Rule
      */
     public function message()
     {
-        /*
-        if ($this->legend == null) {
-            return 'Wypełnij pola początek i koniec';
-        }
-        */
-
         if ($this->_eventsOverlap) {
             return self::EVENTS_OVERLAP_MESSAGE;
         }

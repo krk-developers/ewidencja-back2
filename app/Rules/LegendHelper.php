@@ -20,7 +20,7 @@ class LegendHelper
      * 
      * @return bool|none
      */
-    public static function requestIsNotNull(?string $start, ?string $end)
+    public static function requestIsNotNull(?string $start, ?string $end): bool
     {
         if ($start == null) {
             return false;
@@ -30,7 +30,7 @@ class LegendHelper
             return false;
         }
 
-        return null;
+        return true;
     }
 
     /**

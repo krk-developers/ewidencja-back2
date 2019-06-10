@@ -6,6 +6,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use App\Days;
+use App\Rules\LegendHelper;
 
 class Date implements Rule
 {
@@ -38,7 +39,12 @@ class Date implements Rule
     {
         $start = $value;
         $end = $this->request['end'];
-
+        
+        $requestIsNotNull = LegendHelper::requestIsNotNull($start, $end);
+        if ($requestIsNotNull === false) {
+            return false;
+        }
+        
         return Days::correctOrder($start, $end);
     }
 
