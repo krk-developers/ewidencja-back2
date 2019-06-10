@@ -105,7 +105,7 @@
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
                                 <button type="submit" class="btn btn-danger" title="Usuwa pracownika i jego wszystkie wydarzenia">
-                                    <i class="fas fa-eraser"></i> Usuń
+                                    <i class="fas fa-eraser"></i> Usuń__
                                 </button>
                                 <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
                                     <i class="fas fa-plus"></i> Dodaj pracodawcę

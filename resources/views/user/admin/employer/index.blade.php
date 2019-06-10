@@ -28,7 +28,6 @@
                                 <th scope="col">Ulica</th>
                                 <th scope="col">Kod pocztowy i miasto</th>
                                 <th scope="col">Województwo</th>
-                                <th scope="col">Usuń z listy</th>
                                 <!--
                                 <th scope="col" class="text-center">Pracodawcy</th>
                                 <th scope="col" class="text-center">Wydarzenia</th>
@@ -50,17 +49,6 @@
                                 <td>{{ $employer->street }}</td>
                                 <td>{{ $employer->zip_code }} {{ $employer->city }}</td>
                                 <td>{{ $employer->province['name'] }}</td>
-                                <td>
-                                    <form action="{{ route('admins.employers.destroy', [$admin->id, $employer->id]) }}" class="form-inline" method="POST">
-                                        @csrf
-
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Usuwa z listy">
-                                            <i class="fas fa-eraser"></i> Usuń
-                                        </button>
-                                    </form>
-                                </td>
                             </tr>
 @endforeach
                         </tbody>

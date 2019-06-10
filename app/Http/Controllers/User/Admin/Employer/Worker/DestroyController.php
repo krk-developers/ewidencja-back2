@@ -9,35 +9,46 @@ use App\{Admin, Employer, Worker};
 class DestroyController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Remove worker from list.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request  $request  Request
+     * @param Admin    $admin    Admin
+     * @param Employer $employer Employer
+     * @param Worker   $worker   Worker
+     * 
+     * @return View|RedirectResponse
      */
-    public function __invoke(Request $request, Admin $admin, Employer $employer, Worker $worker)
-    {
-        // return $request;
+    public function __invoke(
+        Request $request,
+        Admin $admin,
+        Employer $employer,
+        Worker $worker
+    ){//: object {
+        // return __CLASS__;
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {
-            $worker->deleteRow();
+            // $worker->deleteRow();
+            $employer->removeWorker($worker->id);
 
             return redirect()
-                ->route('admins.employers.workers.index')
+                ->route('admins.employers.show', [$admin->id, $employer->id])
                 ->with('success', 'Usunięto');
             
         }
 
         if ($delete == 'No') {
             return redirect()->route(
-                'admins.employers.workers.show',
-                [$admin->id, $employer->id, $worker->id]
+                'admins.employers.show', [$admin->id, $employer->id]
             );
         }
 
         return view(
-            'admin.employer.worker.destroy',
-            ['worker' => $worker]
+            'user.admin.employer.worker.destroy',
+            [
+                'admin' => $admin,
+                'employer' => $employer,
+                'worker' => $worker]
         );
     }
 }

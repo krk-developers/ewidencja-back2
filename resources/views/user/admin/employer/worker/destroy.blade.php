@@ -7,7 +7,7 @@
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-eraser"></i> Czy usunąć pracownika {{ $worker->user->name}} {{ $worker->lastname }} i wszystkie jego wydarzenia?
+                            <i class="fas fa-eraser"></i> Czy usunąć pracownika {{ $worker->user->name}} {{ $worker->lastname }} z listy zatrudnionych?
                         </div>
                         <div class="card-body">
                             <p class="card-text">
@@ -15,7 +15,7 @@
                             </p>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">
+                            <form action="{{ route('admins.employers.workers.destroy', [$admin, $employer, $worker]) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')
