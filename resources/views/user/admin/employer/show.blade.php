@@ -86,7 +86,7 @@
                                         <tr>
                                             <th scope="row">Ewidencja zbiorcza</th>
                                             <td>
-                                                <a href="{{ route('employers.records.index', [$employer->id, $year_month]) }}" title="Szczegóły">
+                                                <a href="{{ route('employers.records.index', [$employer, $year_month, 'admin' => $admin->id]) }}" title="Szczegóły">
                                                     <i class="fas fa-align-justify"></i>
                                                     Miesiąc {{ $month_name }}
                                                 </a>

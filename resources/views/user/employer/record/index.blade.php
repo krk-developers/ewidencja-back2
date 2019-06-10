@@ -138,9 +138,15 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-sm">
-                                    <a href="{{ route('employers.show', $employer->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+@if ($admin)
+                                    <a href="{{ route('admins.employers.show', [$admin, $employer]) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>
+@else
+                                    <a href="{{ route('employers.show', $employer) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                        <i class="fas fa-angle-left"></i> Powrót
+                                    </a>
+@endif
                                 </div>
                             </div>
                         </footer>

@@ -4,31 +4,25 @@ namespace App\Http\Controllers\User\Employer\Record;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use Carbon\{Carbon, CarbonPeriod};
-use App\{Employer, Worker, Event, Days};
+use App\{Employer, Event, Days};
 
 class IndexController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Employer $employer   Employer
+     * @param string   $year_month Year and month. YYYY-MM
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Employer $employer, string $year_month)
+    public function __invoke(Request $request, Employer $employer, string $year_month): View
     {
         // return __CLASS__;
-        // return $employer->workers;
-        /*
-        $previousMonth = Carbon::now()->subMonth()->startOfMonth()->format('Y-m');
-        $start_ = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d');
-        $end_ = Carbon::now()->subMonth()->endOfMonth()->format('Y-m-d');
-        */
-        // return $start. ' ' . $end;
-        // pr($previousMonth);
-        // return Carbon::now()->previousMonth();
-        // return Employer::with('workers.events')->get();
-        // return Employer::with('workers')->get();
+
+        $admin = $request->query('admin');
 
         $start = Days::start($year_month);  // start period time for which we calculate the statistics
 
@@ -100,6 +94,7 @@ class IndexController extends Controller
                 'working_days' => $workingDays,
                 'previous_month' => $previousMonthStartAsYearMonth,
                 'next_month' => $nextMonth,
+                'admin' => $admin,
             ]
         );
     }
