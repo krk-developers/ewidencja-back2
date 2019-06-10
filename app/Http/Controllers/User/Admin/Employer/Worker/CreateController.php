@@ -9,7 +9,7 @@ use Illuminate\View\View;
 use App\{Admin, Employer, Worker};
 
 /**
- * Adds an worker to the employer
+ * Adds the worker to the employer
  */
 class CreateController extends Controller
 {
@@ -21,8 +21,9 @@ class CreateController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Admin $admin, Employer $employer): View
+    public function __invoke(Admin $admin, Employer $employer)//: View
     {
+        return __CLASS__;
         $workers = Worker::allSortBy();
 
         return view(

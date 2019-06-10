@@ -127,6 +127,13 @@ Route::middleware('auth')->group(
         )
         ->name('admins.employers.edit');
         
+        // admin / worker / employer
+        Route::get(
+            'administratorzy/{admin}/pracodawcy/{employer}/pracownicy/{worker}/dodaj',
+            'User\Admin\Employer\Worker\Employer\CreateController'
+        )
+        ->name('admins.employers.workers.employers.add');
+        
         //
 
         Route::get(

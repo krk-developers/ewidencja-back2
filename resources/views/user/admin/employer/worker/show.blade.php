@@ -107,8 +107,8 @@
                                 <button type="submit" class="btn btn-danger" title="Usuwa pracownika z listy zatrudnionych">
                                     <i class="fas fa-eraser"></i> Zwolnij
                                 </button>
-                                <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
-                                    <i class="fas fa-plus"></i> Dodaj pracodawcę==
+                                <a href="{{ route('admins.employers.workers.employers.add', [$admin, $employer, $worker]) }}" title="Dodawanie pracodawcy do list pracownika" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> Dodaj pracodawcę
                                 </a>
                             </form>
                         </footer>

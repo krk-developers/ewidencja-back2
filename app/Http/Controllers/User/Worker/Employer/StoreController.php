@@ -22,6 +22,18 @@ class StoreController extends Controller
     public function __invoke(Request $request, Worker $worker): RedirectResponse
     {
         $result = $worker->addEmployer($request->all());
+        
+        $admin = $request->input('admin');
+        $employer = $request->input('employer');
+
+        if ($admin) {
+            return redirect()
+                ->route(
+                    'admins.employers.workers.show',
+                    [$admin, $employer, $worker]
+                )
+                ->with($result['status'], $result['message']);
+        }
 
         return redirect()
             ->route('workers.show', $worker->id)
