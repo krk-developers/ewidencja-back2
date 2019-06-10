@@ -126,14 +126,26 @@
                         <footer class="card-footer bg-white">
                             <div class="row mt-3">
                                 <div class="col-sm">
+@if ($admin)
+                                    <a href="{{ route('employers.records.index', [$employer->id, $previous_month, 'admin' => $admin]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        <i class="fas fa-chevron-left"></i> Poprzedni miesięc
+                                    </a>
+@else
                                     <a href="{{ route('employers.records.index', [$employer->id, $previous_month]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
                                         <i class="fas fa-chevron-left"></i> Poprzedni miesięc
                                     </a>
+@endif
                                 </div>
                                 <div class="col-sm">
+@if ($admin)
+                                    <a href="{{ route('employers.records.index', [$employer->id, $next_month, 'admin' => $admin]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        Następny miesiąc <i class="fas fa-chevron-right"></i>
+                                    </a>
+@else
                                     <a href="{{ route('employers.records.index', [$employer->id, $next_month]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
                                         Następny miesiąc <i class="fas fa-chevron-right"></i>
                                     </a>
+@endif
                                 </div>
                             </div>
                             <div class="row mt-4">
