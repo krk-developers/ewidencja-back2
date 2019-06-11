@@ -22,7 +22,7 @@ class CreateWorkersTable extends Migration
                 $table->string('lastname', 30)->nullable();
                 $table->unsignedBigInteger('pesel')->unique()->nullable();
                 $table->boolean('equivalent')->default(0);  // ekwiwalent
-                $table->decimal('equivalent_amount', 4, 2)->default(0);  // kwota ekwiwalentu
+                $table->decimal('equivalent_amount', 6, 2)->default(0);  // kwota ekwiwalentu
                 $table->tinyInteger('effective')->default(1);  // etat efektywny
                 $table->timestamps();
             }

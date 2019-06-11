@@ -8,7 +8,7 @@
                         {{-- Ścieżka: <strong>{{ $path }}</strong>. --}}
                         Route action: <strong>{{ Route::currentRouteAction() }}</strong>.
                         Route name: <strong>{{ Route::currentRouteName() }}</strong>.
-                        Środowisko: <strong>{{ App::environment() }}</strong>.
+                        Env: <strong>{{ App::environment() }}</strong>.
                         {{-- Produkcja: {{ App::isProduction() }} --}}
 @else
                         Aplikacja wykorzystuje <i class="fas fa-cookie"></i> ciastka.
