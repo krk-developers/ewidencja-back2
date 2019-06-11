@@ -79,7 +79,7 @@
 @endif
                                                             </td>
                                                             <td>
-                                                                <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
+                                                                <form action="{{ route('employers.workers.fired', [$employer, $worker]) }}" class="form-inline" method="POST">
                                                                     @csrf
 
                                                                     @method('DELETE')

@@ -15,12 +15,6 @@ class EmployerPolicy
         if ($user->type->name === 'superadmin') {
             return true;
         }
-
-        /*
-        if ($user->type->name === 'admin') {
-            return true;
-        }
-        */
         
         if ($user->type->name === 'worker') {
             return false;

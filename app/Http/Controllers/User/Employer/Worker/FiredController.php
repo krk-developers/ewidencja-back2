@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\User\Employer\Worker;
 
 use Illuminate\Http\Request;
@@ -8,10 +10,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\{Employer, Worker};
 
-class DestroyController extends Controller
+class FiredController extends Controller
 {
     /**
-     * Destroy form and operation.
+     * Fired form and operation.
      *
      * @param Request  $request  Request
      * @param Employer $employer Employer
@@ -39,7 +41,7 @@ class DestroyController extends Controller
         }
 
         return view(
-            'user.employer.worker.destroy',
+            'user.employer.worker.fired',
             [
                 'employer' => $employer,
                 'worker' => $worker

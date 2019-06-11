@@ -133,7 +133,7 @@
                                 </table>
                         </div>
                         <footer class="card-footer bg-white">
-                            <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">
+                            <form action="{{ route('employers.workers.destroy', [$employer, $worker]) }}" method="POST">
                                 @csrf
 
                                 @method('DELETE')

@@ -228,17 +228,6 @@ Route::middleware('auth')->group(
         ->name('employers.records.index');
         
         // employer / worker
-        Route::get(
-            'pracodawcy/{employer}/pracownicy/{worker}',
-            'User\Employer\Worker\ShowController'
-        )
-        ->name('employers.workers.show');
-
-        Route::get(
-            'pracodawcy/{employer}/pracownicy/dodaj',
-            'User\Employer\Worker\CreateController'
-        )
-        ->name('employers.workers.create');
 
         Route::post(
             'pracodawcy/{employer}/pracownicy',
@@ -246,18 +235,36 @@ Route::middleware('auth')->group(
         )
         ->name('employers.workers.store');
 
+        Route::get(
+            'pracodawcy/{employer}/pracownicy/dodaj',
+            'User\Employer\Worker\CreateController'
+        )
+        ->name('employers.workers.create');
+
+        Route::get(
+            'pracodawcy/{employer}/pracownicy/{worker}',
+            'User\Employer\Worker\ShowController'
+        )
+        ->name('employers.workers.show');
+
         Route::delete(
             'pracodawcy/{employer}/pracownicy/{worker}',
             'User\Employer\Worker\DestroyController'
         )
         ->name('employers.workers.destroy');
-        
+
+        Route::delete(
+            'pracodawcy/{employer}/pracownicy/{worker}/zwolnij',
+            'User\Employer\Worker\FiredController'
+        )
+        ->name('employers.workers.fired');
+
         Route::get(
             'pracodawcy/{employer}/pracownicy/{worker}/edytuj',
             'User\Employer\Worker\EditController'
         )
         ->name('employers.workers.edit');
-
+        
         // worker ////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////
         Route::get(
