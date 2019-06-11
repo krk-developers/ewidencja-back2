@@ -17,6 +17,8 @@ class CreateController extends Controller
      */
     public function __invoke(Employer $employer): View
     {
+        $this->authorize('addWorker', $employer);
+
         $workers = Worker::allSortBy();
 
         return view(

@@ -66,10 +66,17 @@
 @foreach ($employer->workers as $worker)
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ route('workers.show', $worker->id) }}" data-placement="top" title="Szczegóły">
+@if (Auth::user()->type->name === 'employer')
+                                                                <a href="{{ route('employers.workers.show', [$employer, $worker]) }}" title="Szczegóły">
                                                                     <i class="fas fa-user"></i>
                                                                     {{ $worker->user->name }} {{ $worker->lastname }}. PESEL: {{ $worker->pesel }}
                                                                 </a>
+@else
+                                                                <a href="{{ route('workers.show', $worker->id) }}" title="Szczegóły">
+                                                                    <i class="fas fa-user"></i>
+                                                                    {{ $worker->user->name }} {{ $worker->lastname }}. PESEL: {{ $worker->pesel }}
+                                                                </a>
+@endif
                                                             </td>
                                                             <td>
                                                                 <form action="{{ route('employers.workers.destroy', [$employer->id, $worker->id]) }}" class="form-inline" method="POST">
@@ -124,9 +131,11 @@
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
+@can('addWorker', $employer)
                                 <a href="{{ route('employers.workers.create', $employer->id) }}" title="Dodawanie pracownika" class="btn btn-success">
                                     <i class="fas fa-user-plus"></i> Dodaj pracownika
                                 </a>
+@endcan
                             </form>
                         </footer>
                     </div>

@@ -6,10 +6,8 @@ namespace App\Http\Controllers\User\Employer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Employer;
-use App\User;
 
 class ShowController extends Controller
 {

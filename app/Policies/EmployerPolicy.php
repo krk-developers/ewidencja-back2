@@ -100,6 +100,13 @@ class EmployerPolicy
         return $user->userable_id === $employer->id;
     }
 
+    public function addWorker(User $user, Employer $employer)
+    {
+        if ($user->type->name === 'employer') {
+            return false;
+        }
+    }
+
     /**
      * Determine whether the user can restore the employer.
      *
