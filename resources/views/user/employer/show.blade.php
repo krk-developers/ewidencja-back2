@@ -46,12 +46,16 @@
                                             <td>@isset($employer->province){{ $employer->province->name }}@endisset</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Uprawnienia</th>
-                                            <td>{{ $employer->user->type->display_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Opis</th>
-                                            <td>{{ $employer->user->type->description }}</td>
+                                            <th scope="row">
+                                                <span data-toggle="tooltip" data-placement="top" title="{{ $employer->user->type->description }}">
+                                                    Uprawnienia
+                                                </span>
+                                            </th>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="top" title="{{ $employer->user->type->description }}">
+                                                    {{ $employer->user->type->display_name }}
+                                                </span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Pracownicy</th>
