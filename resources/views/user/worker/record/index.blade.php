@@ -72,21 +72,39 @@
                         <footer class="card-footer bg-white">
                             <div class="row mt-3">
                                 <div class="col-sm">
+@if ($admin)
+                                    <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $previous_month, 'admin' => $admin]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        <i class="fas fa-chevron-left"></i> Poprzedni miesięc
+                                    </a>
+@else
                                     <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $previous_month]) }}" title="{{ $previous_month }}" class="btn btn-outline-secondary btn-block" role="button">
                                         <i class="fas fa-chevron-left"></i> Poprzedni miesięc
                                     </a>
+@endif
                                 </div>
                                 <div class="col-sm">
+@if ($admin)
+                                    <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $next_month, 'admin' => $admin]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
+                                        Następny miesiąc <i class="fas fa-chevron-right"></i>
+                                    </a>
+@else
                                     <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $next_month]) }}" title="{{ $next_month }}" class="btn btn-outline-secondary btn-block" role="button">
                                         Następny miesiąc <i class="fas fa-chevron-right"></i>
                                     </a>
+@endif
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-sm">
+@if ($admin)
+                                    <a href="{{ route('admins.employers.workers.show', [$admin, $employer, $worker]) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
+                                        <i class="fas fa-angle-left"></i> Powrót
+                                    </a>
+@else
                                     <a href="{{ route('workers.show', $worker->id) }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>
+@endif
                                 </div>
                             </div>
                         </footer>

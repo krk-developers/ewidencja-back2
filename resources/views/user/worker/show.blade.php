@@ -38,12 +38,16 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Uprawnienia</th>
-                                            <td>{{ $worker->user->type->display_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Opis</th>
-                                            <td>{{ $worker->user->type->description }}</td>
+                                            <th scope="row">
+                                                <span data-toggle="tooltip" data-placement="top" title="{{ $worker->user->type->description }}">
+                                                    Uprawnienia
+                                                </span>
+                                            </th>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="top" title="{{ $worker->user->type->description }}">
+                                                    {{ $worker->user->type->display_name }}
+                                                </span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Pracodawca</th>
@@ -82,7 +86,7 @@
                                                                 --}}
                                                             </td>
                                                             <td>
-                                                                <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $year_month]) }}" title="">
+                                                                <a href="{{ route('workers.records.index', [$worker->id, $employer->id, $year_month]) }}" title="Szczegóły">
                                                                     <i class="fas fa-align-justify"></i>  Ewidencja. Miesiąc {{ $month_name }}
                                                                 </a>
                                                             </td>

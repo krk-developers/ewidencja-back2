@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker\Record;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Carbon\Carbon;
@@ -20,17 +20,20 @@ class IndexController extends Controller
     /**
      * Show user's record
      *
+     * @param Request  $request    Request
      * @param Worker   $worker     Worker
      * @param Employer $employer   Employer
      * @param string   $year_month Year and month. Format YYYY-MM
      * 
      * @return View
      */
-    public function __invoke(Worker $worker, Employer $employer, string $year_month)//: View
-    {
-        // return $worker;
-        // return $year_month;
-        // return __CLASS__;
+    public function __invoke(
+        Request $request,
+        Worker $worker,
+        Employer $employer,
+        string $year_month
+    ): View {
+        $admin = $request->query('admin');
         
         $start = $this->periodStart($year_month); // Days::start($year_month);  // start period time for which we calculate the statistics
         // dd($start);
@@ -105,6 +108,7 @@ class IndexController extends Controller
                 'working_days' => $workingDays,
                 'previous_month' => $previousMonthStartAsYearMonth,
                 'next_month' => $nextMonth,
+                'admin' => $admin,
             ]
         );
     }

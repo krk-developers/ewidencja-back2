@@ -89,6 +89,14 @@
                                             </td>
                                         </tr>
 @endif
+                                        <tr>
+                                            <th scope="row">Ewidencja</th>
+                                            <td>
+                                                <a href="{{ route('workers.records.index', [$worker, $employer, $year_month, 'admin' => $admin->id]) }}" title="Szczegóły">
+                                                    <i class="fas fa-align-justify"></i>  Ewidencja. Miesiąc {{ $month_name }}
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                         </div>
