@@ -20,12 +20,12 @@ class UpdateController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function __invoke(UpdateWorker $request, Worker $worker)//: RedirectResponse
+    public function __invoke(UpdateWorker $request, Worker $worker): RedirectResponse
     {
         $admin = $request->query('admin');
         $employer = $request->query('employer');
-        // dd($admin);
-        // return $request;
+        $employerEdit = $request->input('employer');
+
         Validator::make(
             $request->all(),
             [
@@ -34,20 +34,13 @@ class UpdateController extends Controller
         );
         
         $validated = $request->validated();
-        /*
-        if ($validated['equivalent'] == 0) {
-            $validated['equivalent_amount'] = 0;
-        }
-        */
-        // dd($validated);
-        // dd($request->all());
+
         $saved = false;
-        // dd($worker->isDirty());
-        // dd($worker->user->isDirty());
-        $worker->fill($validated);  // $request->all()
+
+        $worker->fill($validated);
+
         if ($worker->isDirty()) {
             $saved = $worker->saveRow();
-            // dd($saved);
         }
 
         $worker->user->name = $request->input('name');
@@ -69,6 +62,15 @@ class UpdateController extends Controller
                 ->route(
                     'admins.employers.workers.show',
                     [$admin, $employer, $worker]
+                )
+                ->with($status, $message);
+        }
+
+        // employer edit
+        if ($employerEdit) {
+            return redirect()
+                ->route(
+                    'employers.workers.show', [$employerEdit, $worker]
                 )
                 ->with($status, $message);
         }

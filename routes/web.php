@@ -251,6 +251,12 @@ Route::middleware('auth')->group(
             'User\Employer\Worker\DestroyController'
         )
         ->name('employers.workers.destroy');
+        
+        Route::get(
+            'pracodawcy/{employer}/pracownicy/{worker}/edytuj',
+            'User\Employer\Worker\EditController'
+        )
+        ->name('employers.workers.edit');
 
         // worker ////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////
