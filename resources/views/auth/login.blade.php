@@ -15,7 +15,7 @@
                 @csrf
 
                 <div class="form-group row justify-content-center">
-                    <label for="email" class="col-sm-2 col-form-label text-right">E-mail</label>
+                    <!-- <label for="email" class="col-sm-2 col-form-label text-right">E-mail</label> -->
                     <div class="col-sm-6">
                         <input type="email" id="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="E-mail" autofocus> <!-- required -->
 @if ($errors->has('email'))
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group row justify-content-center">
-                    <label for="password" class="col-sm-2 col-form-label text-right">Hasło</label>
+                    <!-- <label for="password" class="col-sm-2 col-form-label text-right">Hasło</label> -->
                     <div class="col-sm-6">
                         <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Hasło"> <!-- required -->
 @if ($errors->has('password'))
@@ -39,17 +39,17 @@
                 </div>
 
                 <div class="form-group row justify-content-center">
-                    <div class="col-sm-2 text-right">Zapamiętaj mnie</div>
+                    <!-- <div class="col-sm-2 text-right">Zapamiętaj mnie</div> -->
                     <div class="col-sm-6">
                         <div class="form-check">
                             <input type="checkbox" id="remember" name="remember" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
-                            <!-- <label class="form-check-label" for="remember">Zapamiętaj mnie</label> -->
+                            <label class="form-check-label" for="remember">Zapamiętaj mnie</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row justify-content-center">
-                    <div class="col-sm-8 text-right">
+                    <div class="col-sm-6 text-right">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Zaloguj</button>
                     </div>
                 </div>
