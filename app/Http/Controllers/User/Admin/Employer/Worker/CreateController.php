@@ -21,9 +21,8 @@ class CreateController extends Controller
      * 
      * @return View
      */
-    public function __invoke(Admin $admin, Employer $employer)//: View
+    public function __invoke(Admin $admin, Employer $employer): View
     {
-        return __CLASS__;
         $workers = Worker::allSortBy();
 
         return view(
