@@ -15,11 +15,10 @@ class EmployerPolicy
         if ($user->type->name === 'superadmin') {
             return true;
         }
-        
+
         if ($user->type->name === 'worker') {
             return false;
         }
-        
     }
 
     public function list(User $user)
@@ -39,7 +38,7 @@ class EmployerPolicy
     public function view(User $user, Employer $employer)
     {
         if ($user->type->name === 'admin') {
-            return true;
+            return false;
         }
 
         return $user->userable_id === $employer->id;

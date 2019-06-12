@@ -48,7 +48,7 @@ class WorkerPolicy
         if ($user->type->name === 'worker') {
             return $user->userable_id === $worker->id;
         }
-
+        
         return true;
     }
 

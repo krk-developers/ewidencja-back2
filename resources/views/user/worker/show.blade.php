@@ -152,21 +152,26 @@
 
                                 @method('DELETE')
 
-{{-- @can('showWorkersList', $worker) --}}
+@can('list', $worker)
                                 <a href="{{ route('workers.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-{{-- @endcan --}}
-
+@endcan
+@can('update', $worker)
                                 <a href="{{ route('workers.edit', $worker->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
+@endcan
+@can('delete', $worker)
                                 <button type="submit" class="btn btn-danger" title="Usuwa pracownika i jego wszystkie wydarzenia">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
+@endcan
+@can('addEmployer', $worker)
                                 <a href="{{ route('workers.employers.add', $worker->id) }}" title="Dodawanie pracodawcy" class="btn btn-success">
                                     <i class="fas fa-plus"></i> Dodaj pracodawcę
                                 </a>
+@endcan
                             </form>
                         </footer>
                     </div>

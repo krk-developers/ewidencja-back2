@@ -48,16 +48,16 @@
                                 <a href="{{ route('superadmins.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>
-{{-- @can('update', $superadmin) --}}
+@can('update', $superadmin)
                                 <a href="{{ route('superadmins.edit', $superadmin->id) }}" title="Edycja" class="btn btn-primary">
                                     <i class="fas fa-user-edit"></i> Edytuj
                                 </a>
-{{-- @endcan --}}
-{{-- @can('delete', $superadmin) --}}
+@endcan
+@can('delete', $superadmin)
                                 <button type="submit" class="btn btn-danger" title="Usuwa administratora">
                                     <i class="fas fa-eraser"></i> Usuń
                                 </button>
-{{-- @endcan --}}
+@endcan
                             </form>
                         </footer>
                     </div>
