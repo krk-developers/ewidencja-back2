@@ -437,13 +437,13 @@ Route::middleware('auth')->group(
             'User\Worker\Record\IndexController'
         )
         ->name('workers.records.index');
-        /*
+        
         Route::get(
-            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}',
-            'User\Worker\Record\IndexController'
+            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/drukuj',
+            'User\Worker\Record\PrintController'
         )
-        ->name('workers.records1.index');
-        */
+        ->name('workers.employers.records.print');
+        
         // legend ////////////////////////////////////////////////////////////
         Route::get(
             'legenda',
