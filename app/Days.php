@@ -90,6 +90,11 @@ class Days
         return $timePeriod->filter($publicHolidayFilter);
     }
     
+    public static function isPublicHoliday($date, $publicHolidaysInMonth)
+    {
+        return in_array($date->format('Y-m-d'), $publicHolidaysInMonth);
+    }
+
     /**
      * Number of absences.
      *
@@ -193,36 +198,4 @@ class Days
         
         return $first->lessThanOrEqualTo($second);
     }
-
-    /*
-    public static function createTimePeriod(Carbon $start, Carbon $end): CarbonPeriod
-    {
-        return CarbonPeriod::between($start, $end);
-    }
-    
-    public static function workerEventFilter(
-        CarbonPeriod $timePeriod,
-        Collection $events
-    ): CarbonPeriod {
-        $workerEventFilter = function ($value) use ($events) {
-            return ! in_array($value->format('Y-m-d'), $events->toArray());
-        };
-
-        return $timePeriod->filter($workerEventFilter);
-    }
-    
-    public static function publicHolidayFilter(
-        CarbonPeriod $timePeriod,
-        Collection $pluckedPublicHolidays
-    ): CarbonPeriod {
-        $publicHolidayFilter = function ($value) use ($pluckedPublicHolidays) {
-            return ! in_array(
-                $value->format('Y-m-d'),
-                $pluckedPublicHolidays->toArray()
-            );
-        };
-
-        return $timePeriod->filter($publicHolidayFilter);
-    }
-    */
 }

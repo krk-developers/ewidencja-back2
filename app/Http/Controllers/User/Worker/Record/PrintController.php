@@ -6,22 +6,31 @@ namespace App\Http\Controllers\User\Worker\Record;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\{Worker, Employer, Legend, Event};
-use App\Days;
+use App\{Days, Calendar};
 
 class PrintController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request  $request    Request
+     * @param Worker   $worker     Worker
+     * @param Employer $employer   Employer
+     * @param string   $year_month YYYY-MM
+     * 
+     * @return Response
      */
-    public function __invoke(Request $request, Worker $worker, Employer $employer, string $year_month)
-    {
+    public function __invoke(
+        Request $request,
+        Worker $worker,
+        Employer $employer,
+        string $year_month
+    ): View {
         $admin = $request->query('admin');
         
         $start = Days::start($year_month);  // start period time for which we calculate the statistics
@@ -38,14 +47,19 @@ class PrintController extends Controller
         $nextMonth = $start->addMonth()->format('Y-m');
 
         $timePeriod = CarbonPeriod::between($start, $end);  // the period of time for which we calculate the statistics
-
-        $timePeriod = Days::weekendFilter($timePeriod);
-
+        
         // number of public holidays in a month
         $publicHolidaysInMonth = Event::publicHolidaysInMonth(
             $start->year, $start->month
         );
         $pluckedPublicHolidaysInMonth = $publicHolidaysInMonth->pluck('start');
+
+        $workerEvents = $worker->eventsByTimePeriod1((string) $start, (string) $end, $employer->id);
+
+        $calendar = new Calendar;
+        $workerCalendar = $calendar->make($workerEvents, $timePeriod, $pluckedPublicHolidaysInMonth);
+
+        $timePeriod = Days::weekendFilter($timePeriod);
 
         $timePeriodPublicHolidayFilter = Days::publicHolidayFilter(
             $timePeriod, $pluckedPublicHolidaysInMonth
@@ -53,18 +67,15 @@ class PrintController extends Controller
         $timePeriodPublicHolidayFilterCount = $timePeriodPublicHolidayFilter
             ->count();
 
-        $workerEvents = $worker->eventsByTimePeriod1((string) $start, (string) $end, $employer->id);
-        // dd($workerEvents);
         $absenceInDays = Days::absenceInDays($workerEvents);
         $workingDays = $timePeriod->count() - $absenceInDays;
 
         $legend = Legend::allSortBy();
         $legendCollection = collect($legend);
-        // dd($legendCollection);
         $legendGroups = $legendCollection->split(2);
-        // dd($legendGroups[0]);
+        
         return view(
-            'user.worker.record.print',
+            'user.worker.record.print1',
             [
                 'worker' => $worker,
                 'employer' => $employer,
@@ -76,6 +87,7 @@ class PrintController extends Controller
                 'absence_in_days' => $absenceInDays,
                 'working_days' => $workingDays,
                 'events' => $workerEvents,
+                'calendar' => $workerCalendar,
                 'legendGroups' => $legendGroups,
             ]
         );
