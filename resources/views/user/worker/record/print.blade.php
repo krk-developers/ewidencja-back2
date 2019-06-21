@@ -6,23 +6,7 @@
         <title>{{ $worker->user->name }} {{ $worker->lastname }}. {{ $employer->company }}. {{ $yearMonth }}</title>
         <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=PT+Mono&display=swap" rel="stylesheet">
-        <style>
-            body { background-color: #FFFFFF; color: #000000; margin: 0; padding: 0; font-family: 'PT Mono', 'Anonymous Pro', monospace; font-size: 12pt; }
-
-            table { width: 100%; }
-            table tbody tr td { border-top: 1px solid #797979; border-bottom: 2px solid #797979; padding-top: 4pt; padding-bottom: 4pt; }
-
-            table.header, table.main { margin-bottom: 35pt; }
-            table.header {}
-            table.header tr td {}
-
-            table.event thead tr th { text-align: left; border-top: 2px solid #797979; border-bottom: 1px solid #797979; padding-top: 4pt; padding-bottom: 4pt; }
-            table.event caption { font-size: 14pt; font-weight: bold; }
-            table.event tbody tr td { border-top: 0; border-bottom: 1px solid #797979; }
-
-            div.legend { outline: 1px solid black; float: left; width: 50%; }
-            div.legend table {}
-        </style>
+        <link href="{{ asset('css/print.css') }}" rel="stylesheet">
     </head>
     <body>
         <table class="header">

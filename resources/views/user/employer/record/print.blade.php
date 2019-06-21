@@ -1,17 +1,13 @@
 @extends('layouts.print')
 
-@section('title', 'Ewidencja indywidualna ' . $worker->user->name. ' ' . $worker->lastname . ' ' . $employer->company . ' ' . $yearMonth)
+@section('title', 'Ewidencja zbiorcza ' . $month_name)
 
 @section('content')
         <table class="header">
             <tbody>
                 <tr>
-                    <td>{{ $worker->user->name }} {{ $worker->lastname }}</td>
-                    <td>PESEL: {{ $worker->pesel }}</td>
                     <td>Pracodawca: {{ $employer->company }}</td>
-                    <td>Okres: {{ $yearMonth }}</td>
-                    <td>Kwota ekwiwalentu: {{ $worker->equivalent_amount }}</td>
-                    <td>Etat: {{ $worker->effective }}</td>
+                    <td>Okres: {{ $year_month }}</td>
                 </tr>
             </tbody>
         </table>
@@ -28,44 +24,22 @@
             </tbody>
         </table>
 
-        <table class="calendar">
+        <table class="main">
             <tbody>
+@foreach($workers as $worker)
                 <tr>
-@foreach ($calendar as $key => $value)
-                    <td>
-                        {{ $key }}<br>{{ $value }}
-                    </td>
-@endforeach
+                    <td>{{ $worker->user->name }}</td>
+                    <td>{{ $worker->lastname }}</td>
+                    <td>{{ $worker->pesel }}</td>
+                    <td>{{ $worker->equivalent }}</td>
+                    <td>{{ $worker->equivalent_amount }}</td>
+                    <td>{{ $worker->effective }}</td>
+                    <td><pre>{{ print_r($worker->workerEvents) }}</pre></td>
                 </tr>
+@endforeach
             </tbody>
         </table>
 
-{{--
-        <table class="event">
-            <caption>Nieobecności</caption>
-            <thead>
-                <tr>
-                    <th scope="col">L.P.</th>
-                    <th scope="col">Początek</th>
-                    <th scope="col">Koniec</th>
-                    <th scope="col">Nazwa</th>
-                    <th scope="col">Opis</th>
-                </tr>
-            </thead>
-            <tbody>
-@foreach ($events as $event)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $event->start }}</td>
-                    <td>{{ $event->end }}</td>
-                    <td>{{ $event->legend_name }}</td>
-                    <td>{{ $event->legend_display_name }}</td>
-                </tr>
-@endforeach
-            </tbody>
-        </table>
---}}
-        
         <div class="sign">Podpis doradcy zawodowego</div>
         <div class="sign">Podpis pracownika działu kadr</div>
         <div class="sign">Podpis koordynatora</div>

@@ -88,7 +88,7 @@ class PrintController extends Controller
                 'working_days' => $workingDays,
                 'events' => $workerEvents,
                 'calendar' => $workerCalendar,
-                'legendGroups' => $legendGroups,
+                'legend_groups' => $legendGroups,
             ]
         );
     }

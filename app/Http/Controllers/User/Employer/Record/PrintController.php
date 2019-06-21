@@ -6,21 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Carbon\{Carbon, CarbonPeriod};
-use App\{Employer, Event, Days};
+use App\{Days, Event, Legend, Employer};
 
-class IndexController extends Controller
+class PrintController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param equest   $request    Request 
-     * @param Employer $employer   Employer
-     * @param string   $year_month Year and month. YYYY-MM
-     * 
-     * @return View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Employer $employer, string $year_month): View
+    public function __invoke(Request $request, Employer $employer, string $year_month)
     {
+        // return __CLASS__;
+
         $admin = $request->query('admin');
 
         $start = Days::start($year_month);  // start period time for which we calculate the statistics
@@ -53,10 +52,9 @@ class IndexController extends Controller
         $timePeriodPublicHolidayFilterCount = $timePeriodPublicHolidayFilter
             ->count();
 
-        // $workers = Employer::workersByEmployerID($employer->id);
+        
         $workers = $employer->workers;
         // return $workers;
-        
         
         foreach ($workers as $worker) {
             $workerEvents = $worker->eventsByTimePeriod1($start, $end, $employer->id);
@@ -67,17 +65,14 @@ class IndexController extends Controller
             $worker->absenceInDays = $absenceInDays;
             $worker->workingDays = $workingDays;
         }
-        
-        // return $workers;
 
-        /*
-        $events = Employer::workersWithEventsByEmployerID(
-            $employer->id, $start_, $end_
-        );
-        return $events;
-        */
+        $legend = Legend::allSortBy();
+        dd($legend);
+        $legendCollection = collect($legend);
+        $legendGroups = $legendCollection->split(2);
+
         return view(
-            'user.employer.record.index',
+            'user.employer.record.print',
             [
                 'employer' => $employer,
                 'workers' => $workers,
@@ -95,7 +90,9 @@ class IndexController extends Controller
                 'next_month' => $nextMonth,
                 'admin' => $admin,
                 'year_month' => $year_month,
+                'legend_groups' => $legendGroups,
             ]
         );
+
     }
 }

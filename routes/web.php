@@ -226,7 +226,13 @@ Route::middleware('auth')->group(
             'User\Employer\Record\IndexController'
         )
         ->name('employers.records.index');
-        
+
+        Route::get(
+            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}/drukuj',
+            'User\Employer\Record\PrintController'
+        )
+        ->name('employers.records.print');
+
         // employer / worker
 
         Route::post(

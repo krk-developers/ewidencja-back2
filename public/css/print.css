@@ -1,0 +1,23 @@
+body { background-color: #FFFFFF; color: #000000; margin: 0; padding: 0; font-family: 'PT Mono', 'Anonymous Pro', monospace; font-size: 12pt; }
+
+table { width: 100%; }
+table tbody tr td { border-top: 1px solid #797979; border-bottom: 2px solid #797979; padding-top: 4pt; padding-bottom: 4pt; }
+
+table.header, table.main, table.calendar, div.sign { margin-bottom: 35pt; }
+table.header {}
+table.header tr td {}
+
+table.event thead tr th { text-align: left; border-top: 2px solid #797979; border-bottom: 1px solid #797979; padding-top: 4pt; padding-bottom: 4pt; }
+table.event caption { font-size: 14pt; font-weight: bold; }
+table.event tbody tr td { border-top: 0; border-bottom: 1px solid #797979; }
+
+table.calendar tbody tr td { text-align: center; }
+
+div.sign { text-align: center; float: left; width: 23%; border-top: 1px dotted #797979; padding-top: 0.5em; margin-left: 5%; margin-right: 5%; }
+div.sign { margin-top: 30pt; }
+
+div.legend { float: left; width: 50%; }
+div.legend table { font-size: 10pt; color: #444444; }
+div.legend table.left { padding-right: 1%; }
+div.legend table.right { padding-left: 1%; }
+div.legend table tbody tr td { border-bottom: 0; border-top: 1px dashed #797979; }

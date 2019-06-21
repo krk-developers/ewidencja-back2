@@ -159,6 +159,9 @@
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>
 @endif
+                                    <a href="{{ route('employers.records.print', [$employer, $year_month]) }}" title="" class="btn btn-primary">
+                                        <i class="fas fa-print"></i> Druk
+                                    </a>
                                 </div>
                             </div>
                         </footer>
