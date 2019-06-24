@@ -24,7 +24,20 @@
             </tbody>
         </table>
 
-        <table class="main">
+        <table class="collective">
+            <thead>
+                <tr>
+                    <td>Imię</td>
+                    <td>Nazwisko</td>
+                    <td>PESEL</td>
+                    <td title="Ekwiwalent">Ekw</td>
+                    <td>Kwota</td>
+                    <td>Etat</td>
+@foreach ($legend as $legend_)
+                    <td>{{ $legend_->name }}</td>
+@endforeach
+                </tr>
+            </thead>
             <tbody>
 @foreach($workers as $worker)
                 <tr>
@@ -34,7 +47,11 @@
                     <td>{{ $worker->equivalent }}</td>
                     <td>{{ $worker->equivalent_amount }}</td>
                     <td>{{ $worker->effective }}</td>
-                    <td><pre>{{ print_r($worker->workerEvents) }}</pre></td>
+@foreach ($worker->legend as $key)
+                    <td>
+                        {{ $key }}
+                    </td>
+@endforeach
                 </tr>
 @endforeach
             </tbody>

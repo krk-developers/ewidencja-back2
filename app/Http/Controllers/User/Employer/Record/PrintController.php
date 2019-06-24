@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Carbon\{Carbon, CarbonPeriod};
-use App\{Days, Event, Legend, Employer};
+use App\{Days, Event, Legend, Calendar, Employer};
 
 class PrintController extends Controller
 {
@@ -67,7 +67,10 @@ class PrintController extends Controller
         }
 
         $legend = Legend::allSortBy();
-        dd($legend);
+        
+        $calendar = new Calendar;
+        $workers = $calendar->addLegendToWorker($legend, $workers);
+        // dd($legend);
         $legendCollection = collect($legend);
         $legendGroups = $legendCollection->split(2);
 
@@ -90,6 +93,7 @@ class PrintController extends Controller
                 'next_month' => $nextMonth,
                 'admin' => $admin,
                 'year_month' => $year_month,
+                'legend' => $legend,
                 'legend_groups' => $legendGroups,
             ]
         );
