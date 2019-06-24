@@ -69,6 +69,9 @@ class IndexController extends Controller
         //dd($workerEvents);
         $absenceInDays = Days::absenceInDays($workerEvents);
         $workingDays = $timePeriod->count() - $absenceInDays;
+        $workingHoursDuringMonth = $workingDays * config(
+            'record.working_hours_during_day'
+        );
 
         return view(
             'user.worker.record.index',
@@ -85,6 +88,7 @@ class IndexController extends Controller
                 'public_holidays_in_month' => $publicHolidaysInMonth,
                 'absence_in_days' => $absenceInDays,
                 'working_days' => $workingDays,
+                'workingHoursDuringMonth' => $workingHoursDuringMonth,
                 'previous_month' => $previousMonthStartAsYearMonth,
                 'next_month' => $nextMonth,
                 'admin' => $admin,

@@ -19,11 +19,12 @@
         <table class="main">
             <tbody>
                 <tr>
-                    <td>Liczba dni w miesiącu: {{ $days_in_month }}</td>
-                    <td>Liczba dni pracujących: {{ $time_period_public_holiday_filter }}</td>
-                    <td>Liczba dni ustawowo wolnych od pracy: {{ $public_holidays_in_month->count() }}</td>
-                    <td>Liczba nieobecności: {{ $absence_in_days }}</td>                    
-                    <td>Liczba dni przepracowanych: {{ $working_days }}</td>
+                    <td>Dni w miesiącu: {{ $days_in_month }}</td>
+                    <td>Dni pracujących: {{ $time_period_public_holiday_filter }}</td>
+                    <td>Dni ustawowo wolnych od pracy: {{ $public_holidays_in_month->count() }}</td>
+                    <td>Nieobecności: {{ $absence_in_days }}</td>                    
+                    <td>Przepracowanych dni: {{ $working_days }}</td>
+                    <td>Przepracowanych godzin: {{ $workingHoursDuringMonth }}</td>
                 </tr>
             </tbody>
         </table>

@@ -63,8 +63,12 @@
                                         <td>{{ $absence_in_days }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Liczba dni przepracowanych</th>
+                                        <th scope="row">Liczba przepracowanych dni</th>
                                         <td>{{ $working_days }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Liczba przepracowanych godzin</th>
+                                        <td>{{ $workingHoursDuringMonth }}</td>
                                     </tr>
                                 </tbody>
                             </table>

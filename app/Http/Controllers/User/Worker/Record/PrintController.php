@@ -69,6 +69,9 @@ class PrintController extends Controller
 
         $absenceInDays = Days::absenceInDays($workerEvents);
         $workingDays = $timePeriod->count() - $absenceInDays;
+        $workingHoursDuringMonth = $workingDays * config(
+            'record.working_hours_during_day'
+        );
 
         $legend = Legend::allSortBy();
         $legendCollection = collect($legend);
@@ -86,6 +89,7 @@ class PrintController extends Controller
                 'public_holidays_in_month' => $publicHolidaysInMonth,
                 'absence_in_days' => $absenceInDays,
                 'working_days' => $workingDays,
+                'workingHoursDuringMonth' => $workingHoursDuringMonth,
                 'events' => $workerEvents,
                 'calendar' => $workerCalendar,
                 'legend_groups' => $legendGroups,
