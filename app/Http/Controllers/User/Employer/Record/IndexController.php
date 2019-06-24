@@ -56,16 +56,21 @@ class IndexController extends Controller
         // $workers = Employer::workersByEmployerID($employer->id);
         $workers = $employer->workers;
         // return $workers;
-        
+        $totalWorkingHours = 0;
         
         foreach ($workers as $worker) {
-            $workerEvents = $worker->eventsByTimePeriod1($start, $end, $employer->id);
+            $workerEvents = $worker->eventsByTimePeriod1(
+                $start, $end, $employer->id
+            );
             $absenceInDays = Days::absenceInDays($workerEvents);
             $workingDays = $timePeriod->count() - $absenceInDays;
-            
             $worker->workerEvents = $workerEvents;
             $worker->absenceInDays = $absenceInDays;
             $worker->workingDays = $workingDays;
+            $worker->workingHoursDuringMonth = $workingDays * config(
+                'record.working_hours_during_day'
+            );
+            $totalWorkingHours += $worker->workingHoursDuringMonth;
         }
         
         // return $workers;
@@ -95,6 +100,7 @@ class IndexController extends Controller
                 'next_month' => $nextMonth,
                 'admin' => $admin,
                 'year_month' => $year_month,
+                'totalWorkingHours' => $totalWorkingHours,
             ]
         );
     }

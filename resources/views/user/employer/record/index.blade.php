@@ -15,11 +15,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">L.P.</th>
-                                        <th scope="col">#</th>
                                         <th scope="col">Nazwisko</th>
                                         <th scope="col">PESEL</th>
-                                        <th scope="col">Liczba nieobecności</th>
-                                        <th scope="col">Liczba dni przepracowanych</th>
+                                        <th scope="col">Nieobecności</th>
+                                        <th scope="col">Przepracowane dni</th>
+                                        <th scope="col">Przepracowane godziny</th>
                                         <th scope="col">Wydarzenia</th>
                                     </tr>
                                 </thead>
@@ -32,11 +32,11 @@
 @foreach ($workers as $worker)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $worker->id }}</td>
                                         <td>{{ $worker->lastname }}</td>
                                         <td>{{ $worker->pesel }}</td>
                                         <td>{{ $worker->absenceInDays }}</td>
                                         <td>{{ $worker->workingDays }}</td>
+                                        <td>{{ $worker->workingHoursDuringMonth }}</td>
                                         <td>
 @if ($worker->workerEvents->count() > 0)
                                             <table class="table table-bordered record text-muted inner-table">
@@ -48,7 +48,6 @@
                                                         <th scope="col">Początek</th>
                                                         <th scope="col">Koniec</th>
                                                         <th scope="col">Legenda</th>
-                                                        <th scope="col">Legenda opis</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -59,10 +58,9 @@
                                                         <td>{{ $event->title }}</td>
                                                         <td>{{ $event->start }}</td>
                                                         <td>{{ $event->end }}</td>
-                                                        <td>{{ $event->legend_name }}</td>
                                                         <td>
-                                                            <span data-toggle="tooltip" data-placement="top" title="{{ $event->legend_description }}">
-                                                                {{ $event->legend_display_name }}
+                                                            <span data-toggle="tooltip" data-placement="top" title="{{ $event->legend_display_name }}">
+                                                                {{ $event->legend_name }}
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -98,6 +96,12 @@
                                             <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy</small>
                                         </th>
                                         <td>{{ $time_period_public_holiday_filter }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            Suma przepracowanych godzin
+                                        </th>
+                                        <td>{{ $totalWorkingHours }}</td>
                                     </tr>
 @if ($public_holidays_in_month->count() > 0)
                                     <tr>

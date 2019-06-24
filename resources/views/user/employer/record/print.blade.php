@@ -33,6 +33,7 @@
                     <td title="Ekwiwalent">Ekw</td>
                     <td>Kwota</td>
                     <td>Etat</td>
+                    <td>Suma godz.</td>
 @foreach ($legend as $legend_)
                     <td>{{ $legend_->name }}</td>
 @endforeach
@@ -47,6 +48,7 @@
                     <td>{{ $worker->equivalent }}</td>
                     <td>{{ $worker->equivalent_amount }}</td>
                     <td>{{ $worker->effective }}</td>
+                    <td>{{ $worker->workingHoursDuringMonth }}</td>
 @foreach ($worker->legend as $key)
                     <td>
                         {{ $key }}
@@ -54,6 +56,10 @@
 @endforeach
                 </tr>
 @endforeach
+                <tr>
+                    <td colspan="7" class="text-right">{{ $totalWorkingHours }}</td>
+                    <td colspan="22"></td>
+                </tr>
             </tbody>
         </table>
 

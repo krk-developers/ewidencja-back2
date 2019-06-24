@@ -8,4 +8,5 @@ return [
     'local_main_page' => 'http://127.0.0.1:8000',
     'host_main_page' => 'https://ewidencja.vipserv.org/backend/public',
     'childcare_day' => 2,
+    'working_hours_during_day' => 7,
 ];

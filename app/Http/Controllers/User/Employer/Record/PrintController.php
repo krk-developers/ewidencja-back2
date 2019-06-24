@@ -52,25 +52,29 @@ class PrintController extends Controller
         $timePeriodPublicHolidayFilterCount = $timePeriodPublicHolidayFilter
             ->count();
 
-        
         $workers = $employer->workers;
-        // return $workers;
         
+        $totalWorkingHours = 0;
+
         foreach ($workers as $worker) {
-            $workerEvents = $worker->eventsByTimePeriod1($start, $end, $employer->id);
+            $workerEvents = $worker->eventsByTimePeriod1(
+                $start, $end, $employer->id
+            );
             $absenceInDays = Days::absenceInDays($workerEvents);
             $workingDays = $timePeriod->count() - $absenceInDays;
-            
             $worker->workerEvents = $workerEvents;
             $worker->absenceInDays = $absenceInDays;
             $worker->workingDays = $workingDays;
+            $worker->workingHoursDuringMonth = $workingDays * config(
+                'record.working_hours_during_day'
+            );
+            $totalWorkingHours += $worker->workingHoursDuringMonth;
         }
 
         $legend = Legend::allSortBy();
         
         $calendar = new Calendar;
         $workers = $calendar->addLegendToWorker($legend, $workers);
-        // dd($legend);
         $legendCollection = collect($legend);
         $legendGroups = $legendCollection->split(2);
 
@@ -95,6 +99,7 @@ class PrintController extends Controller
                 'year_month' => $year_month,
                 'legend' => $legend,
                 'legend_groups' => $legendGroups,
+                'totalWorkingHours' => $totalWorkingHours,
             ]
         );
 
