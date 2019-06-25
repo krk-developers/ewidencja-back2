@@ -445,11 +445,16 @@ Route::middleware('auth')->group(
         ->name('workers.records.index');
         
         Route::get(
-            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/drukuj',
+            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/druk',
             'User\Worker\Record\PrintController'
         )
         ->name('workers.employers.records.print');
-        
+        Route::get(
+            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/pdf',
+            'User\Worker\Record\PdfController'
+        )
+        ->name('workers.employers.records.pdf');
+
         // legend ////////////////////////////////////////////////////////////
         Route::get(
             'legenda',
