@@ -163,8 +163,11 @@
                                         <i class="fas fa-angle-left"></i> Powrót
                                     </a>
 @endif
-                                    <a href="{{ route('employers.records.print', [$employer, $year_month]) }}" title="" class="btn btn-primary">
+                                    <a href="{{ route('employers.records.print', [$employer, $year_month]) }}" title="Wersja do druku" class="btn btn-primary">
                                         <i class="fas fa-print"></i> Druk
+                                    </a>
+                                    <a href="{{ route('employers.records.pdf', [$employer, $year_month]) }}" title="PDF" class="btn btn-primary">
+                                        <i class="fas fa-file-pdf"></i> PDF
                                     </a>
                                 </div>
                             </div>

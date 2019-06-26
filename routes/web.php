@@ -228,10 +228,16 @@ Route::middleware('auth')->group(
         ->name('employers.records.index');
 
         Route::get(
-            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}/drukuj',
+            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}/druk',
             'User\Employer\Record\PrintController'
         )
         ->name('employers.records.print');
+
+        Route::get(
+            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}/pdf',
+            'User\Employer\Record\PDFController'
+        )
+        ->name('employers.records.pdf');
 
         // employer / worker
 

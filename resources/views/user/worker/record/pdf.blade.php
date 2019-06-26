@@ -8,8 +8,6 @@
 
             table.header, table.main, table.calendar { width: 100%; }
 
-            table.main {     }
-
             table.header, table.main {
                 margin-bottom: 30pt;
             }
