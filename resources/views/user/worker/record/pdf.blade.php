@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="pl">
     <head>
-        <!--<meta charset="utf-8">-->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Hello, world!</title>
+        <meta charset="utf-8">
+        <title>Ewidencja indywidualna {{ $worker->user->name }} {{ $worker->lastname }} {{ $employer->company }} {{ $yearMonth }}</title>
         <style>
             body { font-family: DejaVu Sans Mono, DejaVu Sans; font-size: 8pt; margin: 0; padding: 0; }
 

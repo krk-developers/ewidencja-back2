@@ -84,8 +84,9 @@ class PdfController extends Controller
                 'legend_groups' => $legendGroups,
         ];
 
-        $pdf = PDF::loadView('user.worker.record.pdf1', $data);
-        return $pdf->stream();
-        // return $pdf->download('ewidencja.pdf');
+        $pdf = PDF::loadView('user.worker.record.pdf', $data);
+        // return $pdf->stream();
+        $fileName = $worker->user->name . ' ' . $worker->lastname . ' ' . $employer->company . ' ' . $yearMonth;
+        return $pdf->download($fileName);
     }
 }
