@@ -455,11 +455,18 @@ Route::middleware('auth')->group(
             'User\Worker\Record\PrintController'
         )
         ->name('workers.employers.records.print');
+
         Route::get(
             'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/pdf',
             'User\Worker\Record\PdfController'
         )
         ->name('workers.employers.records.pdf');
+
+        Route::get(
+            'pracownicy/{worker}/pracodawcy/{employer}/ewidencja/{year_month}/excel',
+            'User\Worker\Record\ExcelController'
+        )
+        ->name('workers.employers.records.excel');
 
         // legend ////////////////////////////////////////////////////////////
         Route::get(

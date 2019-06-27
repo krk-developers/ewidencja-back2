@@ -112,8 +112,11 @@
                                     <a href="{{ route('workers.employers.records.print', [$worker, $employer, $year_month]) }}" title="Wersja do druku" class="btn btn-primary">
                                         <i class="fas fa-print"></i> Druk
                                     </a>
-                                    <a href="{{ route('workers.employers.records.pdf', [$worker, $employer, $year_month]) }}" title="PDF" class="btn btn-primary">
+                                    <a href="{{ route('workers.employers.records.pdf', [$worker, $employer, $year_month]) }}" title="Eksport do PDF" class="btn btn-primary">
                                         <i class="fas fa-file-pdf"></i> PDF
+                                    </a>
+                                    <a href="{{ route('workers.employers.records.excel', [$worker, $employer, $year_month]) }}" title="Eksport do Excel" class="btn btn-primary">
+                                        <i class="fas fa-file-excel"></i> Excel
                                     </a>
                                 </div>
                             </div>
