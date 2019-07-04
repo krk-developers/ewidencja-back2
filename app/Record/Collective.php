@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\User\Employer\Record;
+declare(strict_types = 1);
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+namespace App\Record;
+
+use Illuminate\Support\Collection;
 use Carbon\{Carbon, CarbonPeriod};
 use App\{Days, Event, Legend, Calendar, Employer};
-use App\Record\Collective;
+use PDF;
 
-class PrintController extends Controller
+class Collective
 {
     /**
-     * Handle the incoming request.
+     * String representation of class.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function __invoke(Request $request, Employer $employer, string $year_month)
+    public function __toString()
     {
-        // return __CLASS__;
+        return __CLASS__;
+        // $admin = $request->query('admin');
+    }
 
-        $admin = $request->query('admin');
-        /*
+    public function calculate(Employer $employer, string $year_month)
+    {
         $start = Days::start($year_month);  // start period time for which we calculate the statistics
-
+        
         $monthName = $start->monthName;
 
         $end = Days::end($monthName, $start);  // current day or end of the month
@@ -56,10 +57,10 @@ class PrintController extends Controller
         $workers = $employer->workers;
         
         $totalWorkingHours = 0;
-
+        // dd($start);
         foreach ($workers as $worker) {
             $workerEvents = $worker->eventsByTimePeriod1(
-                $start, $end, $employer->id
+                (string) $start, (string) $end, $employer->id
             );
             $absenceInDays = Days::absenceInDays($workerEvents);
             $workingDays = $timePeriod->count() - $absenceInDays;
@@ -78,12 +79,30 @@ class PrintController extends Controller
         $workers = $calendar->addLegendToWorker($legend, $workers);
         $legendCollection = collect($legend);
         $legendGroups = $legendCollection->split(2);
-        */
 
-        $collectiveRecord = new Collective;
-        $data = $collectiveRecord->calculate($employer, $year_month);
-        $data['admin'] = $admin;
+        $data = [
+            'employer' => $employer,
+            'workers' => $workers,
+            'start' => $start->toDateString(),
+            'end' => $end->toDateString(),
+            'is_future' => $isFuture,
+            'month_name' => $monthName,
+            'days_in_month' => $daysInMonth,
+            'time_period_public_holiday_filter' => 
+                $timePeriodPublicHolidayFilterCount,
+            'public_holidays_in_month_count' => $publicHolidaysInMonth->count(),
+            'absence_in_days' => $absenceInDays,
+            'working_days' => $workingDays,
+            'previous_month' => $previousMonthStartAsYearMonth,
+            'next_month' => $nextMonth,
+            // 'admin' => $admin,
+            'year_month' => $year_month,
+            'legend' => $legend,
+            'legend_groups' => $legendGroups,
+            'totalWorkingHours' => $totalWorkingHours,
+        ];
 
-        return view('user.employer.record.print', $data);
+        // dd($data);
+        return $data;
     }
 }

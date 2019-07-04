@@ -169,6 +169,9 @@
                                     <a href="{{ route('employers.records.pdf', [$employer, $year_month]) }}" title="PDF" class="btn btn-primary">
                                         <i class="fas fa-file-pdf"></i> PDF
                                     </a>
+                                    <a href="{{ route('employers.records.excel', [$employer, $year_month]) }}" title="Eksport do Excel" class="btn btn-primary">
+                                        <i class="fas fa-file-excel"></i> Excel
+                                    </a>
                                 </div>
                             </div>
                         </footer>

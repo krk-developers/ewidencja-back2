@@ -238,7 +238,13 @@ Route::middleware('auth')->group(
             'User\Employer\Record\PDFController'
         )
         ->name('employers.records.pdf');
-
+        
+        Route::get(
+            'pracodawcy/{employer}/ewidencja-zbiorcza/{year_month}/excel',
+            'User\Employer\Record\ExcelController'
+        )
+        ->name('employers.records.excel');
+        
         // employer / worker
 
         Route::post(
