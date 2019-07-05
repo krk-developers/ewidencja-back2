@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Illuminate\Support\Collection;
 
-class IndiwidualExport implements FromArray
+class IndividualExport implements FromArray
 {
     protected $data;
 
