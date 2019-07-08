@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Record;
 
+use Illuminate\Support\Collection;
 use Carbon\{Carbon, CarbonPeriod};
 use App\{Days, Event, Legend, Calendar, Worker, Employer};
 use App\Exports\CommonData;
@@ -36,25 +37,28 @@ class Individual
     ): array {
         $legend = Legend::allSortBy();
         // $legendCollection = collect($legend);
-        //$legendGroups = $legendCollection->split(2);
+        // $legendGroups = $legendCollection->split(2);
         
         $commonData = new CommonData();
         $seperateLegend = $commonData->seperateLegend($legend);
-        // dd($seperateLegend);
-        $start = Days::start($yearMonth);  // start period time for which we calculate the statistics
+        
+        // start period time for which we calculate the statistics
+        $start = Days::start($yearMonth);
         $monthName = $start->monthName;
         $end = Days::end($monthName, $start);  // current day or end of the month
         $yearMonth = $start->format('Y-m');
 
         $daysInMonth = $start->daysInMonth;  // number of days in a month
         
-        $isFuture = $start > Carbon::now();  // whether the user calculates statistics for a future date
+        // whether the user calculates statistics for a future date
+        $isFuture = $start > Carbon::now();
 
         $previousMonthStart = $start->subMonth()->startOfMonth();
         $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
         $nextMonth = $start->addMonth()->format('Y-m');
 
-        $timePeriod = CarbonPeriod::between($start, $end);  // the period of time for which we calculate the statistics
+        // the period of time for which we calculate the statistics
+        $timePeriod = CarbonPeriod::between($start, $end);
         
         // number of public holidays in a month
         $publicHolidaysInMonth = Event::publicHolidaysInMonth(
@@ -65,7 +69,9 @@ class Individual
         $workerEvents = $worker->eventsByTimePeriod1((string) $start, (string) $end, $employer->id);
 
         $calendar = new Calendar;
-        $workerCalendar = $calendar->make($workerEvents, $timePeriod, $pluckedPublicHolidaysInMonth);
+        $workerCalendar = $calendar->make(
+            $workerEvents, $timePeriod, $pluckedPublicHolidaysInMonth
+        );
 
         $timePeriod = Days::weekendFilter($timePeriod);
 

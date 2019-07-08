@@ -63,7 +63,7 @@ class Calendar
             $eventPeriod = [];
             $eventPeriod['legend'] = $event->legend_name;
             $eventPeriod['period'] = $period;
-            $workerEventsAsPeriod[] = $eventPeriod;  // $period;
+            $workerEventsAsPeriod[] = $eventPeriod;
         }
         
         return $workerEventsAsPeriod;
@@ -99,77 +99,30 @@ class Calendar
         return $workers;
     }
 
-    // ///////////////////////////////////////////////////////////////////////////
-
-    private function equal($event)
-    {}
-
-    private function legend($legend, $event) {
-        dd($legend['name']);
-        // dd($event);
-        
-        // array_map(array($this, 'equal'), $event);
-    }
-
     private function event($event)
     {
-        // dd($event->legend_id);
         $period = new CarbonPeriod($event->start, $event->end);
         $eventDayCount = $period->count();
-        // echo $eventDayCount.'<br>';
+
         return [$event->legend_name => $eventDayCount];
     }
     
-    private function worker($worker)  // , array 
+    private function worker($worker)
     {
-        // dd($worker['workerEvents']);
-        $events = array_map(array($this, 'event'), $worker['workerEvents']->toArray());
-        // dd($events);
+        $events = array_map(
+            array($this, 'event'), $worker['workerEvents']->toArray()
+        );
+     
         return $events;
-        // dd($legend['id']);
-        //if ($legend['id'] == $event->legend_id) {
-            //$period = new CarbonPeriod($event->start, $event->end);
-            //$eventDayCount = $period->count();
-            //echo $eventDayCount;
-        //}
     }
     
     public function addLegendToWorker1(Collection $legend, Collection $workers)
     {
+        /*
         $events = array_map(array($this, 'worker'), $workers->toArray());
         array_map(array($this, 'legend'), $legend->toArray(), $events);
-        /*
-        foreach ($workers as $worker) {
-            $workerLegend = [];
-
-            foreach ($legend as $l) {
-                $eventExists = false;
-                $eventDayCount = 0;
-                // dd($worker->workerEvents->toArray());
-                // dd($legend->toArray());
-                // array_map(array($this, 'eventExist'), $worker->workerEvents->toArray());
-
-                foreach ($worker->workerEvents as $event) {
-                    if ($l->id == $event->legend_id) {
-                        $eventExists = true;
-                        $period = new CarbonPeriod($event->start, $event->end);
-                        $eventDayCount = $period->count();
-                    }
-                }
-
-                if ($eventExists) {
-                    $workerLegend[$l->name] = $eventDayCount;
-                } else {
-                    $workerLegend[$l->name] = $eventDayCount;
-                }
-            }
-
-            $worker->legend = $workerLegend;
-        }
-
-        return $workers;
-        */
 
         return [];
+        */
     }
 }

@@ -1,26 +1,22 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Exports;
 
 use Illuminate\Support\Collection;
 
 class CollectiveData
 {
-    public function prepare(array $data, string $yearMonth): array  // array $data, string $yearMonth
+    public function prepare(array $data, string $yearMonth): array
     {
-        // dd($data);
         $workers = $this->workers($data['workers']);
-        // dd($workers);
         $workerDescription = $this->workerDescription();
-        // dd($workerDescription->count());
         $legend = $this->legend($data['legend'], $workerDescription->count());
-        // dd($data['legend']);
         $workerDescriptionAndLegend = $workerDescription->concat($legend);
-        // dd($workerDescriptionAndLegend);
         $daysDescription = $this->daysDescription();
         $signatures = $this->signatures();
         $legend1 = $this->legend1($data['legend']);
-        // dd($legend1);
 
         return  [
             ['Pracodawca', 'Okres'],
@@ -132,7 +128,5 @@ class CollectiveData
             'legendNames' => $legendNames,
             'legendDisplayNames' => $legendDisplayNames,
         ];
-        // dd($legendNames);
-        // dd($legendDisplayNames);
     }
 }

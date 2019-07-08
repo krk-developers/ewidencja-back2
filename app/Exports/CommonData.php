@@ -8,7 +8,7 @@ use App\Legend;
 class CommonData
 {
     /**
-     * seperate legend's short name and long nane
+     * Seperate legend's short name and long nane.
      *
      * @param Collection $legend Legend
      * 

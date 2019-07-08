@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Exports;
 
-// use App\User;
-// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-// use Illuminate\Support\Collection;
 
 class CollectiveExport implements FromArray, ShouldAutoSize, WithStrictNullComparison
 {

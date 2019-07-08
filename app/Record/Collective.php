@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace App\Record;
 
-use Illuminate\Support\Collection;
+// use Illuminate\Support\Collection;
 use Carbon\{Carbon, CarbonPeriod};
 use App\{Days, Event, Legend, Calendar, Employer};
-use PDF;
+// use PDF;
 
 class Collective
 {
@@ -22,23 +22,35 @@ class Collective
         // $admin = $request->query('admin');
     }
 
-    public function calculate(Employer $employer, string $year_month)
+    /**
+     * Calculate a records.
+     *
+     * @param Employer $employer  Employer
+     * @param string   $yearMonth YYYY-MM
+     * 
+     * @return array
+     */
+    public function calculate(Employer $employer, string $yearMonth): array
     {
-        $start = Days::start($year_month);  // start period time for which we calculate the statistics
+        // start period time for which we calculate the statistics
+        $start = Days::start($yearMonth);
         
         $monthName = $start->monthName;
 
-        $end = Days::end($monthName, $start);  // current day or end of the month
+        // current day or end of the month
+        $end = Days::end($monthName, $start);
 
         $daysInMonth = $start->daysInMonth;  // number of days in a month
         
-        $isFuture = $start > Carbon::now();  // whether the user calculates statistics for a future date
+        // whether the user calculates statistics for a future date
+        $isFuture = $start > Carbon::now();
 
         $previousMonthStart = $start->subMonth()->startOfMonth();
         $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
         $nextMonth = $start->addMonth()->format('Y-m');
 
-        $timePeriod = CarbonPeriod::between($start, $end);  // the period of time for which we calculate the statistics
+        // the period of time for which we calculate the statistics
+        $timePeriod = CarbonPeriod::between($start, $end);
 
         $timePeriod = Days::weekendFilter($timePeriod);
 
@@ -57,7 +69,7 @@ class Collective
         $workers = $employer->workers;
         
         $totalWorkingHours = 0;
-        // dd($start);
+
         foreach ($workers as $worker) {
             $workerEvents = $worker->eventsByTimePeriod1(
                 (string) $start, (string) $end, $employer->id
@@ -96,13 +108,12 @@ class Collective
             'previous_month' => $previousMonthStartAsYearMonth,
             'next_month' => $nextMonth,
             // 'admin' => $admin,
-            'year_month' => $year_month,
+            'year_month' => $yearMonth,
             'legend' => $legend,
             'legend_groups' => $legendGroups,
             'totalWorkingHours' => $totalWorkingHours,
         ];
 
-        // dd($data);
         return $data;
     }
 }
