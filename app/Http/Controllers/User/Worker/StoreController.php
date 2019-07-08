@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    private const TYPE_MODEL_NAME = 'App\Worker';
-
     /**
      * Store a newly created resource in storage.
      *
@@ -23,15 +21,10 @@ class StoreController extends Controller
      */
     public function __invoke(StoreWorker $request): RedirectResponse
     {
-        // return $request;
-        /*
-        if ($request['equivalent'] == 0) {
-            $request['equivalent_amount'] = 0;
-        }
-        */
         $request->validated();
-        
-        $request['type_id'] = Type::findIDByModelName(self::TYPE_MODEL_NAME);
+     
+        $typeModelName = 'App\Worker';
+        $request['type_id'] = Type::findIDByModelName($typeModelName);
 
         $worker = Worker::createRow($request->all());
 

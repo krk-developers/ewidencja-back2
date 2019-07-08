@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\EquivalentAmont;
 use Illuminate\Validation\Rule;
+use App\Rules\EquivalentAmont;
+use App\Rules\Pesel;
 
 class StoreWorker extends FormRequest
 {
@@ -29,7 +30,7 @@ class StoreWorker extends FormRequest
     {
         return [
             'lastname' => ['max:30'],
-            'pesel' => ['nullable', 'digits:11'],
+            'pesel' => ['nullable', 'digits:11', new Pesel],
             'equivalent' => ['required', 'numeric', Rule::in([0, 1])],
             'equivalent_amount' =>
                 [

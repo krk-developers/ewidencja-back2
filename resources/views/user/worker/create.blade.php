@@ -59,7 +59,7 @@
                                     <div class="form-group row">
                                         <label for="pesel" class="col-sm-2 col-form-label"><abbr title="Powszechny Elektroniczny System Ewidencji Ludności">PESEL</abbr></label>
                                         <div class="col-sm-10">
-                                            <input type="number" id="pesel" name="pesel" class="form-control{{ $errors->has('pesel') ? ' is-invalid' : '' }}" value="{{ old('pesel') }}" placeholder="np. 82040303734"> <!-- required -->
+                                            <input type="number" id="pesel" name="pesel" class="form-control{{ $errors->has('pesel') ? ' is-invalid' : '' }}" value="{{ old('pesel') }}" placeholder="np. 82040303734">
 @if ($errors->has('pesel'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('pesel') }}</strong>
