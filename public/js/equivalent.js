@@ -2,43 +2,44 @@ document.addEventListener("DOMContentLoaded", () => init());
 
 function init() {
     const equivalentElement = document.getElementById('equivalent');
+    const equivalentAmountElement = document.getElementById('equivalent-amount-group');
+    const equivalentAmountGroup = equivalentAmountElement.childNodes;
+    const label = equivalentAmountGroup[1];
+    const div = equivalentAmountGroup[3];
+    const equivalentAmountInputText = document.getElementById('equivalent_amount');
+
+    if (equivalentElement.selectedIndex == 0) {  // equivalent == Nie
+        setDisplayToNone(label);
+        setDisplayToNone(div);
+        setValueToZero(equivalentAmountInputText);
+    }
     
-    if (equivalentElement.selectedIndex == 0) {  // equivalent: No
-        hideEquivalentAmount();
-    }
-
-    equivalentElement.addEventListener('change', equivalentOnChange);
+    equivalentElement.addEventListener('change', () => {
+        equivalentOnChange(equivalentElement, label, div, equivalentAmountInputText);
+    });
 }
 
-function equivalentOnChange() {
-    // TODO only one declaration
-    const equivalentAmountElement = document.getElementById('equivalent-amount-group');
-    const equivalentAmountGroup = equivalentAmountElement.childNodes;
-
-    const label = equivalentAmountGroup[1];
-    const div = equivalentAmountGroup[3];
-
-    if (this.options.selectedIndex == 0) {
-        const equivalentAmountInputText = document.getElementById('equivalent_amount');
-        equivalentAmountInputText.value = 0;
-        
-        label.style.display = "none";
-        div.style.display = "none";
+function equivalentOnChange(self, label, div, input) {    
+    if (self.selectedIndex == 0) {
+        setDisplayToNone(label);
+        setDisplayToNone(div);
+        setValueToZero(input);
     }
 
-    if (this.options.selectedIndex == 1) {
-        label.style.display = "block";
-        div.style.display = "block";
+    if (self.selectedIndex == 1) {
+        setDisplayToBlock(label);
+        setDisplayToBlock(div);
     }
 }
 
-function hideEquivalentAmount() {
-    const equivalentAmountElement = document.getElementById('equivalent-amount-group');
-    const equivalentAmountGroup = equivalentAmountElement.childNodes;
-    const label = equivalentAmountGroup[1];
-    const div = equivalentAmountGroup[3];
+function setDisplayToNone(element) {
+    element.style.display = "none";
+}
 
+function setDisplayToBlock(element) {
+    element.style.display = "block";
+}
 
-    label.style.display = "none";
-    div.style.display = "none";
+function setValueToZero(element) {
+    element.value = 0;
 }
