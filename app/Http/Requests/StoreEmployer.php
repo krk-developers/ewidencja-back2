@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Nip;
 
 class StoreEmployer extends FormRequest
 {
@@ -26,6 +27,7 @@ class StoreEmployer extends FormRequest
         return [
             'name' => ['required', 'string', 'max:191'],
             'company' => ['max:191'],
+            'nip' => ['nullable', 'digits:10', new Nip],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];

@@ -18,7 +18,7 @@
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label">Imię</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="np. Jan" autofocus> <!-- required -->
+                                            <input type="text" id="name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="np. Jan" autofocus required>
 @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -46,7 +46,7 @@
                                     <div class="form-group row">
                                         <label for="nip" class="col-sm-2 col-form-label"><abbr title="Numer identyfikacji podatkowej">NIP</abbr></label>
                                         <div class="col-sm-10">
-                                            <input type="number" id="nip" name="nip" class="form-control{{ $errors->has('nip') ? ' is-invalid' : '' }}" value="{{ old('nip') }}" placeholder=""> <!-- required -->
+                                            <input type="number" id="nip" name="nip" class="form-control{{ $errors->has('nip') ? ' is-invalid' : '' }}" value="{{ old('nip') }}" placeholder="">
 @if ($errors->has('nip'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('nip') }}</strong>
@@ -134,7 +134,7 @@
                                     <div class="form-group row">
                                         <label for="password" class="col-sm-2 col-form-label">Hasło</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="" placeholder="np. Jan1879Ko"> <!-- required -->
+                                            <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="" placeholder="np. Jan1879Ko" required>
 @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -148,7 +148,7 @@
                                     <div class="form-group row">
                                         <label for="password-confirm" class="col-sm-2 col-form-label">Powtórz hasło</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" value="" placeholder="np. Jan1879Ko"> <!-- required -->
+                                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" value="" placeholder="np. Jan1879Ko" minlength="8">
 @if ($errors->has('password-confirm'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password-confirm') }}</strong>
