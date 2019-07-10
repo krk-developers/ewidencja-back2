@@ -13,27 +13,33 @@ class EmployerWorkerTableSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
-        DB::table('employer_worker')->insert(
-            [
-                'employer_id' => '1',
-                'worker_id' => '1',
-            ]
-        );
         DB::table('employer_worker')->insert(
             [
                 'employer_id' => '1',
                 'worker_id' => '2',
+                'contract_from' => '2019-03-01',
+                'part_time' => 1,
             ]
         );
 
         DB::table('employer_worker')->insert(
             [
-                'employer_id' => '2',
-                'worker_id' => '2',
+                'employer_id' => '4',
+                'worker_id' => '3',
+                'contract_from' => '2019-01-01',
+                'part_time' => 1,
             ]
         );
-        */
+        DB::table('employer_worker')->insert(
+            [
+                'employer_id' => '4',
+                'worker_id' => '1',
+                'contract_from' => '2019-05-01',
+                'contract_to' => '2019-12-31',
+                'part_time' => 1,
+            ]
+        );
+
         /*
         DB::table('employer_worker')->insert(
             [

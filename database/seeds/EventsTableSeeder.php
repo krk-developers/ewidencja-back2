@@ -107,17 +107,81 @@ class EventsTableSeeder extends Seeder
         );
         
         // ///////////////////////////////////////////////////////////////////
-        
+        // workers
+
         DB::table('events')->insert(
             [
                 'legend_id' => 18,
                 'worker_id' => 1,
-                'employer_id' => 1,
-                'start' => '2019-04-17',
-                'end' => '2019-04-19',
-                'title' => 'Przeziębienie',
+                'employer_id' => 4,
+                'start' => '2019-07-01',
+                'end' => '2019-07-05',
+                // 'title' => 'Przeziębienie',
             ]
         );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 13,
+                'worker_id' => 1,
+                'employer_id' => 4,
+                'start' => '2019-06-03',
+                'end' => '2019-06-03',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 3,
+                'worker_id' => 1,
+                'employer_id' => 4,
+                'start' => '2019-06-17',
+                'end' => '2019-06-18',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'legend_id' => 15,
+                'worker_id' => 2,
+                'employer_id' => 1,
+                'start' => '2019-07-01',
+                'end' => '2019-07-01',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'legend_id' => 9,
+                'worker_id' => 3,
+                'employer_id' => 4,
+                'start' => '2019-07-01',
+                'end' => '2019-07-01',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 18,
+                'worker_id' => 3,
+                'employer_id' => 4,
+                'start' => '2019-06-03',
+                'end' => '2019-06-07',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 10,
+                'worker_id' => 3,
+                'employer_id' => 4,
+                'start' => '2019-05-02',
+                'end' => '2019-05-02',
+                // 'title' => 'Przeziębienie',
+            ]
+        );
+        
         /*
         DB::table('events')->insert(
             [
