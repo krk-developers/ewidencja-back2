@@ -53,7 +53,7 @@ class RuleEventTest extends TestCase
      *
      * @return void
      */
-    public function _testFindLegend(): void
+    public function testFindLegend(): void
     {
         $legendID = 3;  // UW
         $legend = LegendHelper::findLegend($legendID);
@@ -61,7 +61,7 @@ class RuleEventTest extends TestCase
         $this->assertEquals('UW', $legendName);
     }
 
-    public function _testTimePeriodChildcareDay(): void
+    public function testTimePeriodChildcareDay(): void
     {
         $start = '2019-05-22';  // 2 days taken
         $end = '2019-05-23';
@@ -81,7 +81,7 @@ class RuleEventTest extends TestCase
         $employer = Employer::findRow($employerID);
         
         $childcareDays = LegendHelper::childcareDaysNumber($worker, '2019-05-22');
-        dd($childcareDays);
+        // dd($childcareDays);
         $this->assertTrue($childcareDays);
         /*
         $legendModel = new LegendModel();

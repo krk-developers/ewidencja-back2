@@ -107,7 +107,7 @@ class EventsTableSeeder extends Seeder
         );
         
         // ///////////////////////////////////////////////////////////////////
-        /*
+        
         DB::table('events')->insert(
             [
                 'legend_id' => 18,
@@ -118,6 +118,7 @@ class EventsTableSeeder extends Seeder
                 'title' => 'Przeziębienie',
             ]
         );
+        /*
         DB::table('events')->insert(
             [
                 'legend_id' => 18,
