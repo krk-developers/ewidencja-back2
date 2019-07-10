@@ -4,17 +4,12 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\User\Worker\Record;
 
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Exports\{IndividualExport, IndividualData};
 use Maatwebsite\Excel\Facades\Excel;
-// use Illuminate\Support\Collection;
-// use Carbon\Carbon;
-// use Carbon\CarbonPeriod;
-use App\{Worker, Employer};  // , Legend, Event
-// use App\{Days, Calendar};
-use App\Record\Individual;
+use App\{Worker, Employer};
+use App\Record\{Individual, IndividualHelper};
 
 class ExcelController extends Controller
 {
@@ -42,8 +37,9 @@ class ExcelController extends Controller
 
         $export = new IndividualExport($preparedData);
         
-        $fileName = $worker->user->name. ' ' . $worker->lastname . ' ' . $employer->company . '.xlsx';
+        $helper = new IndividualHelper();
+        $filename = $helper->filename($worker, $employer, $yearMonth, 'xlsx');
         
-        return Excel::download($export, $fileName);
+        return Excel::download($export, $filename);
     }
 }

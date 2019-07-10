@@ -9,6 +9,7 @@ use Carbon\CarbonPeriod;
 use App\{Worker, Employer, Legend, Event};
 use App\{Days, Calendar};
 use PDF;
+use App\Record\IndividualHelper;
 
 class PdfController extends Controller
 {
@@ -85,8 +86,10 @@ class PdfController extends Controller
         ];
 
         $pdf = PDF::loadView('user.worker.record.pdf', $data);
-        // return $pdf->stream();
-        $fileName = $worker->user->name . ' ' . $worker->lastname . ' ' . $employer->company . ' ' . $yearMonth;
-        return $pdf->download($fileName);
+        
+        $helper = new IndividualHelper();
+        $filename = $helper->filename($worker, $employer, $yearMonth, 'pdf');
+
+        return $pdf->download($filename);
     }
 }
