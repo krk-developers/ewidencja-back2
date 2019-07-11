@@ -217,7 +217,7 @@ class Days
         // current day or end of the month
         $end = Days::end($monthName, $start);
 
-        return [$start, $end];
+        return [$start, $end, $monthName];
     }
 
     /**

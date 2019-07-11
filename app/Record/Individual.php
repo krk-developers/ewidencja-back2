@@ -39,7 +39,7 @@ class Individual
         $commonData = new CommonData();
         $seperateLegend = $commonData->seperateLegend($legend);
         
-        list($start, $end) = Days::startAndEnd($yearMonth);
+        list($start, $end, $monthName) = Days::startAndEnd($yearMonth);
 
         $yearMonth = $start->format('Y-m');
         $daysInMonth = $start->daysInMonth;  // number of days in a month
@@ -48,8 +48,8 @@ class Individual
         $isFuture = $start > Carbon::now();
 
         $previousMonthStart = $start->subMonth()->startOfMonth();
-        // $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
-        // $nextMonth = $start->addMonth()->format('Y-m');
+        $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
+        $nextMonth = $start->addMonth()->format('Y-m');
 
         // the period of time for which we calculate the statistics
         $timePeriod = CarbonPeriod::between($start, $end);
@@ -87,6 +87,7 @@ class Individual
             'yearMonth' => $yearMonth,
             'days_in_month' => $daysInMonth,
             'working_days' => $workingDays,
+            'public_holidays_in_month' => $publicHolidaysInMonth,
             'public_holidays_in_month_count' => $publicHolidaysInMonthCount,
             'absence_in_days' => $absenceInDays,
             'worker_worked_days' => $workerWorkedDays,
@@ -97,6 +98,13 @@ class Individual
             'legend_names' => $seperateLegend['legendNames'],
             'legend_display_names' => $seperateLegend['legendDisplayNames'],
             'name' => $name,
+            'is_future' => $isFuture,
+            'start' => $start,
+            'end' => $end,
+            'month_name' => $monthName,
+            'previous_month' => $previousMonthStartAsYearMonth,
+            'next_month' => $nextMonth,
+            'year_month' => $yearMonth,
         ];
 
         return $data;

@@ -35,9 +35,9 @@
                                             Liczba dni pracujących
                                             <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy</small>
                                         </th>
-                                        <td>{{ $time_period_public_holiday_filter }}</td>
+                                        <td>{{ $working_days }}</td>
                                     </tr>
-@if ($public_holidays_in_month->count() > 0)
+@if ($public_holidays_in_month_count > 0)
                                     <tr>
                                         <th scope="row">Dni ustawowo wolne od pracy</th>
                                         <td>
@@ -56,7 +56,7 @@
 @endif
                                     <tr>
                                         <th scope="row">Liczba dni ustawowo wolnych od pracy</th>
-                                        <td>{{ $public_holidays_in_month->count() }}</td>
+                                        <td>{{ $public_holidays_in_month_count }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Liczba nieobecności</th>
@@ -64,11 +64,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Liczba przepracowanych dni</th>
-                                        <td>{{ $working_days }}</td>
+                                        <td>{{ $worker_worked_days }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Liczba przepracowanych godzin</th>
-                                        <td>{{ $workingHoursDuringMonth }}</td>
+                                        <td>{{ $worker_worked_hours }}</td>
                                     </tr>
                                 </tbody>
                             </table>

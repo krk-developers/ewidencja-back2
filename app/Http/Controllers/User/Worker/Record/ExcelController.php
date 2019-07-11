@@ -27,8 +27,6 @@ class ExcelController extends Controller
         Employer $employer,
         string $yearMonth
     ): BinaryFileResponse {
-        // $admin = $request->query('admin');
-        
         $individualRecord = new Individual;
         $data = $individualRecord->calculate($worker, $employer, $yearMonth);
         
