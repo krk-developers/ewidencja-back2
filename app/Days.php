@@ -261,7 +261,7 @@ class Days
      * 
      * @return integer
      */
-    public static function publicHolidayCount(
+    public static function workingDays(
         CarbonPeriod $timePeriod,
         Collection $pluckedPublicHolidaysInMonth
     ): int {
@@ -280,7 +280,7 @@ class Days
      * 
      * @return array
      */
-    public static function workingDaysAndHours(
+    public static function workedDaysAndHours(
         CarbonPeriod $timePeriod,
         int $absenceInDays
     ): array {

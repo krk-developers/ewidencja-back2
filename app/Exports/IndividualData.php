@@ -34,11 +34,11 @@ class IndividualData
             $this->days(),
             [
                 $data['days_in_month'],
-                $data['time_period_public_holiday_filter'],
+                $data['working_days'],
                 $data['public_holidays_in_month_count'],
                 $data['absence_in_days'],
-                $data['working_days'],
-                $data['working_hours_during_month'],
+                $data['worker_worked_days'],
+                $data['worker_worked_hours'],
             ],
             [''],
             [

@@ -72,14 +72,14 @@ class Individual
         
         $timePeriod = Days::weekendFilter($timePeriod);
 
-        $publicHolidayCount = Days::publicHolidayCount(
+        $workingDays = Days::workingDays(
             $timePeriod,
             $pluckedPublicHolidaysInMonth
         );
 
         $absenceInDays = Days::absenceInDays($workerEvents);
 
-        list($workingDays, $workingHours) = Days::workingDaysAndHours($timePeriod, $absenceInDays);
+        list($workerWorkedDays, $workerWorkedHours) = Days::workedDaysAndHours($timePeriod, $absenceInDays);
 
         $name = $worker->user->name . ' ' . $worker->lastname;
 
@@ -88,11 +88,11 @@ class Individual
             'employer' => $employer,
             'yearMonth' => $yearMonth,
             'days_in_month' => $daysInMonth,
-            'time_period_public_holiday_filter' => $publicHolidayCount,
+            'working_days' => $workingDays,
             'public_holidays_in_month_count' => $publicHolidaysInMonthCount,
             'absence_in_days' => $absenceInDays,
-            'working_days' => $workingDays,
-            'working_hours_during_month' => $workingHours,
+            'worker_worked_days' => $workerWorkedDays,
+            'worker_worked_hours' => $workerWorkedHours,
             'events' => $workerEvents,
             'calendar' => $workerCalendar,
             // 'legend_groups' => $legendGroups,

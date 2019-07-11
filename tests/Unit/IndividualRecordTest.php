@@ -37,8 +37,8 @@ class IndividualRecordTest extends TestCase
         $this->assertEquals($record['time_period_public_holiday_filter'], 19);  // Dni pracujących
         $this->assertEquals($record['public_holidays_in_month_count'], 2);
         $this->assertEquals($record['absence_in_days'], 5);
-        $this->assertEquals($record['working_days'], 14);
-        $this->assertEquals($record['working_hours_during_month'], 98);
+        $this->assertEquals($record['worker_worked_days'], 14);
+        $this->assertEquals($record['worker_worked_hours'], 98);
         
         $yearMonth = '2019-05';
         $record = $individual->calculate($worker, $employer, $yearMonth);
@@ -47,7 +47,7 @@ class IndividualRecordTest extends TestCase
         $this->assertEquals($record['time_period_public_holiday_filter'], 21);  // Dni pracujących
         $this->assertEquals($record['public_holidays_in_month_count'], 2);
         $this->assertEquals($record['absence_in_days'], 1);
-        $this->assertEquals($record['working_days'], 20);
-        $this->assertEquals($record['working_hours_during_month'], 140);
+        $this->assertEquals($record['worker_worked_days'], 20);
+        $this->assertEquals($record['worker_worked_hours'], 140);
     }
 }
