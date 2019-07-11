@@ -55,11 +55,11 @@
             <tbody>
                 <tr>
                     <td>Dni w miesiącu: {{ $days_in_month }}</td>
-                    <td>Dni pracujących: {{ $time_period_public_holiday_filter }}</td>
-                    <td>Dni ustawowo wolnych od pracy: {{ $public_holidays_in_month->count() }}</td>
+                    <td>Dni pracujących: {{ $working_days }}</td>
+                    <td>Dni ustawowo wolnych od pracy: {{ $public_holidays_in_month_count }}</td>
                     <td>Nieobecności: {{ $absence_in_days }}</td>                    
                     <td>Przepracowanych dni: {{ $working_days }}</td>
-                    <td>Przepracowanych godzin: {{ $workingHoursDuringMonth }}</td>
+                    <td>Przepracowanych godzin: {{ $worker_worked_hours }}</td>
                 </tr>
             </tbody>
         </table>

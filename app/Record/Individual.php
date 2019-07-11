@@ -35,8 +35,6 @@ class Individual
         string $yearMonth
     ): array {
         $legend = Legend::allSortBy();
-        // $legendCollection = collect($legend);
-        // $legendGroups = $legendCollection->split(2);
         
         $commonData = new CommonData();
         $seperateLegend = $commonData->seperateLegend($legend);
@@ -50,8 +48,8 @@ class Individual
         $isFuture = $start > Carbon::now();
 
         $previousMonthStart = $start->subMonth()->startOfMonth();
-        $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
-        $nextMonth = $start->addMonth()->format('Y-m');
+        // $previousMonthStartAsYearMonth = $previousMonthStart->format('Y-m');
+        // $nextMonth = $start->addMonth()->format('Y-m');
 
         // the period of time for which we calculate the statistics
         $timePeriod = CarbonPeriod::between($start, $end);
@@ -95,7 +93,7 @@ class Individual
             'worker_worked_hours' => $workerWorkedHours,
             'events' => $workerEvents,
             'calendar' => $workerCalendar,
-            // 'legend_groups' => $legendGroups,
+            'legend' => $legend,
             'legend_names' => $seperateLegend['legendNames'],
             'legend_display_names' => $seperateLegend['legendDisplayNames'],
             'name' => $name,
