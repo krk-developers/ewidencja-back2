@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Carbon\CarbonImmutable;
+use App\{Event, Calendar};
 
 class Days
 {
@@ -197,5 +198,95 @@ class Days
         $second = Carbon::create($end);
         
         return $first->lessThanOrEqualTo($second);
+    }
+
+    // ///////////////////////////////////////////////////////////////////////
+
+    /**
+     * Start and end time period.
+     *
+     * @param string $yearMonth YYYY-MM
+     * 
+     * @return array
+     */
+    public static function startAndEnd(string $yearMonth): array
+    {
+        // start period time for which we calculate the statistics
+        $start = Days::start($yearMonth);
+        $monthName = $start->monthName;
+        // current day or end of the month
+        $end = Days::end($monthName, $start);
+
+        return [$start, $end];
+    }
+
+    /**
+     * Public holidays in month
+     *
+     * @param CarbonImmutable $start Date start
+     * 
+     * @return Collection
+     */
+    public static function publicHolidaysInMonth(CarbonImmutable $start): Collection
+    {
+        // number of public holidays in a month
+        return Event::publicHolidaysInMonth($start->year, $start->month);
+    }
+
+    /**
+     * Worker calendar.
+     *
+     * @param Collection   $workerEvents                 Worker's events
+     * @param CarbonPeriod $timePeriod                   Time period
+     * @param array        $pluckedPublicHolidaysInMonth Plucked public holidays
+     * 
+     * @return array
+     */
+    public static function workerCalendar(
+        Collection $workerEvents,
+        CarbonPeriod $timePeriod,
+        Collection $pluckedPublicHolidaysInMonth
+    ): array {
+        $calendar = new Calendar;
+        return $workerCalendar = $calendar->make(
+            $workerEvents, $timePeriod, $pluckedPublicHolidaysInMonth
+        );
+    }
+
+    /**
+     * Public holiday count.
+     *
+     * @param CarbonPeriod $timePeriod                   Time period
+     * @param Collection   $pluckedPublicHolidaysInMonth Public holidays
+     * 
+     * @return integer
+     */
+    public static function publicHolidayCount(
+        CarbonPeriod $timePeriod,
+        Collection $pluckedPublicHolidaysInMonth
+    ): int {
+        $timePeriodPublicHolidayFilter = Days::publicHolidayFilter(
+            $timePeriod, $pluckedPublicHolidaysInMonth
+        );
+
+        return $timePeriodPublicHolidayFilter->count();
+    }
+
+    /**
+     * Working days and hours
+     *
+     * @param CarbonPeriod $timePeriod    Time period
+     * @param integer      $absenceInDays Absence in days
+     * 
+     * @return array
+     */
+    public static function workingDaysAndHours(
+        CarbonPeriod $timePeriod,
+        int $absenceInDays
+    ): array {
+        $workingDays = $timePeriod->count() - $absenceInDays;
+        $workingHours = $workingDays * config('record.working_hours_during_day');
+
+        return [$workingDays, $workingHours];
     }
 }

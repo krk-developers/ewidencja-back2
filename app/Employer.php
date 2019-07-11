@@ -79,7 +79,7 @@ class Employer extends Model
      * 
      * @return Employer
      */
-    public static function findRow(int $employerID): Employer
+    public static function findRow(int $employerID): ?Employer
     {
         return self::find($employerID);
     }

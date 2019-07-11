@@ -4226,6 +4226,7 @@ return array(
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
     'Tests\\Unit\\DaysTest' => $baseDir . '/tests/Unit/DaysTest.php',
     'Tests\\Unit\\EmployerTest' => $baseDir . '/tests/Unit/EmployerTest.php',
+    'Tests\\Unit\\IndividualRecordTest' => $baseDir . '/tests/Unit/IndividualRecordTest.php',
     'Tests\\Unit\\RuleEventTest' => $baseDir . '/tests/Unit/RuleEventTest.php',
     'Tests\\Unit\\UserRegisterTest' => $baseDir . '/tests/Unit/UserRegisterTest__.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',

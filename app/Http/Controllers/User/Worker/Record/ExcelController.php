@@ -31,7 +31,7 @@ class ExcelController extends Controller
         
         $individualRecord = new Individual;
         $data = $individualRecord->calculate($worker, $employer, $yearMonth);
-        dd($data);
+        
         $individualData = new IndividualData();
         $preparedData = $individualData->prepare($data, $yearMonth);
 
