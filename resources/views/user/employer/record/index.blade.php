@@ -99,9 +99,15 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">
+                                            Suma przepracowanych dni
+                                        </th>
+                                        <td>{{ $total_working_days }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
                                             Suma przepracowanych godzin
                                         </th>
-                                        <td>{{ $totalWorkingHours }}</td>
+                                        <td>{{ $total_working_hours }}</td>
                                     </tr>
 @if ($public_holidays_in_month->count() > 0)
                                     <tr>
