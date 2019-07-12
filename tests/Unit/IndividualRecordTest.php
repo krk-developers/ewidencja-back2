@@ -32,6 +32,7 @@ class IndividualRecordTest extends TestCase
 
         $yearMonth = '2019-06';
         $record = $individual->calculate($worker, $employer, $yearMonth);
+        $this->assertIsArray($record);
         $this->assertArrayHasKey('worker', $record);
         $this->assertEquals($record['days_in_month'], 30);
         $this->assertEquals($record['working_days'], 19);  // Dni pracujących

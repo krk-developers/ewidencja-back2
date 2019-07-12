@@ -55,34 +55,38 @@ class Collective
         $timePeriod = Days::weekendFilter($timePeriod);
 
         // number of public holidays in a month
-        $publicHolidaysInMonth = Event::publicHolidaysInMonth(
+        $publicHolidays = Event::publicHolidaysInMonth(
             $start->year, $start->month
         );
-        $pluckedPublicHolidaysInMonth = $publicHolidaysInMonth->pluck('start');
+        $publicHolidaysCount = $publicHolidays->count();
+        $pPublicHolidays = $publicHolidays->pluck('start');
 
-        $timePeriodPublicHolidayFilter = Days::publicHolidayFilter(
-            $timePeriod, $pluckedPublicHolidaysInMonth
+        $workingDays = Days::publicHolidayFilter(
+            $timePeriod, $pPublicHolidays
         );
-        $timePeriodPublicHolidayFilterCount = $timePeriodPublicHolidayFilter
-            ->count();
+        $workingDaysCount = $workingDays->count();
 
         $workers = $employer->workers;
         
-        $totalWorkingHours = 0;
+
+        $totalWorkedHours = 0;
+        $totalWorkedDays = 0;
 
         foreach ($workers as $worker) {
             $workerEvents = $worker->eventsByTimePeriod1(
                 (string) $start, (string) $end, $employer->id
             );
             $absenceInDays = Days::absenceInDays($workerEvents);
-            $workingDays = $timePeriod->count() - $absenceInDays;
+            $workedDays = $timePeriod->count() - $absenceInDays;
             $worker->workerEvents = $workerEvents;
             $worker->absenceInDays = $absenceInDays;
-            $worker->workingDays = $workingDays;
-            $worker->workingHoursDuringMonth = $workingDays * config(
+            $worker->workedDays = $workedDays;
+            $worker->workedHours = $workedDays * config(
                 'record.working_hours_during_day'
             );
-            $totalWorkingHours += $worker->workingHoursDuringMonth;
+
+            $totalWorkedHours += $worker->workedHours;
+            $totalWorkedDays += $workedDays;
         }
 
         $legend = Legend::allSortBy();
@@ -100,18 +104,19 @@ class Collective
             'is_future' => $isFuture,
             'month_name' => $monthName,
             'days_in_month' => $daysInMonth,
-            'time_period_public_holiday_filter' => 
-                $timePeriodPublicHolidayFilterCount,
-            'public_holidays_in_month_count' => $publicHolidaysInMonth->count(),
+            'working_days' => $workingDaysCount,
+            'public_holidays' => $publicHolidays,
+            'public_holidays_count' => $publicHolidaysCount,
             'absence_in_days' => $absenceInDays,
-            'working_days' => $workingDays,
+            // 'worked_days' => $workedDays,
             'previous_month' => $previousMonthStartAsYearMonth,
             'next_month' => $nextMonth,
             // 'admin' => $admin,
             'year_month' => $yearMonth,
             'legend' => $legend,
             'legend_groups' => $legendGroups,
-            'totalWorkingHours' => $totalWorkingHours,
+            'total_worked_hours' => $totalWorkedHours,
+            'total_worked_days' => $totalWorkedDays,
         ];
 
         return $data;

@@ -35,8 +35,8 @@
                                         <td>{{ $worker->lastname }}</td>
                                         <td>{{ $worker->pesel }}</td>
                                         <td>{{ $worker->absenceInDays }}</td>
-                                        <td>{{ $worker->workingDays }}</td>
-                                        <td>{{ $worker->workingHoursDuringMonth }}</td>
+                                        <td>{{ $worker->workedDays }}</td>
+                                        <td>{{ $worker->workedHours }}</td>
                                         <td>
 @if ($worker->workerEvents->count() > 0)
                                             <table class="table table-bordered record text-muted inner-table">
@@ -95,27 +95,27 @@
                                             Liczba dni pracujących
                                             <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy</small>
                                         </th>
-                                        <td>{{ $time_period_public_holiday_filter }}</td>
+                                        <td>{{ $working_days }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
                                             Suma przepracowanych dni
                                         </th>
-                                        <td>{{ $total_working_days }}</td>
+                                        <td>{{ $total_worked_days }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
                                             Suma przepracowanych godzin
                                         </th>
-                                        <td>{{ $total_working_hours }}</td>
+                                        <td>{{ $total_worked_hours }}</td>
                                     </tr>
-@if ($public_holidays_in_month->count() > 0)
+@if ($public_holidays_count > 0)
                                     <tr>
                                         <th scope="row">Dni ustawowo wolne od pracy</th>
                                         <td>
                                             <table class="table-borderless table-sm holiday text-secondary">
                                                 <tbody>
-@foreach ($public_holidays_in_month as $holiday)
+@foreach ($public_holidays as $holiday)
                                                     <tr>
                                                         <td>{{ $holiday->title }}</td>
                                                         <td>{{ $holiday->start }}</td>
@@ -128,7 +128,7 @@
 @endif
                                     <tr>
                                         <th scope="row">Liczba dni ustawowo wolnych od pracy</th>
-                                        <td>{{ $public_holidays_in_month->count() }}</td>
+                                        <td>{{ $public_holidays_count }}</td>
                                     </tr>
                                 </tbody>
                             </table>

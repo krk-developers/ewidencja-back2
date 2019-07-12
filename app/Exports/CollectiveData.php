@@ -8,39 +8,60 @@ use Illuminate\Support\Collection;
 
 class CollectiveData
 {
+    /**
+     * Prepare date for spreadsheet.
+     *
+     * @param array  $data      Data
+     * @param string $yearMonth YYYY-MM
+     * 
+     * @return array
+     */
     public function prepare(array $data, string $yearMonth): array
     {
-        $workers = $this->workers($data['workers']);
         $workerDescription = $this->workerDescription();
         $legend = $this->legend($data['legend'], $workerDescription->count());
-        $workerDescriptionAndLegend = $workerDescription->concat($legend);
-        $daysDescription = $this->daysDescription();
-        $signatures = $this->signatures();
-        $legend1 = $this->legend1($data['legend']);
 
         return  [
             ['Pracodawca', 'Okres'],
             [$data['employer']->company, $yearMonth],
-            [''],
-            $daysDescription,
+            $this->gap(),
+            $this->daysDescription(),
             [
                 $data['days_in_month'],
-                $data['time_period_public_holiday_filter'],
-                $data['public_holidays_in_month_count'],
+                $data['working_days'],
+                $data['public_holidays_count'],
                 $data['absence_in_days'],
                 $data['working_days'],
             ],
-            [''],
-            $workerDescriptionAndLegend,
-            $workers,
-            [''],
-            $signatures,
-            [''],
-            $legend1['legendNames'],
-            $legend1['legendDisplayNames'],
+            $this->gap(),
+            $workerDescription->concat($legend),
+            $this->workers($data['workers']),
+            $this->gap(),
+            $this->gap(),
+            $this->signatures(),
+            $this->gap(),
+            $this->legendNames($data['legend'])['legendNames'],
+            $this->legendNames($data['legend'])['legendDisplayNames'],
         ];
     }
 
+    /**
+     * Gap between columns.
+     *
+     * @return array
+     */
+    private function gap(): array
+    {
+        return [[''], [''], [''], ['']];
+    }
+    
+    /**
+     * Prepare worker's collection
+     *
+     * @param Collection $data Workers
+     * 
+     * @return Collection
+     */
     private function workers(Collection $data): Collection
     {
         $workers = [];
@@ -65,6 +86,14 @@ class CollectiveData
         return collect($workers);
     }
 
+    /**
+     * Prepare legend's collection.
+     *
+     * @param Collection $collection Legend's collection
+     * @param integer    $index      Start index
+     * 
+     * @return Collection
+     */
     private function legend(Collection $collection, int $index): Collection
     {
         $legend = [];
@@ -77,7 +106,12 @@ class CollectiveData
         return collect($legend);
     }
 
-    private function workerDescription()
+    /**
+     * Columns about worker.
+     *
+     * @return Collection
+     */
+    private function workerDescription(): Collection
     {
         return collect(
             [
@@ -92,7 +126,12 @@ class CollectiveData
         );
     }
 
-    private function daysDescription()
+    /**
+     * Columns about days.
+     *
+     * @return array
+     */
+    private function daysDescription(): array
     {
         return [
             'Dni w miesiącu',
@@ -103,7 +142,12 @@ class CollectiveData
         ];
     }
 
-    private function signatures()
+    /**
+     * Signatures.
+     *
+     * @return array
+     */
+    private function signatures(): array
     {
         return [
             'Podpis doradcy zawodowego',
@@ -114,7 +158,14 @@ class CollectiveData
         ];
     }
 
-    private function legend1($data)
+    /**
+     * Seperate legend's short and long names
+     *
+     * @param array $data Collection
+     * 
+     * @return array
+     */
+    private function legendNames(Collection $data): array
     {        
         $legendNames = [];
         $legendDisplayNames = [];
