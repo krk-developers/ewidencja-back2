@@ -36,7 +36,13 @@ class ExcelController extends Controller
         $export = new IndividualExport($preparedData);
         
         $helper = new IndividualHelper();
-        $filename = $helper->filename($worker, $employer, $yearMonth, 'xlsx');
+        $filename = $helper->filename(
+            $worker->user->name,
+            $worker->lastname,
+            $employer->company,
+            $yearMonth,
+            'xlsx'
+        );
         
         return Excel::download($export, $filename);
     }

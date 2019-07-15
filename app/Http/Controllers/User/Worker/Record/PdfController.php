@@ -31,7 +31,13 @@ class PdfController extends Controller
         $pdf = PDF::loadView('user.worker.record.pdf', $data);
         
         $helper = new IndividualHelper();
-        $filename = $helper->filename($worker, $employer, $yearMonth, 'pdf');
+        $filename = $helper->filename(
+            $worker->user->name,
+            $worker->lastname,
+            $employer->company,
+            $yearMonth,
+            'pdf'
+        );
 
         return $pdf->download($filename);
     }
