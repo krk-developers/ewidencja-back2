@@ -19,7 +19,6 @@ class Collective
     public function __toString()
     {
         return __CLASS__;
-        // $admin = $request->query('admin');
     }
 
     /**
@@ -68,9 +67,8 @@ class Collective
 
         $workers = $employer->workers;
         
-
-        $totalWorkedHours = 0;
-        $totalWorkedDays = 0;
+        //
+        $totalWorkedHours = $totalWorkedDays = $totalAbsenceDays = 0;
 
         foreach ($workers as $worker) {
             $workerEvents = $worker->eventsByTimePeriod1(
@@ -78,16 +76,18 @@ class Collective
             );
             $absenceInDays = Days::absenceInDays($workerEvents);
             $workedDays = $timePeriod->count() - $absenceInDays;
-            $worker->workerEvents = $workerEvents;
-            $worker->absenceInDays = $absenceInDays;
-            $worker->workedDays = $workedDays;
-            $worker->workedHours = $workedDays * config(
+            $worker->worker_events = $workerEvents;
+            $worker->absence_days = $absenceInDays;
+            $worker->worked_days = $workedDays;
+            $worker->worked_hours = $workedDays * config(
                 'record.working_hours_during_day'
             );
 
-            $totalWorkedHours += $worker->workedHours;
+            $totalWorkedHours += $worker->worked_hours;
             $totalWorkedDays += $workedDays;
+            $totalAbsenceDays += $absenceInDays;
         }
+        //
 
         $legend = Legend::allSortBy();
         
@@ -107,11 +107,9 @@ class Collective
             'working_days' => $workingDaysCount,
             'public_holidays' => $publicHolidays,
             'public_holidays_count' => $publicHolidaysCount,
-            'absence_in_days' => $absenceInDays,
-            // 'worked_days' => $workedDays,
+            'total_absence_days' => $totalAbsenceDays,
             'previous_month' => $previousMonthStartAsYearMonth,
             'next_month' => $nextMonth,
-            // 'admin' => $admin,
             'year_month' => $yearMonth,
             'legend' => $legend,
             'legend_groups' => $legendGroups,

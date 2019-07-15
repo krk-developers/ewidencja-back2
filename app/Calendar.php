@@ -78,7 +78,7 @@ class Calendar
                 $eventExists = false;
                 $eventDayCount = 0;
 
-                foreach ($worker->workerEvents as $event) {
+                foreach ($worker->worker_events as $event) {
                     if ($l->id == $event->legend_id) {
                         $eventExists = true;
                         $period = new CarbonPeriod($event->start, $event->end);

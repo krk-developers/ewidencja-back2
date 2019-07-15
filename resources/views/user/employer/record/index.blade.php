@@ -34,11 +34,11 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $worker->lastname }}</td>
                                         <td>{{ $worker->pesel }}</td>
-                                        <td>{{ $worker->absenceInDays }}</td>
-                                        <td>{{ $worker->workedDays }}</td>
-                                        <td>{{ $worker->workedHours }}</td>
+                                        <td>{{ $worker->absence_days }}</td>
+                                        <td>{{ $worker->worked_days }}</td>
+                                        <td>{{ $worker->worked_hours }}</td>
                                         <td>
-@if ($worker->workerEvents->count() > 0)
+@if ($worker->worker_events->count() > 0)
                                             <table class="table table-bordered record text-muted inner-table">
                                                 <thead>
                                                     <tr>
@@ -51,7 +51,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-@foreach ($worker->workerEvents as $event)
+@foreach ($worker->worker_events as $event)
                                                     <tr>
                                                         <th scope="row">{{ $loop->iteration }}</th>
                                                         <td>{{ $event->id }}</td>
@@ -87,15 +87,19 @@
                                         <td>{{ $month_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Liczba dni w miesiącu</th>
+                                        <th scope="row">Dni w miesiącu</th>
                                         <td>{{ $days_in_month }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                            Liczba dni pracujących
+                                            Dni pracujących
                                             <small class="text-secondary">po odliczeniu sobót, niedziel i dni wolnych od pracy</small>
                                         </th>
                                         <td>{{ $working_days }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dni ustawowo wolnych od pracy</th>
+                                        <td>{{ $public_holidays_count }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
@@ -126,10 +130,6 @@
                                         </td>
                                     </tr>
 @endif
-                                    <tr>
-                                        <th scope="row">Liczba dni ustawowo wolnych od pracy</th>
-                                        <td>{{ $public_holidays_count }}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

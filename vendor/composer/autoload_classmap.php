@@ -4230,6 +4230,7 @@ return array(
     'Tests\\Unit\\CollectiveRecordTest' => $baseDir . '/tests/Unit/CollectiveRecordTest.php',
     'Tests\\Unit\\DaysTest' => $baseDir . '/tests/Unit/DaysTest.php',
     'Tests\\Unit\\EmployerTest' => $baseDir . '/tests/Unit/EmployerTest.php',
+    'Tests\\Unit\\IndividualHelperTest' => $baseDir . '/tests/Unit/IndividualHelperTest.php',
     'Tests\\Unit\\IndividualRecordTest' => $baseDir . '/tests/Unit/IndividualRecordTest.php',
     'Tests\\Unit\\RuleEventTest' => $baseDir . '/tests/Unit/RuleEventTest.php',
     'Tests\\Unit\\UserRegisterTest' => $baseDir . '/tests/Unit/UserRegisterTest__.php',

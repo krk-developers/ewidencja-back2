@@ -27,7 +27,7 @@ class ExcelController extends Controller
     ): BinaryFileResponse {
         $collectiveRecord = new Collective;
         $data = $collectiveRecord->calculate($employer, $yearMonth);
-
+        
         $collectiveData = new CollectiveData();
         $preparedData = $collectiveData->prepare($data, $yearMonth);
 

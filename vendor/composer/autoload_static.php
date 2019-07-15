@@ -4719,6 +4719,7 @@ class ComposerStaticInit5fa0e874f1bdd4a559246e5689adb8fb
         'Tests\\Unit\\CollectiveRecordTest' => __DIR__ . '/../..' . '/tests/Unit/CollectiveRecordTest.php',
         'Tests\\Unit\\DaysTest' => __DIR__ . '/../..' . '/tests/Unit/DaysTest.php',
         'Tests\\Unit\\EmployerTest' => __DIR__ . '/../..' . '/tests/Unit/EmployerTest.php',
+        'Tests\\Unit\\IndividualHelperTest' => __DIR__ . '/../..' . '/tests/Unit/IndividualHelperTest.php',
         'Tests\\Unit\\IndividualRecordTest' => __DIR__ . '/../..' . '/tests/Unit/IndividualRecordTest.php',
         'Tests\\Unit\\RuleEventTest' => __DIR__ . '/../..' . '/tests/Unit/RuleEventTest.php',
         'Tests\\Unit\\UserRegisterTest' => __DIR__ . '/../..' . '/tests/Unit/UserRegisterTest__.php',

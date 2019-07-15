@@ -6,6 +6,9 @@ namespace App\Exports;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Export collective record to spreadsheet
+ */
 class CollectiveData
 {
     /**
@@ -26,20 +29,16 @@ class CollectiveData
             [$data['employer']->company, $yearMonth],
             $this->gap(),
             $this->daysDescription(),
-            [
-                $data['days_in_month'],
-                $data['working_days'],
-                $data['public_holidays_count'],
-                $data['absence_in_days'],
-                $data['working_days'],
-            ],
+            $this->days($data),
             $this->gap(),
             $workerDescription->concat($legend),
             $this->workers($data['workers']),
+            $this->hours($data),
             $this->gap(),
             $this->gap(),
             $this->signatures(),
             $this->gap(),
+            ['Legenda'],
             $this->legendNames($data['legend'])['legendNames'],
             $this->legendNames($data['legend'])['legendDisplayNames'],
         ];
@@ -55,6 +54,24 @@ class CollectiveData
         return [[''], [''], [''], ['']];
     }
     
+    /**
+     * Summary of days.
+     *
+     * @param array $data Data
+     * 
+     * @return array
+     */
+    private function days(array $data): array
+    {
+        return [
+            $data['days_in_month'],
+            $data['working_days'],
+            $data['public_holidays_count'],
+            $data['total_absence_days'],
+            $data['total_worked_days'],
+        ];
+    }
+
     /**
      * Prepare worker's collection
      *
@@ -74,7 +91,7 @@ class CollectiveData
             $worker['equivalent'] = $item->equivalent;
             $worker['equivalent_amount'] = $item->equivalent_amount;
             $worker['effective'] = $item->effective;
-            $worker['workingHoursDuringMonth'] = $item->workingHoursDuringMonth;
+            $worker['worked_hours'] = $item->worked_hours;
 
             foreach ($item['legend'] as $key => $value) {
                 $worker[$key] = $value;
@@ -84,6 +101,11 @@ class CollectiveData
         }
 
         return collect($workers);
+    }
+
+    private function hours(array $data): array
+    {
+        return ['', '', '', '', '', '', $data['total_worked_hours']];
     }
 
     /**
@@ -125,7 +147,7 @@ class CollectiveData
             ]
         );
     }
-
+    
     /**
      * Columns about days.
      *
@@ -137,8 +159,8 @@ class CollectiveData
             'Dni w miesiącu',
             'Dni pracujących',
             'Dni ustawowo wolnych od pracy',
-            'Nieobecności',
-            'Dni przepracowanych',
+            'Suma nieobecności',
+            'Suma dni przepracowanych',
         ];
     }
 

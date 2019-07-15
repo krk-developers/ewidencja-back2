@@ -64,11 +64,11 @@
         <table class="main">
             <tbody>
                 <tr>
-                    <td>Liczba dni w miesiącu: {{ $days_in_month }}</td>
-                    <td>Liczba dni pracujących: {{ $time_period_public_holiday_filter }}</td>
-                    <td>Liczba dni ustawowo wolnych od pracy: {{ $public_holidays_in_month->count() }}</td>
-                    <td>Liczba nieobecności: {{ $absence_in_days }}</td>                    
-                    <td>Liczba dni przepracowanych: {{ $working_days }}</td>
+                    <td>Dni w miesiącu: {{ $days_in_month }}</td>
+                    <td>Dni pracujących: {{ $working_days }}</td>
+                    <td>Dni ustawowo wolne od pracy: {{ $public_holidays_count }}</td>
+                    <td>Suma nieobecności: {{ $total_absence_days }}</td>
+                    <td>Suma przepracowanych dni: {{ $total_worked_days }}</td>
                 </tr>
             </tbody>
         </table>
@@ -97,7 +97,7 @@
                     <td>{{ $worker->equivalent }}</td>
                     <td>{{ $worker->equivalent_amount }}</td>
                     <td>{{ $worker->effective }}</td>
-                    <td>{{ $worker->workingHoursDuringMonth }}</td>
+                    <td>{{ $worker->worked_hours }}</td>
 @foreach ($worker->legend as $key)
                     <td>
                         {{ $key }}
@@ -106,7 +106,7 @@
                 </tr>
 @endforeach
                 <tr>
-                    <td colspan="7" class="text-right">{{ $totalWorkingHours }}</td>
+                    <td colspan="7" class="text-right">{{ $total_worked_hours }}</td>
                     <td colspan="22"></td>
                 </tr>
             </tbody>
