@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Exports\{CollectiveExport, CollectiveData};
 use Maatwebsite\Excel\Facades\Excel;
 use App\Employer;
-use App\Record\Collective;
+use App\Record\{Collective, CollectiveHelper};
 
 class ExcelController extends Controller
 {
@@ -33,8 +33,9 @@ class ExcelController extends Controller
 
         $export = new CollectiveExport($preparedData);
 
-        $fileName = $employer->company . ' ' . $yearMonth . '.xlsx';
+        $helper = new CollectiveHelper();
+        $filename = $helper->filename($employer->company, $yearMonth, 'xlsx');
 
-        return Excel::download($export, $fileName);
+        return Excel::download($export, $filename);
     }
 }

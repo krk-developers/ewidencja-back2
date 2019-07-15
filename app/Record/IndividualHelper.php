@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Record;
 
+declare(strict_types = 1);
+
 use App\{Worker, Employer};
 
 class IndividualHelper

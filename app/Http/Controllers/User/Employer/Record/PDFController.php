@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Carbon\{Carbon, CarbonPeriod};
-use App\{Days, Event, Legend, Calendar, Employer};
 use PDF;
+use App\{Days, Event, Legend, Calendar, Employer};
+use App\Record\CollectiveHelper;
 
 class PDFController extends Controller
 {
@@ -17,13 +18,13 @@ class PDFController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Employer $employer, string $year_month)
+    public function __invoke(Request $request, Employer $employer, string $yearMonth)
     {
         // return __CLASS__;
 
         $admin = $request->query('admin');
 
-        $start = Days::start($year_month);  // start period time for which we calculate the statistics
+        $start = Days::start($yearMonth);  // start period time for which we calculate the statistics
 
         $monthName = $start->monthName;
 
@@ -95,15 +96,17 @@ class PDFController extends Controller
             'previous_month' => $previousMonthStartAsYearMonth,
             'next_month' => $nextMonth,
             'admin' => $admin,
-            'year_month' => $year_month,
+            'year_month' => $yearMonth,
             'legend' => $legend,
             // 'legend_groups' => $legendGroups,
             'totalWorkingHours' => $totalWorkingHours,
         ];
 
         $pdf = PDF::loadView('user.employer.record.pdf', $data);
-        // return $pdf->stream();
-        $fileName = 'Ewidencja zbiorcza ' . $monthName;
-        return $pdf->download($fileName);
+        
+        $helper = new CollectiveHelper();
+        $filename = $helper->filename($employer->company, $yearMonth, 'pdf');
+        
+        return $pdf->download($filename);
     }
 }
