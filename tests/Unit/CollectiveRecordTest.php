@@ -43,20 +43,20 @@ class CollectiveRecordTest extends TestCase
         // $public_holidays_in_month->count()
         
         $workers = $record['workers'];
+        // dd($workers);
         $this->assertInstanceOf(Collection::class, $workers);
 
         $worker1 = $workers[0];
         $this->assertInstanceOf(Worker::class, $worker1);
-        $this->assertEquals(21, $worker1['workedDays']);
-        $this->assertEquals(147, $worker1['workedHours']);
-        $this->assertCount(0, $worker1['workerEvents']);  // worker's event (abcense)
-        // $this->assertIsArray($worker1);
-
+        $this->assertEquals(21, $worker1['worked_days']);
+        $this->assertEquals(147, $worker1['worked_hours']);
+        $this->assertCount(0, $worker1['worker_events']);  // abcense
+        
         $worker2 = $workers[1];
         $this->assertInstanceOf(Worker::class, $worker2);
-        $this->assertEquals(20, $worker2['workedDays']);
-        $this->assertEquals(140, $worker2['workedHours']);
-        $this->assertCount(1, $worker2['workerEvents']);
+        $this->assertEquals(20, $worker2['worked_days']);
+        $this->assertEquals(140, $worker2['worked_hours']);
+        $this->assertCount(1, $worker2['worker_events']);
 
 
         $yearMonth = '2019-06';
@@ -75,22 +75,20 @@ class CollectiveRecordTest extends TestCase
         $this->assertEquals(
             2, $record['public_holidays_count'], 'public holidays count'
         );
-        // $public_holidays_in_month->count()
         
         $workers = $record['workers'];
         $this->assertInstanceOf(Collection::class, $workers);
 
         $worker1 = $workers[0];
         $this->assertInstanceOf(Worker::class, $worker1);
-        $this->assertEquals(16, $worker1['workedDays'], 'worked days');
-        $this->assertEquals(112, $worker1['workedHours'], 'worked hours');
-        $this->assertCount(2, $worker1['workerEvents'], 'worker events');  // worker's event (abcense)
-        // $this->assertIsArray($worker1);
+        $this->assertEquals(16, $worker1['worked_days'], 'worked days');
+        $this->assertEquals(112, $worker1['worked_hours'], 'worked hours');
+        $this->assertCount(2, $worker1['worker_events'], 'worker events');  // abcense
 
         $worker2 = $workers[1];
         $this->assertInstanceOf(Worker::class, $worker2);
-        $this->assertEquals(14, $worker2['workedDays'], 'worked days');
-        $this->assertEquals(98, $worker2['workedHours'], 'worked hours');
-        $this->assertCount(1, $worker2['workerEvents'], 'worker events');
+        $this->assertEquals(14, $worker2['worked_days'], 'worked days');
+        $this->assertEquals(98, $worker2['worked_hours'], 'worked hours');
+        $this->assertCount(1, $worker2['worker_events'], 'worker events');
     }
 }
