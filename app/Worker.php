@@ -95,7 +95,7 @@ class Worker extends Model
     ): Collection {
         return DB::table('events')
             ->select(
-                'events.id', 'events.employer_id', 'events.worker_id', 
+                'events.id', 'events.worker_id', 'events.employer_id',
                 'events.start', 'events.end', 'events.title',
                 'legends.name as legend_name',
                 'legends.display_name as legend_display_name',
@@ -108,6 +108,39 @@ class Worker extends Model
             ->whereDate('end', '<=', $end)
             ->orderBy('start', 'asc')
             ->get();
+    }
+
+    public function eventsByEmployerID1(
+        int $employerID,
+        string $start,
+        string $end
+    ): array {
+        return DB::select(
+            "SELECT
+                DATE_FORMAT(start, '%Y-%m-%dT%T') as start,
+                DATE_FORMAT(end, '%Y-%m-%dT%T') as end,
+                title
+            FROM
+                events"
+        );
+        /*
+            ->select(
+                'events.id', 'events.worker_id', 'events.employer_id',
+                selectRaw(DATE_FORMAT(start, '%Y-%m-%dT%T')),
+                selectRaw(DATE_FORMAT(end, '%Y-%m-%dT%T')),
+                'events.title',
+                'legends.name as legend_name',
+                'legends.display_name as legend_display_name',
+                'legends.description as legend_description'
+            )
+            ->join('legends', 'events.legend_id', 'legends.id')
+            ->where('employer_id', $employerID)
+            ->where('worker_id', $this->id)
+            ->whereDate('start', '>=', $start)
+            ->whereDate('end', '<=', $end)
+            ->orderBy('start', 'asc')
+            ->get();
+        */
     }
 
     /**
