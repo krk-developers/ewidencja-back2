@@ -1008,17 +1008,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.8.28",
-        "version_normalized": "5.8.28.0",
+        "version": "v5.8.29",
+        "version_normalized": "5.8.29.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "341fb54bea9693cada2a5b8d398621a57f82862d"
+            "reference": "489ae2218c7eb138caac780de584d8df9fe8160b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/341fb54bea9693cada2a5b8d398621a57f82862d",
-            "reference": "341fb54bea9693cada2a5b8d398621a57f82862d",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/489ae2218c7eb138caac780de584d8df9fe8160b",
+            "reference": "489ae2218c7eb138caac780de584d8df9fe8160b",
             "shasum": ""
         },
         "require": {
@@ -1121,7 +1121,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2019-07-09T14:00:02+00:00",
+        "time": "2019-07-16T14:05:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1308,17 +1308,17 @@
     },
     {
         "name": "maatwebsite/excel",
-        "version": "3.1.14",
-        "version_normalized": "3.1.14.0",
+        "version": "3.1.15",
+        "version_normalized": "3.1.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-            "reference": "002dad9fa08ac19902dded3ca3c2cafa0de399a7"
+            "reference": "7d47c7af2ddcf93b4fee4f167e10702e918f69f1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/002dad9fa08ac19902dded3ca3c2cafa0de399a7",
-            "reference": "002dad9fa08ac19902dded3ca3c2cafa0de399a7",
+            "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/7d47c7af2ddcf93b4fee4f167e10702e918f69f1",
+            "reference": "7d47c7af2ddcf93b4fee4f167e10702e918f69f1",
             "shasum": ""
         },
         "require": {
@@ -1335,7 +1335,7 @@
             "phpunit/phpunit": "^8.0",
             "predis/predis": "^1.1"
         },
-        "time": "2019-06-19T11:52:55+00:00",
+        "time": "2019-07-16T08:40:48+00:00",
         "type": "library",
         "extra": {
             "laravel": {
@@ -1744,17 +1744,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.21.0",
-        "version_normalized": "2.21.0.0",
+        "version": "2.21.3",
+        "version_normalized": "2.21.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f"
+            "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
-            "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/58bdbbfab17ccd2ec7347b99e997f18232def4dc",
+            "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc",
             "shasum": ""
         },
         "require": {
@@ -1770,7 +1770,7 @@
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2019-07-14T17:06:46+00:00",
+        "time": "2019-07-18T18:47:28+00:00",
         "bin": [
             "bin/carbon"
         ],

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Worker\Employer\Event;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use App\{Days, Worker, Employer};
 
 class IndexController extends Controller
@@ -11,31 +11,31 @@ class IndexController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Worker   $worker    Worker
+     * @param Employer $employer  Employer
+     * @param string   $yearMonth YYYY-MM
+     * 
+     * @return View
      */
-    public function __invoke(Worker $worker, Employer $employer, string $year_month)  // Request $request
-    {
-        // return __CLASS__;
-        // pracownicy/{worker}/pracodawcy/{employer}/wydarzenia
-        // return $year_month;
-        $start = Days::start($year_month);  // start period time for which we calculate the statistics
+    public function __invoke(
+        Worker $worker,
+        Employer $employer,
+        string $yearMonth
+    ): View {
+        // start period time for which we calculate the statistics
+        $start = Days::start($yearMonth);
         $end = $start->endOfMonth();
 
         $startAsString = $start->toDateString();
-        $endAsString = $end->toDateString();
-        // return $startAsString;
+        $endAsString = $end->toDateString();        
         $previousMonth = $start->subMonth()->startOfMonth();
-        // return $previousMonth;
         $previousMonth = $previousMonth->format('Y-m');
         $nextMonth = $start->addMonth()->format('Y-m');
-        // return $previousMonthAsYearMonth;
-        // return $end->toDateString();
-        // return $worker->id;
+
         $events = $worker->eventsByEmployerID(
             $employer->id, $startAsString, $endAsString
         );
-        // return $events;
+
         return view(
             'user.worker.employer.event.index',
             [
@@ -44,7 +44,7 @@ class IndexController extends Controller
                 'events' => $events,
                 'start' => $startAsString,
                 'end' => $endAsString,
-                'year_month' => $year_month,
+                'year_month' => $yearMonth,
                 'previous_month' => $previousMonth,
                 'next_month' => $nextMonth,
             ]

@@ -11,10 +11,10 @@ class EditController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param Worker   $worker     Worker
-     * @param Employer $employer   Employer
-     * @param Event    $event      Event
-     * @param string   $year_month Year and month YYYY-MM
+     * @param Worker   $worker    Worker
+     * @param Employer $employer  Employer
+     * @param Event    $event     Event
+     * @param string   $yearMonth Year and month YYYY-MM
      * 
      * @return View
      */
@@ -22,7 +22,7 @@ class EditController extends Controller
         Worker $worker,
         Employer $employer,
         Event $event,
-        string $year_month
+        string $yearMonth
     ): View {
         return view(
             'user.worker.employer.event.edit',
@@ -30,7 +30,7 @@ class EditController extends Controller
                 'worker' => $worker,
                 'employer' => $employer,
                 'event' => $event,
-                'year_month' => $year_month,
+                'year_month' => $yearMonth,
                 'legends' => Legend::allSortBy(),
             ]
         );
