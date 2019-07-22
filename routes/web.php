@@ -572,5 +572,8 @@ Route::middleware('auth')->group(
             'Calendar\PublicHoliday\ShowController'
         )
         ->name('holidays.show');
+
+        // Route::get('s', 'Search\IndexController@index')->name('search.index');
+        Route::get('szukaj', 'Search\IndexController@search')->name('search.search');
     }
 );
