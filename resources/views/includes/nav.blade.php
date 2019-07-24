@@ -39,12 +39,12 @@
                         </div>
                     </li>
                 </ul>
-
+@if ($user->type->name == 'superadmin' || $user->type->name == 'admin')
                 <form class="form-inline" action="{{ route('search.search') }}" method="GET">
                     <input name="co" class="form-control mr-sm-2" type="search" placeholder="Wyszukiwanie" aria-label="Wyszukiwanie" required>
                     <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit">Szukaj</button>
                 </form>
-
+@endif
                 <form class="form-inline my-2 my-lg-0" action="{{ route('logout') }}" method="POST">
                     @csrf
                     
