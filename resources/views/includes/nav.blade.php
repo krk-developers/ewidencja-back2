@@ -41,6 +41,8 @@
                 </ul>
 @if ($user->type->name == 'superadmin' || $user->type->name == 'admin')
                 <form class="form-inline" action="{{ route('search.search') }}" method="GET">
+                    <input type="hidden" name="user_type" value="{{ $user->type->name }}">
+                    <input type="hidden" name="userable_id" value="{{ $user->userable_id }}">
                     <input name="co" class="form-control mr-sm-2" type="search" placeholder="Wyszukiwanie" aria-label="Wyszukiwanie" required>
                     <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit">Szukaj</button>
                 </form>

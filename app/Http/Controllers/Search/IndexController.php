@@ -25,9 +25,12 @@ class IndexController extends Controller
      * 
      * @return View
      */
-    public function search(Request $request): View
+    public function search(Request $request)//: View
     {
+        // dd($request);
         $searchString = $request->query('co');
+        $userType = $request->query('user_type');  // polices
+        $userableID = $request->query('userable_id');  // polices
 
         if ($searchString == null) {
             return back();
@@ -35,7 +38,7 @@ class IndexController extends Controller
 
         $search = new Search();
         $workers = $search->workers($searchString);
-        $employers = $search->employers($searchString);
+        $employers = $search->employers($searchString, $userType, $userableID);
         
         return view(
             'search.index',
