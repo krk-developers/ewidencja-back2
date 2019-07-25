@@ -11,6 +11,7 @@
             <div class="row mt-3">
                 <div class="col-sm">
 @if ($workers->count() > 0)
+                    <h4 class="mt-3"><i class="fas fa-user"></i> Pracownicy</h4>
                     <table class="table">
                         <thead>
                             <tr>
@@ -36,10 +37,11 @@
                         </tbody>
                     </table>
 @else
-                    <div class="alert alert-secondary" role="alert">Brak pracowników</div>
+                    <div class="alert alert-secondary" role="alert">Brak pracowników spełniających kryteria wyszukiwania</div>
 @endif
 
 @if ($employers->count() > 0)
+                    <h4 class="pt-3"><i class="fas fa-user-tie"></i> Pracodawcy</h4>
                     <table class="table">
                         <thead>
                             <tr>
@@ -65,7 +67,7 @@
                         </tbody>
                     </table>
 @else
-                    <div class="alert alert-secondary" role="alert">Brak pracodawców</div>
+                    <div class="alert alert-secondary" role="alert">Brak pracodawców spełniających kryteria wyszukiwania</div>
 @endif
                 </div>
             </div>

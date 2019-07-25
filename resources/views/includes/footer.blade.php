@@ -4,7 +4,6 @@
                 <div class="col-sm border-top pt-2 small text-secondary">
                         <strong>{{ $user->name }}</strong>. 
                         <strong>{{ $user->type->display_name }}</strong>.
-                        <i>userable_id: {{ $user->userable_id }}</i>
 @if (App::environment('local'))
                         {{-- Ścieżka: <strong>{{ $path }}</strong>. --}}
                         Route action: <strong>{{ Route::currentRouteAction() }}</strong>.

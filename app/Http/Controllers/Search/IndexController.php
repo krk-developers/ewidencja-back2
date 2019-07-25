@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Search;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 use App\Search;
 
 class IndexController extends Controller
@@ -27,18 +28,23 @@ class IndexController extends Controller
      */
     public function search(Request $request)//: View
     {
-        // dd($request);
         $searchString = $request->query('co');
-        $userType = $request->query('user_type');  // polices
-        $userableID = $request->query('userable_id');  // polices
 
         if ($searchString == null) {
             return back();
         }
 
         $search = new Search();
-        $workers = $search->workers($searchString);
-        $employers = $search->employers($searchString, $userType, $userableID);
+        $workers = $search->workers(
+            $searchString,
+            Auth::user()->type->name,
+            Auth::user()->userable_id
+        );
+        $employers = $search->employers(
+            $searchString,
+            Auth::user()->type->name,
+            Auth::user()->userable_id
+        );
         
         return view(
             'search.index',
