@@ -10,3 +10,5 @@ yarn-error.log
 info.txt
 .vscode/
 ewidencja.code-workspace
+node_modules/
+vendor/
