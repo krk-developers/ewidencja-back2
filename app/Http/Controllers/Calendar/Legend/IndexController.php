@@ -21,7 +21,10 @@ class IndexController extends Controller
 
         return view(
             'calendar.legend.index',
-            ['legends' => $legends]
+            [
+                'legends' => $legends,
+                'legend' => Legend::class
+            ]
         );
     }
 }

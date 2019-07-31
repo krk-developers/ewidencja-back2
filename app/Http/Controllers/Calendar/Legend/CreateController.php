@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Calendar\Legend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use App\Legend;
 
 class CreateController extends Controller
 {
@@ -16,6 +17,8 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
+        $this->authorize('create', Legend::class);
+
         return view('calendar.legend.create');
     }
 }

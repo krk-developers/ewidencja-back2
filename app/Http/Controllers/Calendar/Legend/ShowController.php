@@ -19,6 +19,8 @@ class ShowController extends Controller
      */
     public function __invoke(Legend $legend): View
     {
+        $this->authorize('view', $legend);
+
         return view(
             'calendar.legend.show',
             ['legend' => $legend]

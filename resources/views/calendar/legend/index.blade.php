@@ -8,6 +8,7 @@
                     <h3><i class="fas fa-calendar"></i> Legenda</h3>
                 </div>
             </div>
+@can('create', $legend)
             <div class="row mt-5">
                 <div class="col-sm">
                     <a class="btn btn-success" href="{{ route('legends.create') }}" title="Dodawanie legendy" role="button">
@@ -15,6 +16,7 @@
                     </a>
                 </div>
             </div>
+@endcan
             <div class="row mt-3">
                 <div class="col-sm">
 @if ($legends->count() > 0)

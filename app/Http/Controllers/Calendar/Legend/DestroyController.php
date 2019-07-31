@@ -16,11 +16,14 @@ class DestroyController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request Request
+     * @param Legend  $legend  Legend
      * 
      * @return View|RedirectResponse
      */
     public function __invoke(Request $request, Legend $legend): object
     {
+        $this->authorize('delete', $legend);
+
         $delete = $request->input('delete');
 
         if ($delete == 'Yes') {

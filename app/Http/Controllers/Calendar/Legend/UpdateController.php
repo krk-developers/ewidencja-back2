@@ -21,6 +21,8 @@ class UpdateController extends Controller
      */
     public function __invoke(Request $request, Legend $legend): RedirectResponse
     {
+        $this->authorize('update', $legend);
+
         $saved = false;
 
         $legend->fill($request->all());
@@ -29,12 +31,11 @@ class UpdateController extends Controller
             $saved = $legend->save();  // bool
         }
 
+        $status = 'info';
+        $message = "Nie zmieniono";
         if ($saved) {
             $status = 'success';
             $message = "Zmieniono";
-        } else {
-            $status = 'info';
-            $message = "Nie zmieniono";
         }
 
         return redirect()
