@@ -106,6 +106,99 @@ class EventsTableSeeder extends Seeder
             ]
         );
         
+        // Dni ustawowo wolne od pracy w 2020 roku
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-01-01',                
+                'title' => 'Nowy Rok, Świętej Bożej Rodzicielki',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-01-06',
+                'title' => 'Trzech Króli (Objawienie Pańskie)',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-04-12',
+                'title' => 'Wielkanoc',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-04-13',
+                'title' => 'Poniedziałek Wielkanocny',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-05-01',
+                'title' => 'Święto Pracy',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-05-03',
+                'title' => 'Święto Konstytucji 3 Maja',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-05-31',
+                'title' => 'Zesłanie Ducha Świętego (Zielone Świątki)',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-06-11',
+                'title' => 'Boże Ciało',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-08-15',
+                'title' => 'Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-11-01',
+                'title' => 'Wszystkich Świętych',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-11-11',
+                'title' => 'Święto Niepodległości',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-12-25',
+                'title' => 'Boże Narodzenie (pierwszy dzień)',
+            ]
+        );
+        DB::table('events')->insert(
+            [
+                'legend_id' => 20,
+                'start' => '2020-12-26',
+                'title' => 'Boże Narodzenie (drugi dzień)',
+            ]
+        );
+
         // ///////////////////////////////////////////////////////////////////
         // workers
 
