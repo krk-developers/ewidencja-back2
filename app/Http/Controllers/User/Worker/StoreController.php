@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreWorker;
 use App\{Type, User, Worker};
-use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -29,7 +28,7 @@ class StoreController extends Controller
         $worker = Worker::createRow($request->all());
 
         $request['userable_id'] = $worker->id;
-        $request['userable_type'] = self::TYPE_MODEL_NAME;
+        $request['userable_type'] = $typeModelName;
 
         User::createRow($request->all());
         

@@ -27,7 +27,8 @@ class IndexController extends Controller
         $this->authorize('list', Worker::class);
 
         $workers = Worker::allSortBy();
-
+        // 
+        // dd($workers[0]->user);
         return view(
             'user.worker.index',
             ['workers' => $workers]
