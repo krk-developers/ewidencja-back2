@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-// use Symfony\Component\HttpFoundation\Cookie;
 
 class HomeController extends Controller
 {
@@ -31,7 +30,7 @@ class HomeController extends Controller
      */
     public function index(Request $request): object
     {
-        $user = Auth::user();        
+        $user = Auth::user();
         $apiToken = $user->api_token;
         $userType = $user->type->name;
         
@@ -54,19 +53,19 @@ class HomeController extends Controller
             true,
             false
         );
-        // setcookie ( string $name [, string $value = "" [, int $expires = 0 [, string $path = "" [, string $domain = "" [, bool $secure = FALSE [, bool $httponly = FALSE ]]]]]] ) : bool
+        
         // from where user came   
         $previous = session('previous');
         session()->forget('previous');
 
+        /*
         if (\App::environment('local')) {
             if ($previous == config('record.local_main_page') || $previous == config('record.host_main_page')) {  // local main page
                 return $this->redirectToFrontend(
                     $apiToken, $userType, $rectok, $usertype
                 );
             }
-        } /* else {
-            dd($previous);
+        } */ /* else {
             if ($previous == config('record.host_main_page')) {  // host main page
                 return $this->redirectToFrontend(
                     $apiToken, $userType, $rectok, $usertype
@@ -93,6 +92,7 @@ class HomeController extends Controller
      * 
      * @return RedirectResponse
      */
+    /*
     private function redirectToFrontend(
         $apiToken,
         $userType,
@@ -105,4 +105,5 @@ class HomeController extends Controller
             ->cookie($rectok)
             ->cookie($usertype);
     }
+    */
 }

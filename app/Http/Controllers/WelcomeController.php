@@ -19,9 +19,11 @@ class WelcomeController extends Controller
      */
     public function index(Request $request): object
     {
+        /*
         $rectok = $request->cookie('rectok');
         $usertype = $request->cookie('usertype');
-
+        */
+        /*
         // if cookie exist, redirect to frontend
         if ($rectok) {
             return redirect(config('record.frontend_page'))
@@ -30,7 +32,8 @@ class WelcomeController extends Controller
                 ->cookie($rectok)
                 ->cookie($usertype);
         }
-        
+        */
+
         // from where user came
         session(['previous' => route('welcome')]);
 
