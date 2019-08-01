@@ -13,9 +13,8 @@
 |
 */
 
-// Route::middleware('auth:api')->group(
-    // function () {
-        
+Route::middleware('auth:api')->group(
+    function () {
         // legend
         Route::get(
             'legends',
@@ -143,5 +142,5 @@
             'workers/{worker}/employers/{employer}',
             'API\Worker\EmployerController@destroy'
         )->name('api.workers.employers.destroy');
-    // }
-// );
+    }
+);
