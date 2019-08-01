@@ -19,7 +19,6 @@ class LegendsTableSeeder extends Seeder
                 'name' => 'CHZ100',
                 'display_name' => 'Choroba zgłoszona 100%',
                 'description' => 'Choroba u kobiety ciężarnej, płatna 100%',
-                'working_day' => 0,
             ]
         );
         DB::table('legends')->insert(

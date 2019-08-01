@@ -651,6 +651,7 @@ class ComposerStaticInit5fa0e874f1bdd4a559246e5689adb8fb
         'App\\Legend' => __DIR__ . '/../..' . '/app/Legend.php',
         'App\\Policies\\AdminPolicy' => __DIR__ . '/../..' . '/app/Policies/AdminPolicy.php',
         'App\\Policies\\EmployerPolicy' => __DIR__ . '/../..' . '/app/Policies/EmployerPolicy.php',
+        'App\\Policies\\LegendPolicy' => __DIR__ . '/../..' . '/app/Policies/LegendPolicy.php',
         'App\\Policies\\SuperAdminPolicy' => __DIR__ . '/../..' . '/app/Policies/SuperAdminPolicy.php',
         'App\\Policies\\WorkerPolicy' => __DIR__ . '/../..' . '/app/Policies/WorkerPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

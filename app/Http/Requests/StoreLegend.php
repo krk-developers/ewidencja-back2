@@ -15,7 +15,7 @@ class StoreLegend extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;  // false;
+        return true;
     }
 
     /**
@@ -29,7 +29,6 @@ class StoreLegend extends FormRequest
             'name' => ['required', 'unique:legends', 'max:10'],
             'display_name' => ['max:80'],
             'description' => ['max:191'],
-            'working_day' => ['required', 'numeric', 'min:0', 'max:1'],
         ];
     }
 }

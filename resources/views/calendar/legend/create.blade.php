@@ -26,7 +26,6 @@
 @endif
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label for="display_name" class="col-sm-2 col-form-label">Nazwa</label>
                                     <div class="col-sm-10">
@@ -40,7 +39,6 @@
 @endif
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-2 col-form-label">Opis</label>
                                     <div class="col-sm-10">
@@ -54,20 +52,6 @@
 @endif
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="working_day" class="col-sm-2 col-form-label">Dzień roboczy</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input type="radio" id="working_day1" name="working_day" class="form-check-input" value="1" @if (old('working_day') == 1)checked @endif>
-                                            <label class="form-check-label" for="working_day1">Tak</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="working_day2" name="working_day" class="form-check-input" value="0" @if (old('working_day') == 0)checked @endif>
-                                            <label class="form-check-label" for="working_day2">Nie</label>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <a href="{{ route('legends.index') }}" title="Powrót do poprzedniej strony" class="btn btn-light">
                                     <i class="fas fa-angle-left"></i> Powrót
                                 </a>

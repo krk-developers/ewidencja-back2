@@ -23,16 +23,7 @@ class Legend extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'display_name', 'description', 'working_day'];
-
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'working_day' => 1,
-    ];
+    protected $fillable = ['name', 'display_name', 'description'];
 
     /**
      * Get the events for the legend.
@@ -83,6 +74,13 @@ class Legend extends Model
         return $sorted;
     }
 
+    /**
+     * Create legend
+     *
+     * @param array $data Data
+     * 
+     * @return Legend
+     */
     public static function create_(array $data): Legend
     {
         return self::create(
@@ -90,7 +88,6 @@ class Legend extends Model
                 'name' => $data['name'],
                 'display_name' => $data['display_name'],
                 'description' => $data['description'],
-                'working_day' => $data['working_day'],
             ]
         );
     }

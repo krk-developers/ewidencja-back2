@@ -6,8 +6,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Response;
 // use Illuminate\Foundation\Testing\WithFaker;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -58,7 +56,6 @@ class LegendTest extends TestCase
                         'name',
                         'display_name',
                         'description',
-                        'working_day'
                     ]
                 ]
             ]
@@ -93,7 +90,6 @@ class LegendTest extends TestCase
                 'name' => 'XXX',
                 'display_name' => 'Dzień filmów X',
                 'description' => 'Dzień oglądania filmów dla dorosłych',
-                'working_day' => 0,
             ]
         );
         

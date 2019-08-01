@@ -29,10 +29,6 @@
                                             <th scope="row">Opis</th>
                                             <td>{{ $legend->description }}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Dzień roboczy</th>
-                                            <td>@if ($legend->working_day == 0) Nie @endif @if ($legend->working_day == 1) Tak @endif</td>
-                                        </tr>
                                 </table>
                             </p>
                         </div>

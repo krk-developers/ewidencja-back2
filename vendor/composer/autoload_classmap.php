@@ -162,6 +162,7 @@ return array(
     'App\\Legend' => $baseDir . '/app/Legend.php',
     'App\\Policies\\AdminPolicy' => $baseDir . '/app/Policies/AdminPolicy.php',
     'App\\Policies\\EmployerPolicy' => $baseDir . '/app/Policies/EmployerPolicy.php',
+    'App\\Policies\\LegendPolicy' => $baseDir . '/app/Policies/LegendPolicy.php',
     'App\\Policies\\SuperAdminPolicy' => $baseDir . '/app/Policies/SuperAdminPolicy.php',
     'App\\Policies\\WorkerPolicy' => $baseDir . '/app/Policies/WorkerPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

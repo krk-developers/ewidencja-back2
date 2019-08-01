@@ -43,7 +43,6 @@
                                     </a>
                                 </td>
                                 <td class="description">{{ $legend->description }}</td>
-                                <td class="description">@if($legend->working_day == 1)Tak @endif @if($legend->working_day == 0)Nie @endif</td>
                             </tr>
 @endforeach
                         </tbody>
