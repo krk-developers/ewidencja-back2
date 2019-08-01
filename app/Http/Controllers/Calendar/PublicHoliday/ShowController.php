@@ -18,6 +18,7 @@ class ShowController extends Controller
      */
     public function __invoke(int $year): View
     {
+        $currentYear = Carbon::now()->year;
         $nextYear = Carbon::now()->addYear()->year;
         $previousYear = Carbon::now()->subYear()->year;
 
@@ -29,6 +30,7 @@ class ShowController extends Controller
             [
                 'nearest_public_holiday' => $nearestPublicHolidays,
                 'public_holidays' => $publicHolidays,
+                'currentYear' => $currentYear,
                 'nextYear' => $nextYear,
                 'previousYear' => $previousYear,
             ]

@@ -18,17 +18,19 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
+        $currentYear = Carbon::now()->year;
         $nextYear = Carbon::now()->addYear()->year;
         $previousYear = Carbon::now()->subYear()->year;
 
-        $publicHolidays = Event::publicHolidays(Carbon::now()->year);
-        $nearestPublicHolidays = Event::nearestPublicHolidays(Carbon::now()->year);
-
+        $publicHolidays = Event::publicHolidays($currentYear);
+        $nearestPublicHolidays = Event::nearestPublicHolidays($currentYear);
+        
         return view(
             'calendar.public_holiday.index',
             [
                 'nearest_public_holiday' => $nearestPublicHolidays,
                 'public_holidays' => $publicHolidays,
+                'currentYear' => $currentYear,
                 'nextYear' => $nextYear,
                 'previousYear' => $previousYear,
             ]
