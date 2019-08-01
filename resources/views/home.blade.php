@@ -26,14 +26,6 @@
                         <hr>
                         <p class="text-muted">
                             <small>
-                                <div>Zalecana rozdzielczość w poziomie >= 768 pikseli.</div>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">Przetestowano w przeglądarkach:</li>
-                                    <li class="list-inline-item"><a href="https://www.mozilla.org/pl/firefox/" title=""><i class="fas fa-external-link-alt"></i> Firefox</a></li>
-                                    <li class="list-inline-item"><a href="https://www.google.pl/chrome/" title=""><i class="fas fa-external-link-alt"></i> Chrome</a></li>
-                                    <li class="list-inline-item"><a href="https://www.opera.com/pl" title=""><i class="fas fa-external-link-alt"></i> Opera</a></li>
-                                    <li class="list-inline-item"><a href="https://vivaldi.com/pl/" title=""><i class="fas fa-external-link-alt"></i> Vivaldi</a></li>
-                                </ul>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
                                         <a href="https://github.com/krk-developers/ewidencja-back2/wiki" title="Otwiera stronę wiki na GitHub">
