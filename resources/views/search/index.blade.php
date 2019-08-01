@@ -58,7 +58,7 @@
                                 <td>{{ $employer->id }}</td>
                                 <td>
                                     <a href="{{ route('employers.show', $employer->id) }}" title="Szczegóły">
-                                        {{ $employer->company }}
+                                        <i class="fas fa-eye"></i> {{ $employer->company }}
                                     </a>
                                 </td>
                                 <td>{{ $employer->nip }}</td>
@@ -68,6 +68,38 @@
                     </table>
 @else
                     <div class="alert alert-secondary" role="alert">Brak pracodawców spełniających kryteria wyszukiwania</div>
+@endif
+
+@if ($legends->count() > 0)
+                    <h4 class="pt-3"><i class="fas fa-calendar"></i> Legenda</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">L.P.</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Skrót</th>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Opis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+@foreach ($legends as $legend)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $legend->id }}</td>
+                                <td>{{ $legend->name }}</td>
+                                <td>
+                                    <a href="{{ route('legends.show', $legend->id) }}" title="Szczegóły">
+                                        <i class="fas fa-eye"></i> {{ $legend->display_name }}
+                                    </a>
+                                </td>
+                                <td>{{ $legend->description }}</td>
+                            </tr>
+@endforeach
+                        </tbody>
+                    </table>
+@else
+                    <div class="alert alert-secondary" role="alert">Brak legendy spełniającej kryteria wyszukiwania</div>
 @endif
                 </div>
             </div>

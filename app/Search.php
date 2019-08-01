@@ -400,4 +400,25 @@ class Search extends Model
         
         return $d->get();
     }
+
+    public function legend(string $term): Collection
+    {
+        $a = DB::table('legends');
+        $a->where('name', '=', $term);
+
+        $b = DB::table('legends');
+        $b->where('display_name', '=', $term);
+
+        $c = DB::table('legends');
+        $c->where('name', '=', "%$term%");
+
+        $d = DB::table('legends');
+        $d->where('display_name', '=', "%$term%");
+
+        $d->union($a);
+        $d->union($b);
+        $d->union($c);
+
+        return $d->get();
+    }
 }

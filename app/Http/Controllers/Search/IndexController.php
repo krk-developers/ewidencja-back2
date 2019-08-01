@@ -12,21 +12,14 @@ use App\Search;
 
 class IndexController extends Controller
 {
-    /*
-    public function index()
-    {
-        return __CLASS__;
-    }
-    */
-
     /**
-     * Search workers and employers
+     * Search workers, employers and legend
      *
      * @param Request $request Request
      * 
      * @return View
      */
-    public function search(Request $request)//: View
+    public function search(Request $request): View
     {
         $searchString = $request->query('co');
 
@@ -45,12 +38,14 @@ class IndexController extends Controller
             Auth::user()->type->name,
             Auth::user()->userable_id
         );
+        $legends = $search->legend($searchString);
         
         return view(
             'search.index',
             [
                 'workers' => $workers,
-                'employers' => $employers
+                'employers' => $employers,
+                'legends' => $legends
             ]
         );
     }
