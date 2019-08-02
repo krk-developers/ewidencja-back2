@@ -161,7 +161,6 @@ class Worker extends Model
             ->where('legends.name', 'DOD')
             ->orderBy('start')
             ->get();
-            //->count();
     }
 
     /**

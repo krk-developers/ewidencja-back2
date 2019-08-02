@@ -5,10 +5,12 @@ declare(strict_types = 1);
 namespace Tests\Feature;
 
 use Tests\TestCase;
+/*
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\ValidationException;
 use App\{Employer, Worker};
+*/
 use Illuminate\Support\Facades\DB;
 
 class WorkerTest extends TestCase
@@ -18,7 +20,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testWorkerIndex(): void
+    public function _testWorkerIndex(): void
     {
         $this->withoutExceptionHandling();
 
@@ -68,7 +70,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testWorkerShow(): void
+    public function _testWorkerShow(): void
     {
         $this->withoutExceptionHandling();
         
@@ -103,7 +105,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testCreateWorker(): void
+    public function _testCreateWorker(): void
     {
         // $this->withoutExceptionHandling();
 
@@ -162,7 +164,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testUpdateWorker(): void
+    public function _testUpdateWorker(): void
     {
         // $this->withoutExceptionHandling();
 
@@ -214,7 +216,7 @@ class WorkerTest extends TestCase
      *
      * @return void
      */
-    public function testDestroyWorker(): void
+    public function _testDestroyWorker(): void
     {
         $this->withoutExceptionHandling();
 
@@ -227,7 +229,7 @@ class WorkerTest extends TestCase
             ->assertJson(['deleted' => true]);
     }
 
-    public function testAddEmployer(): void
+    public function _testAddEmployer(): void
     {
         $this->withoutExceptionHandling();
 
@@ -254,7 +256,7 @@ class WorkerTest extends TestCase
             ->assertJson(['created' => true]);
     }
 
-    public function testRemoveEmployer(): void
+    public function _testRemoveEmployer(): void
     {
         // $this->withoutExceptionHandling();
 
@@ -272,5 +274,47 @@ class WorkerTest extends TestCase
         // $response->dump();
 
         $response->assertStatus(200)->assertJson(['deleted' => true]);
+    }
+
+    public function testEmployerEventsByDate(): void
+    {
+        // $this->assertTrue(true);
+        $this->withoutExceptionHandling();
+
+        $workerID = 3;
+        $employerID = 4;
+        $date = '2019-07';
+        $response = $this->get(
+            route(
+                'api.workers.employers.events.date',
+                [$workerID, $employerID, $date]
+            )
+        );
+
+        $response->assertStatus(200);
+        // $response->assertJson(['function' => 'index']);
+        // dd($response);
+        // $response->dumpHeaders();
+        // $response->dump();
+        
+        $response->assertJsonStructure(
+            [
+                [
+                    /*
+                    'id',
+                    'worker_id',
+                    'employer_id',
+                    */
+                    'start',
+                    'end',
+                    'title',
+                    /*
+                    'legend_name',
+                    'legend_display_name',
+                    'legend_description',
+                    */
+                ]
+            ]
+        );
     }
 }

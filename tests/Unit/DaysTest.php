@@ -3,12 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-// use Illuminate\Foundation\Testing\WithFaker;
-// use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\{Days, Worker};
-// use Carbon\Carbon;
-use Carbon\CarbonPeriod;
-use Illuminate\Queue\Console\WorkCommand;
+use App\Days;
 
 class DaysTest extends TestCase
 {
@@ -94,7 +89,7 @@ class DaysTest extends TestCase
     }
     
     /**
-     * A vacation leaveA vacation leave only on working days.
+     * A vacation leave only on working days.
      * (UW - Urlop Wypoczynkowy)
      *
      * @return void
@@ -111,23 +106,5 @@ class DaysTest extends TestCase
         $friday = '2019-05-17';
         $onlyWorkingDays = Days::areWorkingDays($tuesday, $friday);
         $this->assertTrue($onlyWorkingDays);
-    }
-
-    /**
-     * Test day of childcare.
-     * Maximum two day a year.
-     * DOD - Dzień opieki nad dzieckiem.
-     *
-     * @return void
-     */
-    public function _testDOD()
-    {
-        $worker = Worker::findRow(1);
-        $year = 2019;
-        $maximumTwoDaysAyear = 2;
-
-        $childcareDayCount = Worker::childcareDayCount($worker->id, $year);
-        dd($childcareDayCount);
-        $this->assertLessThanOrEqual($maximumTwoDaysAyear, $childcareDayCount);
     }
 }

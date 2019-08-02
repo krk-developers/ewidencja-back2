@@ -5,26 +5,22 @@ declare(strict_types = 1);
 namespace Tests\Unit;
 
 use Tests\TestCase;
-// use Illuminate\Foundation\Testing\WithFaker;
-// use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\{Worker, Employer};
 use App\Record\Individual;
 
 class IndividualRecordTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * Records test.
      *
      * @return void
      */
     public function testBase(): void
     {
         $worker = Worker::findRow(3);
-        // $this->assertNull($worker);
         $this->assertIsObject($worker);
 
         $employer = Employer::findRow(4);
-        // $this->assertNull($employer);
         $this->assertIsObject($employer);
 
         $individual = new Individual();

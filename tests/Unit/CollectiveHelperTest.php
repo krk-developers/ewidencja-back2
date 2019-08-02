@@ -8,7 +8,7 @@ use App\Record\CollectiveHelper;
 class CollectiveHelperTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * File name test.
      *
      * @return void
      */

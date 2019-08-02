@@ -14,14 +14,13 @@ use Illuminate\Database\Eloquent\Collection;
 class CollectiveRecordTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * Collective records test.
      *
      * @return void
      */
     public function testBase(): void
     {
         $employer = Employer::findRow(4);
-        // $this->assertNull($employer);
         $this->assertIsObject($employer);
 
         $collective = new Collective();
@@ -35,15 +34,12 @@ class CollectiveRecordTest extends TestCase
         $this->assertEquals(false, $record['is_future']);
         $this->assertEquals('maj', $record['month_name']);
         $this->assertEquals(31, $record['days_in_month']);
-        $this->assertEquals(21, $record['working_days']);
-        // $time_period_public_holiday_filter
+        $this->assertEquals(21, $record['working_days']);        
         $this->assertEquals(287, $record['total_worked_hours']);
         $this->assertEquals(41, $record['total_worked_days']);
         $this->assertEquals(2, $record['public_holidays_count']);
-        // $public_holidays_in_month->count()
         
         $workers = $record['workers'];
-        // dd($workers);
         $this->assertInstanceOf(Collection::class, $workers);
 
         $worker1 = $workers[0];
@@ -57,7 +53,6 @@ class CollectiveRecordTest extends TestCase
         $this->assertEquals(20, $worker2['worked_days']);
         $this->assertEquals(140, $worker2['worked_hours']);
         $this->assertCount(1, $worker2['worker_events']);
-
 
         $yearMonth = '2019-06';
         $record = $collective->calculate($employer, $yearMonth);

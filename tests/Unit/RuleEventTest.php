@@ -5,14 +5,8 @@ declare(strict_types = 1);
 namespace Tests\Unit;
 
 use Tests\TestCase;
-// use Illuminate\Foundation\Testing\WithFaker;
-// use Illuminate\Foundation\Testing\RefreshDatabase;
-// use App\{Days, Worker, Legend};
-// use Carbon\Carbon;
-// use Carbon\CarbonPeriod;
-// use Illuminate\Queue\Console\WorkCommand;
-use App\Rules\{Legend, LegendHelper};
-use App\{Worker, Employer, Days, Legend as LegendModel, Event};
+use App\Rules\LegendHelper;
+use App\{Worker, Employer, Days};
 
 class RuleEventTest extends TestCase
 {
@@ -23,10 +17,9 @@ class RuleEventTest extends TestCase
      */
     public function _testRequestIsNotNull(): void
     {
-        
         $start = null;
         $end = null;
-        $requestIsNotNull = LegendHelper::requestIsNotNull($start, $end);        
+        $requestIsNotNull = LegendHelper::requestIsNotNull($start, $end);
         $this->assertFalse($requestIsNotNull);
 
 
@@ -78,10 +71,9 @@ class RuleEventTest extends TestCase
     {
         $workerID = $employerID = 3;
         $worker = Worker::findRow($workerID);
-        $employer = Employer::findRow($employerID);
+        // $employer = Employer::findRow($employerID);
         
         $childcareDays = LegendHelper::childcareDaysNumber($worker, '2019-05-22');
-        // dd($childcareDays);
         $this->assertTrue($childcareDays);
         /*
         $legendModel = new LegendModel();
